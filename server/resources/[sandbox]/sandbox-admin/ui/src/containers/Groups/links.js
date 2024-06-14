@@ -32,7 +32,7 @@ const staff = [
   },
   {
     name: "characters",
-    icon: ["fas", "people"],
+    icon: ["fas", "person"],
     label: "Find Characters",
     path: "/players-characters",
     exact: true,
@@ -70,7 +70,7 @@ const admin = [
   },
   {
     name: "characters",
-    icon: ["fas", "people"],
+    icon: ["fas", "person"],
     label: "Find Characters",
     path: "/players-characters",
     exact: true,
