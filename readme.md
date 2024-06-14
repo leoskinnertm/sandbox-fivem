@@ -1,6 +1,6 @@
 ![Logo](https://i.ibb.co/Tm01NWq/banner.png)
 # Sandbox RP
-This is a heavily modified version of Mythic Framework for Sandbox RP. This is a custsom framework that uses a component system, all UI's are built in React. This codebase is being released with the full permissions of the original Mythic Framework authors Alzar & Dr Nick
+This is a heavily modified version of **Mythic Framework** for Sandbox RP. This is a custom framework that uses a component system, all UI's are built in React. This codebase is being released with the full permissions of the original Mythic Framework authors **Alzar & Dr Nick**
 
 **Support Discord** https://discord.gg/7MkRAjPkW2
 
@@ -14,8 +14,6 @@ This is a heavily modified version of Mythic Framework for Sandbox RP. This is a
 | HeidiSQL | [Download Here](https://www.heidisql.com/download.php) (*can be installed via MariaDB)
 | Git for Windows | [Download Here](https://git-scm.com/download/win)
 
-# NOTE:
-This will not work out of the box, you will need to make modifications to the base to replace the WebAPI calls with whatever authentication source you're wanting to do. If you don't understand how to do that, go use ESX.
 
 ## Prerequisites & Setup
 
