@@ -64,7 +64,7 @@ function newPhoneProp()
 
 	CreateThread(function()
 		while LocalPlayer.state.phoneOpen or _call ~= nil do
-			Citizen.Wait(3)
+			Wait(3)
 		end
 		deletePhone()
 	end)
@@ -105,7 +105,7 @@ function PhonePlayAnim(status, freeze, force)
 	TaskPlayAnim(myPedId, dict, anim, 3.0, -1, -1, flag, 0, false, false, false)
 
 	if status ~= "out" and currentStatus == "out" then
-		Citizen.Wait(380)
+		Wait(380)
 		newPhoneProp()
 	end
 
@@ -115,7 +115,7 @@ function PhonePlayAnim(status, freeze, force)
 	currentStatus = status
 
 	if status == "out" then
-		Citizen.Wait(180)
+		Wait(180)
 		StopAnimTask(myPedId, lastDict, lastAnim, 1.0)
 	end
 end
@@ -127,7 +127,7 @@ function PhonePlayOut()
 end
 
 function PhonePlayText()
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while LocalPlayer.state.phoneOpen do
 			if
 				(
@@ -140,13 +140,13 @@ function PhonePlayText()
 			then
 				PhonePlayAnim("text", false, true)
 			end
-			Citizen.Wait(1000)
+			Wait(1000)
 		end
 	end)
 end
 
 function PhonePlayCall(freeze)
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _call ~= nil and not _call.onHold do
 			if not LocalPlayer.state.phoneOpen then
 				if
@@ -164,7 +164,7 @@ function PhonePlayCall(freeze)
 					PhonePlayAnim("call", freeze, true)
 				end
 			end
-			Citizen.Wait(1000)
+			Wait(1000)
 		end
 	end)
 end
@@ -188,6 +188,6 @@ end
 function loadAnimDict(dict)
 	RequestAnimDict(dict)
 	while not HasAnimDictLoaded(dict) do
-		Citizen.Wait(1)
+		Wait(1)
 	end
 end
