@@ -1,9 +1,9 @@
 import { APP_RESET, APP_SHOW, APP_HIDE, SET_STATE } from '../../actions/types';
-import { STATE_SPLASH, STATE_SPAWN } from '../../util/States';
+import { STATE_SPAWN, STATE_CHARACTERS, STATE_SPLASH } from '../../util/States';
 
 export const initialState = {
 	hidden: process.env.NODE_ENV == 'production',
-	state: STATE_SPLASH,
+	state: STATE_SPAWN,
 };
 
 const appReducer = (state = initialState, action) => {

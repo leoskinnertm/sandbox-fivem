@@ -73,7 +73,7 @@ export default ({ spawn, onPlay }) => {
 			>
 				<div className={classes.spawnIcon}>
 					<FontAwesomeIcon
-						icon={Boolean(spawn.icon) ? spawn.icon : 'location-dot'}
+						icon={Boolean(spawn.icon) ? spawn.icon : 'fas fa-location-dot'}
 					/>
 				</div>
 				<div className={classes.details}>

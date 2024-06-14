@@ -2,7 +2,6 @@
 import React from 'react';
 import { Fade } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 
 import { STATE_CREATE } from '../../../util/States';
@@ -49,7 +48,7 @@ export default () => {
 		<Fade in={true}>
 			<div className={classes.container} onClick={onClick}>
 				<div className={classes.details}>
-					<FontAwesomeIcon icon="plus-circle" />
+				<i class="fa-solid fa-circle-plus"></i>
 				</div>
 			</div>
 		</Fade>
