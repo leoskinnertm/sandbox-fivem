@@ -2,7 +2,15 @@
 # Sandbox RP
 This is a heavily modified version of **Mythic Framework** for Sandbox RP. This is a custom framework that uses a component system, all UI's are built in React. This codebase is being released with the full permissions of the original Mythic Framework authors **Alzar & Dr Nick**
 
-**Support Discord** https://discord.gg/7MkRAjPkW2
+
+## Official Discord
+- [Discord Link](https://discord.gg/7MkRAjPkW2) - Offical Discord for community-driven support forum!
+
+
+
+## Project Maintainers
+- Mysticz - Maintainer & Community Owner
+
 
 ## Dependencies
 
@@ -15,72 +23,38 @@ This is a heavily modified version of **Mythic Framework** for Sandbox RP. This 
 | Git for Windows | [Download Here](https://git-scm.com/download/win)
 
 
-## Prerequisites & Setup
+## Information
 
-Clone the project
-
-```bash
-  git clone git@github.com:badcodestv/sandbox-server.git
-```
-
-Go to the project directory
-
-```bash
-  cd sandboxrp-server
-```
-
-Download latest FiveM Windows Artifact
-- [Download Here](https://runtime.fivem.net/artifacts/fivem/build_server_windows/master/)
-
-Create new `artifact` folder in the root directory
-
-```bash
-  mkdir artifact
-```
-
-Move downloaded artifact files into the artifact folder
-- Best to just use windows explorer to move things around!
+# 🚧DISCLAIMER🚧
+We do not own this framework, and we am simply trying to give it the support it deserves. The framework was originally built by Alzar & Dr Nick. Alzar has taken the liberty of releasing the framework, which you can find by following the [original repository](https://github.com/BadCodesGG/sandbox-fivem) 
 
 
-Create `txData` folder in root directory
+# SQL Instaliation
+Run the SQL provided in HeidiSQL, the mongo will build itself as the server starts
 
-```bash
-  mkdir txData
-```
 
-Go into the `server/config` directory and duplicate the `example` files. Remove `example` from the duplicated files.
+## Map Dependencies
+This is a map list used by **Mythic Framework** for business, government ect.
+Most of these maps are automatically started by the server (the ones that are not, will be signed with a "*") since they are already included in the **resources.cfg** file:
 
-- `example.core.ptr.cfg` -> `core.ptr.cfg`
-- `example.database.ptr.cfg` -> `database.ptr.cfg`
-- `example.mongodb.ptr.cfg` -> `mongodb.ptr.cfg`
-
-Fill in the correct database information for **Heidi/MariaDB** in `database.ptr.cfg`
-Fill in the correct database information for **MongoDB** in `mongodb.ptr.cfg`
-
-Go into the `server/` directory and duplicate the `example.server.ptr.cfg` file. Remove `example` from the duplicated file.
-
-- `example.server.ptr.cfg` -> `server.ptr.cfg`
-
-Add your `cfx` key into the `sv_licenseKey` field (*will add my own key soon so mlos can be used)
-
-## Importing Database (MariaDB)
-Using **HeidiSQL**, import the `database.sql` file.
-
-## Launching Server
-If this is your first time launching this server, use `./artifact/FXServer.exe` to launch. It'll prompt you to create a **txAdmin** username/password and link your FiveM account. Once you do so, you'll want to link the project to an existing project and setting the filepaths for the `.cfg` files. 
-
-![txAdmin](https://i.ibb.co/0yfp7Qt/txadmin.jpg)
-
-Once that is set up, let it load the resources and setup. You'll want to make sure you turn on `OneSync` in **txAdmin** so the server can properly work and **restart** the server.
-
-You'll notice a `.bat` file that's in the root directory. You'll want to use that to start your server up each and every time (easy). But, you'll need to go back into txAdmin and update the paths to the `*.cfg` files again - but, that's no problem!
-
-## Using Admin
-
-In the MongoDB GUI, under the `_auth.users` collection, add a new dataset under the `groups` array called either `admin`, `owner`, or `staff`. If you're already in the server, soft or hard relog to retrieve the new permissions. 
-
-To use the admin tool, run `/admin` or `/staff`.
-
-## Using Logs
-
-Discord Logging only works in `production` mode in `core.*.cfg` so if you want logs on your dev server, set your environment to `prod` in `core.ptr.cfg`
+- [cfx-gabz-*](https://fivem.gabzv.com/category/subscription) (all the maps are used)
+- [cfx_gn_burgershot](https://gnstud.io/products/burgershot)
+- [cfx_gn_bx_food_props](https://gnstud.io/collections/props)
+- [gn_saloon](https://gnstud.io/products/black-woods-saloon)
+- [mz_hospital](https://gnstud.io/collections/medical/products/mount-zonah-hospital)
+- [dolu_last_train](https://dolu.tebex.io/package/4465265)
+- [dolu_shells](https://dolu.tebex.io/package/5141128)
+- [cafe_prego](https://artex.tebex.io/package/6084340)
+- [noodle_exchange](https://fivem.map4all-shop.com/package/4967545)
+- [xerogasstation](https://fivem.map4all-shop.com/package/5342855)
+- [artgallery](https://www.k4mb1maps.com/package/4672250)
+- [digital_den](https://patoche-mapping.tebex.io/package/5171582)
+- [Auto Exotics](https://lb-customs.tebex.io/package/4339272) *
+- [Smoke on the Water](https://mrhunter.tebex.io/package/5198707) *
+- [Ferrari Pawnshop](https://www.k4mb1maps.com/package/4672248) *
+- [Dreamworks Mechanics](https://juniors-interiors.tebex.io/category/1930382) *
+- [Dynasty8 real estate agency](https://forum.cfx.re/t/mlo-dynasty8-real-estate-agency/1842152) *
+- **rockford_records** he shut down his tebex :|
+- **nutt_sagma** he shut down his tebex :|
+- **tobii-mineshaft** he shut down his patreon :|
+- **tobii-fightclub** he shut down his patreon :|
