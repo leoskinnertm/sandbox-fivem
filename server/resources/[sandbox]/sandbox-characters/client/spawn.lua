@@ -38,10 +38,10 @@ Spawn = {
 		TransitionToBlurred(500)
 		cam = CreateCamWithParams(
 			"DEFAULT_SCRIPTED_CAMERA",
-			-972.756,
-			-2701.553,
-			41.45,
-			-12.335,
+			-90.79,
+			-915.89,
+			236.88,
+			-70.0,
 			0.000,
 			118.395,
 			100.00,
