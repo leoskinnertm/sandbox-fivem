@@ -3,7 +3,7 @@ COMPONENTS.Core = {
 	_name = "base",
 }
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	LocalPlayer.state.PlayerID = PlayerId()
 	StatSetInt(`MP0_STAMINA`, 25, true)
 
@@ -99,9 +99,9 @@ function COMPONENTS.Core.Init(self)
 	AddPopMultiplierArea(centerPoint - radiusSize, centerPoint + radiusSize, 0.0, 0.0, false)
 	SetPedNonCreationArea(centerPoint - radiusSize, centerPoint + radiusSize)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _baseThreading do
-			Citizen.Wait(1000)
+			Wait(1000)
 			local ped = PlayerPedId()
 			if ped ~= LocalPlayer.state.ped then
 				LocalPlayer.state.ped = ped
@@ -116,33 +116,33 @@ function COMPONENTS.Core.Init(self)
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _baseThreading do
-			Citizen.Wait(60000)
+			Wait(60000)
 			collectgarbage("collect")
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _baseThreading do
-			Citizen.Wait(100)
+			Wait(100)
 			LocalPlayer.state.myPos = GetEntityCoords(LocalPlayer.state.ped)
 			LocalPlayer.state.inPauseMenu = IsPauseMenuActive()
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _baseThreading do
 			if NetworkIsPlayerActive(PlayerId()) then
 				TriggerEvent("Core:Client:SessionStarted")
 				TriggerServerEvent("Core:Server:SessionStarted")
 				break
 			end
-			Citizen.Wait(100)
+			Wait(100)
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _baseThreading do
 			SetRadarZoom(1200) -- 1200
 
@@ -171,11 +171,11 @@ function COMPONENTS.Core.Init(self)
 			-- disable distance cop sirens
 			DistantCopCarSirens(false)
 
-			Citizen.Wait(1)
+			Wait(1)
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _baseThreading do
 			SetRadarBigmapEnabled(false, false)
 			DisableControlAction(0, 14, true)
@@ -206,11 +206,11 @@ function COMPONENTS.Core.Init(self)
 			HideHudComponentThisFrame(20)
 			--DontTiltMinimapThisFrame()
 
-			Citizen.Wait(1)
+			Wait(1)
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _baseThreading do
 			InvalidateIdleCam()
 			InvalidateVehicleIdleCam()
@@ -218,7 +218,7 @@ function COMPONENTS.Core.Init(self)
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		for i = 1, 25 do
 			EnableDispatchService(i, false)
 		end
@@ -241,30 +241,30 @@ function COMPONENTS.Core.Init(self)
 			SetCreateRandomCops(false)
 			SetCreateRandomCopsOnScenarios(false)
 
-			Citizen.Wait(2)
+			Wait(2)
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _baseThreading do
-			Citizen.Wait(500)
+			Wait(500)
 			local ped = PlayerPedId()
 			if not IsPedInAnyVehicle(ped, false) then
 				if IsPedUsingActionMode(ped) then
 					SetPedUsingActionMode(ped, -1, -1, 1)
 				end
 			else
-				Citizen.Wait(3000)
+				Wait(3000)
 			end
 		end
 	end)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		local resetcounter = 0
 		local jumpDisabled = false
 
 		while _baseThreading do
-			Citizen.Wait(100)
+			Wait(100)
 			if jumpDisabled and resetcounter > 0 and IsPedJumping(PlayerPedId()) then
 				SetPedToRagdoll(PlayerPedId(), 1000, 1000, 3, 0, 0, 0)
 				resetcounter = 0
@@ -273,7 +273,7 @@ function COMPONENTS.Core.Init(self)
 			if not jumpDisabled and IsPedJumping(PlayerPedId()) then
 				jumpDisabled = true
 				resetcounter = 10
-				Citizen.Wait(1200)
+				Wait(1200)
 			end
 
 			if resetcounter > 0 then
@@ -288,9 +288,9 @@ function COMPONENTS.Core.Init(self)
 	end)
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while not exports or exports[GetCurrentResourceName()] == nil do
-		Citizen.Wait(1)
+		Wait(1)
 	end
 
 	local ped = PlayerPedId()
@@ -300,7 +300,7 @@ Citizen.CreateThread(function()
 
 	DoScreenFadeOut(500)
 	while IsScreenFadingOut() do
-		Citizen.Wait(1)
+		Wait(1)
 	end
 
 	COMPONENTS.Core:Init()
@@ -310,7 +310,7 @@ Citizen.CreateThread(function()
 		TriggerEvent("Proxy:Shared:ExtendReady", k)
 	end
 
-	Citizen.Wait(1000)
+	Wait(1000)
 
 	COMPONENTS.Proxy.ExportsReady = true
 	TriggerEvent("Core:Shared:Ready")
