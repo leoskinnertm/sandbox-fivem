@@ -5,7 +5,7 @@
 local myPedId = nil
 
 local phoneProp = 0
-local phoneModel = `ifruit_12`
+local phoneModel = `prop_phone_cs_frank`
 -- OR "prop_npc_phone"
 -- OR "prop_npc_phone_02"
 -- OR "prop_cs_phone_01"
@@ -54,15 +54,15 @@ function newPhoneProp()
 	deletePhone()
 	RequestModel(phoneModel)
 	while not HasModelLoaded(phoneModel) do
-		Citizen.Wait(1)
+		Wait(1)
 	end
-	phoneProp = CreateObject(phoneModel, 1.0, 1.0, 1.0, 1, 1, 0)
+	phoneProp = CreateObject(phoneModel, 1.0, 1.0, 1.0, true, true, false)
 	SetEntityCollision(phoneProp, false, false)
 
-	local bone = GetPedBoneIndex(myPedId, 28422)
-	AttachEntityToEntity(phoneProp, myPedId, bone, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1, 1, 0, 0, 2, 1)
+	local bone = GetPedBoneIndex(LocalPlayer.state.ped, 28422)
+	AttachEntityToEntity(phoneProp, LocalPlayer.state.ped, bone, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, true, true, false, false, 2, true)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while LocalPlayer.state.phoneOpen or _call ~= nil do
 			Citizen.Wait(3)
 		end
