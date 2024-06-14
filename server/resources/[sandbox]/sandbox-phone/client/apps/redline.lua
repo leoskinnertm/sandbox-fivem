@@ -154,7 +154,7 @@ local function GhostPlayer()
     --SetGhostedEntityAlpha(254)
     SetLocalPlayerAsGhost(true)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while ghosting do
 			local myPos = GetEntityCoords(PlayerPedId())
 			for k, v in ipairs(GetActivePlayers()) do
@@ -172,7 +172,7 @@ local function GhostPlayer()
 					end
 				end
 			end
-			Citizen.Wait(10)
+			Wait(10)
 		end
 	end)
 end
@@ -735,14 +735,14 @@ function StartRace()
 		Notification:Info(string.format("Race Starting In %s", countdownMax - countdown))
 		UISounds.Play:FrontEnd(-1, "5_SEC_WARNING", "HUD_MINI_GAME_SOUNDSET")
 		countdown = countdown + 1
-		Citizen.Wait(1000)
+		Wait(1000)
 	end
 
 	if not _activeRace or not _loggedIn then
 		return
 	end
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		Notification:Info("Race Started")
 		UISounds.Play:FrontEnd(-1, "GO", "HUD_MINI_GAME_SOUNDSET")
 		SendNUIMessage({
@@ -904,7 +904,7 @@ function StartRace()
 				sCp = cCp
 			end
 
-			Citizen.Wait(1)
+			Wait(1)
 		end
 	end)
 end
@@ -1169,7 +1169,7 @@ function CreatorThread()
 		r = false,
 	}
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _creator do
 			DisplayTempCheckpoint()
 
@@ -1196,7 +1196,7 @@ function CreatorThread()
 				Wait(1000)
 			end
 
-			Citizen.Wait(1)
+			Wait(1)
 		end
 		Cleanup()
 		SendNUIMessage({

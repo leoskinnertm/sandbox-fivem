@@ -5,7 +5,7 @@ local disabling = false
 local function DisableKeys()
 	if disabling then return end
 	disabling = true
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while disabling do
 			DisablePlayerFiring(PlayerId(), true) -- Disable weapon firing
 			DisableControlAction(0, 0, true) -- LookLeftRight
@@ -29,7 +29,7 @@ local function DisableKeys()
 			DisableControlAction(0, 264, true) -- disable melee
 			DisableControlAction(0, 257, true) -- disable melee
 			DisableControlAction(0, 322, true) -- disable melee
-			Citizen.Wait(1)
+			Wait(1)
 		end
 	end)
 end

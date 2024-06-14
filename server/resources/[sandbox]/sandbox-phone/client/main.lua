@@ -265,7 +265,7 @@ AddEventHandler("Characters:Client:Spawn", function()
 	_loggedIn = true
 
 	while Phone == nil do
-		Citizen.Wait(1)
+		Wait(1)
 	end
 
 	if LocalPlayer.state.Character then
@@ -275,13 +275,13 @@ AddEventHandler("Characters:Client:Spawn", function()
 		end
 	end
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _loggedIn do
 			SendNUIMessage({
 				type = "SET_TIME",
 				data = GlobalState["Sync:Time"],
 			})
-			Citizen.Wait(15000)
+			Wait(15000)
 		end
 	end)
 

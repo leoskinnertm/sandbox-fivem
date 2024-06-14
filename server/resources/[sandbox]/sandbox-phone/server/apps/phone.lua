@@ -260,9 +260,9 @@ AddEventHandler("Phone:Server:RegisterCallbacks", function()
 					cb(true)
 					TriggerClientEvent("Phone:Client:Biz:Recieve", -1, isBusiness, _bizPhones[isBusiness].coords, _bizPhones[isBusiness].radius or 15.0)
 
-					Citizen.CreateThread(function()
+					CreateThread(function()
 						local timeThen = os.time()
-						Citizen.Wait(30000)
+						Wait(30000)
 
 						if _bizPhones[isBusiness].call and _bizPhones[isBusiness].call.start == timeThen and not _bizPhones[isBusiness].call.handler then
 							Phone.Call:CreateRecord(callerData)

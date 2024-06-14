@@ -39,9 +39,9 @@ AddEventHandler("Phone:Server:Startup", function()
 
 	if not _startingPendingDepositThread then
 		_startingPendingDepositThread = true
-		Citizen.CreateThread(function()
+		CreateThread(function()
 			while true do
-				Citizen.Wait(1000 * 60 * 60)
+				Wait(1000 * 60 * 60)
 				for k, v in pairs(_pendingShopDeposits) do
 					for k2, v2 in pairs(v.royalties) do
 						Logger:Trace(

@@ -589,8 +589,8 @@ RegisterServerEvent("Phone:Redline:FinishRace", function(nId, data, laps, plate,
 				)
 			end
 		end
-		Citizen.CreateThread(function()
-			Citizen.Wait(tonumber(_races[key].dnf_time) * 1000)
+		CreateThread(function()
+			Wait(tonumber(_races[key].dnf_time) * 1000)
 			FinishRace(tonumber(data))
 		end)
 	end

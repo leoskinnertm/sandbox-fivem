@@ -135,7 +135,7 @@ RegisterNetEvent("Phone:Client:Blueline:StoreTracks", function(tracks)
 	if Phone == nil then
 		_waiting = true
 		while Phone == nil do
-			Citizen.Wait(1)
+			Wait(1)
 		end
 	end
 
@@ -152,7 +152,7 @@ RegisterNetEvent("Phone:Client:Blueline:StoreSingleTrack", function(tId, track)
 	if Phone == nil then
 		_waiting2 = true
 		while Phone == nil do
-			Citizen.Wait(1)
+			Wait(1)
 		end
 	end
 
@@ -498,10 +498,10 @@ function StartRacePD()
 		Notification:Info(string.format("Race Starting In %s", countdownMax - countdown))
 		UISounds.Play:FrontEnd(-1, "5_SEC_WARNING", "HUD_MINI_GAME_SOUNDSET")
 		countdown = countdown + 1
-		Citizen.Wait(1000)
+		Wait(1000)
 	end
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		Notification:Info("Race Started")
 		UISounds.Play:FrontEnd(-1, "GO", "HUD_MINI_GAME_SOUNDSET")
 		SendNUIMessage({
@@ -653,7 +653,7 @@ function StartRacePD()
 				sCp = cCp
 			end
 
-			Citizen.Wait(1)
+			Wait(1)
 		end
 	end)
 end
@@ -886,7 +886,7 @@ function CreatorThreadPD()
 		r = false,
 	}
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while _creator do
 			DisplayTempCheckpointPD()
 
@@ -913,7 +913,7 @@ function CreatorThreadPD()
 				Wait(1000)
 			end
 
-			Citizen.Wait(1)
+			Wait(1)
 		end
 		CleanupPD()
 		SendNUIMessage({

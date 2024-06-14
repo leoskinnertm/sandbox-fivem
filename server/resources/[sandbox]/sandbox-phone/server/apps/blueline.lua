@@ -244,8 +244,8 @@ RegisterServerEvent("Phone:Blueline:FinishRace", function(nId, data, laps, plate
 				)
 			end
 		end
-		Citizen.CreateThread(function()
-			Citizen.Wait(tonumber(_races[data].dnf_time) * 1000)
+		CreateThread(function()
+			Wait(tonumber(_races[data].dnf_time) * 1000)
 			FinishRacePD(data)
 		end)
 	end

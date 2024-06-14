@@ -9,7 +9,7 @@ RegisterNetEvent("Phone:Client:Twitter:Notify", function(tweet)
 	end
 
 	if tweet.source ~= GetPlayerServerId(PlayerId()) then
-		Citizen.Wait(1000)
+		Wait(1000)
 		Phone.Notification:Add(tweet.author.name, tweet.content, tweet.time, 6000, "twitter", {
 			view = "#",
 		}, nil)
