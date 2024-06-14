@@ -17,7 +17,7 @@ _jobSpawns = {
 		},
 	},
 	["blackline"] = {
-		icon = "car-garage",
+		icon = "car",
 		locations = {
 			{
 				label = "Spooky Mechanic",
@@ -32,7 +32,7 @@ _jobSpawns = {
 		},
 	},
 	["tuna"] = {
-		icon = "car-garage",
+		icon = "car",
 		locations = {
 			{
 				label = "Tuna Shop",
@@ -47,7 +47,7 @@ _jobSpawns = {
 		},
 	},
 	["prego"] = {
-		icon = "pot-food",
+		icon = "bowl-food",
 		locations = {
 			{
 				label = "Cafe Prego",
@@ -62,7 +62,7 @@ _jobSpawns = {
 		},
 	},
 	["cloud9"] = {
-		icon = "car-garage",
+		icon = "car",
 		locations = {
 			{
 				label = "Cloud9 Drift",
@@ -77,7 +77,7 @@ _jobSpawns = {
 		},
 	},
 	["hayes"] = {
-		icon = "car-garage",
+		icon = "car",
 		locations = {
 			{
 				label = "Hayes Autos",
@@ -137,7 +137,7 @@ _jobSpawns = {
 		},
 	},
 	["avast_arcade"] = {
-		icon = "person-pinball",
+		icon = "bowling-ball",
 		locations = {
 			{
 				label = "Avast Arcade",
@@ -292,7 +292,7 @@ _jobSpawns = {
 		},
 	},
 	["realestate"] = {
-		icon = "house-building",
+		icon = "house",
 		locations = {
 			{
 				label = "Dynasty 8 Offices",
@@ -352,7 +352,7 @@ _jobSpawns = {
 		},
 	},
 	["ottos"] = {
-		icon = "car-wrench",
+		icon = "car",
 		locations = {
 			{
 				label = 'Otto"s Autos',
@@ -367,7 +367,7 @@ _jobSpawns = {
 		},
 	},
 	["bennys"] = {
-		icon = "car-wrench",
+		icon = "car",
 		locations = {
 			{
 				label = "Bennys",
@@ -382,7 +382,7 @@ _jobSpawns = {
 		},
 	},
 	["pepega_pawn"] = {
-		icon = "coin",
+		icon = "coins",
 		locations = {
 			{
 				label = "Pepega Pawn",
@@ -397,7 +397,7 @@ _jobSpawns = {
 		},
 	},
 	["garcon_pawn"] = {
-		icon = "coin",
+		icon = "coins",
 		locations = {
 			{
 				label = "Garcon Pawn",
@@ -412,7 +412,7 @@ _jobSpawns = {
 		},
 	},
 	["rustybrowns"] = {
-		icon = "donut",
+		icon = "bowl-food",
 		locations = {
 			{
 				label = "Rusty Browns",
@@ -427,7 +427,7 @@ _jobSpawns = {
 		},
 	},
 	["burgershot"] = {
-		icon = "burger",
+		icon = "bowl-food",
 		locations = {
 			{
 				label = "Burgershot",
@@ -442,7 +442,7 @@ _jobSpawns = {
 		},
 	},
 	["casino"] = {
-		icon = "cards",
+		icon = "diamond",
 		locations = {
 			{
 				label = "Casino Outside",
@@ -467,7 +467,7 @@ _jobSpawns = {
 		},
 	},
 	["pdm"] = {
-		icon = "cars",
+		icon = "car",
 		locations = {
 			{
 				label = "PDM",
@@ -482,7 +482,7 @@ _jobSpawns = {
 		},
 	},
 	["bahama"] = {
-		icon = "martini-glass-citrus",
+		icon = "glass-water-droplet",
 		locations = {
 			{
 				label = "Bahama Mamas",
@@ -497,7 +497,7 @@ _jobSpawns = {
 		},
 	},
 	["unicorn"] = {
-		icon = "unicorn",
+		icon = "glass-water-droplet",
 		locations = {
 			{
 				label = "Vanilla Unicorn",
@@ -572,7 +572,7 @@ _jobSpawns = {
 		},
 	},
 	["mintmate"] = {
-		icon = "people-group",
+		icon = "person",
 		locations = {
 			{
 				label = "Mint Mate",
@@ -587,7 +587,7 @@ _jobSpawns = {
 		},
 	},
 	["beanmachine"] = {
-		icon = "coffee-beans",
+		icon = "mug-hot",
 		locations = {
 			{
 				label = "Bean Machine",
@@ -602,7 +602,7 @@ _jobSpawns = {
 		},
 	},
 	["bakery"] = {
-		icon = "croissant",
+		icon = "bowl-food",
 		locations = {
 			{
 				label = "The Bakery",
@@ -617,7 +617,7 @@ _jobSpawns = {
 		},
 	},
 	["ballers"] = {
-		icon = "people-group",
+		icon = "person",
 		locations = {
 			{
 				label = "ESB Clubhouse",
@@ -632,7 +632,7 @@ _jobSpawns = {
 		},
 	},
 	["aztecas"] = {
-		icon = "people-group",
+		icon = "person",
 		locations = {
 			{
 				label = "Aztecas Clubhouse",
@@ -647,7 +647,7 @@ _jobSpawns = {
 		},
 	},
 	["vagos"] = {
-		icon = "people-group",
+		icon = "person",
 		locations = {
 			{
 				label = "Vagos Clubhouse",
@@ -662,7 +662,7 @@ _jobSpawns = {
 		},
 	},
 	["saints"] = {
-		icon = "people-group",
+		icon = "person",
 		locations = {
 			{
 				label = "The Saints Gang House",
@@ -677,7 +677,7 @@ _jobSpawns = {
 		},
 	},
 	["woods_saloon"] = {
-		icon = "beer-mug",
+		icon = "beer-mug-empty",
 		locations = {
 			{
 				label = "Black Woods Saloon",
@@ -707,7 +707,7 @@ _jobSpawns = {
 		},
 	},
 	["autoexotics"] = {
-		icon = "tire",
+		icon = "car",
 		locations = {
 			{
 				label = "Auto Exotics",
@@ -722,7 +722,7 @@ _jobSpawns = {
 		},
 	},
 	["dreamworks"] = {
-		icon = "car-wrench",
+		icon = "car",
 		locations = {
 			{
 				label = "Dreamworks",
