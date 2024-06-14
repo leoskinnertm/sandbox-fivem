@@ -12,7 +12,7 @@ export const initialState = {
 			: [
 					{
 						id: 0,
-						icon: 'location-smile',
+						icon: 'location-dot',
 						label: 'Last Location',
 						location: { x: 0, y: 0, z: 0, h: 0 },
 					},
@@ -24,13 +24,13 @@ export const initialState = {
 					},
 					{
 						id: 2,
-						icon: 'house-tree',
+						icon: 'house',
 						label: 'Test Location 2',
 						location: { x: 0, y: 0, z: 0, h: 0 },
 					},
 					{
 						id: 2,
-						icon: 'cars',
+						icon: 'car',
 						label: 'Test Location 2',
 						location: { x: 0, y: 0, z: 0, h: 0 },
 					},

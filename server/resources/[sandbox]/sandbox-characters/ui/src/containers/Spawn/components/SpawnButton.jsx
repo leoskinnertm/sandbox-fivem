@@ -72,7 +72,9 @@ export default ({ spawn, onPlay }) => {
 				onClick={onClick}
 			>
 				<div className={classes.spawnIcon}>
-				<i className="fas fa-location-dot"></i>
+					<FontAwesomeIcon
+						icon={Boolean(spawn.icon) ? spawn.icon : 'location-dot'}
+					/>
 				</div>
 				<div className={classes.details}>
 					<div className={classes.detail}>{spawn.label}</div>
