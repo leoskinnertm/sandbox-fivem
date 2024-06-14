@@ -266,9 +266,9 @@ QUEUE.Connect = function(self, source, playerName, setKickReason, deferrals)
 	local identifier = nil
 
 	deferrals.defer()
-	Citizen.Wait(1000)
+	Wait(1000)
 
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		if not _dbReady or GlobalState.IsProduction == nil then
 			deferrals.done(Config.Strings.NotReady)
 			return CancelEvent()
@@ -310,12 +310,12 @@ QUEUE.Connect = function(self, source, playerName, setKickReason, deferrals)
 					)
 				end
 
-				Citizen.Wait(100)
+				Wait(100)
 			end
 		end
 
 		while not queueActive do
-			Citizen.Wait(100)
+			Wait(100)
 		end
 
 		local identifier = ExtractIdentifiers(source).license
@@ -420,7 +420,7 @@ QUEUE.Connect = function(self, source, playerName, setKickReason, deferrals)
 		while plyr == nil do
 			QUEUE.Queue:Add(ply)
 			pos, plyr = QUEUE.Queue:Get(identifier)
-			Citizen.Wait(100)
+			Wait(100)
 		end
 
 		while plyr.State == States.QUEUED and GetPlayerEndpoint(source) do
@@ -441,7 +441,7 @@ QUEUE.Connect = function(self, source, playerName, setKickReason, deferrals)
 			end
 			plyr.Deferrals.update(string.format(Config.Strings.Queued, pos, #Data.Queue, plyr.Timer:Output(), msg))
 			plyr.Timer:Tick(plyr)
-			Citizen.Wait(1000)
+			Wait(1000)
 		end
 
 		pos, plyr = QUEUE.Queue:Get(identifier)
@@ -468,10 +468,10 @@ QUEUE.GetTotal = function(self)
 	return #Data.Queue or 0
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while true do
 		GlobalState["QueueCount"] = #Data.Queue
-		Citizen.Wait(30000)
+		Wait(30000)
 	end
 end)
 
@@ -494,7 +494,7 @@ end)
 AddEventHandler("onResourceStart", function(resource)
 	if resource == "sandbox-base" then
 		while GetResourceState(resource) ~= "started" do
-			Citizen.Wait(0)
+			Wait(0)
 		end
 		for k, v in pairs(Data.Session.Players) do
 			TriggerClientEvent("Queue:Client:SessionActive", k)
@@ -644,9 +644,9 @@ function Log(log, flagsOverride)
 	TriggerEvent("Logger:Info", "Queue", log, flags)
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while not queueActive do
-		Citizen.Wait(1000)
+		Wait(1000)
 	end
 
 	if not exports["sandbox-base"]:FetchComponent("WebAPI").Enabled then
@@ -666,10 +666,10 @@ Citizen.CreateThread(function()
 			break
 		end
 
-		Citizen.Wait(5000)
+		Wait(5000)
 	end
 
-	Citizen.Wait(10000)
+	Wait(10000)
 
 	while queueEnabled do
 		if GetNumPlayerIndices() < MAX_PLAYERS and #Data.Queue > 0 and not (playerJoining or privPlayerJoining) then
@@ -677,17 +677,17 @@ Citizen.CreateThread(function()
 			QUEUE.Queue:Join(MAX_PLAYERS - GetNumPlayerIndices())
 		end
 
-		Citizen.Wait(1000)
+		Wait(1000)
 	end
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while queueEnabled do
 		for k, v in ipairs(Data.Queue) do
 			if v.State == States.DISCONNECTED and not v:IsInGracePeriod() then
 				QUEUE.Queue:Remove(k)
 			end
 		end
-		Citizen.Wait(10000)
+		Wait(10000)
 	end
 end)
