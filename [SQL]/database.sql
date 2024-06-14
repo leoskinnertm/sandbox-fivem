@@ -1663,6 +1663,44 @@ CREATE TABLE IF NOT EXISTS `shop_bank_accounts` (
   PRIMARY KEY (`shop`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `moonshine_stills` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `created` INT NOT NULL,
+    `tier` INT NOT NULL,
+    `cooldown` INT DEFAULT NULL,
+    `active_cook` JSON DEFAULT NULL
+);
+
+
+CREATE TABLE `placed_moonshine_stills` (
+    `still_id` INT PRIMARY KEY,
+    `owner` VARCHAR(50) NOT NULL,
+    `placed` INT NOT NULL,
+    `expires` INT NOT NULL,
+    `coords` JSON NOT NULL,
+    `heading` FLOAT NOT NULL,
+    FOREIGN KEY (`still_id`) REFERENCES `moonshine_stills`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `moonshine_barrels` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `quality` INT NOT NULL,
+    `drinks` INT NOT NULL
+);
+
+CREATE TABLE `placed_moonshine_barrels` (
+    `barrel_id` INT PRIMARY KEY,
+    `owner` VARCHAR(50) NOT NULL,
+    `placed` INT NOT NULL,
+    `ready` INT NOT NULL,
+    `expires` INT NOT NULL,
+    `coords` JSON NOT NULL,
+    `heading` FLOAT NOT NULL,
+    `brew_data` JSON NOT NULL,
+    FOREIGN KEY (`barrel_id`) REFERENCES `moonshine_barrels`(`id`) ON DELETE CASCADE
+);
+
+
 -- Tábla adatainak mentése fivem-sandbox.shop_bank_accounts: ~0 rows (hozzávetőleg)
 /*!40000 ALTER TABLE `shop_bank_accounts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `shop_bank_accounts` ENABLE KEYS */;
