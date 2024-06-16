@@ -1,5 +1,3 @@
-server_script "QFDMH37BPOKUC.lua"
-client_script "QFDMH37BPOKUC.lua"
 fx_version("cerulean")
 games({ "gta5", "rdr3" })
 

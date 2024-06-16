@@ -1,5 +1,3 @@
-server_script "EHMLUC.lua"
-client_script "EHMLUC.lua"
 fx_version("cerulean")
 games({ "gta5" })
 
