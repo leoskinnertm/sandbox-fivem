@@ -1,5 +1,3 @@
-server_script "ENW7IHYLDXR.lua"
-client_script "ENW7IHYLDXR.lua"
 name("ARP Robbery")
 author("[ARP Team]")
 version("v1.0.0")

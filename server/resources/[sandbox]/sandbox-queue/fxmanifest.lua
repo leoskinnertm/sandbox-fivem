@@ -1,5 +1,3 @@
-server_script "82DKGGF16.lua"
-client_script "82DKGGF16.lua"
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")

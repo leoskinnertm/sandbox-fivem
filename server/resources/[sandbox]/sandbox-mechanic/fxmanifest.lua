@@ -1,5 +1,3 @@
-server_script "ZOHWENXLF.lua"
-client_script "ZOHWENXLF.lua"
 fx_version("cerulean")
 game("gta5")
 lua54("yes")

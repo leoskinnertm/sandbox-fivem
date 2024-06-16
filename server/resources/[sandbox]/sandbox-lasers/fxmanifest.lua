@@ -1,5 +1,3 @@
-server_script "9BYOJDJ4J1S.lua"
-client_script "9BYOJDJ4J1S.lua"
 games {'gta5'}
 
 fx_version 'cerulean'

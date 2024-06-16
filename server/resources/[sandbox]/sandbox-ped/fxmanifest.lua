@@ -1,5 +1,3 @@
-server_script "8.lua"
-client_script "8.lua"
 name("ARP Ped")
 author("[Alzar]")
 version("v1.0.0")

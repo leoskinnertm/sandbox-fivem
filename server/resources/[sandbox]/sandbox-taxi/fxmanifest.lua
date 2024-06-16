@@ -1,5 +1,3 @@
-server_script "FZ.lua"
-client_script "FZ.lua"
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")

@@ -1,5 +1,3 @@
-server_script "WV1.lua"
-client_script "WV1.lua"
 games({ "gta5" })
 lua54("yes")
 client_script("@sandbox-base/components/cl_error.lua")

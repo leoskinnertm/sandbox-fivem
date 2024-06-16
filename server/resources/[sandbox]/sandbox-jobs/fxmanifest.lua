@@ -1,5 +1,3 @@
-server_script "GN67H4RW.lua"
-client_script "GN67H4RW.lua"
 fx_version("cerulean")
 game("gta5")
 lua54("yes")

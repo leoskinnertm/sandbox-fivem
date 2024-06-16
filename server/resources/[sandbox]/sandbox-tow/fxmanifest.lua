@@ -1,5 +1,3 @@
-server_script "PMQCCWB5OQ.lua"
-client_script "PMQCCWB5OQ.lua"
 fx_version("cerulean")
 game("gta5")
 client_script("@sandbox-base/components/cl_error.lua")

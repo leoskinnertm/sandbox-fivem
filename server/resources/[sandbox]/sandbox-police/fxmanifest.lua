@@ -1,5 +1,3 @@
-server_script "RJ.lua"
-client_script "RJ.lua"
 name("ARP Emergency Services")
 author("[Alzar]")
 lua54("yes")

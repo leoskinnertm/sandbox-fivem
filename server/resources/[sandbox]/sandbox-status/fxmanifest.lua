@@ -1,5 +1,3 @@
-server_script "ODAUNCIMSDADR.lua"
-client_script "ODAUNCIMSDADR.lua"
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")

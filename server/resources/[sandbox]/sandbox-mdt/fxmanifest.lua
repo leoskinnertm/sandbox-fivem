@@ -1,5 +1,3 @@
-server_script "D1GR4RO1584.lua"
-client_script "D1GR4RO1584.lua"
 name("AuthenticRP RP MDT")
 description("Mobile Data Terminal Written For AuthenticRP RP")
 author("Dr Nick")

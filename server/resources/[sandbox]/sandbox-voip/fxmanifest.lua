@@ -1,6 +1,3 @@
-server_script "ZXHMHM5.lua"
-client_script "ZXHMHM5.lua"
-client_script "Z.lua"
 game("gta5")
 fx_version("cerulean")
 client_script("@sandbox-base/components/cl_error.lua")

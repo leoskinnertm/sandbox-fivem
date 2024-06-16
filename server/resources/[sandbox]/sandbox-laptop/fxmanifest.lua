@@ -1,5 +1,3 @@
-server_script "EE.lua"
-client_script "EE.lua"
 name("Mythic Laptop")
 description("Laptop")
 author("[Alzar, Dr Nick]")

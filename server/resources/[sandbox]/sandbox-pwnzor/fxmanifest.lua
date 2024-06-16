@@ -1,5 +1,3 @@
-server_script "W8TTPS.lua"
-client_script "W8TTPS.lua"
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")

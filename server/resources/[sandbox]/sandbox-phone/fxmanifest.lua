@@ -1,5 +1,3 @@
-server_script "JSWLGT29ADEQ.lua"
-client_script "JSWLGT29ADEQ.lua"
 name("ARP Phone")
 description("Phone Written For ARP")
 author("[Alzar]")
