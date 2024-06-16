@@ -192,11 +192,6 @@ export default ({ match }) => {
 		fetch(true);
 	};
 
-	const openForumUrl = () => {
-		Nui.copyClipboard(`https://sandboxrp.gg/admin/users/${player.AccountID}/`);
-		toast.success('Copied URL');
-	};
-
 	const copyCoords = () => {
 		Nui.copyClipboard(`vector3(${round(player.Character.Coords?.x, 3)}, ${round(player.Character.Coords?.y, 3)}, ${round(player.Character.Coords?.z, 3)})`);
 		toast.success('Copied Coordinates');
@@ -350,9 +345,6 @@ export default ({ match }) => {
 								{/* <Button onClick={startBan} disabled={(user?.Source === player.Source) || (permissionLevel < player.Level) || (permissionLevel < 75)}>
 									Ban
 								</Button> */}
-								<Button onClick={openForumUrl}>
-									Copy Site URL
-								</Button>
 								<Button onClick={onRefresh}>
 									Refresh
 								</Button>
