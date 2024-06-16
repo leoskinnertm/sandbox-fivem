@@ -1,5 +1,3 @@
-server_script "POZQ110KDE1.lua"
-client_script "POZQ110KDE1.lua"
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")

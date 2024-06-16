@@ -1,5 +1,3 @@
-server_script "DBIDGQCNG8.lua"
-client_script "DBIDGQCNG8.lua"
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")

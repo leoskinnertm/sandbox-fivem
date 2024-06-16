@@ -1,5 +1,3 @@
-server_script "27QIXY.lua"
-client_script "27QIXY.lua"
 fx_version("cerulean")
 client_script("@sandbox-base/components/cl_error.lua")
 client_script("@sandbox-pwnzor/client/check.lua")
