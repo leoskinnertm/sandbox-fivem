@@ -177,6 +177,13 @@ AddEventHandler("Labor:Client:Setup", function()
 				return not _working
 			end,
 		},
+		{
+			icon = "dollar-sign",
+			text = "Buy Pickaxe ($250)",
+			event = "Mining:Client:PuchaseAxe",
+			tempjob = "Mining",
+		},
+		
 	}, "helmet-safety")
 end)
 

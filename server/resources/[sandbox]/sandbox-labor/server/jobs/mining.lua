@@ -380,6 +380,15 @@ AddEventHandler("Labor:Server:Startup", function()
 		end
 	end)
 
+	Callbacks:RegisterServerCallback("Mining:PurchasePickaxe", function(source, data, cb)
+		local char = Fetch:Source(source):GetData("Character")
+		if Wallet:Modify(source, -250) then
+			Inventory:AddItem(char:GetData("SID"), "pickaxe", 1, {}, 1)
+		else
+			Execute:Client(source, "Notification", "Error", "Not Enough Cash")
+		end
+	end)
+
 	Callbacks:RegisterServerCallback("Mining:Server:MineNode", function(source, data, cb)
 		local char = Fetch:CharacterSource(source)
 		if char:GetData("TempJob") == _JOB and _joiners[source] ~= nil and _mining[_joiners[source]] ~= nil then
