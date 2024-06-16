@@ -1,5 +1,3 @@
-server_script "DPDFE.lua"
-client_script "DPDFE.lua"
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")
