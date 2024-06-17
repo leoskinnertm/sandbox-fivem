@@ -1,11 +1,8 @@
-local _POLYID = "mining-zone"
 local _joiner = nil
 local _working = false
-local _state = 0
 local _blips = {}
 local eventHandlers = {}
 
-local _objs = {}
 local _nodes = nil
 
 local _sellers = {
@@ -21,86 +18,7 @@ local _sellers = {
 	-- },
 }
 
-local function SpawnOres()
-	if _nodes then
-		for k, v in ipairs(_nodes) do
-			RequestModel(v.ore.object)
-			while not HasModelLoaded(v.ore.object) do
-				Citizen.Wait(5)
-			end
-
-			local o = CreateObject(v.ore.object, v.location.x, v.location.y, v.location.z - 1.4, false, true, false)
-			PlaceObjectOnGroundProperly(o)
-			FreezeEntityPosition(o, true)
-			Targeting:AddEntity(o, "pickaxe", {
-				{
-					text = string.format("Mine %s", v.ore.label),
-					icon = "pickaxe",
-					event = string.format("Mining:Client:%s:Action", _joiner),
-					data = v,
-					minDist = 3.0,
-				},
-			}, 3.0)
-			local b = Blips:Add(string.format("MiningNode-%s", k), "Mining Node", v.location, 594, 0, 0.8)
-
-			table.insert(_objs, {
-				ent = o,
-				data = v,
-				blip = b,
-				blipId = string.format("MiningNode-%s", k),
-			})
-		end
-	end
-end
-
-local function DeleteNode(location)
-	if _objs and #_objs > 0 then
-		for k, v in ipairs(_objs) do
-			if
-				vector3(v.data.location.x, v.data.location.y, v.data.location.z)
-				== vector3(location.x, location.y, location.z)
-			then
-				Targeting:RemoveEntity(v.ent)
-				DeleteObject(v.ent)
-				Blips:Remove(v.blipId)
-
-				table.remove(_objs, k)
-				break
-			end
-		end
-
-		for k, v in ipairs(_nodes) do
-			if v.location == location then
-				table.remove(_nodes, k)
-				break
-			end
-		end
-	end
-end
-
-local function DespawnOres()
-	if _objs and #_objs > 0 then
-		for i = #_objs, 0, -1 do
-			local v = _objs[i]
-
-			if v then
-				Targeting:RemoveEntity(v.ent)
-				DeleteObject(v.ent)
-				Blips:Remove(v.blipId)
-			end
-
-			table.remove(_objs, i)
-		end
-	end
-end
-
 AddEventHandler("Labor:Client:Setup", function()
-	Polyzone.Create:Circle(_POLYID, vector3(2885.78, 2803.96, 54.76), 350.0, {
-		name = _POLYID,
-		useZ = false,
-		--debugPoly=true
-	})
-
 	for k, v in ipairs(_sellers) do
 		PedInteraction:Add(string.format("GemSeller%s", k), v.model, v.coords, v.heading, 25.0, {
 			{
@@ -183,16 +101,44 @@ AddEventHandler("Labor:Client:Setup", function()
 			event = "Mining:Client:PuchaseAxe",
 			tempjob = "Mining",
 		},
-		
+		{
+			icon = "handshake-angle",
+			text = "Turn In Ore",
+			event = "Mining:Client:TurnIn",
+			tempjob = "Mining",
+			isEnabled = function()
+				return _working
+			end,
+		},
 	}, "helmet-safety")
+
+	Callbacks:RegisterClientCallback("Mining:DoTheThingBrother", function(item, cb)
+		Animations.Emotes:Play("mining", false, nil, true)
+		Progress:Progress({
+			name = "mining_action",
+			duration = math.random(13, 35) * 1000,
+			label = "Mining",
+			useWhileDead = false,
+			canCancel = true,
+			vehicle = false,
+			controlDisables = {
+				disableMovement = true,
+				disableCarMovement = true,
+				disableCombat = true,
+			},
+			{},
+			{},
+		}, function(cancelled)
+			Animations.Emotes:ForceCancel()
+			cb(not cancelled)
+		end)
+	end)
 end)
 
-local attempt = 0
 RegisterNetEvent("Mining:Client:OnDuty", function(joiner, time)
 	_joiner = joiner
 	DeleteWaypoint()
 	SetNewWaypoint(2741.874, 2791.691)
-	_node = 0
 
 	eventHandlers["startup"] = RegisterNetEvent(string.format("Mining:Client:%s:Startup", joiner), function(nodes)
 		if _nodes ~= nil then
@@ -200,101 +146,75 @@ RegisterNetEvent("Mining:Client:OnDuty", function(joiner, time)
 		end
 		_working = true
 		_nodes = nodes
-		_state = 1
 
-		SpawnOres()
-	end)
+		print(string.format("total nodes: %s", #_nodes))
+		for k, v in pairs(_nodes) do
+			Blips:Add(string.format("MiningNode-%s", v.id), "Mining Node", v.coords, 594, 0, 0.8)
+		end
 
-	eventHandlers["actions"] = RegisterNetEvent(string.format("Mining:Client:%s:Action", joiner), function(ent, data)
-		attempt = 0
-		if data.luck <= 10 then
-			Citizen.CreateThread(function()
-				local p = promise.new()
-				while attempt < 3 do
-					local p2 = promise.new()
-					Minigame.Play:RoundSkillbar((data?.ore?.factor or 0.75) * (data?.ore?.scale or 1.15), (data?.ore?.size or 6) - attempt, {
-						onSuccess = function()
-							Citizen.Wait(400)
-							attempt += 1
-							p2:resolve(true)
-
-							if attempt >= 3 then
-								p:resolve(true)
-							end
-						end,
-						onFail = function()
-							data.failed = true
-							p:resolve(false)
-							p2:resolve(true)
-							attempt = 3
-						end,
-					}, {
-						useWhileDead = false,
-						vehicle = false,
-						controlDisables = {
-							disableMovement = true,
-							disableCarMovement = true,
-							disableMouse = false,
-							disableCombat = true,
-						},
-						animation = {
-							anim = "mining",
-						},
-					})
-
-					Citizen.Await(p2)
+		Citizen.CreateThread(function()
+			while _working do
+				local closest = nil
+				for k, v in pairs(_nodes) do
+					local dist = #(
+						vector3(LocalPlayer.state.myPos.x, LocalPlayer.state.myPos.y, LocalPlayer.state.myPos.z)
+						- v.coords
+					)
+					if closest == nil or dist < closest.dist then
+						closest = {
+							dist = dist,
+							point = v,
+						}
+					end
 				end
-	
-				local r = Citizen.Await(p)
-				Callbacks:ServerCallback("Mining:Server:MineNode", data)
-			end)
-		else
-			Progress:Progress({
-				name = "mining_action",
-				duration = math.random(40, 55) * 1000,
-				label = "Mining",
-				useWhileDead = false,
-				canCancel = true,
-				vehicle = false,
-				animation = {
-					anim = "mining",
-				},
-				controlDisables = {
-					disableMovement = true,
-					disableCarMovement = true,
-					disableCombat = true,
-				},
-			}, function(cancelled)
-				if not cancelled then
-					Callbacks:ServerCallback("Mining:Server:MineNode", data)
+
+				if closest ~= nil then
+					if closest.dist <= 20 then
+						DrawMarker(
+							1,
+							closest.point.coords.x,
+							closest.point.coords.y,
+							closest.point.coords.z - 0.98,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0,
+							0.5,
+							0.5,
+							1.0,
+							112,
+							209,
+							244,
+							250,
+							false,
+							false,
+							2,
+							false,
+							false,
+							false,
+							false
+						)
+						Citizen.Wait(5)
+					else
+						Citizen.Wait(closest.dist * 100)
+					end
+				else
+					Citizen.Wait(1000)
 				end
-			end)
-		end
-
+			end
+		end)
 	end)
 
-	eventHandlers["remove-node"] = RegisterNetEvent(
-		string.format("Mining:Client:%s:RemoveNode", joiner),
-		function(location)
-			DeleteNode(location)
-		end
-	)
-
-	eventHandlers["enter-poly"] = AddEventHandler("Polyzone:Enter", function(id, testedPoint, insideZones, data)
-		if id ~= _POLYID or not _nodes or #_nodes == 0 then
-			return
-		end
-
-		_inPoly = true
-		if _state == 1 then
-			SpawnOres()
-		end
-	end)
-
-	eventHandlers["exit-poly"] = AddEventHandler("Polyzone:Exit", function(id, testedPoint, insideZones, data)
-		if id == _POLYID then
-			_inPoly = false
-			DespawnOres()
+	eventHandlers["actions"] = RegisterNetEvent(string.format("Mining:Client:%s:Action", joiner), function(data)
+		for k, v in pairs(_nodes) do
+			if v.id == data then
+				Blips:Remove(string.format("MiningNode-%s", v.id))
+				print(string.format("total nodes: %s; current node id: %s", #_nodes, v.id))
+				_nodes[k] = nil
+				break
+			end
 		end
 	end)
 end)
@@ -328,7 +248,11 @@ RegisterNetEvent("Mining:Client:OffDuty", function(time)
 		RemoveEventHandler(v)
 	end
 
-	DespawnOres()
+	if _nodes ~= nil then
+		for k, v in pairs(_nodes) do
+			Blips:Remove(string.format("MiningNode-%s", v.id))
+		end
+	end
 
 	eventHandlers = {}
 	_joiner = nil
