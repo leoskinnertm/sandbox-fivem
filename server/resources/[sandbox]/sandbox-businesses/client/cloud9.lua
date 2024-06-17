@@ -21,7 +21,7 @@ AddEventHandler("Businesses:Client:Startup", function()
 		minZ = 2.260225296021,
 		maxZ = 8.55025100708,
 	})
-	Targeting.Zones:AddBox("cloud9-clockinoff-1", "chess-clock", vector3(-59.4912, -2517.1326, 7.40), 1.5, 2.7, {
+	Targeting.Zones:AddBox("cloud9-clockinoff-1", "clock", vector3(-59.4912, -2517.1326, 7.40), 1.5, 2.7, {
 		heading = 325.0,
 		debugPoly = false,
 		minZ = 5.40,
