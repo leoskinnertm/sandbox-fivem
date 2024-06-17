@@ -1700,6 +1700,14 @@ CREATE TABLE `placed_moonshine_barrels` (
     FOREIGN KEY (`barrel_id`) REFERENCES `moonshine_barrels`(`id`) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS `character_photos` (
+    `id` INT NOT NULL AUTO_INCREMENT,       
+    `sid` VARCHAR(50) NOT NULL,             
+    `image_url` TEXT NOT NULL,               
+    `time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    PRIMARY KEY (`id`),                      
+    INDEX `idx_sid` (`sid`)                  
+);
 
 -- Tábla adatainak mentése fivem-sandbox.shop_bank_accounts: ~0 rows (hozzávetőleg)
 /*!40000 ALTER TABLE `shop_bank_accounts` DISABLE KEYS */;
