@@ -3,81 +3,53 @@ local _loading = {}
 
 COMPONENTS.Sequence = {
 	Get = function(self, key)
-		if _loading[key] then
-			while _loading[key] do
-				Citizen.Wait(10)
-			end
-		end
-
 		if _cachedSeq[key] ~= nil then
-			_cachedSeq[key] = {
-				value = _cachedSeq[key].value + 1,
-				dirty = true
-			}
-			return _cachedSeq[key].value
+			_cachedSeq[key].sequence += 1
+			_cachedSeq[key].dirty = true
+			return _cachedSeq[key].sequence
 		else
-			local p = promise.new()
-
-			_loading[key] = true
-			COMPONENTS.Database.Game:findOne({
-				collection = "sequence",
-				query = {
-					key = key,
-				},
-			}, function(success, results)
-				if #results == 0 then
-					COMPONENTS.Database.Game:insertOne({
-						collection = "sequence",
-						document = {
-							key = key,
-							current = 1,
-						},
-					})
-					p:resolve({ value = 1, dirty = true })
-				else
-					p:resolve({ value = results[1].current + 1, dirty = true })
-				end
-			end)
-	
-			local v = Citizen.Await(p)
-			_cachedSeq[key] = v
-			_loading[key] = false
-			return v.value
+			_cachedSeq[key] = {
+				id = key,
+				sequence = 1,
+				dirty = true,
+			}
+			return 1
 		end
 	end,
+
 	Save = function(self)
+		local queries = {}
 		for k, v in pairs(_cachedSeq) do
 			if v.dirty then
-				local p = promise.new()
-				COMPONENTS.Database.Game:updateOne({
-					collection = "sequence",
-					query = {
-						key = k,
+				table.insert(queries, {
+					query = "INSERT INTO sequence (id, sequence) VALUES(?, ?) ON DUPLICATE KEY UPDATE sequence = VALUES(sequence)",
+					values = {
+						k,
+						v.sequence,
 					},
-					update = {
-						["$set"] = {
-							current = v.value,
-						},
-					},
-					options = {
-						upsert = true
-					}
-				}, function(success, result)
-					if success then
-						COMPONENTS.Logger:Trace("Sequence", string.format("Saved Sequence: ^2%s^7", k))
-					end
+				})
 
-					v.dirty = false
-					p:resolve(true)
-				end)
-				Citizen.Await(p)
+				v.dirty = false
 			end
 		end
+
+		MySQL.transaction(queries)
 	end,
 }
 
+AddEventHandler("Core:Server:StartupReady", function()
+	local t = MySQL.rawExecute.await("SELECT id, sequence FROM sequence")
+	for k, v in ipairs(t) do
+		_cachedSeq[v.id] = {
+			id = v.id,
+			sequence = v.sequence,
+			dirty = false,
+		}
+	end
+end)
+
 AddEventHandler("Core:Shared:Ready", function()
-	COMPONENTS.Tasks:Register("sequence_save", 1, function()
+	COMPONENTS.Tasks:Register("sequence_save", 10, function()
 		COMPONENTS.Sequence:Save()
 	end)
 end)
