@@ -381,7 +381,7 @@ AddEventHandler("Labor:Server:Startup", function()
 	end)
 
 	Callbacks:RegisterServerCallback("Mining:PurchasePickaxe", function(source, data, cb)
-		local char = Fetch:Source(source):GetData("Character")
+		local char = Fetch:CharacterSource(source)
 		if Wallet:Modify(source, -250) then
 			Inventory:AddItem(char:GetData("SID"), "pickaxe", 1, {}, 1)
 		else
