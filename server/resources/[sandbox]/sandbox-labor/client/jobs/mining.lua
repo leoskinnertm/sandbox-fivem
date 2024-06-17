@@ -32,10 +32,10 @@ local function SpawnOres()
 			local o = CreateObject(v.ore.object, v.location.x, v.location.y, v.location.z - 1.4, false, true, false)
 			PlaceObjectOnGroundProperly(o)
 			FreezeEntityPosition(o, true)
-			Targeting:AddEntity(o, "pickaxe", {
+			Targeting:AddEntity(o, "hammer", {
 				{
 					text = string.format("Mine %s", v.ore.label),
-					icon = "pickaxe",
+					icon = "hammer",
 					event = string.format("Mining:Client:%s:Action", _joiner),
 					data = v,
 					minDist = 3.0,
