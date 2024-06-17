@@ -341,7 +341,7 @@ AddEventHandler("Mining:Server:OnDuty", function(joiner, members, isWorkgroup)
 	if #members > 0 then
 		for k, v in ipairs(members) do
 			_joiners[v.ID] = joiner
-			local member = Fetch:Source(v.ID):GetData("Character")
+			local member = Fetch:CharacterSource(v.ID)
 			member:SetData("TempJob", _JOB)
 			Phone.Notification:Add(v.ID, "Labor Activity", "You started a job", os.time() * 1000, 6000, "labor", {})
 			TriggerClientEvent("Mining:Client:OnDuty", v.ID, joiner, os.time())
