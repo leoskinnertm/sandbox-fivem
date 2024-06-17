@@ -1,6 +1,6 @@
 local policeStationBlips = {
-	vector3(-445.7, 6013.2, 100.0), -- paleto
-	vector3(438.7, -981.8, 100.0), -- mrpd
+	vector3(-445.7, 6013.2, 100.0),  -- paleto
+	vector3(438.7, -981.8, 100.0),   -- mrpd
 	vector3(1850.634, 3683.860, 100.0), -- sandy
 	vector3(372.658, -1601.816, 100.0), -- davis
 	-- vector3(835.011, -1292.794, 100.0), -- lemasa
@@ -234,10 +234,10 @@ AddEventHandler("Core:Shared:Ready", function()
 		_pdModels = GlobalState["PoliceCars"]
 		_emsModels = GlobalState["EMSCars"]
 
-		Interaction:RegisterMenu("police", false, "siren-on", function(data)
+		Interaction:RegisterMenu("police", false, "clock", function(data)
 			Interaction:ShowMenu({
 				{
-					icon = "siren-on",
+					icon = "clock",
 					label = "13-A",
 					action = function()
 						Interaction:Hide()
@@ -291,14 +291,15 @@ AddEventHandler("Core:Shared:Ready", function()
 			end, function(cancelled)
 				_doing = false
 				if not cancelled then
-					Callbacks:ServerCallback("Inventory:Raid", LocalPlayer.state._inInvPoly.inventory, function(owner) end)
+					Callbacks:ServerCallback("Inventory:Raid", LocalPlayer.state._inInvPoly.inventory,
+						function(owner) end)
 				end
 			end)
 		end, function()
 			return LocalPlayer.state.onDuty == "police"
-					and not LocalPlayer.state.isDead
-					and LocalPlayer.state._inInvPoly ~= nil
-					and LocalPlayer.state._inInvPoly?.business ~= nil
+				and not LocalPlayer.state.isDead
+				and LocalPlayer.state._inInvPoly ~= nil
+				and LocalPlayer.state._inInvPoly?.business ~= nil
 		end)
 
 		Interaction:RegisterMenu("pd-locked-veh", "Secured Compartment", "shield-keyhole", function(data)
@@ -317,7 +318,8 @@ AddEventHandler("Core:Shared:Ready", function()
 			end)
 		end, function()
 			local v = GetVehiclePedIsIn(LocalPlayer.state.ped)
-			return (LocalPlayer.state.onDuty == "police" or LocalPlayer.state.onDuty == "prison") and not LocalPlayer.state.isDead and v ~= 0 and _pdModels[GetEntityModel(v)] and Vehicles:HasAccess(v)
+			return (LocalPlayer.state.onDuty == "police" or LocalPlayer.state.onDuty == "prison") and
+				not LocalPlayer.state.isDead and v ~= 0 and _pdModels[GetEntityModel(v)] and Vehicles:HasAccess(v)
 		end)
 
 		Interaction:RegisterMenu("police-utils", "Police Utilities", "tablet-rugged", function(data)
@@ -365,18 +367,18 @@ AddEventHandler("Core:Shared:Ready", function()
 					label = "Start Pit Timer (5 Mins)",
 					action = function()
 						Interaction:Hide()
-                        Notification:Custom("5 Minute Pit Timer", 60 * 1000 * 5, 'car-burst', {
-                            alert = {
-                                background = "#247BA5B3",
-                            },
-                            progress = {
-                                background = "#ffffff",
-                            },
-                        })
+						Notification:Custom("5 Minute Pit Timer", 60 * 1000 * 5, 'car-burst', {
+							alert = {
+								background = "#247BA5B3",
+							},
+							progress = {
+								background = "#ffffff",
+							},
+						})
 
-                        Citizen.SetTimeout(60 * 1000 * 5, function()
-                            UISounds.Play:FrontEnd(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET")
-                        end)
+						Citizen.SetTimeout(60 * 1000 * 5, function()
+							UISounds.Play:FrontEnd(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET")
+						end)
 					end,
 					shouldShow = function()
 						return LocalPlayer.state.onDuty == "police"
@@ -531,8 +533,12 @@ AddEventHandler("Core:Shared:Ready", function()
 					local playerPed = PlayerPedId()
 					local playerPos = GetEntityCoords(playerPed, false)
 					local doorPosition = playerPos + GetEntityForwardVector(playerPed)
-					if #(playerPos - doorPosition) < 1.0 then print("To far away") return cb(false); end
-					local raycast = StartShapeTestSweptSphere(playerPos.x, playerPos.y, playerPos.z, doorPosition.x, doorPosition.y, doorPosition.z, 0.2, 16, playerPed, 4)
+					if #(playerPos - doorPosition) < 1.0 then
+						print("To far away")
+						return cb(false);
+					end
+					local raycast = StartShapeTestSweptSphere(playerPos.x, playerPos.y, playerPos.z, doorPosition.x,
+						doorPosition.y, doorPosition.z, 0.2, 16, playerPed, 4)
 					local retval, hit, endCoords, surfaceNormal, entity = GetShapeTestResult(raycast)
 
 					-- Apparently This Can Happen Sometimes so better just setting to door coords instead of halfway across map
@@ -543,51 +549,56 @@ AddEventHandler("Core:Shared:Ready", function()
 					RequestAnimDict("anim@heists@ornate_bank@thermal_charge")
 					RequestModel("hei_p_m_bag_var22_arm_s")
 					while not HasAnimDictLoaded("anim@heists@ornate_bank@thermal_charge") and not HasModelLoaded("hei_p_m_bag_var22_arm_s") do
-					  Citizen.Wait(0)
+						Citizen.Wait(0)
 					end
 					local ped = PlayerPedId()
 					Citizen.Wait(100)
 					local rotx, roty, rotz = table.unpack(vec3(GetEntityRotation(ped)))
-					local bagscene = NetworkCreateSynchronisedScene(endCoords.x, endCoords.y, endCoords.z, rotx, roty, rotz, 2, false, false, 1065353216, 0, 1.3)
-					NetworkAddPedToSynchronisedScene(ped, bagscene, "anim@heists@ornate_bank@thermal_charge", "thermal_charge", 1.5, -4.0, 1, 16, 1148846080, 0)
+					local bagscene = NetworkCreateSynchronisedScene(endCoords.x, endCoords.y, endCoords.z, rotx, roty,
+						rotz, 2, false, false, 1065353216, 0, 1.3)
+					NetworkAddPedToSynchronisedScene(ped, bagscene, "anim@heists@ornate_bank@thermal_charge",
+						"thermal_charge", 1.5, -4.0, 1, 16, 1148846080, 0)
 					local curVar = 0
 					if switchModels[GetEntityModel(PlayerPedId())] then
-					  GetPedDrawableVariation(ped, 5)
-					  SetPedComponentVariation(ped, 5, 0, 0, 0)
+						GetPedDrawableVariation(ped, 5)
+						SetPedComponentVariation(ped, 5, 0, 0, 0)
 					end
 					NetworkStartSynchronisedScene(bagscene)
 					Citizen.Wait(1500)
 					local x, y, z = table.unpack(GetEntityCoords(ped))
-					local bomba = CreateObject(GetHashKey("hei_prop_heist_thermite"), x, y, z + 0.2,  true,  true, true)
+					local bomba = CreateObject(GetHashKey("hei_prop_heist_thermite"), x, y, z + 0.2, true, true, true)
 					SetNetworkIdCanMigrate(NetworkGetNetworkIdFromEntity(bomba), false)
 					SetEntityCollision(bomba, false, true)
-					AttachEntityToEntity(bomba, ped, GetPedBoneIndex(ped, 28422), 0, 0, 0, 0, 0, 200.0, true, true, false, true, 1, true)
+					AttachEntityToEntity(bomba, ped, GetPedBoneIndex(ped, 28422), 0, 0, 0, 0, 0, 200.0, true, true, false,
+						true, 1, true)
 					Citizen.Wait(4000)
 					if curVar > 0 then
-					  SetPedComponentVariation(ped, 5, curVar, 0, 0)
+						SetPedComponentVariation(ped, 5, curVar, 0, 0)
 					end
 					DetachEntity(bomba, 1, 1)
 					FreezeEntityPosition(bomba, true)
 					NetworkStopSynchronisedScene(bagscene)
-					TaskPlayAnim(ped, "anim@heists@ornate_bank@thermal_charge", "cover_eyes_intro", 8.0, 8.0, 1000, 36, 1, 0, 0, 0)
-					TaskPlayAnim(ped, "anim@heists@ornate_bank@thermal_charge", "cover_eyes_loop", 8.0, 8.0, 6000, 49, 1, 0, 0, 0)
+					TaskPlayAnim(ped, "anim@heists@ornate_bank@thermal_charge", "cover_eyes_intro", 8.0, 8.0, 1000, 36, 1,
+						0, 0, 0)
+					TaskPlayAnim(ped, "anim@heists@ornate_bank@thermal_charge", "cover_eyes_loop", 8.0, 8.0, 6000, 49, 1,
+						0, 0, 0)
 					Callbacks:ServerCallback("Robbery:DoThermiteFx", {
 						delay = 7000,
 						netId = ObjToNet(bomba)
 					}, function() end)
 					Citizen.Wait(7000)
-					
+
 					Callbacks:ServerCallback("Robbery:DoDetCordFx", {
 						x = endCoords.x,
 						y = endCoords.y,
 						z = endCoords.z,
 						h = GetEntityHeading(cDoorEnt),
 					}, function() end)
-	
-					ClearPedTasks(ped) 
+
+					ClearPedTasks(ped)
 					DeleteObject(bomba)
 					cb(true, cDoorId)
-				end)  
+				end)
 			end
 		end)
 
@@ -684,53 +695,53 @@ AddEventHandler("Core:Shared:Ready", function()
 			end
 		end)
 
-		Targeting.Zones:AddBox("pd-clockinoff-mrpd", "siren-on", vector3(441.96, -981.94, 30.69), 1.2, 1.2, {
+		Targeting.Zones:AddBox("pd-clockinoff-mrpd", "clock", vector3(441.96, -981.94, 30.69), 1.2, 1.2, {
 			heading = 356,
 			minZ = 30.49,
 			maxZ = 31.49,
 		}, policeDutyPoint, 2.0, true)
 
-		Targeting.Zones:AddBox("pd-clockinoff-sandy", "siren-on", vector3(1833.55, 3678.69, 34.19), 1.0, 3.0, {
+		Targeting.Zones:AddBox("pd-clockinoff-sandy", "clock", vector3(1833.55, 3678.69, 34.19), 1.0, 3.0, {
 			heading = 30,
 			--debugPoly=true,
 			minZ = 33.79,
 			maxZ = 35.59
 		}, policeDutyPoint, 2.0, true)
 
-		Targeting.Zones:AddBox("pd-clockinoff-pbpd", "siren-on", vector3(-447.18, 6013.36, 32.29), 0.8, 1.6, {
+		Targeting.Zones:AddBox("pd-clockinoff-pbpd", "clock", vector3(-447.18, 6013.36, 32.29), 0.8, 1.6, {
 			heading = 45,
 			minZ = 32.29,
 			maxZ = 32.89,
 		}, policeDutyPoint, 2.0, true)
 
-		Targeting.Zones:AddBox("pd-clockinoff-davis", "siren-on", vector3(381.37, -1595.84, 30.05), 2.0, 1.0, {
+		Targeting.Zones:AddBox("pd-clockinoff-davis", "clock", vector3(381.37, -1595.84, 30.05), 2.0, 1.0, {
 			heading = 320,
 			minZ = 29.85,
 			maxZ = 31.05,
 		}, policeDutyPoint, 2.0, true)
 
-		Targeting.Zones:AddBox("pd-clockinoff-lamesa", "siren-on", vector3(837.23, -1289.2, 28.24), 0.8, 2.2, {
+		Targeting.Zones:AddBox("pd-clockinoff-lamesa", "clock", vector3(837.23, -1289.2, 28.24), 0.8, 2.2, {
 			heading = 0,
 			--debugPoly=true,
 			minZ = 27.24,
 			maxZ = 29.04,
 		}, policeDutyPoint, 2.0, true)
 
-		Targeting.Zones:AddBox("pd-clockinoff-courthouse", "siren-on", vector3(-528.46, -189.44, 38.23), 1.0, 1.0, {
+		Targeting.Zones:AddBox("pd-clockinoff-courthouse", "clock", vector3(-528.46, -189.44, 38.23), 1.0, 1.0, {
 			heading = 30,
 			--debugPoly=true,
 			minZ = 37.63,
 			maxZ = 39.23
 		}, policeDutyPoint, 2.0, true)
 
-		Targeting.Zones:AddBox("pd-clockinoff-guardius", "siren-on", vector3(-1083.75, -247.15, 37.76), 1.2, 2, {
+		Targeting.Zones:AddBox("pd-clockinoff-guardius", "clock", vector3(-1083.75, -247.15, 37.76), 1.2, 2, {
 			heading = 27,
 			--debugPoly=true,
 			minZ = 36.76,
 			maxZ = 38.96
 		}, policeDutyPoint, 2.0, true)
 
-		Targeting.Zones:AddBox("pd-clockinoff-guardius2", "siren-on", vector3(-1049.57, -231.01, 39.02), 1, 1, {
+		Targeting.Zones:AddBox("pd-clockinoff-guardius2", "clock", vector3(-1049.57, -231.01, 39.02), 1, 1, {
 			heading = 300,
 			--debugPoly=true,
 			minZ = 38.02,
@@ -796,49 +807,49 @@ AddEventHandler("Core:Shared:Ready", function()
 			},
 		}
 
-		Targeting.Zones:AddBox("police-shitty-locker", "siren-on", vector3(461.59, -1000.0, 30.69), 1.0, 3.8, {
+		Targeting.Zones:AddBox("police-shitty-locker", "clock", vector3(461.59, -1000.0, 30.69), 1.0, 3.8, {
 			heading = 0,
 			--debugPoly=true,
 			minZ = 29.69,
 			maxZ = 32.69,
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-2", "siren-on", vector3(1841.51, 3682.08, 34.19), 2.0, 1, {
+		Targeting.Zones:AddBox("police-shitty-locker-2", "clock", vector3(1841.51, 3682.08, 34.19), 2.0, 1, {
 			heading = 30,
 			--debugPoly=true,
 			minZ = 33.19,
 			maxZ = 35.59
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-3", "siren-on", vector3(-436.32, 6009.79, 37.0), 0.2, 2.2, {
+		Targeting.Zones:AddBox("police-shitty-locker-3", "clock", vector3(-436.32, 6009.79, 37.0), 0.2, 2.2, {
 			heading = 45,
 			--debugPoly=true,
 			minZ = 36.3,
 			maxZ = 38.1,
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-4", "siren-on", vector3(360.08, -1592.9, 25.45), 0.5, 2.8, {
+		Targeting.Zones:AddBox("police-shitty-locker-4", "clock", vector3(360.08, -1592.9, 25.45), 0.5, 2.8, {
 			heading = 50,
 			--debugPoly=true,
 			minZ = 24.45,
 			maxZ = 27.45,
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-5", "siren-on", vector3(844.8, -1286.55, 28.24), 2.0, 1.2, {
+		Targeting.Zones:AddBox("police-shitty-locker-5", "clock", vector3(844.8, -1286.55, 28.24), 2.0, 1.2, {
 			heading = 0,
 			--debugPoly=true,
 			minZ = 27.24,
 			maxZ = 29.84,
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("police-shitty-locker-6", "siren-on", vector3(-1061.09, -247.43, 39.74), 3.6, 1, {
+		Targeting.Zones:AddBox("police-shitty-locker-6", "clock", vector3(-1061.09, -247.43, 39.74), 3.6, 1, {
 			heading = 27,
 			--debugPoly=true,
 			minZ = 38.74,
 			maxZ = 41.34
 		}, locker, 3.0, true)
 
-		Targeting.Zones:AddBox("ems-shitty-locker-1", "siren-on", vector3(1142.12, -1539.54, 35.03), 4.2, 0.6, {
+		Targeting.Zones:AddBox("ems-shitty-locker-1", "clock", vector3(1142.12, -1539.54, 35.03), 4.2, 0.6, {
 			heading = 0,
 			--debugPoly=true,
 			minZ = 32.23,
@@ -866,7 +877,7 @@ AddEventHandler("Police:Client:DoApartmentBreach", function(values, data)
 		id = data,
 	}, function(s)
 		if s then
-			
+
 		end
 	end)
 end)

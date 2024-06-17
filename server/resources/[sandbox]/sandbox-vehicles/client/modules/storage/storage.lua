@@ -24,23 +24,23 @@ AddEventHandler('Vehicles:Client:StartUp', function()
             }
 
             if v.zone and v.zone.type == 'poly' and v.zone.points then
-                Polyzone.Create:Poly('veh_storage_'.. k, v.zone.points, {
+                Polyzone.Create:Poly('veh_storage_' .. k, v.zone.points, {
                     minZ = v.zone.minZ,
                     maxZ = v.zone.maxZ,
-					debugPoly = false
+                    debugPoly = false
                 }, data)
             elseif v.zone and v.zone.type == 'box' and v.zone.center and v.zone.length and v.zone.width then
-                Polyzone.Create:Box('veh_storage_'.. k, v.zone.center, v.zone.length, v.zone.width, {
+                Polyzone.Create:Box('veh_storage_' .. k, v.zone.center, v.zone.length, v.zone.width, {
                     heading = v.zone.heading,
                     minZ = v.zone.minZ,
                     maxZ = v.zone.maxZ,
-					debugPoly = false
+                    debugPoly = false
                 }, data)
             end
         end
     end
 
-    Interaction:RegisterMenu("veh_storage", false, "garage-open", function()
+    Interaction:RegisterMenu("veh_storage", false, "warehouse", function()
         OpenVehicleStorage()
         Interaction:Hide()
     end, function()
@@ -55,17 +55,17 @@ AddEventHandler('Vehicles:Client:CharacterLogin', function()
     if _vehicleStorage then
         for k, v in pairs(_vehicleStorage) do
             if not v.restricted and not v.hideBlip then
-                Blips:Add('veh_storage_'.. k, v.name, v.coords, blipsForVehType[v.vehType], 12, 0.6, false, 10)
+                Blips:Add('veh_storage_' .. k, v.name, v.coords, blipsForVehType[v.vehType], 12, 0.6, false, 10)
             end
         end
 
         Citizen.Wait(2500)
-        
+
         -- Add Restricted Ones After so the Blips Appear With the Restricted Ones at the end of the list
         -- for k, v in pairs(_vehicleStorage) do
         --     if v.restricted then
         --         local charJobs = Jobs.Permissions:GetJobs()
-                
+
         --         if #charJobs > 0 then
         --             if DoesCharacterPassStorageRestrictions(-1, charJobs, v.restricted) then
         --                 Blips:Add('veh_storage_'.. k, v.name .. ' [Restricted]', v.coords, blipsForVehType[v.vehType], 6, 0.45, false, 10)
@@ -91,7 +91,7 @@ AddEventHandler('Vehicles:Client:StoreVehicle', function(entityData)
         local inVehicleStorageZone, vehicleStorageZoneId = GetVehicleStorageAtCoords(vehicleCoords)
         local vehState = Entity(entityData.entity).state
 
-        if vehState.EmergencyBoat and Vehicles:HasAccess(entityData.entity, true) and GetPedInVehicleSeat(entityData.entity) == 0 and GetEntitySpeed(entityData.entity) <= 1  then
+        if vehState.EmergencyBoat and Vehicles:HasAccess(entityData.entity, true) and GetPedInVehicleSeat(entityData.entity) == 0 and GetEntitySpeed(entityData.entity) <= 1 then
             TriggerServerEvent("Vehicles:Server:DeleteEmergencyBoat", VehToNet(entityData.entity))
             return
         end
@@ -158,7 +158,7 @@ function OpenVehicleStorage()
             else
                 parkingSpace = GetClosestAvailableParkingSpace(pedCoords, vehStorageData.spaces)
             end
-            
+
             if parkingSpace then
                 Callbacks:ServerCallback('Vehicles:GetVehiclesInStorage', vehicleStorageZoneId, function(storedVehicles)
                     if not storedVehicles then
@@ -186,43 +186,44 @@ function OpenVehicleStorage()
     else
         local propertyGarage = Properties:GetNearHouseGarage()
         if propertyGarage and propertyGarage.propertyId then
-
-            local coords = vector4(propertyGarage.coords.x, propertyGarage.coords.y, propertyGarage.coords.z, propertyGarage.coords.h)
+            local coords = vector4(propertyGarage.coords.x, propertyGarage.coords.y, propertyGarage.coords.z,
+                propertyGarage.coords.h)
 
             if IsParkingSpaceFree(coords) then
-                Callbacks:ServerCallback('Vehicles:GetVehiclesInPropertyStorage', propertyGarage.propertyId, function(storedVehicles, data, characterId, characters)
-                    if not storedVehicles then
-                        Notification:Error('Error Fetching Vehicle Storage')
-                        return
-                    end
+                Callbacks:ServerCallback('Vehicles:GetVehiclesInPropertyStorage', propertyGarage.propertyId,
+                    function(storedVehicles, data, characterId, characters)
+                        if not storedVehicles then
+                            Notification:Error('Error Fetching Vehicle Storage')
+                            return
+                        end
 
-                    if #storedVehicles > 0 then
-                        cachedStorageShit = {
-                            storageType = 2,
-                            storageId = propertyGarage.propertyId,
-                            storedVehicleData = storedVehicles,
-                            parkingSpace = coords,
-                            characterDuty = LocalPlayer.state.onDuty,
-                            maxCount = data.max,
-                            currentCount = data.current,
-                            characterId = characterId,
-                            characters = characters,
-                        }
-                        OpenVehicleStorageMenu(
-                            2,
-                            propertyGarage.propertyId,
-                            storedVehicles,
-                            coords,
-                            LocalPlayer.state.onDuty,
-                            data.max,
-                            data.current,
-                            characterId,
-                            characters
-                        )
-                    else
-                        Notification:Error('Vehicle Storage Is Empty')
-                    end
-                end)
+                        if #storedVehicles > 0 then
+                            cachedStorageShit = {
+                                storageType = 2,
+                                storageId = propertyGarage.propertyId,
+                                storedVehicleData = storedVehicles,
+                                parkingSpace = coords,
+                                characterDuty = LocalPlayer.state.onDuty,
+                                maxCount = data.max,
+                                currentCount = data.current,
+                                characterId = characterId,
+                                characters = characters,
+                            }
+                            OpenVehicleStorageMenu(
+                                2,
+                                propertyGarage.propertyId,
+                                storedVehicles,
+                                coords,
+                                LocalPlayer.state.onDuty,
+                                data.max,
+                                data.current,
+                                characterId,
+                                characters
+                            )
+                        else
+                            Notification:Error('Vehicle Storage Is Empty')
+                        end
+                    end)
             else
                 Notification:Error('Could Not Find Parking Space')
             end
@@ -243,7 +244,7 @@ function EstimateDegenState(degen)
     local partCount = 0
     local total = 0
     if degen and type(degen) == "table" then
-        for k,v in pairs(degen) do
+        for k, v in pairs(degen) do
             if type(v) == "number" then
                 partCount += 1
                 total += v
@@ -287,12 +288,12 @@ function EstimateEngineHealth(engineHealth)
         else
             return "Destroyed"
         end
-
     end
     return "Unknown"
 end
 
-function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parkingSpace, characterDuty, maxCount, currentCount, characterId, characters)
+function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parkingSpace, characterDuty, maxCount,
+                                currentCount, characterId, characters)
     tempCurrentStorageType = storageType
     tempCurrentStorageId = storageId
     tempParkingSpace = parkingSpace
@@ -359,9 +360,9 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
             if v.Owner and v.Owner.Id == characterId then
                 local description = ''
                 if v.RegisteredPlate then
-                    description = 'Plate: '.. v.RegisteredPlate
+                    description = 'Plate: ' .. v.RegisteredPlate
                 else
-                    description = 'Type: '.. (v.Type == 1 and 'Boat' or 'Aircraft')
+                    description = 'Type: ' .. (v.Type == 1 and 'Boat' or 'Aircraft')
                 end
 
                 table.insert(storageMenu.main.items, {
@@ -378,9 +379,9 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
             if v.Owner and v.Owner.Id ~= characterId then
                 local description = ''
                 if v.RegisteredPlate then
-                    description = 'Plate: '.. v.RegisteredPlate
+                    description = 'Plate: ' .. v.RegisteredPlate
                 else
-                    description = 'Type: '.. (v.Type == 1 and 'Boat' or 'Aircraft')
+                    description = 'Type: ' .. (v.Type == 1 and 'Boat' or 'Aircraft')
                 end
 
                 if not storageMenu[string.format("%s-vehicles", v.Owner.Id)] then
@@ -413,9 +414,9 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
         for k, v in ipairs(personalVehicles) do
             local description = ''
             if v.RegisteredPlate then
-                description = 'Plate: '.. v.RegisteredPlate
+                description = 'Plate: ' .. v.RegisteredPlate
             else
-                description = 'Type: '.. (v.Type == 1 and 'Boat' or 'Aircraft')
+                description = 'Type: ' .. (v.Type == 1 and 'Boat' or 'Aircraft')
             end
 
             table.insert(storageMenu.main.items, {
@@ -442,9 +443,9 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
         for k, v in ipairs(assignedFleetVehicles) do
             local description = ''
             if v.RegisteredPlate then
-                description = 'Plate: '.. v.RegisteredPlate
+                description = 'Plate: ' .. v.RegisteredPlate
             else
-                description = 'Type: '.. (v.Type == 1 and 'Boat' or 'Aircraft')
+                description = 'Type: ' .. (v.Type == 1 and 'Boat' or 'Aircraft')
             end
 
             table.insert(storageMenu['fleet-assigned'].items, {
@@ -459,7 +460,8 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
     if #fleetVehicles > 0 then
         table.insert(storageMenu.main.items, {
             label = 'Fleet Vehicles',
-            description = characterDuty and 'View Fleet Vehicles That You Have Access To' or 'This Requires You to Be On Duty',
+            description = characterDuty and 'View Fleet Vehicles That You Have Access To' or
+                'This Requires You to Be On Duty',
             submenu = 'fleet',
             disabled = not characterDuty,
         })
@@ -472,9 +474,9 @@ function OpenVehicleStorageMenu(storageType, storageId, storedVehicleData, parki
         for k, v in ipairs(fleetVehicles) do
             local description = ''
             if v.RegisteredPlate then
-                description = 'Plate: '.. v.RegisteredPlate
+                description = 'Plate: ' .. v.RegisteredPlate
             else
-                description = 'Type: '.. (v.Type == 1 and 'Boat' or 'Aircraft')
+                description = 'Type: ' .. (v.Type == 1 and 'Boat' or 'Aircraft')
             end
 
             table.insert(storageMenu.fleet.items, {
@@ -495,14 +497,14 @@ AddEventHandler("Vehicles:Client:Storage:GoBack", function()
 
     if cachedStorageShit then
         OpenVehicleStorageMenu(
-            cachedStorageShit.storageType, 
-            cachedStorageShit.storageId, 
-            cachedStorageShit.storedVehicleData, 
-            cachedStorageShit.parkingSpace, 
-            cachedStorageShit.characterDuty, 
-            cachedStorageShit.maxCount, 
-            cachedStorageShit.currentCount, 
-            cachedStorageShit.characterId, 
+            cachedStorageShit.storageType,
+            cachedStorageShit.storageId,
+            cachedStorageShit.storedVehicleData,
+            cachedStorageShit.parkingSpace,
+            cachedStorageShit.characterDuty,
+            cachedStorageShit.maxCount,
+            cachedStorageShit.currentCount,
+            cachedStorageShit.characterId,
             cachedStorageShit.characters
         )
     end
@@ -544,56 +546,59 @@ AddEventHandler("Vehicles:Client:Storage:Select", function(data)
         }
 
         local vehItems = {}
-    
+
         table.insert(vehItems, {
             label = 'Vehicle\'s Identification',
             description = string.format('VIN: %s, Plate: %s', vehicle.VIN, vehicle.RegisteredPlate or 'N/A'),
             event = false,
         })
-    
+
         if vehicle.Owner.Type == 1 and vehicle.Type ~= 2 then
             table.insert(vehItems, {
                 label = 'Vehicle\'s Current State',
-                description = string.format('Fuel: %s%%<br>Engine State: %s<br>Average Vehicle Parts State: %s', vehicle.Fuel, EstimateEngineHealth(vehicle.Damage?.Engine), EstimateDegenState(vehicle.DamagedParts)),
+                description = string.format('Fuel: %s%%<br>Engine State: %s<br>Average Vehicle Parts State: %s',
+                    vehicle.Fuel, EstimateEngineHealth(vehicle.Damage?.Engine), EstimateDegenState(vehicle.DamagedParts)),
                 event = false,
             })
         else
             table.insert(vehItems, {
                 label = 'Vehicle\'s Current State',
-                description = string.format('Fuel: %s%%<br>Engine State: %s', vehicle.Fuel, EstimateEngineHealth(vehicle.Damage?.Engine)),
+                description = string.format('Fuel: %s%%<br>Engine State: %s', vehicle.Fuel,
+                    EstimateEngineHealth(vehicle.Damage?.Engine)),
                 event = false,
             })
         end
-    
-    
+
+
         if vehicle.Owner.Type == 1 then
             table.insert(vehItems, {
                 label = 'Vehicle\'s Fleet Information',
-                description = string.format('Req. Level: %s, Ownership Type: %s', vehicle.Owner.Level, vehicle.Owner.Workplace and string.upper(vehicle.Owner.Workplace) or 'All'),
+                description = string.format('Req. Level: %s, Ownership Type: %s', vehicle.Owner.Level,
+                    vehicle.Owner.Workplace and string.upper(vehicle.Owner.Workplace) or 'All'),
                 event = false,
             })
-    
+
             if vehicle.LastDriver and #vehicle.LastDriver > 0 then
                 local fhId = vehicle.VIN .. '-fleet-history'
                 local shitCunt = {}
-    
+
                 local timeNow = GetCloudTimeAsInt() or 0
                 for i = #vehicle.LastDriver, 1, -1 do
                     local driver = vehicle.LastDriver[i]
                     local timeString = GetFormattedTimeFromSeconds(timeNow - driver.time)
-    
+
                     table.insert(shitCunt, {
                         label = string.format('Driver SID: %s', driver.char),
                         description = string.format('Returned Vehicle %s Ago', timeString),
                         event = false,
                     })
                 end
-    
+
                 subMenu[fhId] = {
                     label = (vehicle.RegisteredPlate or 'Vehicle') .. ' Fleet History',
                     items = shitCunt
                 }
-    
+
                 table.insert(vehItems, {
                     label = 'Fleet History',
                     description = 'Latest Driver: ' .. (vehicle.LastDriver[#vehicle.LastDriver]?.char or '?'),
@@ -601,14 +606,14 @@ AddEventHandler("Vehicles:Client:Storage:Select", function(data)
                 })
             end
         end
-    
+
         local desc = 'Take the Vehicle Out of Storage'
         local disabled = false
-    
+
         if vehicle.Owner and vehicle.Owner.Qualification then
             desc = 'This Vehicle Requires Qualifications'
             disabled = true
-    
+
             local char = LocalPlayer.state.Character
             if char and char:GetData('Qualifications') and #char:GetData('Qualifications') > 0 then
                 if hasValue(char:GetData('Qualifications'), vehicle.Owner.Qualification) then
@@ -616,7 +621,7 @@ AddEventHandler("Vehicles:Client:Storage:Select", function(data)
                 end
             end
         end
-    
+
         table.insert(vehItems, {
             label = 'Retrieve',
             description = desc,
@@ -626,7 +631,7 @@ AddEventHandler("Vehicles:Client:Storage:Select", function(data)
         })
 
         subMenu.main.items = vehItems
-    
+
         ListMenu:Show(subMenu)
     end)
 end)
