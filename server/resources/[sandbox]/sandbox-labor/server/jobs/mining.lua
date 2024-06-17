@@ -171,16 +171,6 @@ AddEventHandler("Labor:Server:Startup", function()
 						if successful and _mining[_joiners[source]].nodes[lastId] ~= nil then
 							node.attempts = node.attempts + 1
 							local luck = math.random(100)
-							-- print(
-							-- 	"char",
-							-- 	char:GetData("Source"),
-							-- 	"luck",
-							-- 	luck,
-							-- 	"node attempts",
-							-- 	node.attempts,
-							-- 	"node id:",
-							-- 	lastId
-							-- )
 							if luck >= 95 or node.attempts >= 3 then
 								Inventory:AddItem(char:GetData("SID"), "unknown_ore", 1, {}, 1)
 								TriggerClientEvent(
@@ -188,7 +178,6 @@ AddEventHandler("Labor:Server:Startup", function()
 									-1,
 									node.id
 								)
-								--table.remove(_mining[_joiners[source]].nodes, lastId)
 								_mining[_joiners[source]].nodes[lastId] = nil
 								if luck >= 75 then
 									local loot = _schemMiningLoot[tostring(os.date("%w"))]
