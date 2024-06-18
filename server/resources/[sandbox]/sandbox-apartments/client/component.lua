@@ -364,7 +364,6 @@ _APTS = {
 
 				FreezeEntityPosition(PlayerPedId(), true)
 				Citizen.Wait(50)
-				TriggerEvent("PAC:IgnoreNextNoclipFlag")
 				SetEntityCoords(
 					PlayerPedId(),
 					p.interior.spawn.x,
@@ -410,8 +409,6 @@ _APTS = {
 
 			Sounds.Play:One("door_close.ogg", 0.3)
 			Citizen.Wait(200)
-
-			TriggerEvent("PAC:IgnoreNextNoclipFlag")
 			SetEntityCoords(PlayerPedId(), p.coords.x, p.coords.y, p.coords.z, 0, 0, 0, false)
 			Citizen.Wait(100)
 			SetEntityHeading(PlayerPedId(), p.heading)

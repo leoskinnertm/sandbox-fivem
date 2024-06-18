@@ -129,7 +129,6 @@ AddEventHandler("Doors:Client:UseElevator", function(data)
                         DoScreenFadeOut(500)
                         while not IsScreenFadedOut() do Citizen.Wait(10) end
             
-				        TriggerEvent("PAC:IgnoreNextNoclipFlag")
                         SetEntityCoords(GLOBAL_PED, floorData.coords.x, floorData.coords.y, floorData.coords.z)
                         SetEntityHeading(GLOBAL_PED, floorData.coords.w)
                         Sounds.Play:Distance(5.0, "elevator-bell.ogg", 0.4)

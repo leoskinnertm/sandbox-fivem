@@ -47,7 +47,6 @@ RegisterNUICallback("GetData", function(data, cb)
 
 		Callbacks:ServerCallback("Characters:GetCharacters", {}, function(characters, characterLimit)
 			local ped = PlayerPedId()
-			TriggerEvent("PAC:IgnoreNextNoclipFlag")
 			SetEntityCoords(ped, 685.865, 576.222, 132.841, 0.0, 0.0, 0.0, false)
 			FreezeEntityPosition(ped, true)
 			SetEntityVisible(ped, false)

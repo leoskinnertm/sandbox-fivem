@@ -341,7 +341,6 @@ function RegisterCallbacks()
                         wasSuccessful = true
                     elseif data.action == 'goto' then
                         local targetCoords = GetEntityCoords(targetPed)
-                        TriggerEvent("PAC:IgnoreNextNoclipFlag")
                         SetEntityCoords(playerPed, targetCoords.x, targetCoords.y, targetCoords.z + 1.0)
 
                         cb({

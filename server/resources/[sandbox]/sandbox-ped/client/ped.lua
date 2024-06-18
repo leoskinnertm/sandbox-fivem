@@ -815,7 +815,6 @@ PED = {
 			SetEntityAsMissionEntity(player, true, true)
 			SetModelAsNoLongerNeeded(model)
 			Ped:ApplyToPed(LocalPed)
-			TriggerEvent("PAC:IgnoreNextNoclipFlag")
 			SetEntityCoords(player, _creatorLocation.x, _creatorLocation.y, _creatorLocation.z)
 			Citizen.Wait(200)
 			SetEntityHeading(player, _creatorLocation.h)

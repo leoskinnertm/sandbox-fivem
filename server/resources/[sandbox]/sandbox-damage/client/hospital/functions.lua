@@ -23,7 +23,6 @@ function SetBedCam(bed)
 		NetworkResurrectLocalPlayer(playerPos, true, true, false)
 	end
 
-	TriggerEvent("PAC:IgnoreNextNoclipFlag")
 	SetEntityCoords(player, _curBed.x, _curBed.y, _curBed.z)
 	SetEntityHeading(player, _curBed.h)
 

@@ -248,7 +248,6 @@ AddEventHandler("Core:Shared:Ready", function()
 
 			DoBoardShit(data.jailer, data.duration, data.date)
 			DisableControls()
-			TriggerEvent("PAC:IgnoreNextNoclipFlag")
 			SetEntityCoords(
 				LocalPlayer.state.ped,
 				Config.Mugshot.coords.x,

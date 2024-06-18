@@ -78,7 +78,6 @@ SPAWN = {
 
 		LocalPed = LocalPlayer.state.Character:GetData("Ped")
 		Ped:ApplyToPed(LocalPed)
-		TriggerEvent("PAC:IgnoreNextNoclipFlag")
 		if data.action ~= nil then
 			FreezeEntityPosition(player, false)
 			TriggerEvent(data.action, data.data)

@@ -201,7 +201,6 @@ AddEventHandler("Polyzone:Enter", function(id, testedPoint, insideZones, data)
 				if data.tpCoords ~= nil then
 					ClearPedTasksImmediately(PlayerPedId())
 					Citizen.Wait(100)
-					TriggerEvent("PAC:IgnoreNextNoclipFlag")
 					SetEntityCoords(PlayerPedId(), data.tpCoords.x, data.tpCoords.y, data.tpCoords.z, 0, 0, 0, false)
 				end
 			end

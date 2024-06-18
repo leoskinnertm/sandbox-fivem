@@ -23,7 +23,6 @@ function EnterProperty(data, backdoor)
 
 			local interior = PropertyInteriors[int]
 
-			TriggerEvent("PAC:IgnoreNextNoclipFlag")
 			if backdoor and interior.locations.back then
 				SetEntityCoords(PlayerPedId(), interior.locations.back.coords.x, interior.locations.back.coords.y, interior.locations.back.coords.z, 0, 0, 0, false)
 				Citizen.Wait(100)
@@ -93,7 +92,6 @@ function ExitProperty(data, backdoor)
 		Targeting.Zones:RemoveZone(string.format("property-%s-exit-back", pId))
 		--Polyzone:Remove("property-int-zone")
 
-		TriggerEvent("PAC:IgnoreNextNoclipFlag")
 		if backdoor and property.location.backdoor then
 			SetEntityCoords(
 				PlayerPedId(),

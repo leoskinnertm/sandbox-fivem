@@ -16,7 +16,6 @@ end
 
 function COMPONENTS.Spawn.Init(self)
 	DoScreenFadeOut(500)
-	TriggerEvent("PAC:IgnoreNextNoclipFlag")
 	SetEntityCoords(PlayerPedId(), self.SpawnPoint.x, self.SpawnPoint.y, self.SpawnPoint.z)
 	SetEntityHeading(PlayerPedId(), self.SpawnPoint.h)
 

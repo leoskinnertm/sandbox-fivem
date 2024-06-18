@@ -159,7 +159,6 @@ HOSPITAL = {
 		_bedId = bedId
 
 		if bed ~= nil and fuck then
-			TriggerEvent("PAC:IgnoreNextNoclipFlag")
 			SetBedCam(bed)
 			if isRp then
 				_healEnd = GetCloudTimeAsInt()

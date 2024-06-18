@@ -15,7 +15,6 @@ RegisterNetEvent("Jail:Client:EnterJail", function()
 
 	local cellData = Config.Cells[math.random(#Config.Cells)]
 
-	TriggerEvent("PAC:IgnoreNextNoclipFlag")
 	SetEntityCoords(LocalPlayer.state.ped, cellData.coords.x, cellData.coords.y, cellData.coords.z, 0, 0, 0, false)
 	Citizen.Wait(100)
 	SetEntityHeading(LocalPlayer.state.ped, cellData.heading)
@@ -71,7 +70,6 @@ AddEventHandler("Jail:Client:Released", function()
 					Citizen.Wait(10)
 				end
 
-				TriggerEvent("PAC:IgnoreNextNoclipFlag")
 				Sounds.Play:One("release.ogg", 0.15)
 				SetEntityCoords(
 					LocalPlayer.state.ped,
