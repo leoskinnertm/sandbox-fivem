@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-import { GovernmentEmployees, NoticeBoard } from '../../../components';
+import { NoticeBoard } from '../../../components';
 import { useSelector, useDispatch } from 'react-redux';
 import Nui from '../../../util/Nui';
 
@@ -16,10 +16,8 @@ export default () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const cData = useSelector(state => state.app.user);
-	const myJob = useSelector(state => state.app.govJob);
 	const lastRefresh = useSelector(state => state.data.data.homeLastFetch);
 	const notices = useSelector(state => state.data.data.notices);
-	const govWorkers = useSelector(state => state.data.data.govWorkers);
 
 	const fetch = async () => {
 		try {
@@ -37,16 +35,6 @@ export default () => {
 						},
 					});
 				};
-
-				if (res.govWorkers) {
-					dispatch({
-						type: 'SET_DATA',
-						payload: {
-							type: "govWorkers",
-							data: res.govWorkers,
-						},
-					});
-				}
 			}
 		} catch (e) {
 			console.log(e);
@@ -59,19 +47,18 @@ export default () => {
 				type: 'SET_DATA',
 				payload: {
 					type: "homeLastFetch",
-					data: Date.now(),
+					term: Date.now(),
 				},
 			});
 
 			fetch();
 		}
-	}, [cData, lastRefresh]);
+	}, []);
 
 	return (
 		<div className={classes.wrapper}>
 			<Grid container spacing={2}>
 				<NoticeBoard notices={notices} />
-				{myJob?.Id === "government" && <GovernmentEmployees govWorkers={govWorkers} />}
 			</Grid>
 		</div>
 	);

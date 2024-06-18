@@ -18,24 +18,30 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default ({ data, isLast, isPrimary, isTow = null }) => {
+export default ({ callsign, isLast, isPrimary, isTow = null }) => {
 	const classes = useStyles();
 	const user = useSelector((state) => state.app.user);
+	const emergencyMembers = useSelector((state) => state.alerts.emergencyMembers);
 
-	if (user.SID === data.character?.SID) {
+	const memberData = Boolean(isTow)
+		? emergencyMembers.find((m) => m?.SID === isTow)
+		: emergencyMembers.find((m) => m?.Callsign === callsign);
+	if (!memberData) return null;
+
+	if (user.SID === memberData.SID) {
 		return (
 			<Tooltip
 				placement={isPrimary ? 'top' : 'bottom'}
-				title={`${data.character.First[0]}. ${data.character.Last} (You)`}
+				title={`${memberData.First[0]}. ${memberData.Last} (You)`}
 			>
-				<b className={classes.item} style={{ fontSize: isPrimary ? 18 : null }}>{`${(Boolean(isTow) && data.character) ? `${data.character.First[0]}. ${data.character.Last}` : data.primary
-					} (You)`}</b>
+				<b className={classes.item}>{`${Boolean(isTow) ? `${memberData.First[0]}. ${memberData.Last}` : callsign
+					} (You)${!isPrimary && !isLast ? ', ' : ''}`}</b>
 			</Tooltip>
 		);
 	} else {
 		return (
-			<Tooltip placement={isPrimary ? 'top' : 'bottom'} title={data.character ? `${data.character?.First[0]}. ${data.character?.Last}` : "???"}>
-				<span className={classes.item} style={{ fontSize: isPrimary ? 18 : null }}>{`${(Boolean(isTow) && data.character) ? `${data.character?.First[0]}. ${data.character?.Last}` : data.primary}`}</span>
+			<Tooltip placement={isPrimary ? 'top' : 'bottom'} title={`${memberData.First[0]}. ${memberData.Last}`}>
+				<span className={classes.item}>{`${callsign}${!isPrimary && !isLast ? ', ' : ''}`}</span>
 			</Tooltip>
 		);
 	}

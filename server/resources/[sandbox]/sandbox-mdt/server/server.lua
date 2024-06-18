@@ -16,8 +16,6 @@ local governmentJobs = {
 _onDutyUsers = {}
 _onDutyLawyers = {}
 
-_dojWorkers = {}
-
 _governmentJobData = {}
 
 local sentencedSuspects = {}
@@ -142,20 +140,6 @@ AddEventHandler('Job:Server:DutyAdd', function(dutyData, source, SID)
 				qualifications = _qualifications,
 				bolos = _bolos,
 			})
-
-			local char = Fetch:CharacterSource(source)
-			if char and job.Id == "government" then
-				_dojWorkers[source] = {
-					First = char:GetData("First"),
-					Last = char:GetData("Last"),
-					SID = char:GetData("SID"),
-					Phone = char:GetData("Phone"),
-
-					Job = job.Name,
-					Workplace = job.Workplace.Name,
-					Grade = job.Grade.Name,
-				}
-			end
 		end
 	end
 end)
@@ -174,7 +158,6 @@ end)
 AddEventHandler('Job:Server:DutyRemove', function(dutyData, source, SID)
 	if governmentJobs[dutyData.Id] then
 		_onDutyUsers[source] = nil
-		_dojWorkers[source] = nil
 		TriggerClientEvent("MDT:Client:Logout", source)
 	end
 end)
@@ -216,7 +199,9 @@ RegisterNetEvent('MDT:Server:OpenPublicRecords', function()
 		TriggerClientEvent("MDT:Client:SetMultipleData", src, {
 			governmentJobs = _governmentJobs,
 			charges = _charges,
+			notices = _notices,
 			governmentJobsData = _governmentJobData,
+			warrants = _warrants,
 			prison = false,
 		})
 	end
@@ -230,6 +215,7 @@ RegisterNetEvent('MDT:Server:OpenDOCPublic', function()
 		TriggerClientEvent("MDT:Client:SetMultipleData", src, {
 			governmentJobs = _governmentJobs,
 			charges = _charges,
+			notices = _notices,
 			prison = true,
 		})
 	else
@@ -248,28 +234,15 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 			"active"
 		})
 
-		local notices
-		if gJob then
-			notices = MySQL.query.await("SELECT `id`, title, created FROM mdt_notices WHERE restricted IN (?, ?, ?)", {
-				"public",
-				"government",
-				gJob,
-			})
-		else
-			notices = MySQL.query.await("SELECT `id`, title, created FROM mdt_notices WHERE restricted = ?", {
-				"public",
-			})
-		end
-
-		local gWorkers = {}
-		for k, v in pairs(_dojWorkers) do
-			table.insert(gWorkers, v)
-		end
+		local notices = MySQL.query.await("SELECT `id`, title, created FROM mdt_notices WHERE restricted IN (?, ?, ?)", {
+			"public",
+			"government",
+			gJob,
+		})
 
 		cb({
 			warrants = warrants,
 			notices = notices,
-			govWorkers = gWorkers,
 		})
 	end)
 
@@ -431,44 +404,6 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 		end
 	end)
 
-	Callbacks:RegisterServerCallback("MDT:OverturnSentence", function(source, data, cb)
-		local char = Fetch:CharacterSource(source)
-
-		if CheckMDTPermissions(source, "DOJ_OVERTURN_CHARGES") and data.report and data.SID then
-			Logger:Warn(
-				"MDT",
-				string.format(
-					"%s %s (%s) Overturned Charges From State ID %s on Report %s",
-					char:GetData("First"),
-					char:GetData("Last"),
-					char:GetData("SID"),
-					data.SID,
-					data.report
-				),
-				{
-					console = true,
-					file = true,
-					database = true,
-					discord = {
-						embed = true,
-					},
-				}
-			)
-
-			MySQL.query.await("UPDATE mdt_reports_people SET type = ? WHERE report = ? AND type = ? AND SID = ? AND sentenced = ?", {
-				"suspectOverturned",
-				data.report,
-				"suspect",
-				data.SID,
-				1
-			})
-
-			cb(true)
-		else
-			cb(false)
-		end
-	end)
-
 	Callbacks:RegisterServerCallback("MDT:RosterView", function(source, data, cb)
 		Database.Game:find({
 			collection = "characters",
@@ -572,6 +507,8 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 						database = true,
 						discord = {
 							embed = true,
+							type = 'info',
+							webhook = GetConvar("government_log_webhook", ''),
 						},
 					}
 				)
@@ -599,59 +536,6 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 			else
 				cb(false)
 			end
-		else
-			cb(false)
-		end
-	end)
-
-	Callbacks:RegisterServerCallback("MDT:RemoveLicensePoints", function(source, data, cb)
-		local char = Fetch:CharacterSource(source)
-
-		if CheckMDTPermissions(source, 'REVOKE_LICENSE_SUSPENSIONS') and data.SID and data.newPoints then
-			Logger:Warn(
-				"MDT",
-				string.format(
-					"%s %s (%s) Changed License Points of State ID %s to %s",
-					char:GetData("First"),
-					char:GetData("Last"),
-					char:GetData("SID"),
-					data.SID,
-					data.newPoints
-				),
-				{
-					console = true,
-					file = true,
-					database = true,
-					discord = {
-						embed = true,
-					},
-				}
-			)
-
-			Database.Game:findOneAndUpdate({
-				collection = "characters",
-				query = {
-					SID = data.SID,
-				},
-				update = {
-					["$set"] = {
-						['Licenses.Drivers.Points'] = data.newPoints
-					}
-				},
-				options = {
-					returnDocument = 'after',
-				}
-			}, function(success, results)
-				if success and results and results.SID and results.Licenses then
-					local char = Fetch:SID(results.SID)
-					if char then
-						char:SetData('Licenses', results.Licenses)
-					end
-					cb(results.Licenses)
-				else
-					cb(false)
-				end
-			end)
 		else
 			cb(false)
 		end
@@ -685,6 +569,8 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 						database = true,
 						discord = {
 							embed = true,
+							type = 'info',
+							webhook = GetConvar("government_log_webhook", ''),
 						},
 					}
 				)
@@ -751,6 +637,8 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 							database = true,
 							discord = {
 								embed = true,
+								type = 'info',
+								webhook = GetConvar("government_log_webhook", ''),
 							},
 						}
 					)
@@ -779,7 +667,7 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 						EmergencyAlerts:Create(
 							"DOC",
 							"Visition Request from Lobby",
-							"doc_alerts",
+							4,
 							{
 								street1 = "Bolingbroke Penitentiary",
 								x = 1852.444, 

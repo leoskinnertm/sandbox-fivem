@@ -72,9 +72,6 @@ export default ({ open, existing = null, onSubmit, onClose }) => {
 				<MenuItem key="Flagged" value="Flagged">
 					Flagged
 				</MenuItem>
-				<MenuItem key="PD Trashed/Broken" value="PD Trashed/Broken">
-					PD Trashed/Broken
-				</MenuItem>
 			</TextField>
 			<TextField
 				required

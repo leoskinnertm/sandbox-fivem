@@ -107,14 +107,6 @@ RegisterNUICallback("ClearRecord", function(data, cb)
 	Callbacks:ServerCallback("MDT:ClearCriminalRecord", data, cb)
 end)
 
-RegisterNUICallback("RemovePoints", function(data, cb)
-	Callbacks:ServerCallback("MDT:RemoveLicensePoints", data, cb)
-end)
-
-RegisterNUICallback("OverturnSentence", function(data, cb)
-	Callbacks:ServerCallback("MDT:OverturnSentence", data, cb)
-end)
-
 RegisterNUICallback("ViewVehicleFleet", function(data, cb)
 	Callbacks:ServerCallback("MDT:ViewVehicleFleet", data, cb)
 end)

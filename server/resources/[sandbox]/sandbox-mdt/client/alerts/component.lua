@@ -39,7 +39,7 @@ AddEventHandler("Core:Shared:Ready", function()
 		RegisterCallbacks()
 		Keybinds:Add("emergency_alerts_toggle", "GRAVE", "keyboard", "Police - Toggle Alerts Panel", function()
 			local duty = LocalPlayer.state.onDuty
-			if _jobs[duty] and not LocalPlayer.state.isDead then
+			if _jobs[duty] then
 				EmergencyAlerts:Open()
 			end
 		end)
@@ -223,9 +223,32 @@ _pdAlerts = {
 			TriggerServerEvent("EmergencyAlerts:Server:DoPredefined", type, description)
 		end
 	end,
-	CreateClientAlert = function(self, code, title, eType, location, description, isPanic, blip, styleOverride, isArea, camera)
+	Create = function(self, code, title, eType, location, description, isPanic, blip, styleOverride, isArea, camera)
+		ids = ids + 1
+
+		local areaBlip = {}
+		if blip then
+			blip.id = string.format("emrg-%s", _blipCount)
+
+			local pref = "[Police]"
+			if eType == 2 then
+				pref = "[EMS]"
+			elseif eType == 3 then
+				pref = "[Tow]"
+			end
+
+			blip.title = string.format("%s: %s", pref, title)
+
+			_blipCount = _blipCount + 1
+
+			if isArea then
+				areaBlip.id = string.format("emrg-%s", _blipCount)
+				_blipCount = _blipCount + 1
+			end
+		end
+
 		local alert = {
-			id = string.format("local-%s-%s", GetGameTimer(), math.random(1000, 9999)),
+			id = ids,
 			code = code,
 			title = title,
 			type = eType,
@@ -235,16 +258,46 @@ _pdAlerts = {
 			blip = blip,
 			style = styleOverride or eType,
 			camera = camera or false,
-			client = true,
-			attached = {},
 		}
 
-		SendNUIMessage({
-			type = "ADD_ALERT",
-			data = {
-				alert = alert,
-			},
-		})
+		local duty = LocalPlayer.state.onDuty
+		if _jobs[duty] then
+			if isPanic then
+				Sounds.Play:Distance(15, "panic.ogg", 1.0)
+			else
+				Sounds.Play:One("alert_normal.ogg", 0.5)
+			end
+
+			if type(blip) == "table" and location ~= nil then
+				local eB =
+					Blips:Add(blip.id, blip.title, location, blip.icon, blip.color, blip.size, 2, false, blip.flashing)
+				SetBlipFlashes(eB, isPanic)
+				table.insert(_alertBlips, {
+					id = blip.id,
+					time = GetCloudTimeAsInt() + blip.duration,
+					blip = eB,
+				})
+
+				if isArea then
+					local eAB = AddBlipForRadius(location.x, location.y, location.z, 100.0)
+					SetBlipColour(eAB, blip.color)
+					SetBlipAlpha(eAB, 90)
+					table.insert(_alertBlips, {
+						id = areaBlip.id,
+						time = GetCloudTimeAsInt() + blip.duration,
+						blip = eAB,
+					})
+				end
+			end
+
+			SendNUIMessage({
+				type = "ADD_ALERT",
+				data = {
+					alert = alert,
+				},
+			})
+		end
+		TriggerEvent("Phone:Client:AddData", "leoAlerts", alert)
 	end,
 }
 
@@ -255,3 +308,10 @@ end)
 RegisterNetEvent("EmergencyAlerts:Client:Close", function()
 	EmergencyAlerts:Close()
 end)
+
+RegisterNetEvent(
+	"EmergencyAlerts:Client:Add",
+	function(code, title, type, location, extra, isPanic, blip, styleOverride, isArea, camera)
+		EmergencyAlerts:Create(code, title, type, location, extra, isPanic, blip, styleOverride, isArea, camera)
+	end
+)

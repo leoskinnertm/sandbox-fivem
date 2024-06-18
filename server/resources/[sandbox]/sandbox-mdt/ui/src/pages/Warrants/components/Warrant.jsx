@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { ListItemButton, ListItemText, Grid, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import moment from 'moment';
@@ -30,7 +29,6 @@ export default ({ warrant }) => {
 	const classes = useStyles();
 	const location = useLocation();
 	const history = useNavigate();
-	const myJob = useSelector(state => state.app.govJob);
 
 	let qry = qs.parse(location.search.slice(1));
 	const warrantId = qry.warrant;
@@ -53,9 +51,9 @@ export default ({ warrant }) => {
 					/>
 				</Grid>
 				<Grid item xs={5}>
-					{myJob?.Id && <ListItemText
+					<ListItemText
 						primary={`Issued By ${warrant.creatorName} [${warrant.creatorCallsign}]`}
-					/>}
+					/>
 				</Grid>
 				<Grid item xs={12}>
 					<ListItemText

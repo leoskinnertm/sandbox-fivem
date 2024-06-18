@@ -9,7 +9,7 @@ local badgeModels = {
 	["doj"] = `xrp_prop_pdbadge_4`,
 	["sast"] = `xrp_prop_pdbadge_5`,
 	["guardius"] = `xrp_prop_pdbadge_6`,
-	-- ["corrections"] = `xrp_prop_pdbadge_7`,
+	["corrections"] = `xrp_prop_pdbadge_7`,
 }
 
 function RegisterBadgeCallbacks()
@@ -22,7 +22,7 @@ function RegisterBadgeCallbacks()
 			and not Animations.Emotes:Get()
 			and IsPedOnFoot(LocalPlayer.state.ped)
 		then
-			StartBadgeAnim(data.Department)
+			StartLicenseAnim()
 			Citizen.Wait(2500)
 
 			cb(true)

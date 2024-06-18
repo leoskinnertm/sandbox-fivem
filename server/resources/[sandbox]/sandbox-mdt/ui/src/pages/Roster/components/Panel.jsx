@@ -121,8 +121,6 @@ export default ({ selectedJob, officer, onUpdate }) => {
 	const [pendingQuals, setPendingQual] = useState(Array());
 	const [pJob, setPJob] = useState(officerGovJobData);
 
-	const [viewingDutyHours, setViewingDutyHours] = useState(false);
-
 	const [pending, setPending] = useState({
 		picture: officer.Mugshot ?? '',
 		callsign: Boolean(officer.Callsign) ? officer.Callsign : '',
@@ -485,7 +483,7 @@ export default ({ selectedJob, officer, onUpdate }) => {
 									secondary={`${pJob.Name}: ${moment(officer?.LastClockOn?.[pJob.Id] * 1000).format('LLL')} (${moment(officer?.LastClockOn?.[pJob.Id] * 1000).fromNow()})`}
 								/>
 							</ListItem>}
-							{officer?.TimeClockedOn?.[pJob.Id] && <ListItem button onClick={() => setViewingDutyHours(true)}>
+							{officer?.TimeClockedOn?.[pJob.Id] && <ListItem>
 								<ListItemText
 									primary="Time Worked in the Last Week"
 									secondary={`${pJob.Name}: ${parseDutyTime(officer.TimeClockedOn, pJob.Id)}`}
@@ -733,20 +731,6 @@ export default ({ selectedJob, officer, onUpdate }) => {
 						Are you sure you want to revoke the suspension for{' '}
 						{officerGovJobData?.Workplace?.Name} {officerGovJobData?.Grade.Name}{' '}
 						{officer.First} {officer.Last}?
-					</DialogContentText>
-				</DialogContent>
-			</Modal>
-			<Modal
-				open={viewingDutyHours}
-				maxWidth="sm"
-				title="Recent Sessions on Duty"
-				onClose={() => setViewingDutyHours(false)}
-			>
-				<DialogContent>
-					<DialogContentText>
-						{officer.TimeClockedOn && officer.TimeClockedOn[pJob.Id] && officer.TimeClockedOn[pJob.Id].map(session => {
-							return <p>{moment(session.time * 1000).format('LLL')} - {moment.duration(session.minutes, "minutes").humanize()}</p>
-						})}
 					</DialogContentText>
 				</DialogContent>
 			</Modal>

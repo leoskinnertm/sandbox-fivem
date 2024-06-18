@@ -15,6 +15,11 @@ function Startup()
 		"expired",
 		"active",
 	})
+	-- Delete Warrants That Expired Over a Month Ago
+	-- error reported 8/21/23 @ 11am restart
+	-- Cannot delete or update a parent row: a foreign key constraint fails (`fivem-Methodrp_prod`.`mdt_reports_people`, CONSTRAINT `FK2_mdt_reports_people` FOREIGN KEY (`warrant`) REFERENCES `mdt_warrants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+	-- Commenting out for now
+	-- MySQL.query.await("DELETE FROM mdt_warrants WHERE expires < now() - interval 30 DAY")
 
 	_charges = MySQL.query.await("SELECT * from mdt_charges")
 	Logger:Trace("MDT", "Loaded ^2" .. #_charges .. "^7 Charges", { console = true })
@@ -52,35 +57,4 @@ function Startup()
 	-- 		res.send(json.encode(_charges))
 	-- 	end
 	-- end)
-
-	Database.Game:update({
-		collection = "vehicles",
-		query = {
-			["$and"] = {
-				{ ["$nor"] = {
-					{ Strikes = { ["$elemMatch"] = {
-						Date = {
-							["$gte"] = (os.time() * 1000) - (60 * 60 * 24 * 30 * 1000)
-						}
-					}}}
-				}},
-				{
-					Strikes = { ["$elemMatch"] = {
-						Date = { ["$lte"] = (os.time() * 1000) - (60 * 60 * 24 * 30 * 1000) }
-					}}
-				}
-			},
-		},
-		update = {
-			["$pull"] = {
-				Strikes = {
-					Date = {
-						["$lte"] = (os.time() * 1000) - (60 * 60 * 24 * 30 * 1000),
-					}
-				}
-			}
-		}
-	}, function(success, results)
-
-	end)
 end

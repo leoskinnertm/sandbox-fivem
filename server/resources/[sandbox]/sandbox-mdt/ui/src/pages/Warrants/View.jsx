@@ -215,24 +215,22 @@ export default ({ }) => {
                                 }
                             />
                         </ListItem>}
-                        {myJob?.Id && <>
-                            <ListItem>
-                                <ListItemText
-                                    primary="Issuing Officer"
-                                    secondary={`[${warrant.creatorCallsign}] ${warrant.creatorName} (${warrant.creatorSID})`}
-                                />
-                            </ListItem>
-                            <ListItem>
-                                <ListItemText
-                                    primary="Report"
-                                    secondary={
-                                        <Link className={classes.link} to={`/reports?report=${warrant.report}&mode=view`}>
-                                            Report #{warrant.report}
-                                        </Link>
-                                    }
-                                />
-                            </ListItem>
-                        </>}
+                        <ListItem>
+                            <ListItemText
+                                primary="Issuing Officer"
+                                secondary={`[${warrant.creatorCallsign}] ${warrant.creatorName} (${warrant.creatorSID})`}
+                            />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText
+                                primary="Report"
+                                secondary={
+                                    <Link className={classes.link} to={`/reports?report=${warrant.report}&mode=view`}>
+                                        Report #{warrant.report}
+                                    </Link>
+                                }
+                            />
+                        </ListItem>
                         {warrant.status !== 'active' ? (
                             <ListItem>
                                 <ListItemText
@@ -255,12 +253,12 @@ export default ({ }) => {
                     </List>
                 </Grid>
                 <Grid item xs={6}>
-                    {myJob?.Id && <List>
+                    <List>
                         <ListItem>
                             <ListItemText primary="Warrant Notes" />
                         </ListItem>
                         <div className={classes.notes}>{Sanitize(warrant.notes)}</div>
-                    </List>}
+                    </List>
                 </Grid>
             </Grid>
 

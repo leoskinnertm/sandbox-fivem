@@ -137,6 +137,9 @@ export default (props) => {
 							{postPublic && <MenuItem key={'public'} value={'public'}>
 								Public Records Notice
 							</MenuItem>}
+							{postPublic && <MenuItem key={'government'} value={'government'}>
+								Government Employee Notice
+							</MenuItem>}
 							{governmentJobs.filter(j => myJob.Id == j || hasPerm(true)).map((j) => (
 								<MenuItem key={j} value={j}>
 									{allJobData[j]?.Name ?? 'Unknown'}

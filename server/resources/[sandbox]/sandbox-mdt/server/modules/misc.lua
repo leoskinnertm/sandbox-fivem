@@ -122,27 +122,6 @@ _MDT.Misc = {
 
 			return true
 		end,
-		Charge = function(self, id)
-			MySQL.query.await("DELETE FROM mdt_charges WHERE id = ?", {
-				id
-			})
-
-			for k, v in ipairs(_charges) do
-				if (v.id == id) then
-					table.remove(_charges, k)
-					break
-				end
-			end
-
-			for user, _ in pairs(_onDutyUsers) do
-				TriggerClientEvent("MDT:Client:RemoveData", user, "charges", id)
-			end
-			for user, _ in pairs(_onDutyLawyers) do
-				TriggerClientEvent("MDT:Client:RemoveData", user, "charges", id)
-			end
-
-			return true
-		end,
 	}
 }
 
@@ -183,15 +162,7 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 
 	Callbacks:RegisterServerCallback("MDT:Update:charge", function(source, data, cb)
 		if CheckMDTPermissions(source, true) then
-			cb(MDT.Misc.Update:Charge(data.doc.id, data.doc))
-		else
-			cb(false)
-		end
-	end)
-
-	Callbacks:RegisterServerCallback("MDT:Delete:charge", function(source, data, cb)
-		if CheckMDTPermissions(source, true) then
-			cb(MDT.Misc.Delete:Charge(data.doc.id))
+			cb(MDT.Misc.Update:Charge(data.doc._id, data.doc))
 		else
 			cb(false)
 		end

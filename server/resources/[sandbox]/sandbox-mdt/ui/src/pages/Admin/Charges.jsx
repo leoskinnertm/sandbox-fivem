@@ -179,21 +179,22 @@ export default () => {
 	const onDisable = async () => {
 		try {
 			let res = await (
-				await Nui.send('Delete', {
+				await Nui.send('Update', {
 					type: 'charge',
 					doc: {
 						...selected,
+						active: false,
 					},
 				})
 			).json();
 
 			if (res) {
-				toast.success(`Charge Deleted`);
+				toast.success(`Charge Disabled`);
 				setSelected(null);
-			} else toast.error('Unable to Delete Charge');
+			} else toast.error('Unable to Disable Charge');
 		} catch (err) {
 			console.log(err);
-			toast.error('Unable to Delete Charge');
+			toast.error('Unable to Disable Charge');
 		}
 	};
 
@@ -305,10 +306,10 @@ export default () => {
 				open={selected != null}
 				title={`${selected?.id ? 'Edit' : 'Create'} Charge`}
 				submitLang={selected?.id ? 'Edit' : 'Create'}
-				deleteLang="Delete"
+				deleteLang="Disable"
 				onSubmit={onSubmit}
 				onClose={() => setSelected(null)}
-				onDelete={selected?.id ? onDisable : null}
+			//onDelete={selected?._id ? onDisable : null}
 			>
 				{Boolean(selected) ? (
 					<>

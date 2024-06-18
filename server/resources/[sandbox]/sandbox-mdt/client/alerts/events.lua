@@ -1,34 +1,23 @@
-RegisterNetEvent("EmergencyAlerts:Client:Connect", function(url, token)
+RegisterNetEvent("EmergencyAlerts:Client:UpdateMembers", function(data)
+	local fuckfest = {}
+	for k,v in pairs(data) do
+		if v ~= nil then
+			table.insert(fuckfest, v)
+		end
+	end
 	SendNUIMessage({
-		type = "ALERTS_WS_CONNECT",
+		type = "UPDATE_MEMBERS",
 		data = {
-			url = url,
-			token = token,
+			members = fuckfest
 		},
 	})
 end)
 
-RegisterNetEvent("EmergencyAlerts:Client:Disconnect", function()
+RegisterNetEvent("EmergencyAlerts:Client:UpdateUnits", function(data)
 	SendNUIMessage({
-		type = "ALERTS_WS_DISCONNECT",
-		data = {},
-	})
-end)
-
-AddEventHandler("EmergencyAlerts:Client:PursuitModeChange", function(mode)
-	SendNUIMessage({
-		type = "ALERTS_UPDATE_PURSUIT_MODE",
+		type = "UPDATE_UNITS",
 		data = {
-			mode = mode,
-		},
-	})
-end)
-
-AddEventHandler("EmergencyAlerts:Client:RadioChannelChange", function(channel)
-	SendNUIMessage({
-		type = "ALERTS_UPDATE_RADIO_CHANNEL",
-		data = {
-			channel = channel,
+			units = data
 		},
 	})
 end)

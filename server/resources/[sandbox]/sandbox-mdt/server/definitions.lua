@@ -399,10 +399,10 @@ _qualifications = {
 			job = 'police',
 		}
 	},
-	['PD_DETCOORDS'] = {
-		name = "PD Det Coords",
+	['PD_BEANBAG'] = {
+		name = "PD Shotgun",
 		restrict = {
-			job = 'police',
+			weapon = true,
 		}
 	},
 	['PD_BEANBAG'] = {
@@ -421,18 +421,6 @@ _qualifications = {
 		name = "PD AR",
 		restrict = {
 			weapon = true,
-		}
-	},
-	['PD_SHOTGUN'] = {
-		name = "PD Shotgun",
-		restrict = {
-			weapon = true,
-		}
-	},
-	['PD_GRAPPLE'] = {
-		name = "PD Grapple Gun",
-		restrict = {
-			job = 'police',
 		}
 	},
 

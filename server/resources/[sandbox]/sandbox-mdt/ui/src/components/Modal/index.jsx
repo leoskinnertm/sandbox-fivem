@@ -41,21 +41,18 @@ export default ({
 	onSubmit = null,
 	onAccept = null,
 	onDelete = null,
-	hideBackdrop = false,
 	children,
 }) => {
 	const classes = useStyles();
 	const mdtOpen = !useSelector((state) => state.app.hidden);
-	const alertsOpen = useSelector((state) => state.alerts.showing)
 
 	return (
 		<Dialog
 			maxWidth={maxWidth}
 			fullWidth
 			PaperComponent={PaperComponent}
-			hideBackdrop={hideBackdrop}
 			scroll="paper"
-			open={open && (mdtOpen || alertsOpen)}
+			open={open && mdtOpen}
 			onClose={onClose}
 		>
 			{Boolean(onSubmit) ? (

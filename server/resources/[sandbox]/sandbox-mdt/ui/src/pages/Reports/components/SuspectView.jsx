@@ -24,7 +24,6 @@ import Nui from '../../../util/Nui';
 import { CurrencyFormat } from '../../../util/Parser';
 import { Modal } from '../../../components';
 import { PleaTypes } from './SuspectForm';
-import { usePermissions } from '../../../hooks';
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
@@ -42,10 +41,6 @@ const useStyles = makeStyles((theme) => ({
         verticalAlign: 'top',
         boxShadow: 'inset 0 0 14px 0 rgba(0,0,0,.3), inset 0 2px 0 rgba(0,0,0,.2)',
         marginTop: 15,
-        '&.overturned': {
-            borderColor: theme.palette.error.light,
-            filter: 'brightness(60%)',
-        },
     },
     title: {
         fontSize: 18,
@@ -112,17 +107,6 @@ const useStyles = makeStyles((theme) => ({
         textTransform: 'uppercase',
         color: theme.palette.text.alt,
     },
-    overturned: {
-        position: 'absolute',
-        height: 'fit-content',
-        width: 'fit-content',
-        right: 0,
-        top: 0,
-        bottom: 0,
-        margin: 'auto',
-        textTransform: 'uppercase',
-        color: theme.palette.error.light,
-    },
     editorField: {
         marginBottom: 10,
     },
@@ -158,10 +142,9 @@ export const ReductionTypes = [
 
 export const ParoleMultiplier = 1.5;
 
-export default ({ data, report, refresh, paroleData, overturned }) => {
+export default ({ data, report, refresh, paroleData }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const hasPerm = usePermissions();
     const breakpoints = useSelector((state) => state.app.pointBreakpoints);
     const charges = useSelector((state) => state.data.data.charges);
 
@@ -332,38 +315,13 @@ export default ({ data, report, refresh, paroleData, overturned }) => {
         }
     };
 
-    const [overturn, setOverturn] = useState(false);
-
-    const onOverturn = async (e) => {
-        e.preventDefault();
-
-        setOverturn(false);
-
-        try {
-            let res = await (
-                await Nui.send('OverturnSentence', {
-                    SID: data.SID,
-                    report: report.id,
-                })
-            ).json();
-
-            if (res) {
-                refresh();
-                toast.success('Suspect Charges Overturned');
-            } else toast.error('Unable to Overturn');
-        } catch (err) {
-            console.log(err);
-            toast.error('Unable to Overturn');
-        }
-    }
-
     if (loading) {
         return <Skeleton animation="wave" height={300} width="100%" />;
     } else {
         return (
-            <div className={`${classes.wrapper} ${overturned ? "overturned" : ""}`}>
+            <div className={classes.wrapper}>
                 <Grid container>
-                    <Grid item xs={8} className={classes.title} style={{ textDecoration: overturned ? "line-through" : null }}>
+                    <Grid item xs={8} className={classes.title}>
                         <Link className={classes.link} to={`/search/people/${data.SID}`}>
                             {data.First} {data.Last}
                         </Link>
@@ -392,15 +350,7 @@ export default ({ data, report, refresh, paroleData, overturned }) => {
                                 </Tooltip>
                             </>
                         ) : (
-                            <>
-                                {!overturned && <small className={classes.sentenced}>Sentenced</small>}
-                                {overturned && <small className={classes.overturned}>Overturned</small>}
-                                {hasPerm("DOJ_OVERTURN_CHARGES") && !overturned && <Tooltip title={`Overturn Charges`}>
-                                    <IconButton onClick={() => setOverturn(true)} style={{ marginRight: 100 }}>
-                                        <FontAwesomeIcon icon={['fas', 'broom-wide']} />
-                                    </IconButton>
-                                </Tooltip>}
-                            </>
+                            <small className={classes.sentenced}>Sentenced</small>
                         )}
                     </Grid>
                     <Grid item xs={12} className={classes.body}>
@@ -793,16 +743,6 @@ export default ({ data, report, refresh, paroleData, overturned }) => {
                         label="Warrant Notes"
                         name="notes"
                     />
-                </Modal>
-                <Modal
-                    maxWidth="md"
-                    open={overturn}
-                    title={`Overturn Charges For ${data.First} ${data.Last}`}
-                    submitLang="Overturn Charges"
-                    onSubmit={onOverturn}
-                    onClose={() => setOverturn(false)}
-                >
-                    <p>Are you sure you want to overturn these charges? This cannot be reversed.</p>
                 </Modal>
             </div>
         );

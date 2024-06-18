@@ -3,18 +3,6 @@ export const initialState = {
 		charges: [],
 		warrants: Array(),
 		notices: Array(),
-		govWorkers: Array(),
-		// govWorkers: [
-		// 	{
-		// 		First: 'Bob',
-		// 		Last: 'Anderson',
-		// 		Job: 'Government',
-		// 		Workplace: 'DOJ',
-		// 		Grade: 'Judge',
-		// 		Phone: '111-111-111',
-		// 		SID: 1,
-		// 	},
-		// ],
 		homeLastFetch: 0,
 		// notices: [
 		// 	{
@@ -770,15 +758,6 @@ export default (state = initialState, action) => {
 		case 'LOGOUT':
 			return {
 				...initialState,
-			};
-		case 'JOB_LOGOUT':
-		case 'JOB_LOGIN':
-			return {
-				...state,
-				data: {
-					...state.data,
-					homeLastFetch: 0,
-				},
 			};
 		default:
 			return state;

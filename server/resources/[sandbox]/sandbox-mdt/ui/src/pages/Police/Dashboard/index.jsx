@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import { BOLO } from './blocks';
-import { NoticeBoard, Warrants, GovernmentEmployees } from '../../../components';
+import { NoticeBoard, Warrants } from '../../../components';
 import { useSelector, useDispatch } from 'react-redux';
 import Nui from '../../../util/Nui';
 
@@ -21,7 +21,6 @@ export default () => {
 
 	const warrants = useSelector(state => state.data.data.warrants);
 	const notices = useSelector(state => state.data.data.notices);
-	const govWorkers = useSelector(state => state.data.data.govWorkers);
 
 	const fetch = async () => {
 		try {
@@ -49,16 +48,6 @@ export default () => {
 						},
 					});
 				};
-
-				if (res.govWorkers) {
-					dispatch({
-						type: 'SET_DATA',
-						payload: {
-							type: "govWorkers",
-							data: res.govWorkers,
-						},
-					});
-				}
 			}
 		} catch (e) {
 			console.log(e);
@@ -71,13 +60,13 @@ export default () => {
 				type: 'SET_DATA',
 				payload: {
 					type: "homeLastFetch",
-					data: Date.now(),
+					term: Date.now(),
 				},
 			});
 
 			fetch();
 		}
-	}, [cData, lastRefresh]);
+	}, []);
 
 	return (
 		<div className={classes.wrapper}>
@@ -85,7 +74,6 @@ export default () => {
 				<NoticeBoard notices={notices} />
 				<BOLO />
 				<Warrants warrants={warrants} />
-				<GovernmentEmployees govWorkers={govWorkers} />
 			</Grid>
 		</div>
 	);

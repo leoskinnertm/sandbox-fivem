@@ -176,10 +176,7 @@ end
 
 AddEventHandler("MDT:Client:DisableTracker", function(entity, data)
 	local playerState = Player(entity.serverId).state
-	if
-		(playerState.onDuty == "police" or playerState.onDuty == "prison" or playerState.onDuty == "ems")
-		and not playerState.trackerDisabled
-	then
+	if playerState.onDuty == "police" and not playerState.trackerDisabled then
 		Progress:ProgressWithTickEvent({
 			name = "disable_police_tracker",
 			duration = 10000,
@@ -210,10 +207,7 @@ AddEventHandler("MDT:Client:DisableTracker", function(entity, data)
 			Progress:Cancel()
 		end, function(cancelled)
 			if not cancelled then
-				if
-					(playerState.onDuty == "police" or playerState.onDuty == "prison" or playerState.onDuty == "ems")
-					and not playerState.trackerDisabled
-				then
+				if playerState.onDuty == "police" and not playerState.trackerDisabled then
 					Callbacks:ServerCallback("EmergencyAlerts:DisablePDTracker", entity.serverId, function(success)
 						if success then
 							Notification:Success("Disabled Their Tracker")

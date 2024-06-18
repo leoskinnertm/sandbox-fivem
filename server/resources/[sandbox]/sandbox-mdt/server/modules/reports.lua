@@ -42,7 +42,8 @@ _MDT.Reports = {
                     table.insert(reports, v.report)
                 end
     
-                qry = qry .. string.format("AND id IN (%s) ", table.concat(reports, ","))
+                qry = qry .. "AND id IN (?) "
+                table.insert(params, table.concat(reports, ","))
             elseif #term > 0 then
                 qry = qry .. "AND (id = ? OR creatorSID = ? OR creatorCallsign = ?"
                 table.insert(params, term)
@@ -103,7 +104,6 @@ _MDT.Reports = {
             report.suspects = {}
             report.primaries = {}
             report.people = {} 
-            report.suspectsOverturned = {}
 
             for k, v in ipairs(people) do
                 if v.type == "suspect" then
@@ -120,18 +120,6 @@ _MDT.Reports = {
                     if not v.sentenced then
                         table.insert(suspectList, v.SID)
                     end
-
-                elseif v.type == "suspectOverturned" then
-                    v.charges = json.decode(v.charges)
-                    v.Licenses = json.decode(v.Licenses)
-                    v.reduction = v.reduction and json.decode(v.reduction)
-                    v.revoked = v.revoked and json.decode(v.revoked)
-
-                    v.sentenced = v.sentenced == 1
-                    v.expunged = v.expunged == 1
-                    v.doc = v.doc == 1
-
-                    table.insert(report.suspectsOverturned, v)
                 elseif v.type == "primary" then
                     table.insert(report.primaries, v)
                 elseif v.type == "person" then

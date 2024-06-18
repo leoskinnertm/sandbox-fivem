@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Menu, MenuItem, ListItem, ListItemButton, ListItemAvatar, ListItemText, Avatar, Badge, Divider } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { Menu, MenuItem, ListItem, ListItemAvatar, ListItemText, Avatar, Badge } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Nui from '../../../util/Nui';
@@ -8,6 +8,7 @@ import { useQualifications } from '../../../hooks';
 import UnitMember from './UnitMember';
 import UnitIcon from './UnitIcon';
 import UnitTypeMenu from './UnitTypeMenu';
+import SubUnitMenu from './SubUnitMenu';
 
 const useStyles = makeStyles((theme) => ({
 	ava: {
@@ -39,53 +40,16 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	item: {},
-	subUnits: {
-		marginTop: 5,
-	},
-	subUnit: {
-		fontSize: 16,
-		backgroundColor: "rgba(255, 255, 255, 0.1)",
-		padding: '2.5px 5px',
-		borderRadius: 5,
-	},
-	radioChannel: {
-		cursor: "pointer",
-		display: 'flex',
-		flexDirection: 'row',
-		backgroundColor: "rgba(255, 255, 255, 0.1)",
-		padding: '5px 10px',
-		borderRadius: 5,
-		justifyContent: "center",
-		alignItems: "center",
-		gap: 7,
-	}
 }));
 
 export default ({ unitType, unitData, missingCallsign }) => {
 	const classes = useStyles();
-	const dispatch = useDispatch();
 	const hasQual = useQualifications();
 	const user = useSelector((state) => state.app.user);
-
-	const myUnit = useSelector((state) => state.alerts.myUnit);
+	const onDuty = useSelector((state) => state.alerts.onDuty);
 	const job = useSelector((state) => state.app.govJob);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [open, setOpen] = useState(null);
-
-	const [subOpen, setSubOpen] = useState(null);
-
-	const allUnits = useSelector(state => state.alerts.units);
-	const units = allUnits?.[unitType];
-
-	const subUnits = units?.filter(u => u.operatingUnder === unitData.primary) ?? Array();
-
-	const myUnitData = allUnits?.[myUnit.job].find(u => u.primary === myUnit.primary);
-	const mySubUnits = units?.filter(u => u.operatingUnder === myUnitData?.primary);
-
-	// Is the primary or is part of the unit
-	const withinUnit = (unitData.primary == myUnitData?.primary || myUnitData?.operatingUnder == unitData.primary)
-
-	if (!myUnitData) return null;
 
 	const PursuitModeColor = (mode) => {
 		let color = "secondary";
@@ -103,38 +67,41 @@ export default ({ unitType, unitData, missingCallsign }) => {
 	}
 
 	const changeUnit = async (newType) => {
-		dispatch({
-			type: 'ALERTS_CHANGE_UNIT_TYPE',
-			payload: {
-				job: unitData.job,
-				primary: unitData.primary,
+		try {
+			await Nui.send('ChangeUnit', {
+				job: open.job,
+				primary: open.primary,
 				type: newType,
-			}
-		})
-		setOpen(null);
+			});
+			setOpen(null);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const toggleAvailability = async () => {
-		dispatch({
-			type: 'ALERTS_CHANGE_UNIT_AVAILABILITY',
-			payload: {
-				job: unitData.job,
-				primary: unitData.primary,
-			}
-		})
-		setOpen(null);
+		try {
+			await Nui.send('ToggleAvailability', {
+				job: open.job,
+				primary: open.primary,
+			});
+			setOpen(null);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const operateUnder = async () => {
-		dispatch({
-			type: 'ALERTS_OPERATE_UNDER_UNIT',
-			payload: {
-				job: unitData.job,
-				primary: unitData.primary,
-				unit: myUnitData.primary,
-			}
-		})
-		setOpen(null);
+		try {
+			await Nui.send('OperateUnder', {
+				job: open.job,
+				primary: open.primary,
+				unit: user.Callsign,
+			});
+			setOpen(null);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	const assignTo = async () => {
@@ -151,37 +118,30 @@ export default ({ unitType, unitData, missingCallsign }) => {
 	};
 
 	const breakOff = async () => {
-		dispatch({
-			type: 'ALERTS_BREAK_OFF_UNIT',
-			payload: {
-				job: unitData.job,
-				primary: unitData.primary,
-				unit: myUnitData.primary,
-			}
-		})
-		setOpen(null);
-	};
-
-	const removeUnit = async (subUnit) => {
-		dispatch({
-			type: 'ALERTS_BREAK_OFF_UNIT',
-			payload: {
-				job: unitData.job,
-				primary: unitData.primary,
-				unit: subUnit,
-			}
-		})
-		setOpen(null);
-		setSubOpen(null);
-	};
-
-	const setRadio = (freq) => {
 		try {
-			Nui.send("SwapToRadio", {
-				radio: (+freq).toFixed(1),
+			await Nui.send('BreakOff', {
+				job: open.job,
+				primary: open.primary,
+				unit: user.Callsign,
 			});
-		} catch (e) { }
-	}
+			setOpen(null);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const removeUnit = async (unit) => {
+		try {
+			await Nui.send('BreakOff', {
+				job: open.job,
+				primary: user.Callsign,
+				unit: unit,
+			});
+			setOpen(null);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	if (missingCallsign && unitType != 'tow') {
 		return (
@@ -207,7 +167,7 @@ export default ({ unitType, unitData, missingCallsign }) => {
 			{unitType === 'police' ? (
 				<ListItem divider className={classes.item}>
 					<ListItemAvatar>
-						{unitData.pursuitMode && <Badge badgeContent={unitData.pursuitMode} color={PursuitModeColor(unitData.pursuitMode)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+						{unitData.pursuitMode != "N/A" && <Badge badgeContent={unitData.pursuitMode} color={PursuitModeColor(unitData.pursuitMode)} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
 							<Avatar
 								className={`${classes.ava} police${job.Id == 'police' ? ' clickable' : ''} ${!unitData.available ? 'unavailable' : ''}`}
 								onClick={
@@ -225,7 +185,7 @@ export default ({ unitType, unitData, missingCallsign }) => {
 								<UnitIcon job="police" type={unitData.type} available={unitData.available} />
 							</Avatar>
 						</Badge>}
-						{unitData.pursuitMode == null &&
+						{unitData.pursuitMode == "N/A" &&
 							<Avatar
 								className={`${classes.ava} police${job.Id == 'police' ? ' clickable' : ''} ${!unitData.available ? 'unavailable' : ''}`}
 								onClick={
@@ -244,31 +204,21 @@ export default ({ unitType, unitData, missingCallsign }) => {
 							</Avatar>}
 					</ListItemAvatar>
 					<ListItemText
-						style={{ marginTop: 0 }}
-						primary={<UnitMember data={unitData} isPrimary />}
+						primary={<UnitMember callsign={unitData.primary} isPrimary />}
 						secondary={
-							subUnits.length > 0 ? (
-								<span className={classes.subUnits}>
-									{subUnits.map((sub, k) => (
-										<span className={classes.subUnit} key={k} style={{ marginRight: (k === subUnits.length - 1) ? 0 : 7.5 }} onClick={(e) => {
-											setAnchorEl(e.currentTarget);
-											setSubOpen(sub);
-										}}>
-											<UnitMember
-												data={sub}
-												isLast={k === subUnits.length - 1}
-											/>
-										</span>
+							unitData.units.length > 0 ? (
+								<span>
+									{unitData.units.map((callsign, k) => (
+										<UnitMember
+											key={callsign}
+											callsign={callsign}
+											isLast={k === unitData.units.length - 1}
+										/>
 									))}
 								</span>
 							) : null
 						}
 					/>
-					{unitData.radioChannel && <div className={classes.radioChannel} onClick={() => setRadio(unitData.radioChannel)}>
-						<FontAwesomeIcon icon={['fas', 'walkie-talkie']} />
-						<Divider orientation="vertical" flexItem />
-						{unitData.radioChannel !== "0" ? unitData.radioChannel : "0"}
-					</div>}
 				</ListItem>
 			) : unitType === 'ems' ? (
 				<ListItem divider className={classes.item}>
@@ -291,151 +241,109 @@ export default ({ unitType, unitData, missingCallsign }) => {
 						</Avatar>
 					</ListItemAvatar>
 					<ListItemText
-						primary={<UnitMember data={unitData} isPrimary />}
+						primary={<UnitMember callsign={unitData.primary} isPrimary />}
 						secondary={
-							subUnits.length > 0 ? (
-								<span className={classes.subUnits}>
-									{subUnits.map((sub, k) => (
-										<span className={classes.subUnit} key={k} style={{ marginRight: (k === subUnits.length - 1) ? 0 : 7.5 }} onClick={(e) => {
-											setAnchorEl(e.currentTarget);
-											setSubOpen(sub);
-										}}>
-											<UnitMember
-												data={sub}
-												isLast={k === subUnits.length - 1}
-											/>
-										</span>
+							unitData.units.length > 0 ? (
+								<span>
+									{unitData.units.map((callsign, k) => (
+										<UnitMember
+											key={callsign}
+											callsign={callsign}
+											isLast={k === unitData.units.length - 1}
+										/>
 									))}
 								</span>
 							) : null
 						}
 					/>
-					{unitData.radioChannel && <div className={classes.radioChannel} onClick={() => setRadio(unitData.radioChannel)}>
-						<FontAwesomeIcon icon={['fas', 'walkie-talkie']} />
-						<Divider orientation="vertical" flexItem />
-						{unitData.radioChannel !== "0" ? unitData.radioChannel : "0"}
-					</div>}
 				</ListItem>
 			) : unitType === 'prison' ? (
 				<ListItem divider className={classes.item}>
 					<ListItemAvatar>
 						<Avatar
-							className={`${classes.ava} prison${job.Id == 'prison' ? ' clickable' : ''} ${!unitData.available ? 'unavailable' : ''}`}
-							onClick={
-								job.Id == 'prison'
-									? (e) => {
-										setAnchorEl(e.currentTarget);
-										setOpen({
-											...unitData,
-											job: 'prison',
-										});
-									}
-									: null
-							}
-						>
+								className={`${classes.ava} prison${job.Id == 'prison' ? ' clickable' : ''} ${!unitData.available ? 'unavailable' : ''}`}
+								onClick={
+									job.Id == 'prison'
+										? (e) => {
+											setAnchorEl(e.currentTarget);
+											setOpen({
+												...unitData,
+												job: 'prison',
+											});
+										}
+										: null
+								}
+							>
 							<UnitIcon job="prison" type={unitData.type} available={unitData.available} />
 						</Avatar>
 					</ListItemAvatar>
 					<ListItemText
-						primary={<UnitMember data={unitData} isPrimary />}
+						primary={<UnitMember callsign={unitData.primary} isPrimary />}
 						secondary={
-							subUnits.length > 0 ? (
-								<span className={classes.subUnits}>
-									{subUnits.map((sub, k) => (
-										<span className={classes.subUnit} key={k} style={{ marginRight: (k === subUnits.length - 1) ? 0 : 7.5 }} onClick={(e) => {
-											setAnchorEl(e.currentTarget);
-											setSubOpen(sub);
-										}}>
-											<UnitMember
-												data={sub}
-												isLast={k === subUnits.length - 1}
-											/>
-										</span>
+							unitData.units.length > 0 ? (
+								<span>
+									{unitData.units.map((callsign, k) => (
+										<UnitMember
+											key={callsign}
+											callsign={callsign}
+											isLast={k === unitData.units.length - 1}
+										/>
 									))}
 								</span>
 							) : null
 						}
 					/>
-					{unitData.radioChannel && <div className={classes.radioChannel} onClick={() => setRadio(unitData.radioChannel)}>
-						<FontAwesomeIcon icon={['fas', 'walkie-talkie']} />
-						<Divider orientation="vertical" flexItem />
-						{unitData.radioChannel !== "0" ? unitData.radioChannel : "0"}
-					</div>}
 				</ListItem>
 			) : unitType === 'tow' ? (
 				<ListItem divider className={classes.item}>
 					<ListItemText
 						primary={
 							<UnitMember
-								isTow={unitData?.character?.SID}
-								data={unitData}
+								isTow={unitData?.SID}
+								callsign={`${unitData?.First} ${unitData?.Last}`}
 								isPrimary
 							/>
 						}
-						secondary={unitData?.character?.Phone}
+						secondary={unitData.Phone}
 					/>
 				</ListItem>
 			) : null}
 			<Menu anchorEl={anchorEl} open={open != null} onClose={() => setOpen(null)}>
 				{Boolean(open) && (
 					<div>
-						<ListItem>Unit: {unitData.primary}</ListItem>
-						{unitData.primary != myUnitData.primary && myUnitData.operatingUnder === null && (!mySubUnits || mySubUnits?.length === 0) && (
-							<ListItemButton onClick={operateUnder}>
+						<ListItem disabled>Unit: {open.primary}</ListItem>
+						{open.primary != user.Callsign && !open.units.includes(user.Callsign) && (
+							<ListItem button onClick={operateUnder}>
 								Operate Under
-							</ListItemButton>
+							</ListItem>
 						)}
 
-						{unitData.primary != myUnitData.primary && myUnitData.operatingUnder == unitData.primary && (
-							<ListItemButton onClick={breakOff}>
-								Break Off From {unitData.primary}
-							</ListItemButton>
+						{open.primary != user.Callsign && open.units.includes(user.Callsign) && (
+							<ListItem button onClick={breakOff}>
+								Break Off From {open.primary}
+							</ListItem>
 						)}
 
-						{/* {unitData.primary != user.Callsign &&
-							subUnits.length == 0 &&
-							unitData.operatingUnder === null &&
+						{open.primary != user.Callsign &&
+							open.units.length == 0 &&
+							onDuty.filter((u) => u.units.includes(user.Callsign)).length == 0 &&
 							hasQual('PD_FTO') && (
-								<ListItemButton onClick={assignTo}>
+								<ListItem button onClick={assignTo}>
 									Operate Under Me
-								</ListItemButton>
-							)} */}
+								</ListItem>
+							)}
 
-						{withinUnit && <MenuItem onClick={toggleAvailability}>
+						{open.primary == user.Callsign && open.units.length > 0 && (
+							<SubUnitMenu unit={open} onChange={removeUnit} />
+						)}
+
+						<MenuItem onClick={toggleAvailability}>
 							Toggle Availability
-						</MenuItem>}
+						</MenuItem>
 
-						{withinUnit && (
-							<UnitTypeMenu current={unitData.type} unit={open} onChange={changeUnit} />
+						{(open.primary == user.Callsign || open.units.includes(user.Callsign)) && (
+							<UnitTypeMenu unit={open} onChange={changeUnit} />
 						)}
-					</div>
-				)}
-			</Menu>
-			<Menu anchorEl={anchorEl} open={open === null && subOpen !== null} onClose={() => setSubOpen(null)}>
-				{Boolean(subOpen) && (
-					<div>
-						<ListItem>Sub Unit: {subOpen?.primary}</ListItem>
-
-						{unitData.primary != user.Callsign && myUnitData.operatingUnder == unitData.primary && (
-							<ListItemButton onClick={breakOff}>
-								Break Off From {subOpen?.primary}
-							</ListItemButton>
-						)}
-
-						{unitData.primary == myUnitData.primary && subUnits.length > 0 && (
-							<ListItemButton onClick={() => removeUnit(subOpen?.primary)}>
-								Remove Unit
-							</ListItemButton>
-						)}
-
-						{/* {unitData.primary != user.Callsign &&
-							subUnits.length == 0 &&
-							unitData.operatingUnder === null &&
-							hasQual('PD_FTO') && (
-								<ListItemButton onClick={assignTo}>
-									Operate Under Me
-								</ListItemButton>
-							)} */}
 					</div>
 				)}
 			</Menu>

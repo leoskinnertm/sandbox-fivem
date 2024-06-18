@@ -16,7 +16,6 @@ import {
     Switch,
     Chip,
     Typography,
-    Slider,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { toast } from 'react-toastify';
@@ -167,8 +166,6 @@ export default ({ }) => {
     const [clearRecord, setClearRecord] = useState(false);
     const [mugshot, setMugshot] = useState(false);
     const [pendingMugshot, setPendingMugshot] = useState('');
-
-    const [editLicensePoints, setEditLicensePoints] = useState(false);
 
     const [viewingLogs, setViewingLogs] = useState(false);
 
@@ -324,52 +321,6 @@ export default ({ }) => {
         }
     };
 
-    const onRemoveLicensePoints = async (e) => {
-        e.preventDefault();
-
-        try {
-            const newPoints = person.data.Licenses.Drivers.Points - e.target.points.value;
-
-            console.log("Set Points to ", newPoints)
-
-            if (newPoints >= 0) {
-                let res = await (
-                    await Nui.send('RemovePoints', {
-                        SID: person.data.SID,
-                        newPoints,
-                    })
-                ).json();
-
-                if (res) {
-                    setPerson({
-                        ...person,
-                        data: {
-                            ...person.data,
-                            Licenses: {
-                                ...person.data.Licenses,
-                                Drivers: {
-                                    ...person.data.Licenses.Drivers,
-                                    Points: newPoints,
-                                }
-                            },
-                        },
-                    });
-                    setEditLicensePoints(false);
-                    toast.success('Drivers License Points Updated');
-                } else {
-                    setEditLicensePoints(false);
-                    toast.error('Failed to Update Drivers License Points');
-                }
-            } else {
-                setEditLicensePoints(false);
-                toast.error('Failed to Update Drivers License Points');
-            }
-        } catch (err) {
-            console.log(err);
-            setEditLicensePoints(false);
-        }
-    };
-
     const onRecordClear = async (e) => {
         e.preventDefault();
 
@@ -466,9 +417,8 @@ export default ({ }) => {
                         Last: 'McTest',
                         DOB: '1991-01-01T07:59:59.000Z',
                         Licenses: {
-                            Drivers: {
+                            Driver: {
                                 Active: true,
-                                Points: 2,
                             },
                             Weapons: {
                                 Active: true,
@@ -539,17 +489,12 @@ export default ({ }) => {
                         {canCreateReport && <Button onClick={onCreate}>Create Incident</Button>}
                         {hasPermission('BAR_CERTIFICATIONS') && (
                             <Button fullWidth onClick={() => setEditLawyer(true)}>
-                                Certs
+                                Certifications
                             </Button>
                         )}
                         {hasPermission('REVOKE_LICENSE_SUSPENSIONS') && (
                             <Button fullWidth onClick={() => setEditSuspended(true)}>
                                 Suspensions
-                            </Button>
-                        )}
-                        {hasPermission('REVOKE_LICENSE_SUSPENSIONS') && (
-                            <Button fullWidth disabled={person?.data?.Licenses?.Drivers?.Points <= 0} onClick={() => setEditLicensePoints(true)}>
-                                Points
                             </Button>
                         )}
                         {hasPermission('EXPUNGEMENT') && (
@@ -813,23 +758,6 @@ export default ({ }) => {
                         } else return null;
                     })}
                 </FormGroup>
-            </Modal>
-            <Modal
-                open={editLicensePoints}
-                title="Driver License Points"
-                onSubmit={onRemoveLicensePoints}
-                onClose={() => setEditLicensePoints(false)}
-            >
-                <p>Remove drivers license points (this will not unsuspend the license)</p>
-                <Slider
-                    name="points"
-                    step={1}
-                    marks
-                    defaultValue={1}
-                    min={1}
-                    max={person.data?.Licenses?.Drivers?.Points}
-                    valueLabelDisplay="auto"
-                />
             </Modal>
             <Modal
                 open={clearRecord}

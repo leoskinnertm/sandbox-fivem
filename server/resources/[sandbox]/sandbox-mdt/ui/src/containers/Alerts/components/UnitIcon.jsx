@@ -16,8 +16,6 @@ export default ({ job, type, available }) => {
 					return <FontAwesomeIcon icon={['fas', 'car-side']} />;
 				case 'air1':
 					return <FontAwesomeIcon icon={['fas', 'helicopter']} />;
-				case 'heat':
-					return <FontAwesomeIcon icon={['fas', 'dumpster-fire']} />;
 				case 'motorcycle':
 					return <FontAwesomeIcon icon={['fas', 'motorcycle']} />;
 				default:

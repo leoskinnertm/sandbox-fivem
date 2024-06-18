@@ -66,8 +66,8 @@ export default ({ boardTitle = 'Notice Board', perPage = 3, notices = {} }) => {
 				<List>
 					{notices && notices.length > 0 ? (
 						notices
-							.sort((a, b) => b.created - a.created)
 							.slice((page - 1) * PER_PAGE, page * PER_PAGE)
+							.sort((a, b) => b.created - a.created)
 							.map((notice, k) => {
 								return <Item key={`notices-${k}`} notice={notice} />;
 							})

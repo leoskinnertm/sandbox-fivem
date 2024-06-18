@@ -18,7 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Lightbox from 'react-image-lightbox';
 
 import Nui from '../../util/Nui';
-import { Loader, OfficerSearch, PersonSearch, Editor2, Modal } from '../../components';
+import { Loader, OfficerSearch, PersonSearch, Editor, Modal } from '../../components';
 import { ReportTypes, GetOfficerNameFromReportType, GetOfficerJobFromReportType } from '../../data';
 import { useGovJob, usePermissions, useQualifications } from '../../hooks';
 
@@ -165,9 +165,6 @@ export default (props) => {
     const hasQualification = useQualifications();
     const myJob = useSelector((state) => state.app.govJob);
 
-    const [editor, setEditor] = useState(null);
-    const [initialEditorState, setInitialEditorState] = useState('');
-
     let qry = qs.parse(location.search.slice(1));
     const reportId = qry.report;
     const reportMode = qry.mode;
@@ -215,12 +212,13 @@ export default (props) => {
         primariesInput: '',
         primaries: [me],
         suspects: Array(),
-        suspectsOverturned: Array(),
         // suspects: [
-        //     { sentenced: true, SID: 1, First: "Bob", Last: "Bobson", Licenses: { Drivers: { Points: 0 } }, charges: [], plea: "unknown" },
-        // ],
-        // suspectsOverturned: [
-        //     { sentenced: true, SID: 1, First: "Bob", Last: "Bobson", Licenses: { Drivers: { Points: 0 } }, charges: [], plea: "unknown" },
+        //     { suspect: { SID: 1, First: "Bob", Last: "Bobson", Licenses: { Drivers: { Points: 0 } } }, charges: [], plea: "unknown" },
+        //     { suspect: { SID: 1, First: "Bob", Last: "Bobson", Licenses: { Drivers: { Points: 0 } } }, charges: [], plea: "unknown" },
+        //     { suspect: { SID: 1, First: "Bob", Last: "Bobson", Licenses: { Drivers: { Points: 0 } } }, charges: [], plea: "unknown" },
+        //     { suspect: { SID: 1, First: "Bob", Last: "Bobson", Licenses: { Drivers: { Points: 0 } } }, charges: [], plea: "unknown" },
+        //     { suspect: { SID: 1, First: "Bob", Last: "Bobson", Licenses: { Drivers: { Points: 0 } } }, charges: [], plea: "unknown" },
+        //     { suspect: { SID: 1, First: "Bob", Last: "Bobson", Licenses: { Drivers: { Points: 0 } } }, charges: [], plea: "unknown" },
         // ],
         peopleInput: '',
         people: Array(),
@@ -268,7 +266,6 @@ export default (props) => {
             ).json();
             if (res) {
                 setState(res);
-                setInitialEditorState(res.notes);
                 setOriginal(res);
                 setChanges(Array());
             }
@@ -296,7 +293,6 @@ export default (props) => {
                 evidenceCounter: 0,
                 allowAttorney: false,
             });
-            setInitialEditorState('');
         };
     }, [reportId]);
 
@@ -404,12 +400,6 @@ export default (props) => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (!editor) return;
-
-        const rawValue = editor.getData();
-        const reg = /src=\"data:image\/([a-zA-Z]*);base64,([^\"]*)\"/g
-        const value = rawValue.replace(reg, "src=\"https://i.ibb.co/x1vt3YY/ph.webp\"");
-
         if (reportMode === "create" || reportMode === "edit") {
             if (state.type == 0 && state.suspects.length == 0) {
                 toast.error('Must Select Suspect');
@@ -417,7 +407,7 @@ export default (props) => {
             } else if (state.title == '') {
                 toast.error('Must Add Report Title');
                 return;
-            } else if (value == '') {
+            } else if (state.notes == '') {
                 toast.error('Must Add Report Notes');
                 return;
             }
@@ -431,7 +421,7 @@ export default (props) => {
                         doc: {
                             type: state.type,
                             title: state.title,
-                            notes: value,
+                            notes: state.notes,
                             time: Date.now(),
                             evidence: state.evidence,
                             suspects: state.suspects,
@@ -484,7 +474,7 @@ export default (props) => {
                         report: {
                             type: state.type,
                             title: state.title,
-                            notes: value,
+                            notes: state.notes,
                             time: state.time,
                             allowAttorney: state.allowAttorney,
                             changes: c,
@@ -574,15 +564,16 @@ export default (props) => {
                 </Grid>
                 <Grid item xs={6} className={classes.col} sx={{ minHeight: '100%' }}>
                     <div style={{ display: 'flex', height: '95%' }}>
-                        <Editor2
+                        <Editor
                             allowMedia
                             name="notes"
                             title="Report Notes"
                             placeholder={'Enter Report Notes'}
                             disabled={reportMode === "view"}
-                            editor={editor}
-                            setEditor={setEditor}
-                            initialEditorState={initialEditorState}
+                            value={state.notes}
+                            onChange={(e) => {
+                                setState({ ...state, notes: e.target.value });
+                            }}
                         />
                     </div>
                 </Grid>
@@ -722,17 +713,6 @@ export default (props) => {
                                 Please Add A Suspect To Your Report
                             </Alert>
                         )}
-                    {state.suspectsOverturned?.length > 0
-                        && state.suspectsOverturned.map((suspect, k) => {
-                            return (
-                                <SuspectView
-                                    key={`suspect-overturned-${k}`}
-                                    overturned
-                                    data={suspect}
-                                    report={state}
-                                />
-                            );
-                        })}
                 </Grid>
             </Grid>
             <SuspectForm

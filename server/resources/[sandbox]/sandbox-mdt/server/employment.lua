@@ -86,7 +86,7 @@ AddEventHandler("MDT:Server:RegisterCallbacks", function()
 							},
 						}
 
-						if (data.JobId == "police" or data.JobId == "ems" or data.JobId == "prison") then
+						if (data.JobId == "police" or data.JobId == "ems") then
 							update["$set"] = {
 								Callsign = false,
 							}
