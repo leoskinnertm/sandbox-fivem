@@ -29,7 +29,6 @@ Spawn = {
 		end
 
 		local ped = PlayerPedId()
-		TriggerEvent("PAC:IgnoreNextNoclipFlag")
 		SetEntityCoords(ped, -972.756, -2701.553, 41.45)
 		FreezeEntityPosition(ped, true)
 		SetEntityVisible(ped, false)
@@ -106,7 +105,6 @@ Spawn = {
 		SetEntityHealth(player, data.HP > 100 and data.HP or 200)
 		DisplayHud(true)
 
-		TriggerEvent("PAC:IgnoreNextNoclipFlag")
 		if data.action ~= nil then
 			TriggerEvent(data.action, data.data)
 		else
