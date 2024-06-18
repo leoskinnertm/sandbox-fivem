@@ -169,7 +169,7 @@ local _heOres = {
 local _valOres = {
 	{
 		label = "Gold Ore",
-		object = `bzzz_mining_gold_big`,
+		object = `bzzz_mining_gold001`,
 		item = "goldore",
 		count = 4,
 		factor = 0.7,
@@ -178,7 +178,7 @@ local _valOres = {
 	},
 	{
 		label = "Silver Ore",
-		object = `bzzz_mining_silver_big`,
+		object = `bzzz_mining_silver001`,
 		item = "silverore",
 		count = 4,
 		factor = 0.6,
@@ -189,21 +189,21 @@ local _valOres = {
 local _ores = {
 	{
 		label = "Iron Ore",
-		object = `bzzz_mining_quartz_big`,
+		object = `bzzz_mining_quartz001`,
 		item = "ironore",
 		count = 4,
 	},
 	{
 		label = "Ore",
-		object = `bzzz_mining_nefrit_big`,
+		object = `bzzz_mining_nephrite001`,
 	},
 	{
 		label = "Ore",
-		object = `bzzz_mining_nefrit_big`,
+		object = `bzzz_mining_nephrite001`,
 	},
 	{
 		label = "Ore",
-		object = `bzzz_mining_nefrit_big`,
+		object = `bzzz_mining_nephrite001`,
 	},
 }
 
