@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 		margin: 'auto',
 		textAlign: 'center',
 		fontSize: 30,
-		color: theme.palette.text.main,
+		color: '#ffffff',
 		zIndex: 1000,
 		padding: 36,
 		display: 'flex',
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'block',
 	},
 	splashBranding: {
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 	},
 	splashTip: {
 		fontSize: '1vw',
@@ -45,17 +45,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 	splashTipHighlight: {
 		fontWeight: 500,
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 		opacity: 1,
 	},
 	dot1: {
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 	},
 	dot2: {
-		color: theme.palette.text.main,
+		color: '#ffffff',
 	},
 	dot3: {
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 	},
 	'@keyframes blinker': {
 		'50%': {

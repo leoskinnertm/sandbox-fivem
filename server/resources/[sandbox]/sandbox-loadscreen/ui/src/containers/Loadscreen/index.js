@@ -10,7 +10,7 @@ import bg from '../../bg.jpg';
 
 const useStyles = makeStyles((theme) => ({
 	background: {
-		backgroundColor: theme.palette.secondary.dark,
+		backgroundColor: '#0f0f0f',
 		backgroundSize: 'cover',
 		minHeight: '100vh',
 		display: 'flex',
@@ -48,14 +48,14 @@ const useStyles = makeStyles((theme) => ({
 		width: '30%',
 	},
 	text: {
-		color: theme.palette.text.main,
+		color: '#ffffff',
 		fontSize: '3em',
 		textShadow: '2px 2px 8px rgba(0, 0, 0, 0.5)',
 		fontFamily: 'Oswald',
 		marginTop: 25,
 	},
 	hightlight: {
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 	},
 	prog: {
 		display: 'block',
@@ -73,13 +73,13 @@ const useStyles = makeStyles((theme) => ({
 		height: 10,
 	},
 	dot1: {
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 	},
 	dot2: {
-		color: theme.palette.text.main,
+		color: '#ffffff',
 	},
 	dot3: {
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 	},
 	domain: {
 		position: 'absolute',
@@ -106,19 +106,19 @@ const useStyles = makeStyles((theme) => ({
 		bottom: '5.5%',
 		right: '1%',
 		maxWidth: '25%',
-		background: theme.palette.secondary.main,
+		background: '#141414',
 		padding: 10,
-		border: `1px solid ${theme.palette.primary.dark}`,
+		border: `1px solid '#FA5800'`,
 		borderRadius: 5,
 	},
 	informationTitle: {
 		fontSize: 18,
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 	},
 	informationMessage: {
 		padding: 10,
 		fontSize: 14,
-		color: theme.palette.text.alt,
+		color: '#ffffff',
 		whiteSpace: 'pre-wrap',
 	},
 	stageText: {
@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: 20,
 		fontFamily: 'Oswald',
 		'&::after': {
-			color: theme.palette.primary.main,
+			color: '#E5A502',
 			content: '": COMPLETED,"',
 			marginRight: 24,
 		},
@@ -143,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: 20,
 		fontFamily: 'Oswald',
 		'&::after': {
-			color: theme.palette.primary.main,
+			color: '#E5A502',
 			content: '": IN PROGRESS,"',
 			marginRight: 24,
 		},
@@ -158,7 +158,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'block',
 	},
 	splashBranding: {
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 	},
 	splashTip: {
 		fontSize: '1vw',
@@ -166,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	splashTipHighlight: {
 		fontWeight: 500,
-		color: theme.palette.primary.main,
+		color: '#E5A502',
 		opacity: 1,
 	},
 	'@keyframes blinker': {
@@ -192,7 +192,7 @@ export default () => {
 		<div className={classes.background}>
 			<Logo name={name} />
 			<div className={classes.domain}>
-				<FontAwesomeIcon icon={['fas', 'rocket-launch']} />
+				<FontAwesomeIcon icon={['fas', 'rocket']} />
 			</div>
 			<div className={classes.discord}>
 				<FontAwesomeIcon icon={['fab', 'discord']} /> 

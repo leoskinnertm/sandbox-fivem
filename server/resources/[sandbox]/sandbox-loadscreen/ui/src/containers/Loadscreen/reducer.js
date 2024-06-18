@@ -1,20 +1,20 @@
 const handoverData = window?.nuiHandoverData;
 
 export const initialState = {
-	stages: {
-		INIT_BEFORE_MAP_LOADED: 0,
-		INIT_AFTER_MAP_LOADED: 0,
-		INIT_SESSION: 0,
-	},
-	completed: {},
-	currentStage: null,
-	test: {
-		total: 410,
-		current: 0,
-	},
-	name: handoverData?.name,
-	priority: handoverData?.priority ?? 0,
-	priorityMessage: handoverData?.priorityMessage,
+    stages: {
+        INIT_BEFORE_MAP_LOADED: 0,
+        INIT_AFTER_MAP_LOADED: 0,
+        INIT_SESSION: 0,
+    },
+    completed: {},
+    currentStage: null,
+    test: {
+        total: 410,
+        current: 0,
+    },
+    name: handoverData?.name,
+    priority: handoverData?.priority ?? 0,
+    priorityMessage: handoverData?.priorityMessage,
 };
 
 let count = 0;
