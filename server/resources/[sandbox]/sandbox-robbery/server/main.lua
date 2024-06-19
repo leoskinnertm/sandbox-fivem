@@ -383,7 +383,7 @@ _ROBBERY = {
 			EmergencyAlerts:Create(
 				code,
 				title,
-				"police_alerts",
+				2,
 				location,
 				description,
 				false,

@@ -286,7 +286,7 @@ RegisterNetEvent("EMS:Server:Panic", function(isAlpha)
 				EmergencyAlerts:Create(
 					"13-A",
 					"Medic Down",
-					{"police_alerts", "ems_alerts"},
+					2,
 					location,
 					{
 						icon = "circle-exclamation",
@@ -311,7 +311,7 @@ RegisterNetEvent("EMS:Server:Panic", function(isAlpha)
 				EmergencyAlerts:Create(
 					"13-B",
 					"Medic Down",
-					{"police_alerts", "ems_alerts"},
+					2,
 					location,
 					{
 						icon = "circle-exclamation",

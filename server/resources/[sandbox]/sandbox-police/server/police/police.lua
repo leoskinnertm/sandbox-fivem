@@ -395,7 +395,7 @@ RegisterNetEvent("Police:Server:Panic", function(isAlpha)
 		local coords = GetEntityCoords(GetPlayerPed(src))
 		Callbacks:ClientCallback(src, "EmergencyAlerts:GetStreetName", coords, function(location)
 			if isAlpha then
-				EmergencyAlerts:Create("13-A", "Officer Down", {"police_alerts", "ems_alerts"}, location, {
+				EmergencyAlerts:Create("13-A", "Officer Down", 2, location, {
 					icon = "circle-exclamation",
 					details = string.format(
 						"%s - %s %s | %s",
@@ -411,7 +411,7 @@ RegisterNetEvent("Police:Server:Panic", function(isAlpha)
 					duration = (60 * 10),
 				}, 1)
 			else
-				EmergencyAlerts:Create("13-B", "Officer Down", {"police_alerts", "ems_alerts"}, location, {
+				EmergencyAlerts:Create("13-B", "Officer Down", 2, location, {
 					icon = "circle-exclamation",
 					details = string.format(
 						"%s - %s %s",
@@ -432,7 +432,7 @@ RegisterNetEvent("Police:Server:Panic", function(isAlpha)
 		local coords = GetEntityCoords(GetPlayerPed(src))
 		Callbacks:ClientCallback(src, "EmergencyAlerts:GetStreetName", coords, function(location)
 			if isAlpha then
-				EmergencyAlerts:Create("13-A", "Corrections Officer Down", {"police_alerts", "doc_alerts", "ems_alerts"}, location, {
+				EmergencyAlerts:Create("13-A", "Corrections Officer Down", 2, location, {
 					icon = "circle-exclamation",
 					details = string.format(
 						"%s - %s %s | %s",
@@ -448,7 +448,7 @@ RegisterNetEvent("Police:Server:Panic", function(isAlpha)
 					duration = (60 * 10),
 				}, 1)
 			else
-				EmergencyAlerts:Create("13-B", "Corrections Officer Down", {"police_alerts", "doc_alerts", "ems_alerts"}, location, {
+				EmergencyAlerts:Create("13-B", "Corrections Officer Down", 2, location, {
 					icon = "circle-exclamation",
 					details = string.format(
 						"%s - %s %s | %s",
