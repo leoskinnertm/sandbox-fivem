@@ -4,7 +4,7 @@ This is a heavily modified version of **Mythic Framework** for Sandbox RP. This 
 
 
 ## Official Discord
-- [Discord Link](https://discord.gg/7MkRAjPkW2) - Offical Discord for community-driven support forum!
+- [Discord Link](https://discord.gg/caJrDBGv3h) - Offical Discord for community-driven support forum!
 
 
 
