@@ -8,7 +8,6 @@ AvailableWeatherTypes = {
 	"CLEARING",
 	"RAIN",
 	"THUNDER",
-	-- Non Regular Weather Types
 	"NEUTRAL",
 	"HALLOWEEN",
 	"SNOW",
@@ -29,6 +28,24 @@ AvailableTimeTypes = {
 	NOON = { hour = 12 },
 	EVENING = { hour = 18, minute = 30 },
 	NIGHT = { hour = 23, minute = 30 },
+}
+
+WeatherDetails = {
+	EXTRASUNNY = { temp = 30, windSpeed = 5 },
+	CLEAR = { temp = 25, windSpeed = 5 },
+	SMOG = { temp = 20, windSpeed = 3 },
+	FOGGY = { temp = 15, windSpeed = 2 },
+	OVERCAST = { temp = 20, windSpeed = 4 },
+	CLOUDS = { temp = 22, windSpeed = 4 },
+	CLEARING = { temp = 24, windSpeed = 5 },
+	RAIN = { temp = 18, windSpeed = 10 },
+	THUNDER = { temp = 17, windSpeed = 12 },
+	NEUTRAL = { temp = 23, windSpeed = 5 },
+	HALLOWEEN = { temp = 10, windSpeed = 8 },
+	SNOW = { temp = -5, windSpeed = 7 },
+	BLIZZARD = { temp = -10, windSpeed = 20 },
+	SNOWLIGHT = { temp = -2, windSpeed = 5 },
+	XMAS = { temp = -1, windSpeed = 6 },
 }
 
 local _weather = StartingWeatherTypes[math.random(1, #StartingWeatherTypes)]
@@ -143,7 +160,7 @@ function StartThreads()
 
 				--print(string.format('Time: %02d:%02d', _timeHour, _timeMinute))
 			end
-			Citizen.Wait(8500) -- At this rate of 8500, an IN GAME DAY takes 3.4 hours to complete (mult by 0.0004 to calculate)
+			Citizen.Wait(8500) 
 		end
 	end)
 
@@ -280,7 +297,6 @@ SYNC = {
 		end,
 	},
 	NextWeatherStage = function(self)
-		-- Check for special exact dates
 		local CurrentDate = os.date("*t", os.time())
 		if CurrentDate.month == 10 and CurrentDate.day == 31 and CurrentDate.hour >= 18 then
 			_weather = "HALLOWEEN"
@@ -371,4 +387,27 @@ AddEventHandler("txAdmin:events:scheduledRestart", function(eventData)
 		Sync:FreezeWeather(true)
 		Sync.Set:Weather("THUNDER")
 	end
+end)
+
+function BroadcastWeatherInformation()
+	local weatherInfo = WeatherDetails[_weather]
+	if weatherInfo then
+		local message = string.format(
+			"Current Weather: %s | Temperature: %d°C | Wind Speed: %dm/s",
+			_weather,
+			weatherInfo.temp,
+			weatherInfo.windSpeed
+		)
+		Chat.Send.Server:Single(-1, message)
+	end
+end
+
+RegisterNetEvent('Characters:Server:Spawn')
+AddEventHandler('Characters:Server:Spawn', function()
+	local playerId = source
+	BroadcastWeatherInformation(playerId)
+end)
+
+RegisterCommand("weatheri", function()
+	BroadcastWeatherInformation()
 end)
