@@ -10,6 +10,7 @@ AddEventHandler("Characters:Client:Spawn", function()
 end)
 
 local _ignored = {
+	local _ignored = {
 	[`WEAPON_PETROLCAN`] = true,
 	[`WEAPON_FIREEXTINGUISHER`] = true,
 	[`WEAPON_FLARE`] = true,
@@ -25,8 +26,10 @@ local _ignored = {
 	[`WEAPON_PIPEBOMB`] = true,
 	[`WEAPON_SMOKEGRENADE`] = true,
 	[`WEAPON_SNIPERRIFLE2`] = true, -- Hunting Rifle
+	[`WEAPON_FLARE`] = true,
+	[`WEAPON_FIREEXTINGUISHER`] = true,
+	[`WEAPON_PETROLCAN`] = true,
 }
-
 local _excludes = {
 	{ coords = vector3(1713.17, 2586.68, 59.88), dist = 250 }, -- prison
 	{ coords = vector3(-106.63, 6467.72, 31.62), dist = 45 }, -- paleto bank
