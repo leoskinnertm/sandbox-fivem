@@ -4,6 +4,10 @@ Config = {
 		player = "person",
 		entity = "eye",
 	},
+	Sprite = {
+		color = { r = 250, g = 214, b = 33, a = 255 },
+		active = true
+	},
 	VehicleIcons = {
 		[0] = "car",
 		[1] = "car",

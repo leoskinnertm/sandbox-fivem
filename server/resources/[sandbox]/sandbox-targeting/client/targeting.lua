@@ -3,8 +3,74 @@ local lastSentIcon = false
 local hittingTarget = false
 local hittingTargetData = {}
 inTargetingMenu = false
-
+local SetDrawOrigin = SetDrawOrigin
+local DrawSprite = DrawSprite
+local ClearDrawOrigin = ClearDrawOrigin
 _unusableTargets = {}
+DrawPoints = {}
+
+local function getEntityMiddle(entity)
+    local entityModel = GetEntityModel(entity)
+    local min, max = GetModelDimensions(entityModel)
+    local points = {
+        GetOffsetFromEntityInWorldCoords(entity, min.x, min.y, min.z).xy,
+        GetOffsetFromEntityInWorldCoords(entity, min.x, min.y, max.z).xy,
+        GetOffsetFromEntityInWorldCoords(entity, min.x, max.y, max.z).xy,
+        GetOffsetFromEntityInWorldCoords(entity, min.x, max.y, min.z).xy,
+        GetOffsetFromEntityInWorldCoords(entity, max.x, min.y, min.z).xy,
+        GetOffsetFromEntityInWorldCoords(entity, max.x, min.y, max.z).xy,
+        GetOffsetFromEntityInWorldCoords(entity, max.x, max.y, max.z).xy,
+        GetOffsetFromEntityInWorldCoords(entity, max.x, max.y, min.z).xy
+    }
+
+    local CenterPoints = vec2(0, 0)
+
+    for i = 1, 8 do
+        CenterPoints += points[i]
+    end
+
+    CenterPoints = CenterPoints / 8
+
+    local z = GetOffsetFromEntityInWorldCoords(entity, 0, 0, (min.z + max.z) / 2).z
+
+    CenterPoints = vec3(CenterPoints.x, CenterPoints.y, z)
+
+    return CenterPoints
+end
+
+local function loadSpriteTexture()
+    while not HasStreamedTextureDictLoaded("shared") do 
+        Wait(10)
+        RequestStreamedTextureDict("shared", true)
+    end
+
+    return HasStreamedTextureDictLoaded("shared")
+end
+
+function DrawSprites()
+    if not Config.Sprite.active then 
+        return 
+    end
+    
+    while not HasStreamedTextureDictLoaded("shared") do 
+        Wait(10)
+        RequestStreamedTextureDict("shared", true)
+    end
+	
+    if not HasStreamedTextureDictLoaded("shared") then
+        return
+    end
+
+    local dict, texture = "shared", "emptydot_32"
+
+    for i = 1, #DrawPoints do
+        local point = DrawPoints[i]
+        SetDrawOrigin(point.x, point.y, point.z)
+        DrawSprite(dict, texture, 0, 0, 0.02, 0.035, 0, Config.Sprite.color.r, Config.Sprite.color.g, Config.Sprite.color.b, Config.Sprite.color.a)
+        ClearDrawOrigin()
+    end
+end
+
 
 function StartTargeting()
 	if
@@ -122,8 +188,45 @@ function StartTargeting()
 			end
 		end)
 
+		CreateThread(function ()
+            while holdingTargeting do
+                table.wipe(DrawPoints)
+
+                --#TODO: Check all the targetable object models?
+                --#TODO: Check all the targetable ped models?
+
+                for _, v in pairs(interactionZones) do
+                    if v.enabled then
+                        local center = v.zone.center
+                        if #(LocalPlayer.state.myPos - center) <= (v?.proximity and v.proximity * 1.5 or 3.0)then
+                            DrawPoints[#DrawPoints+1] = center
+                        end
+                    end
+                end
+
+                for _, v in pairs(targetableEntities) do
+                    local entity = v.entity
+                    local entityCoords = getEntityMiddle(entity)
+                    if entityCoords and #(LocalPlayer.state.myPos - entityCoords) <= (v?.proximity and v.proximity * 1.5 or 3.0) then
+                        DrawPoints[#DrawPoints+1] = entityCoords
+                    end
+                end
+
+                for _, v in pairs(interactablePeds) do
+                    local entity = v.ped
+                    local entityCoords = getEntityMiddle(entity)
+                    if entityCoords and #(LocalPlayer.state.myPos - entityCoords) <= (v?.proximity and v.proximity * 1.5 or 3.0) then
+                        DrawPoints[#DrawPoints+1] = entityCoords
+                    end
+                end
+
+                Wait(1000)
+            end
+        end)
+
 		Citizen.CreateThread(function()
 			while holdingTargeting do
+				DrawSprites()
 				DisablePlayerFiring(GLOBAL_PED, true)
 				DisableControlAction(0, 25, true)
 				Citizen.Wait(0)
@@ -133,6 +236,7 @@ function StartTargeting()
 		_unusableTargets = {}
 	end
 end
+
 
 function StopTargeting()
 	if holdingTargeting then
