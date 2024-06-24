@@ -35,6 +35,17 @@ local _excludes = {
 	{ coords = vector3(12.53, -1097.99, 29.8), dist = 10 }, -- Adam's Apple / Pillbox Weapon shop
 }
 
+function StartThreads()
+	Citizen.CreateThread(function()
+		while LocalPlayer.state.loggedIn do
+			if LocalPlayer.state.GSR and IsPedSwimming(LocalPlayer.state.ped) then
+				LocalPlayer.state:set("GSR", nil, true)
+			end
+			Citizen.Wait(3000)
+		end
+	end)
+end
+
 local timeOut, stressTimeout, alertTimeout = false, false, false
 AddEventHandler('CEventGunShot', function(entities, eventEntity, args)
 	if timeOut then return end
