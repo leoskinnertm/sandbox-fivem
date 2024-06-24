@@ -1,5 +1,3 @@
-server_script "S8QQD.lua"
-client_script "S8QQD.lua"
 fx_version("cerulean")
 games({ "gta5" }) -- 'gta5' for GTAv / 'rdr3' for Red Dead 2, 'gta5','rdr3' for both
 lua54("yes")
