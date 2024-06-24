@@ -408,6 +408,3 @@ AddEventHandler('Characters:Server:Spawn', function()
 	BroadcastWeatherInformation(playerId)
 end)
 
-RegisterCommand("weatheri", function()
-	BroadcastWeatherInformation()
-end)
