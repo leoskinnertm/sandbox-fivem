@@ -1,5 +1,3 @@
-server_script "NDY0O7FE8AKMKBW.lua"
-client_script "NDY0O7FE8AKMKBW.lua"
 -- =========================================================
 --               Load and customize your map.
 -- ---------------------------------------------------------
