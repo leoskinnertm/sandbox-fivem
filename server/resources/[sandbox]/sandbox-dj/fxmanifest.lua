@@ -1,5 +1,3 @@
-server_script "CV.lua"
-client_script "CV.lua"
 name "DJBooth"
 author "katahtonic"
 version "v1.1"

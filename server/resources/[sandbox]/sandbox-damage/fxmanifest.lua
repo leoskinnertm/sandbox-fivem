@@ -1,5 +1,3 @@
-server_script "KM54R36SD.lua"
-client_script "KM54R36SD.lua"
 fx_version("cerulean")
 games({ "gta5" })
 lua54("yes")

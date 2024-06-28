@@ -1,5 +1,3 @@
-server_script "C93SY.lua"
-client_script "C93SY.lua"
 fx_version("cerulean")
 game("gta5")
 lua54("yes")
