@@ -1,31 +1,38 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               11.4.2-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.6.0.6765
+-- --------------------------------------------------------
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Adatbázis struktúra mentése a fivem-sandbox.
-CREATE DATABASE IF NOT EXISTS `fivem-sandbox` /*!40100 DEFAULT CHARACTER SET latin1 */;
+-- Dumping database structure for fivem-sandbox
+CREATE DATABASE IF NOT EXISTS `fivem-sandbox` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
 USE `fivem-sandbox`;
 
--- Struktúra mentése tábla fivem-sandbox. app_profile_history
+-- Dumping structure for table fivem-sandbox.app_profile_history
 CREATE TABLE IF NOT EXISTS `app_profile_history` (
   `sid` bigint(20) unsigned NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
-  `app` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `name` varchar(256) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `picture` varchar(2048) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `meta` longtext COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `app` varchar(32) NOT NULL,
+  `name` varchar(256) DEFAULT NULL,
+  `picture` varchar(2048) DEFAULT NULL,
+  `meta` longtext DEFAULT NULL,
   KEY `sid` (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.app_profile_history: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `app_profile_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `app_profile_history` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.app_profile_history: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. bank_accounts
+-- Dumping structure for table fivem-sandbox.bank_accounts
 CREATE TABLE IF NOT EXISTS `bank_accounts` (
   `account` int(10) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -35,13 +42,91 @@ CREATE TABLE IF NOT EXISTS `bank_accounts` (
   PRIMARY KEY (`account`) USING BTREE,
   KEY `Owner` (`owner`) USING BTREE,
   KEY `Type` (`type`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.bank_accounts: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `bank_accounts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bank_accounts` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.bank_accounts: ~79 rows (approximately)
+INSERT INTO `bank_accounts` (`account`, `type`, `owner`, `balance`, `name`) VALUES
+	(100000, 'organization', 'government', 500000, 'San Andreas State Account'),
+	(121316, 'organization', 'rustybrowns', 10000, 'Rusty Browns Account'),
+	(124182, 'organization', 'redline', 50000, 'Redline Account'),
+	(137993, 'organization', 'unicorn', 25000, 'Vanilla Unicorn Account'),
+	(144111, 'organization', 'avast_arcade', 10000, 'Avast Arcade Account'),
+	(146552, 'organization', 'mintmate', 0, 'Mint Mate'),
+	(155980, 'organization', 'police-guardius', 200000, 'Guardius Account'),
+	(181404, 'organization', 'casino', 100000, 'Diamond Casino & Resort Account'),
+	(184547, 'organization', 'weed', 5000, 'Smoke on the Water Account'),
+	(214859, 'organization', 'ballers', 0, 'East Side Ballers'),
+	(227452, 'organization', 'doctors', 50000, 'St Fiacre Medical Account'),
+	(237335, 'organization', 'pdm', 25000, 'Premium Deluxe Motorsport Account'),
+	(241061, 'organization', 'pepega_pawn', 10000, 'Pepega Pawn Account'),
+	(245692, 'organization', 'atomic', 50000, 'Atomic Mechanics Account'),
+	(245926, 'organization', 'vangelico', 10000, 'Vangelico Jewelry Account'),
+	(246314, 'organization', 'noodle', 10000, 'Noodle Exchange Account'),
+	(253749, 'organization', 'triad', 5000, 'Triad Records Account'),
+	(257487, 'organization', 'burgershot', 10000, 'Burger Shot Account'),
+	(260906, 'organization', 'bandits', 0, 'Bandits'),
+	(272439, 'organization', 'superperformance', 50000, 'Super Performance Account'),
+	(277978, 'organization', 'aztecas', 0, 'Aztecas'),
+	(280033, 'organization', 'bowling', 10000, 'Bobs Balls Account'),
+	(321010, 'organization', 'dreamworks', 0, 'Dreamworks'),
+	(358678, 'organization', 'rockford_records', 5000, 'Rockford Records Account'),
+	(366273, 'organization', 'vangelico_grapeseed', 10000, 'Vangelico Grapeseed Jewelry Account'),
+	(367673, 'organization', 'cloud9', 100000, 'Cloud9 Account'),
+	(386331, 'organization', 'prison', 500000, 'Department of Corrections Account'),
+	(387220, 'organization', 'vagos', 0, 'Vagos'),
+	(391717, 'organization', 'police', 200000, 'Law Enforcement Shared Account'),
+	(400690, 'organization', 'saints', 10000, 'The Saints Account'),
+	(410222, 'organization', 'golddiggers', 10000, 'Gold Diggers Account'),
+	(428145, 'organization', 'police-lspd', 200000, 'LSPD Account'),
+	(438662, 'organization', 'demonetti_storage', 10000, 'Demonetti Storage Account'),
+	(453124, 'organization', 'garcon_pawn', 10000, 'Garcon Pawn Account'),
+	(453335, 'organization', 'deathrow', 0, 'Death Row'),
+	(469108, 'organization', 'hayes', 50000, 'Hayes Autos Account'),
+	(480287, 'organization', 'triad_boxing', 0, 'Triad Boxing'),
+	(492851, 'organization', 'police-bcso', 200000, 'BCSO Account'),
+	(517141, 'organization', 'pizza_this', 10000, 'Pizza This Account'),
+	(521064, 'organization', 'ems', 325000, 'EMS Account'),
+	(522650, 'organization', 'triad_holdings', 0, 'Triad Holdings LLC'),
+	(577747, 'organization', 'casino-bets', 0, 'Diamond Casino Bets'),
+	(587260, 'organization', 'doj', 100000, 'DOJ Account'),
+	(609688, 'organization', 'blackdragons', 0, 'Black Dragons'),
+	(610193, 'organization', 'police-sast', 200000, 'SAST Account'),
+	(625862, 'organization', 'nines', 0, 'The 9\'s'),
+	(649144, 'organization', 'sagma', 10000, 'Sagma Account'),
+	(652478, 'organization', 'bakery', 10000, 'Bakery Account'),
+	(656636, 'organization', 'autoexotics', 50000, 'Auto Exotics Account'),
+	(659526, 'organization', 'bennys', 50000, 'Benny\'s Account'),
+	(660934, 'organization', 'odmc', 10000, 'Odins Disciples MC Account'),
+	(661916, 'organization', 'cluckinbell', 10000, 'Cluckin\' Bell Account'),
+	(678718, 'organization', 'tuna', 50000, 'Tuner Shop Account'),
+	(715211, 'organization', 'tequila', 10000, 'Tequil-La-La Account'),
+	(742724, 'organization', 'mba', 0, 'Maze Bank Arena'),
+	(748782, 'organization', 'digitalden', 10000, 'Digital Den Account'),
+	(776691, 'organization', 'prego', 10000, 'Cafe Prego Account'),
+	(785442, 'organization', 'beanmachine', 10000, 'Bean Machine Account'),
+	(791783, 'organization', 'ottos', 50000, 'Ottos Auto\'s Account'),
+	(796419, 'organization', 'securoserv', 50000, 'SecuroServ Account'),
+	(797670, 'organization', 'woods_saloon', 10000, 'Black Woods Saloon Account'),
+	(823310, 'organization', 'lostmc', 10000, 'The Lost MC Account'),
+	(839012, 'organization', 'block', 0, 'The Block Neighborhood Watch'),
+	(843911, 'organization', 'harmony', 50000, 'Harmony Repairs Account'),
+	(846693, 'organization', 'tirenutz', 50000, 'Tire Nutz Account'),
+	(878312, 'organization', 'dgang', 10000, 'Lua Holdings LLC Account'),
+	(888965, 'organization', 'blackline', 50000, 'Blackline Mechanics Account'),
+	(897705, 'organization', 'jewel', 10000, 'The Jeweled Dragon Account'),
+	(899332, 'organization', 'taxicab', 10000, 'Downtown Cab Co. Account'),
+	(905369, 'organization', 'tow', 0, 'Towing Account'),
+	(909460, 'organization', 'realestate', 25000, 'Dynasty 8 Account'),
+	(935936, 'organization', 'bahama', 25000, 'Bahama Mamas Account'),
+	(953457, 'organization', 'uwu', 10000, 'UwU Cafe Account'),
+	(964092, 'organization', 'lsfc', 10000, 'Los Santos Fight Club Account'),
+	(964163, 'organization', 'greycat_shipping', 10000, 'Greycat Shipping Account'),
+	(968052, 'organization', 'oni', 0, 'Oni'),
+	(974183, 'organization', 'white', 0, 'White & Associates'),
+	(982445, 'organization', 'lasttrain', 10000, 'The Last Train Account'),
+	(984212, 'organization', 'paleto_tuners', 0, 'Paleto Tuners');
 
--- Struktúra mentése tábla fivem-sandbox. bank_accounts_permissions
+-- Dumping structure for table fivem-sandbox.bank_accounts_permissions
 CREATE TABLE IF NOT EXISTS `bank_accounts_permissions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `account` int(10) NOT NULL,
@@ -55,13 +140,92 @@ CREATE TABLE IF NOT EXISTS `bank_accounts_permissions` (
   KEY `workplace` (`workplace`) USING BTREE,
   KEY `jointOwner` (`jointOwner`) USING BTREE,
   KEY `account` (`account`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.bank_accounts_permissions: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `bank_accounts_permissions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bank_accounts_permissions` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.bank_accounts_permissions: ~80 rows (approximately)
+INSERT INTO `bank_accounts_permissions` (`id`, `account`, `type`, `jointOwner`, `job`, `workplace`, `jobPermissions`) VALUES
+	(69, 100000, 0, NULL, 'government', 'doj', '{"BALANCE":"STATE_ACCOUNT_BALANCE","TRANSACTIONS":"STATE_ACCOUNT_TRANSACTIONS","BILL":"STATE_ACCOUNT_BILL","WITHDRAW":"STATE_ACCOUNT_WITHDRAW","MANAGE":"STATE_ACCOUNT_MANAGE","DEPOSIT":"STATE_ACCOUNT_DEPOSIT"}'),
+	(70, 100000, 0, NULL, 'government', 'mayoroffice', '{"BALANCE":"STATE_ACCOUNT_BALANCE","TRANSACTIONS":"STATE_ACCOUNT_TRANSACTIONS","BILL":"STATE_ACCOUNT_BILL","WITHDRAW":"STATE_ACCOUNT_WITHDRAW","MANAGE":"STATE_ACCOUNT_MANAGE","DEPOSIT":"STATE_ACCOUNT_DEPOSIT"}'),
+	(71, 391717, 0, NULL, 'police', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(72, 428145, 0, NULL, 'police', 'lspd', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(73, 155980, 0, NULL, 'police', 'guardius', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(74, 492851, 0, NULL, 'police', 'bcso', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(75, 610193, 0, NULL, 'police', 'sast', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(76, 521064, 0, NULL, 'ems', 'safd', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(77, 227452, 0, NULL, 'ems', 'doctors', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(78, 386331, 0, NULL, 'prison', 'corrections', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(79, 587260, 0, NULL, 'government', 'doj', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(80, 577747, 0, NULL, 'casino', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(81, 367673, 0, NULL, 'cloud9', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(82, 748782, 0, NULL, 'digitalden', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(83, 241061, 0, NULL, 'pepega_pawn', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(84, 453124, 0, NULL, 'garcon_pawn', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(85, 649144, 0, NULL, 'sagma', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(86, 897705, 0, NULL, 'jewel', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(87, 245926, 0, NULL, 'vangelico', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(88, 366273, 0, NULL, 'vangelico_grapeseed', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(89, 796419, 0, NULL, 'securoserv', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(90, 144111, 0, NULL, 'avast_arcade', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(91, 652478, 0, NULL, 'bakery', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(92, 785442, 0, NULL, 'beanmachine', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(93, 280033, 0, NULL, 'bowling', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(94, 899332, 0, NULL, 'taxicab', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(95, 181404, 0, NULL, 'casino', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(96, 438662, 0, NULL, 'demonetti_storage', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(97, 410222, 0, NULL, 'golddiggers', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(98, 964163, 0, NULL, 'greycat_shipping', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(99, 823310, 0, NULL, 'lostmc', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(100, 660934, 0, NULL, 'odmc', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(101, 400690, 0, NULL, 'saints', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(102, 964092, 0, NULL, 'lsfc', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(103, 878312, 0, NULL, 'dgang', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(104, 678718, 0, NULL, 'tuna', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(105, 124182, 0, NULL, 'redline', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(106, 888965, 0, NULL, 'blackline', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(107, 846693, 0, NULL, 'tirenutz', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(108, 469108, 0, NULL, 'hayes', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(109, 245692, 0, NULL, 'atomic', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(110, 843911, 0, NULL, 'harmony', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(111, 272439, 0, NULL, 'superperformance', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(112, 656636, 0, NULL, 'autoexotics', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(113, 791783, 0, NULL, 'ottos', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(114, 659526, 0, NULL, 'bennys', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(115, 246314, 0, NULL, 'noodle', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(116, 237335, 0, NULL, 'pdm', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(117, 909460, 0, NULL, 'realestate', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(118, 257487, 0, NULL, 'burgershot', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(119, 121316, 0, NULL, 'rustybrowns', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(120, 661916, 0, NULL, 'cluckinbell', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(121, 982445, 0, NULL, 'lasttrain', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(122, 953457, 0, NULL, 'uwu', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(123, 797670, 0, NULL, 'woods_saloon', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(124, 517141, 0, NULL, 'pizza_this', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(125, 776691, 0, NULL, 'prego', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(126, 358678, 0, NULL, 'rockford_records', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(127, 715211, 0, NULL, 'tequila', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(128, 905369, 0, NULL, 'tow', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(129, 253749, 0, NULL, 'triad', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(130, 935936, 0, NULL, 'bahama', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(131, 137993, 0, NULL, 'unicorn', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(132, 184547, 0, NULL, 'weed', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(133, 522650, 0, NULL, 'triad_holdings', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(134, 387220, 0, NULL, 'vagos', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(135, 321010, 0, NULL, 'dreamworks', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(136, 480287, 0, NULL, 'triad_boxing', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(137, 974183, 0, NULL, 'white', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(138, 625862, 0, NULL, 'nines', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(139, 968052, 0, NULL, 'oni', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(140, 214859, 0, NULL, 'ballers', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(141, 453335, 0, NULL, 'deathrow', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(142, 609688, 0, NULL, 'blackdragons', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(143, 839012, 0, NULL, 'block', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(144, 277978, 0, NULL, 'aztecas', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(145, 984212, 0, NULL, 'paleto_tuners', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(146, 146552, 0, NULL, 'mintmate', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(147, 260906, 0, NULL, 'bandits', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}'),
+	(148, 742724, 0, NULL, 'mba', '', '{"DEPOSIT":"BANK_ACCOUNT_DEPOSIT","TRANSACTIONS":"BANK_ACCOUNT_TRANSACTIONS","BILL":"BANK_ACCOUNT_BILL","WITHDRAW":"BANK_ACCOUNT_WITHDRAW","MANAGE":"BANK_ACCOUNT_MANAGE","BALANCE":"BANK_ACCOUNT_BALANCE"}');
 
--- Struktúra mentése tábla fivem-sandbox. bank_accounts_transactions
+-- Dumping structure for table fivem-sandbox.bank_accounts_transactions
 CREATE TABLE IF NOT EXISTS `bank_accounts_transactions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) NOT NULL,
@@ -73,32 +237,28 @@ CREATE TABLE IF NOT EXISTS `bank_accounts_transactions` (
   `data` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `account` (`account`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Tábla adatainak mentése fivem-sandbox.bank_accounts_transactions: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `bank_accounts_transactions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bank_accounts_transactions` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.bank_accounts_transactions: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. bench_schematics
+-- Dumping structure for table fivem-sandbox.bench_schematics
 CREATE TABLE IF NOT EXISTS `bench_schematics` (
   `bench` char(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `schematic` char(255) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   KEY `bench` (`bench`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.bench_schematics: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `bench_schematics` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bench_schematics` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.bench_schematics: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. blueline_race_history
+-- Dumping structure for table fivem-sandbox.blueline_race_history
 CREATE TABLE IF NOT EXISTS `blueline_race_history` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `state` int(11) NOT NULL DEFAULT 0,
-  `name` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `host` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `host` varchar(32) NOT NULL,
   `track` int(11) unsigned NOT NULL,
-  `class` varchar(4) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `racers` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '[]',
+  `class` varchar(4) NOT NULL,
+  `racers` longtext NOT NULL DEFAULT '[]',
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`) USING BTREE,
   KEY `pd_race_history_track` (`track`) USING BTREE,
@@ -106,35 +266,31 @@ CREATE TABLE IF NOT EXISTS `blueline_race_history` (
   CONSTRAINT `pd_race_history_track` FOREIGN KEY (`track`) REFERENCES `blueline_tracks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.blueline_race_history: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `blueline_race_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `blueline_race_history` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.blueline_race_history: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. blueline_tracks
+-- Dumping structure for table fivem-sandbox.blueline_tracks
 CREATE TABLE IF NOT EXISTS `blueline_tracks` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `distance` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `type` varchar(16) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `checkpoints` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `created_by` varchar(64) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `name` varchar(64) NOT NULL,
+  `distance` varchar(256) NOT NULL,
+  `type` varchar(16) NOT NULL,
+  `checkpoints` longtext NOT NULL,
+  `created_by` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.blueline_tracks: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `blueline_tracks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `blueline_tracks` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.blueline_tracks: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. blueline_track_history
+-- Dumping structure for table fivem-sandbox.blueline_track_history
 CREATE TABLE IF NOT EXISTS `blueline_track_history` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `track` int(11) unsigned NOT NULL,
   `race` int(11) unsigned NOT NULL,
-  `callsign` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `callsign` varchar(32) NOT NULL,
   `lap_start` int(11) NOT NULL,
   `lap_end` int(11) NOT NULL,
   `laptime` int(11) NOT NULL,
-  `car` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `car` varchar(256) NOT NULL,
   `owned` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `pd_track_history_track` (`track`) USING BTREE,
@@ -144,42 +300,66 @@ CREATE TABLE IF NOT EXISTS `blueline_track_history` (
   CONSTRAINT `pd_track_history_track` FOREIGN KEY (`track`) REFERENCES `blueline_tracks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.blueline_track_history: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `blueline_track_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `blueline_track_history` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.blueline_track_history: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. business_phones
+-- Dumping structure for table fivem-sandbox.business_phones
 CREATE TABLE IF NOT EXISTS `business_phones` (
   `id` char(50) NOT NULL DEFAULT 'AUTO_INCREMENT',
   `number` varchar(50) NOT NULL DEFAULT '0',
   `muted` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.business_phones: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `business_phones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `business_phones` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.business_phones: ~29 rows (approximately)
+INSERT INTO `business_phones` (`id`, `number`, `muted`) VALUES
+	('autoexotics', '622-970-6947', NULL),
+	('bahama', '096-892-5597', NULL),
+	('bakery', '289-221-1843', NULL),
+	('beanmachine', '197-789-8287', NULL),
+	('bennys', '710-471-9435', NULL),
+	('bowling', '463-026-5329', NULL),
+	('burgershot', '174-303-6501', NULL),
+	('casino', '931-155-9964', NULL),
+	('dreamworks', '129-466-4878', NULL),
+	('garcon_pawn', '612-504-4785', NULL),
+	('harmony', '278-880-2215', NULL),
+	('hayes', '747-525-9582', NULL),
+	('lasttrain', '370-885-9015', NULL),
+	('noodle', '856-602-0847', NULL),
+	('ottos', '521-316-6145', NULL),
+	('paleto_tuners', '521-720-7694', NULL),
+	('pdm', '612-146-3360', NULL),
+	('pepega_pawn', '393-207-4426', NULL),
+	('pizza_this', '658-390-9596', NULL),
+	('prego', '471-171-7066', NULL),
+	('realestate', '922-959-4131', NULL),
+	('rustybrowns', '652-158-0014', NULL),
+	('triad', '426-344-9862', NULL),
+	('tuna', '063-060-3147', NULL),
+	('unicorn', '501-139-7594', NULL),
+	('uwu', '730-824-3068', NULL),
+	('vangelico', '989-757-8322', NULL),
+	('vangelico_grapeseed', '983-214-0741', NULL),
+	('woods_saloon', '236-188-7710', NULL);
 
--- Struktúra mentése tábla fivem-sandbox. character_app_profiles
+-- Dumping structure for table fivem-sandbox.character_app_profiles
 CREATE TABLE IF NOT EXISTS `character_app_profiles` (
   `sid` bigint(20) unsigned NOT NULL,
-  `app` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `name` varchar(64) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `picture` varchar(512) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `meta` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '{}',
+  `app` varchar(32) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `picture` varchar(512) DEFAULT NULL,
+  `meta` longtext NOT NULL DEFAULT '{}',
   PRIMARY KEY (`sid`,`app`),
   UNIQUE KEY `app` (`app`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_app_profiles: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_app_profiles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_app_profiles` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_app_profiles: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_calls
+-- Dumping structure for table fivem-sandbox.character_calls
 CREATE TABLE IF NOT EXISTS `character_calls` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `owner` varchar(12) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `number` varchar(12) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `owner` varchar(12) NOT NULL,
+  `number` varchar(12) NOT NULL,
   `time` datetime NOT NULL DEFAULT current_timestamp(),
   `method` bit(1) NOT NULL DEFAULT b'0',
   `duration` int(11) NOT NULL DEFAULT -1,
@@ -192,11 +372,9 @@ CREATE TABLE IF NOT EXISTS `character_calls` (
   KEY `owner` (`owner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_calls: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_calls` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_calls` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_calls: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_chatter_groups
+-- Dumping structure for table fivem-sandbox.character_chatter_groups
 CREATE TABLE IF NOT EXISTS `character_chatter_groups` (
   `sid` bigint(20) unsigned NOT NULL,
   `chatty_group` bigint(20) unsigned NOT NULL,
@@ -206,52 +384,46 @@ CREATE TABLE IF NOT EXISTS `character_chatter_groups` (
   CONSTRAINT `chatter_char_group` FOREIGN KEY (`chatty_group`) REFERENCES `chatter_groups` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_chatter_groups: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_chatter_groups` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_chatter_groups` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_chatter_groups: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_contacts
+-- Dumping structure for table fivem-sandbox.character_contacts
 CREATE TABLE IF NOT EXISTS `character_contacts` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `sid` bigint(20) NOT NULL,
-  `number` varchar(12) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `name` varchar(64) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `avatar` varchar(256) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `color` varchar(10) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `number` varchar(12) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `avatar` varchar(256) DEFAULT NULL,
+  `color` varchar(10) DEFAULT NULL,
   `favorite` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `sid` (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_contacts: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_contacts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_contacts` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_contacts: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_documents
+-- Dumping structure for table fivem-sandbox.character_documents
 CREATE TABLE IF NOT EXISTS `character_documents` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `sid` int(11) unsigned NOT NULL,
   `time` datetime NOT NULL DEFAULT current_timestamp(),
-  `title` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `content` longtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`sid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_documents: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_documents` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_documents` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_documents: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_documents_shared
+-- Dumping structure for table fivem-sandbox.character_documents_shared
 CREATE TABLE IF NOT EXISTS `character_documents_shared` (
   `doc_id` int(10) unsigned NOT NULL,
   `sid` int(10) unsigned NOT NULL,
   `sharer` int(10) unsigned NOT NULL,
-  `sharer_name` varchar(256) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `sharer_name` varchar(256) DEFAULT NULL,
   `shared_date` datetime NOT NULL DEFAULT current_timestamp(),
   `signature_required` tinyint(1) NOT NULL DEFAULT 0,
   `signed` datetime DEFAULT NULL,
-  `signed_name` varchar(256) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `signed_name` varchar(256) DEFAULT NULL,
   UNIQUE KEY `doc_id_sid` (`doc_id`,`sid`),
   KEY `sid` (`sid`),
   KEY `sharer` (`sharer`),
@@ -259,49 +431,43 @@ CREATE TABLE IF NOT EXISTS `character_documents_shared` (
   CONSTRAINT `doc_shared` FOREIGN KEY (`doc_id`) REFERENCES `character_documents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_documents_shared: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_documents_shared` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_documents_shared` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_documents_shared: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_emails
+-- Dumping structure for table fivem-sandbox.character_emails
 CREATE TABLE IF NOT EXISTS `character_emails` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `sid` int(10) unsigned NOT NULL,
-  `sender` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `subject` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `body` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `sender` varchar(256) NOT NULL,
+  `subject` varchar(256) NOT NULL,
+  `body` longtext NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT current_timestamp(),
   `unread` bit(1) NOT NULL DEFAULT b'1',
-  `flags` longtext COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `flags` longtext DEFAULT NULL,
   `expires` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `sid` (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_emails: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_emails` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_emails` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_emails: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_messages
+-- Dumping structure for table fivem-sandbox.character_messages
 CREATE TABLE IF NOT EXISTS `character_messages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `owner` varchar(12) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `number` varchar(12) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `owner` varchar(12) NOT NULL,
+  `number` varchar(12) NOT NULL,
   `method` tinyint(1) NOT NULL DEFAULT 0,
   `unread` bit(1) NOT NULL DEFAULT b'1',
   `time` datetime NOT NULL DEFAULT current_timestamp(),
-  `message` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `message` varchar(256) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`),
   KEY `number` (`number`),
   KEY `ownu` (`owner`,`number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_messages: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_messages` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_messages: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_parole
+-- Dumping structure for table fivem-sandbox.character_parole
 CREATE TABLE IF NOT EXISTS `character_parole` (
   `SID` int(11) NOT NULL,
   `end` datetime NOT NULL,
@@ -312,11 +478,21 @@ CREATE TABLE IF NOT EXISTS `character_parole` (
   PRIMARY KEY (`SID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_parole: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_parole` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_parole` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_parole: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. character_schematics
+-- Dumping structure for table fivem-sandbox.character_photos
+CREATE TABLE IF NOT EXISTS `character_photos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sid` varchar(50) NOT NULL,
+  `image_url` text NOT NULL,
+  `time` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_sid` (`sid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Dumping data for table fivem-sandbox.character_photos: ~0 rows (approximately)
+
+-- Dumping structure for table fivem-sandbox.character_schematics
 CREATE TABLE IF NOT EXISTS `character_schematics` (
   `sid` int(11) DEFAULT NULL,
   `bench` char(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
@@ -324,32 +500,28 @@ CREATE TABLE IF NOT EXISTS `character_schematics` (
   KEY `sid` (`sid`,`bench`),
   KEY `schematic` (`schematic`,`bench`,`sid`),
   KEY `sid_schem` (`sid`,`schematic`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.character_schematics: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `character_schematics` DISABLE KEYS */;
-/*!40000 ALTER TABLE `character_schematics` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.character_schematics: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. chatter_groups
+-- Dumping structure for table fivem-sandbox.chatter_groups
 CREATE TABLE IF NOT EXISTS `chatter_groups` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `label` varchar(64) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'Chatter Group',
-  `icon` varchar(1024) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `label` varchar(64) NOT NULL DEFAULT 'Chatter Group',
+  `icon` varchar(1024) DEFAULT NULL,
   `owner` bigint(20) NOT NULL,
   `create_date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.chatter_groups: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `chatter_groups` DISABLE KEYS */;
-/*!40000 ALTER TABLE `chatter_groups` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.chatter_groups: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. chatter_messages
+-- Dumping structure for table fivem-sandbox.chatter_messages
 CREATE TABLE IF NOT EXISTS `chatter_messages` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `group` bigint(20) unsigned NOT NULL,
   `author` bigint(20) unsigned NOT NULL,
-  `message` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `message` varchar(256) NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `chatter_msg_group` (`group`),
@@ -357,31 +529,27 @@ CREATE TABLE IF NOT EXISTS `chatter_messages` (
   CONSTRAINT `chatter_msg_group` FOREIGN KEY (`group`) REFERENCES `chatter_groups` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.chatter_messages: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `chatter_messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `chatter_messages` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.chatter_messages: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. crafting_cooldowns
+-- Dumping structure for table fivem-sandbox.crafting_cooldowns
 CREATE TABLE IF NOT EXISTS `crafting_cooldowns` (
   `bench` varchar(64) NOT NULL,
   `id` varchar(64) NOT NULL,
   `expires` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.crafting_cooldowns: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `crafting_cooldowns` DISABLE KEYS */;
-/*!40000 ALTER TABLE `crafting_cooldowns` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.crafting_cooldowns: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. firearms
+-- Dumping structure for table fivem-sandbox.firearms
 CREATE TABLE IF NOT EXISTS `firearms` (
   `police_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `serial` char(128) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `scratched` tinyint(1) NOT NULL DEFAULT 0,
   `purchased` datetime NOT NULL DEFAULT current_timestamp(),
-  `model` varchar(128) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `model` varchar(128) NOT NULL,
   `item` char(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `owner_sid` int(11) unsigned DEFAULT NULL,
-  `owner_name` varchar(512) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `owner_name` varchar(512) DEFAULT NULL,
   `police_filed` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`police_id`),
   KEY `owner_sid` (`owner_sid`) USING BTREE,
@@ -389,31 +557,27 @@ CREATE TABLE IF NOT EXISTS `firearms` (
   KEY `serial` (`serial`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1956 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.firearms: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `firearms` DISABLE KEYS */;
-/*!40000 ALTER TABLE `firearms` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.firearms: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. firearms_flags
+-- Dumping structure for table fivem-sandbox.firearms_flags
 CREATE TABLE IF NOT EXISTS `firearms_flags` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `serial` char(128) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `type` char(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `title` varchar(64) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `type` char(32) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  `description` longtext NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `author_sid` int(11) unsigned NOT NULL,
-  `author_first` varchar(128) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `author_last` varchar(128) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `author_callsign` varchar(4) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `author_first` varchar(128) NOT NULL,
+  `author_last` varchar(128) NOT NULL,
+  `author_callsign` varchar(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `serial` (`serial`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.firearms_flags: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `firearms_flags` DISABLE KEYS */;
-/*!40000 ALTER TABLE `firearms_flags` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.firearms_flags: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. inventory
+-- Dumping structure for table fivem-sandbox.inventory
 CREATE TABLE IF NOT EXISTS `inventory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner` char(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
@@ -430,13 +594,11 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   KEY `name` (`owner`) USING BTREE,
   KEY `slot` (`slot`,`owner`) USING BTREE,
   KEY `item_id` (`owner`,`item_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1164832 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1164832 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.inventory: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.inventory: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. inventory_shop_logs
+-- Dumping structure for table fivem-sandbox.inventory_shop_logs
 CREATE TABLE IF NOT EXISTS `inventory_shop_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
@@ -447,23 +609,21 @@ CREATE TABLE IF NOT EXISTS `inventory_shop_logs` (
   `buyer` int(11) NOT NULL DEFAULT 0,
   `metadata` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.inventory_shop_logs: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `inventory_shop_logs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `inventory_shop_logs` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.inventory_shop_logs: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. item_template
+-- Dumping structure for table fivem-sandbox.item_template
 CREATE TABLE IF NOT EXISTS `item_template` (
   `name` char(64) CHARACTER SET big5 COLLATE big5_bin NOT NULL,
-  `label` varchar(128) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `description` varchar(256) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `label` varchar(128) NOT NULL,
+  `description` varchar(256) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `rarity` int(11) NOT NULL,
-  `iconOverride` varchar(256) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `iconOverride` varchar(256) DEFAULT NULL,
   `price` int(10) unsigned NOT NULL DEFAULT 0,
-  `weapon` varchar(256) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `state` varchar(256) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `weapon` varchar(256) DEFAULT NULL,
+  `state` varchar(256) DEFAULT NULL,
   `weight` int(10) unsigned NOT NULL DEFAULT 0,
   `imitate` char(64) CHARACTER SET ascii COLLATE ascii_bin DEFAULT NULL,
   `isStackable` int(10) unsigned DEFAULT NULL,
@@ -475,736 +635,901 @@ CREATE TABLE IF NOT EXISTS `item_template` (
   `isRemoved` tinyint(1) NOT NULL DEFAULT 0,
   `gun` tinyint(1) NOT NULL DEFAULT 0,
   `requiresLicense` tinyint(1) NOT NULL DEFAULT 0,
-  `qualification` varchar(32) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `ammoType` varchar(32) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `qualification` varchar(32) DEFAULT NULL,
+  `ammoType` varchar(32) DEFAULT NULL,
   `bulletCount` int(10) unsigned DEFAULT NULL,
   `container` int(10) unsigned DEFAULT NULL,
-  `staticMetadata` longtext COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `component` longtext COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `animConfig` longtext COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `statusChange` longtext COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `extra` longtext COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `schematic` varchar(64) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `staticMetadata` longtext DEFAULT NULL,
+  `component` longtext DEFAULT NULL,
+  `animConfig` longtext DEFAULT NULL,
+  `statusChange` longtext DEFAULT NULL,
+  `extra` longtext DEFAULT NULL,
+  `schematic` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.item_template: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `item_template` DISABLE KEYS */;
+-- Dumping data for table fivem-sandbox.item_template: ~866 rows (approximately)
 INSERT INTO `item_template` (`name`, `label`, `description`, `type`, `rarity`, `iconOverride`, `price`, `weapon`, `state`, `weight`, `imitate`, `isStackable`, `closeUi`, `metalic`, `durability`, `isUsable`, `isDestroyed`, `isRemoved`, `gun`, `requiresLicense`, `qualification`, `ammoType`, `bulletCount`, `container`, `staticMetadata`, `component`, `animConfig`, `statusChange`, `extra`, `schematic`) VALUES
-	('AMMO_PISTOL', 'Pistol Ammo', NULL, 9, 1, NULL, 50, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, NULL, 'AMMO_PISTOL', 30, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_PISTOL_PD', 'PD Pistol Ammo', NULL, 9, 1, 'AMMO_PISTOL', 5, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, NULL, 'AMMO_PISTOL', 34, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_RIFLE', 'Rifle Ammo', NULL, 9, 1, NULL, 25, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, NULL, 'AMMO_RIFLE', 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_RIFLE_PD', 'PD Rifle Ammo', NULL, 9, 1, 'AMMO_RIFLE', 10, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, 'PD_AR', 'AMMO_RIFLE', 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_RPG', 'Fookin Rockets Mate', NULL, 9, 1, NULL, 3, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, NULL, 'AMMO_RPG', 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_SHOTGUN', 'Shotgun Ammo', NULL, 9, 1, NULL, 30, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, NULL, 'AMMO_SHOTGUN', 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_SHOTGUN_PD', 'PD Shotgun Ammo', NULL, 9, 1, 'AMMO_SHOTGUN', 5, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, 'PD_BEANBAG', 'AMMO_SHOTGUN', 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_SMG', 'SMG Ammo', NULL, 9, 1, NULL, 300, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, NULL, 'AMMO_SMG', 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_SMG_PD', 'PD SMG Ammo', NULL, 9, 1, 'AMMO_SMG', 5, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, 'PD_SMG', 'AMMO_SMG', 60, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_SNIPER', 'Hunting Rifle Ammo', NULL, 9, 1, NULL, 250, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, NULL, 'AMMO_SNIPER', 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('AMMO_STUNGUN', 'Taser Ammo', NULL, 9, 1, NULL, 3, NULL, NULL, 1, NULL, 10, 1, 1, 2592000, 1, 1, 1, 0, 0, NULL, 'AMMO_STUNGUN', 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('ATTCH_ADV_AR_SILENCER', 'Adv. Rifle Suppressor', NULL, 16, 4, NULL, 25000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"muzzle","returnItem":true,"strings":{"WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_AT_AR_SUPP_02","WEAPON_RPK16":"COMPONENT_RPK16_MUZZLE_05","WEAPON_CARBINERIFLE_MK2":"COMPONENT_AT_AR_SUPP_02","WEAPON_PM4":"COMPONENT_MARKOMODS_SHARED_SUPP_14","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_AT_AR_SUPP","WEAPON_HK416":"COMPONENT_AT_HK416B_SUPP","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_AT_AR_SUPP_02","WEAPON_G36":"COMPONENT_MARKOMODSG36_BARREL_03","WEAPON_AR15":"COMPONENT_AR15_SUPP_01"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_ADV_PISTOL_SILENCER', 'Adv. Pistol Suppressor', NULL, 16, 4, NULL, 25000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"muzzle","returnItem":true,"strings":{"WEAPON_SNSPISTOL_MK2":"COMPONENT_AT_PI_SUPP_02","WEAPON_GLOCK19":"COMPONENT_GLOCK19_SUPP_02","WEAPON_PISTOL_MK2":"COMPONENT_AT_PI_SUPP_02","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_SUPP_02","WEAPON_FM1_M9A3":"COMPONENT_FMSUPP_07"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_ADV_SMG_SILENCER', 'Adv. SMG Suppressor', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"muzzle","returnItem":true,"strings":{"WEAPON_MPX":"COMPONENT_MPX_BARREL_08","WEAPON_VECTOR":"COMPONENT_MARKOMODS_VECTOR_SUPP_1","WEAPON_PP19":"COMPONENT_PP19_MUZZLE_05","WEAPON_SMG_MK2":"COMPONENT_AT_PI_SUPP","WEAPON_HKUMP":"COMPONENT_UMP_SUPP_02","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SUPP_02"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_AR_EXT_MAG', 'Extended AR Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"magazine","returnItem":true,"strings":{"WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_ASSAULTRIFLE_MK2_CLIP_02","WEAPON_ADVANCEDRIFLE":"COMPONENT_ADVANCEDRIFLE_CLIP_02","WEAPON_BULLPUPRIFLE":"COMPONENT_BULLPUPRIFLE_CLIP_02","WEAPON_G36":"COMPONENT_MARKOMODSG36_CLIP_02","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_BULLPUPRIFLE_MK2_CLIP_02","WEAPON_ASSAULTRIFLE":"COMPONENT_ASSAULTRIFLE_CLIP_02","WEAPON_SPECIALCARBINE":"COMPONENT_SPECIALCARBINE_CLIP_02","WEAPON_FM1_HONEYBADGER":"COMPONENT_FMCLIP_02","WEAPON_AR15":"COMPONENT_AR15_CLIP_02","WEAPON_ASSAULTSMG":"COMPONENT_ASSAULTSMG_CLIP_02","WEAPON_CARBINERIFLE_MK2":"COMPONENT_CARBINERIFLE_MK2_CLIP_02","WEAPON_PM4":"COMPONENT_MARKOMODS_SHARED_556MAG_03","WEAPON_HK416":"COMPONENT_HK416B_CLIP_02","WEAPON_RPK16":"COMPONENT_RPK16_CLIP_05","WEAPON_COMPACTRIFLE":"COMPONENT_COMPACTRIFLE_CLIP_02","WEAPON_CARBINERIFLE":"COMPONENT_CARBINERIFLE_CLIP_02","WEAPON_AK74":"COMPONENT_AK74_CLIP_02","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_SPECIALCARBINE_MK2_CLIP_02"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_AR_SILENCER', 'Rifle Suppressor', NULL, 16, 3, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"muzzle","returnItem":true,"strings":{"WEAPON_SPECIALRIFLE":"COMPONENT_AT_AR_SUPP","WEAPON_ADVANCEDRIFLE":"COMPONENT_AT_AR_SUPP","WEAPON_BULLPUPRIFLE":"COMPONENT_AT_AR_SUPP_02","WEAPON_ASSAULTRIFLE":"COMPONENT_AT_AR_SUPP_02","WEAPON_AK74":"COMPONENT_AK74_SUPP","WEAPON_CARBINERIFLE":"COMPONENT_AT_AR_SUPP"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_BOX_MAG', 'Box Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"magazine","returnItem":true,"strings":{"WEAPON_RPK16":"COMPONENT_RPK16_CLIP_06","WEAPON_CARBINERIFLE":"COMPONENT_CARBINERIFLE_CLIP_03","WEAPON_AK74":"COMPONENT_AK74_CLIP_03","WEAPON_G36":"COMPONENT_MARKOMODSG36_CLIP_04"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_DRUM_MAG', 'Drum Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"magazine","returnItem":true,"strings":{"WEAPON_MACHINEPISTOL":"COMPONENT_MACHINEPISTOL_CLIP_03","WEAPON_RPK16":"COMPONENT_RPK16_CLIP_07","WEAPON_G36":"COMPONENT_MARKOMODSG36_CLIP_03","WEAPON_MPX":"COMPONENT_MPX_CLIP_03","WEAPON_ASSAULTRIFLE":"COMPONENT_ASSAULTRIFLE_CLIP_03","WEAPON_PP19":"COMPONENT_PP19_CLIP_07","WEAPON_COMPACTRIFLE":"COMPONENT_COMPACTRIFLE_CLIP_03","WEAPON_COMBATPDW":"COMPONENT_COMBATPDW_CLIP_03","WEAPON_SPECIALCARBINE":"COMPONENT_SPECIALCARBINE_CLIP_03","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_CLIP_04"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_GRIP', 'Foregrip', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"grip","returnItem":true,"strings":{"WEAPON_RPK16":"COMPONENT_RPK16_GRIP_01","WEAPON_HKUMP":"COMPONENT_UMP_GRIP_01","WEAPON_G36":"COMPONENT_MARKOMODSG36_GRIP_02"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_HOLO', 'Holographic Sight', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"optic","returnItem":true,"strings":{"WEAPON_AR15":"COMPONENT_BEOWULF_SCOPE_04","WEAPON_P90FM":"COMPONENT_P90_SCOPE_07","WEAPON_RPK16":"COMPONENT_MARKOMODSG36_SCOPE_02","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_04","WEAPON_MPX":"COMPONENT_MPX_SCOPE_04","WEAPON_PP19":"COMPONENT_PP19_SCOPE_07","WEAPON_HK416":"COMPONENT_AT_SCOPE_HK416B","WEAPON_HKUMP":"COMPONENT_UMP_SCOPE_04","WEAPON_L5":"COMPONENT_MARKOMODSL5_SCOPE_06","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SCOPE_01"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_LRG_SCOPE', 'Large Scope', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"optic","returnItem":true,"strings":{"WEAPON_MPX":"COMPONENT_MPX_SCOPE_08","WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_AT_SCOPE_MEDIUM_MK2","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_AT_SCOPE_MEDIUM_MK2","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_10","WEAPON_CARBINERIFLE_MK2":"COMPONENT_AT_SCOPE_MEDIUM_MK2"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_MED_SCOPE', 'Medium Scope', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"optic","returnItem":true,"strings":{"WEAPON_L5":"COMPONENT_MARKOMODSL5_SCOPE_09","WEAPON_RPK16":"COMPONENT_MARKOMODSG36_SCOPE_08","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_09","WEAPON_MPX":"COMPONENT_MPX_SCOPE_06","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_AT_SCOPE_SMALL_MK2","WEAPON_HKUMP":"COMPONENT_UMP_SCOPE_10","WEAPON_CARBINERIFLE":"COMPONENT_AT_SCOPE_MEDIUM","WEAPON_SPECIALCARBINE":"COMPONENT_AT_SCOPE_MEDIUM","WEAPON_PP19":"COMPONENT_PP19_SCOPE_10"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_PISTOL_EXT_MAG', 'Extended Pistol Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"magazine","returnItem":true,"strings":{"WEAPON_SNSPISTOL":"COMPONENT_SNSPISTOL_CLIP_02","WEAPON_L5":"COMPONENT_MARKOMODSL5_CLIP_02","WEAPON_APPISTOL":"COMPONENT_APPISTOL_CLIP_02","WEAPON_MACHINEPISTOL":"COMPONENT_MACHINEPISTOL_CLIP_02","WEAPON_FIVESEVEN":"COMPONENT_FIVESEVEN_CLIP_02","WEAPON_2011":"COMPONENT_MARKOMODS2011_CLIP_02","WEAPON_PISTOL":"COMPONENT_PISTOL_CLIP_02","WEAPON_SNSPISTOL_MK2":"COMPONENT_SNSPISTOL_MK2_CLIP_02","WEAPON_GLOCK19":"COMPONENT_GLOCK19_CLIP_02","WEAPON_PISTOL50":"COMPONENT_PISTOL50_CLIP_02","WEAPON_M45A1":"COMPONENT_M45A1_CLIP_02","WEAPON_HEAVYPISTOL":"COMPONENT_HEAVYPISTOL_CLIP_02","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_CLIP_02","WEAPON_COMBATPISTOL":"COMPONENT_COMBATPISTOL_CLIP_02","WEAPON_FM1_M9A3":"COMPONENT_FM1_M9A3_CLIP_02","WEAPON_PISTOL_MK2":"COMPONENT_PISTOL_MK2_CLIP_02","WEAPON_FNX45":"COMPONENT_MARKOMODS_FNX45_MAG_03","WEAPON_P320A":"COMPONENT_MARKOMODSP320a_CLIP_02"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_PISTOL_SILENCER', 'Pistol Suppressor', NULL, 16, 3, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"muzzle","returnItem":true,"strings":{"WEAPON_2011":"COMPONENT_MARKOMODS2011_MUZZLE_02","WEAPON_HEAVYPISTOL":"COMPONENT_AT_PI_SUPP","WEAPON_FNX45":"COMPONENT_MARKOMODS_FNX45_SUPP_02","WEAPON_COMBATPISTOL":"COMPONENT_AT_PI_SUPP","WEAPON_M45A1":"COMPONENT_M45A1_SUPP_01","WEAPON_PISTOL":"COMPONENT_AT_PI_SUPP"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_REDDOT', 'Red Dot Sight', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"optic","returnItem":true,"strings":{"WEAPON_AR15":"COMPONENT_BEOWULF_SCOPE_09","WEAPON_RPK16":"COMPONENT_MARKOMODSG36_SCOPE_06","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_SCOPE_03","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_03","WEAPON_HKUMP":"COMPONENT_UMP_SCOPE_04","WEAPON_PP19":"COMPONENT_PP19_SCOPE_02","WEAPON_SMG_MK2":"COMPONENT_AT_SIGHTS_SMG","WEAPON_GLOCK19":"COMPONENT_GLOCK19_SCOPE_03","WEAPON_L5":"COMPONENT_MARKOMODSL5_SCOPE_07","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SCOPE_06"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_SMALL_SCOPE', 'Small Scope', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"optic","returnItem":true,"strings":{"WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_AT_SCOPE_MACRO_MK2","WEAPON_ADVANCEDRIFLE":"COMPONENT_AT_SCOPE_SMALL","WEAPON_BULLPUPRIFLE":"COMPONENT_AT_SCOPE_SMALL","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_06","WEAPON_SMG":"COMPONENT_AT_SCOPE_MACRO_02","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_AT_SCOPE_MACRO_02_MK2","WEAPON_SMG_MK2":"COMPONENT_AT_SCOPE_SMALL_SMG_MK2","WEAPON_MICROSMG":"COMPONENT_AT_SCOPE_MACRO","WEAPON_HKUMP":"COMPONENT_UMP_SCOPE_01","WEAPON_ASSAULTRIFLE":"COMPONENT_AT_SCOPE_MACRO","WEAPON_GLOCK19":"COMPONENT_GLOCK19_SCOPE_07","WEAPON_AR15":"COMPONENT_BEOWULF_SCOPE_10","WEAPON_L5":"COMPONENT_MARKOMODSL5_SCOPE_08","WEAPON_RPK16":"COMPONENT_MARKOMODSG36_SCOPE_04","WEAPON_ASSAULTSMG":"COMPONENT_AT_SCOPE_MACRO","WEAPON_PP19":"COMPONENT_PP19_SCOPE_06","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_SCOPE_07","WEAPON_CARBINERIFLE_MK2":"COMPONENT_AT_SCOPE_MACRO_MK2","WEAPON_MPX":"COMPONENT_MPX_SCOPE_03","WEAPON_MP9A":"COMPONENT_AT_SCOPE_MP9A","WEAPON_P90FM":"P90Scope4FluffysMods","WEAPON_COMBATPDW":"COMPONENT_AT_SCOPE_SMALL","WEAPON_MP5":"COMPONENT_AT_SCOPE_MP5","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_AT_SCOPE_MACRO_MK2","WEAPON_CARBINERIFLE":"COMPONENT_CARBINERIFLE_CLIP_03","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SCOPE_03"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_SMG_EXT_MAG', 'Extended SMG Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"magazine","returnItem":true,"strings":{"WEAPON_MP9A":"COMPONENT_MP9A_CLIP_02","WEAPON_SMG_MK2":"COMPONENT_SMG_MK2_CLIP_02","WEAPON_ASSAULTSMG":"COMPONENT_ASSAULTSMG_CLIP_02","WEAPON_HKUMP":"COMPONENT_UMP_CLIP_02","WEAPON_MINISMG":"COMPONENT_MINISMG_CLIP_02","WEAPON_PISTOL_MK2":"COMPONENT_PISTOL_MK2_CLIP_02","WEAPON_MPX":"COMPONENT_MPX_CLIP_02","WEAPON_VECTOR":"COMPONENT_MARKOMODS_VECTOR_CLIP_2","WEAPON_SMG":"COMPONENT_SMG_CLIP_02","WEAPON_PP19":"COMPONENT_PP19_CLIP_03","WEAPON_MP5":"COMPONENT_MP5_CLIP_02","WEAPON_MICROSMG":"COMPONENT_MICROSMG_CLIP_02","WEAPON_COMBATPDW":"COMPONENT_SNSPISTOL_MK2_CLIP_02","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_CLIP_03"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_SMG_SILENCER', 'SMG Suppressor', NULL, 16, 3, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"muzzle","returnItem":true,"strings":{"WEAPON_MP9A":"COMPONENT_AT_MP9A_SUPP_02","WEAPON_SMG":"COMPONENT_AT_PI_SUPP","WEAPON_MP5":"COMPONENT_AT_MP5_SUPP","WEAPON_MICROSMG":"COMPONENT_AT_AR_SUPP_02","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SUPP_01"}}', NULL, NULL, NULL, NULL),
-	('ATTCH_WEAPON_FLASHLIGHT', 'Weapon Flashlight', NULL, 16, 2, NULL, 15000, NULL, NULL, 2, NULL, 0, 1, 1, 5184000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '{"type":"flashlight","returnItem":true,"strings":{"WEAPON_MP9A":"COMPONENT_AT_MP9A_FLSH","WEAPON_APPISTOL":"COMPONENT_AT_PI_FLSH","WEAPON_ADVANCEDRIFLE":"COMPONENT_AT_AR_FLSH","WEAPON_BULLPUPRIFLE":"COMPONENT_AT_AR_FLSH","WEAPON_G36":"COMPONENT_MARKOMODSG36_FLASH_02","WEAPON_SMG":"COMPONENT_AT_AR_FLSH","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_SMG_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_SPECIALCARBINE":"COMPONENT_AT_AR_FLSH","WEAPON_FM1_HONEYBADGER":"COMPONENT_FMFLSH_12","WEAPON_AR15":"COMPONENT_BEOWULF_FLSH_01","WEAPON_ASSAULTSMG":"COMPONENT_AT_AR_FLSH","WEAPON_CARBINERIFLE_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_MPX":"COMPONENT_MPX_FLSH_03","WEAPON_PUMPSHOTGUN":"COMPONENT_AT_AR_FLSH","WEAPON_CARBINERIFLE":"COMPONENT_AT_AR_FLSH","WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_2011":"COMPONENT_MARKOMODS2011_FLSH_03","WEAPON_PISTOL":"COMPONENT_AT_PI_FLSH","WEAPON_PM4":"COMPONENT_MARKOMODS_SHARED_FLASH_07a","WEAPON_FM1_M9A3":"COMPONENT_FMFLSH_01","WEAPON_HEAVYSHOTGUN":"COMPONENT_AT_AR_FLSH","WEAPON_FNX45":"COMPONENT_MARKOMODS_FNX45_FLASH_02","WEAPON_HK416":"COMPONENT_AT_HK416B_FLSH","WEAPON_PISTOL50":"COMPONENT_AT_PI_FLSH","WEAPON_M45A1":"COMPONENT_M45A1_FLSH_01","WEAPON_HEAVYPISTOL":"COMPONENT_AT_PI_FLSH","WEAPON_HKUMP":"COMPONENT_UMP_FLSH_03","WEAPON_P90FM":"COMPONENT_P90_FLSH_01","WEAPON_P320A":"COMPONENT_MARKOMODSP320a_FLASH_01","WEAPON_RPK16":"COMPONENT_RPK16_LASER_01","WEAPON_ASSAULTSHOTGUN":"COMPONENT_AT_AR_FLSH","WEAPON_ASSAULTRIFLE":"COMPONENT_AT_AR_FLSH","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_FLSH_01","WEAPON_COMBATPISTOL":"COMPONENT_AT_PI_FLSH","WEAPON_PUMPSHOTGUN_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_50BEOWULF":"COMPONENT_BEOWULF_FLSH_01","WEAPON_COMBATPDW":"COMPONENT_AT_AR_FLSH","WEAPON_MP5":"COMPONENT_AT_AR_FLSH","WEAPON_PISTOL_MK2":"COMPONENT_AT_PI_FLSH_02","WEAPON_BULLPUPSHOTGUN":"COMPONENT_AT_AR_FLSH","WEAPON_MICROSMG":"COMPONENT_AT_PI_FLSH"}}', NULL, NULL, NULL, NULL),
-	('BOBCAT_57', 'Six Eight', NULL, 2, 2, 'WEAPON_FIVESEVEN', 10000, 'WEAPON_FIVESEVEN', NULL, 10, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_COMBATPISTOL', 'Combat Pistol', NULL, 2, 1, 'WEAPON_COMBATPISTOL', 3200, 'WEAPON_COMBATPISTOL', NULL, 10, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_DBSHOTGUN', 'Double Barrel Shotgun', NULL, 2, 1, 'WEAPON_DBSHOTGUN', 10000, 'WEAPON_DBSHOTGUN', NULL, 12, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_DOUBLEACTION', 'Double Action Revolver', NULL, 2, 2, 'WEAPON_DOUBLEACTION', 8000, 'WEAPON_DOUBLEACTION', NULL, 10, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_FNX', 'SB 45 Tactical', NULL, 2, 1, 'WEAPON_FNX', 3200, 'WEAPON_FNX', NULL, 10, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_GLOCK19_CIV', 'F19X', NULL, 2, 3, 'WEAPON_GLOCK19', 6000, 'WEAPON_GLOCK19_CIV', NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_PISTOL50', 'Desert Eagle', NULL, 2, 2, 'WEAPON_PISTOL50', 6000, 'WEAPON_PISTOL50', NULL, 10, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_PUMPSHOTGUN', 'Pump Shotgun', NULL, 2, 2, 'WEAPON_PUMPSHOTGUN', 10000, 'WEAPON_PUMPSHOTGUN', NULL, 15, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_REVOLVER', 'Revolver', NULL, 2, 2, 'WEAPON_REVOLVER', 7000, 'WEAPON_REVOLVER', NULL, 10, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_SAWNOFFSHOTGUN', 'Sawnoff Shotgun', NULL, 2, 1, 'WEAPON_SAWNOFFSHOTGUN', 10000, 'WEAPON_SAWNOFFSHOTGUN', NULL, 12, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_SMG_MK2', 'SIG MPX', NULL, 2, 2, 'WEAPON_SMG_MK2', 10000, 'WEAPON_SMG_MK2', NULL, 12, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('BOBCAT_SNSPISTOL', 'SNS Pistol', NULL, 2, 2, 'WEAPON_SNSPISTOL', 3500, 'WEAPON_SNSPISTOL', NULL, 8, NULL, 0, 1, 1, 604800, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_2011', '2011 Tactical', NULL, 2, 3, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_50BEOWULF', 'SB .50 Beowulf', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_ADVANCEDRIFLE', 'Adv. Rifle', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_AK74', 'AK-74', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_APPISTOL', 'F18 Auto', NULL, 2, 2, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_AR15', 'SB556A1', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_AR15_PD', 'PD SB556A1', NULL, 2, 3, 'WEAPON_AR15', 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, 'PD_AR', 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_ASSAULTRIFLE', 'AK-47', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_ASSAULTRIFLE_MK2', 'AK-12', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_ASSAULTSHOTGUN', 'SB 12G Assault', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_ASSAULTSMG', 'F90', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_ASVAL', 'AS-VAL', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_AUTOSHOTGUN', 'Auto Shotty', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BALL', 'Ball', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 0, 1, 0, 1814400, 1, 0, 1, 1, 0, NULL, 'AMMO_BALL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BAT', 'Baseball Bat', NULL, 2, 1, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 0, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BATTLEAXE', 'Battle Axe', NULL, 2, 2, NULL, 400, NULL, NULL, 18, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BEANBAG', 'Beanbag Gun', NULL, 2, 3, NULL, 300, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, 'PD_BEANBAG', 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BENELLIM2', 'BM2', NULL, 2, 1, NULL, 3200, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BENELLIM2_PD', 'PD BM2', NULL, 2, 1, NULL, 3200, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, 'PD_BEANBAG', 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BOTTLE', 'Broken Bottle', NULL, 2, 1, NULL, 400, NULL, NULL, 8, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BULLPUPRIFLE', 'Bullpup Rifle', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BULLPUPRIFLE_MK2', 'Bullpup Rifle Mk2', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BULLPUPSHOTGUN', 'SB Bullpup Shotgun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_BZGAS', 'BZ Gas', NULL, 2, 4, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 1, 1, 1, NULL, 'AMMO_BZGAS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_CARBINERIFLE', 'PD .556', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_CARBINERIFLE_MK2', 'PD .762', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_COMBATMG', 'LMG', NULL, 2, 3, NULL, 10000, NULL, NULL, 20, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_MG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_COMBATMG_MK2', 'LMG MK2', NULL, 2, 3, NULL, 10000, NULL, NULL, 20, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_MG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_COMBATPDW', 'Combat PDW', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_COMBATPISTOL', 'Combat Pistol', NULL, 2, 1, NULL, 3200, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_COMPACTRIFLE', 'Draco', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_CROWBAR', 'Crowbar', NULL, 2, 1, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_CRUTCH', 'Crutch', NULL, 2, 1, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 0, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_DAGGER', 'Dagger', NULL, 2, 2, NULL, 400, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_DBSHOTGUN', 'Double Barrel Shotgun', NULL, 2, 1, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_DOUBLEACTION', 'Double Action Revolver', NULL, 2, 3, NULL, 8000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_DOUBLEBARRELFM', 'Double Barrel', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_DRBAT', 'Dr-Deshbat', NULL, 2, 1, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 0, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FIREEXTINGUISHER', 'Fire Extinguisher', NULL, 1, 1, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 1, 0, 0, 0, NULL, 'AMMO_FIREEXTINGUISHER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FIREWORK', 'Firework Launcher', NULL, 2, 1, NULL, 100000, NULL, NULL, 20, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, 'AMMO_FIREWORK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FIVESEVEN', 'Six Eight', NULL, 2, 3, NULL, 10000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FLARE', 'Flare', NULL, 2, 3, NULL, 1000, NULL, NULL, 10, NULL, 10, 1, 1, 1209600, 1, 0, 1, 1, 0, NULL, 'AMMO_FLARE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FLAREGUN', 'Flaregun', NULL, 2, 3, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, 'AMMO_FLAREGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FLASHBANG', 'Flashbang', NULL, 2, 4, NULL, 1000, NULL, NULL, 1, NULL, 10, 1, 1, 1814400, 1, 0, 1, 1, 1, 'PD_SWAT', 'AMMO_FLASH', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FLASHLIGHT', 'Flashlight', NULL, 2, 1, NULL, 75, NULL, NULL, 8, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FM1_CZ75', 'SB-69', NULL, 2, 1, NULL, 3200, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FM1_HK416', 'HK416 FM1', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FM1_HONEYBADGER', 'Honey Badger', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FM1_M9A3', 'M9A3', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FM1_P226', 'SB 226', NULL, 2, 1, NULL, 3200, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FM2_HK416', 'HK416 FM2', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FN509', 'SB-509', NULL, 2, 1, NULL, 3200, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FNX', 'SB 45 Tactical', NULL, 2, 1, NULL, 3200, 'WEAPON_FNX45', NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_FNX45', 'SB 45 Tactical', NULL, 2, 1, 'WEAPON_FNX', 3200, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_G36', 'F69', NULL, 2, 3, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_GLOCK19', 'PD F19', NULL, 2, 3, 'WEAPON_GLOCK19', 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_GLOCK19_CIV', 'F19', NULL, 2, 3, 'WEAPON_GLOCK19', 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_GOLFCLUB', 'Golf Club', NULL, 2, 1, NULL, 500, NULL, NULL, 12, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_GRENADE', 'Grenade', NULL, 2, 4, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 1, 1, 1, NULL, 'AMMO_GRENADE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_GRENADELAUNCHER_SMOKE', 'S Grenade Launcher', NULL, 2, 3, NULL, 100000, NULL, NULL, 20, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_GRENADELAUNCHER_SMOKE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_GUSENBERG', 'Tommy Gun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HAMMER', 'Hammer', NULL, 2, 1, NULL, 500, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HATCHET', 'Hatchet', NULL, 2, 1, NULL, 400, NULL, NULL, 18, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HEAVYPISTOL', 'Heavy Pistol', NULL, 2, 2, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HEAVYSHOTGUN', 'Assault Shotgun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HEAVYSNIPER', '.50 Sniper', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HEAVYSNIPER_MK2', 'BFG-50A', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HK417', 'HK417', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HKUMP', '.45 SMG', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 259200, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_HKUMP_PD', 'PD .45 SMG', NULL, 2, 3, 'WEAPON_HKUMP', 10000, NULL, NULL, 15, NULL, 0, 1, 1, 259200, 1, 0, 0, 1, 1, 'PD_SMG', 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_KATANAS', 'Katana', NULL, 2, 1, NULL, 2000, NULL, NULL, 3, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, 'NONE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_KNIFE', 'Knife', NULL, 2, 1, NULL, 400, NULL, NULL, 9, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_KNUCKLE', 'Knuckle Dusters', NULL, 2, 2, NULL, 400, NULL, NULL, 8, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_L5', 'Desert Eagle K8', NULL, 2, 3, 'WEAPON_PISTOL50', 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_LUCILLE', 'Lucille', NULL, 2, 1, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 0, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_M249', 'M249', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_MG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_M45A1', 'M45', NULL, 2, 3, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MACHETE', 'Machete', NULL, 2, 2, NULL, 700, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MACHINEPISTOL', 'TEC-9', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MARKSMANPISTOL', 'Marksman Pistol', NULL, 2, 3, NULL, 7500, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MARKSMANRIFLE', 'F39 MMR', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MARKSMANRIFLE_MK2', 'F39 MMR mk2', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MCXRATTLER', 'MCX Rattler', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MCXSPEAR', 'MCX Spear', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MG', 'PKM', NULL, 2, 3, NULL, 10000, NULL, NULL, 20, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_MG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MICROSMG', 'MAC 10', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MINISMG', 'Mini SMG', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MINIUZI', 'Mini UZI', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MK14', 'Mk14 EBR', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MK47BANSHEE', 'MK47 Banshee S', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MK47BANSHEE2', 'MK47 Banshee A', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MK47FM', 'MK47 Mutant', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MOLOTOV', 'Molotov', NULL, 2, 4, NULL, 1000, NULL, NULL, 2, NULL, 5, 1, 0, 604800, 1, 0, 1, 1, 0, NULL, 'AMMO_MOLOTOV', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MP5', 'SB54', NULL, 2, 3, 'WEAPON_SMG', 10000, 'WEAPON_MP5', NULL, 5, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MP9A', 'MP9', NULL, 2, 3, NULL, 10000, 'WEAPON_MP9A', NULL, 5, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MPX', 'MP 9mm', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_MUSKET', 'Musket', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_NIGHTSTICK', 'Nightstick', NULL, 2, 1, NULL, 1000, NULL, NULL, 8, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_NSR9', 'NSR9', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_P3200A', 'SB9x19 Custom', NULL, 2, 3, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_P320A', 'SB 9x19a', NULL, 2, 2, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_P90FM', 'PDW', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PETROLCAN', 'Petrol Can', NULL, 2, 1, NULL, 150, NULL, NULL, 10, NULL, 0, 1, 0, 1814400, 1, 1, 0, 1, 0, NULL, 'AMMO_PETROLCAN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PIPEBOMB', 'Pipe Bomb', NULL, 2, 4, NULL, 1000, NULL, NULL, 12, NULL, 10, 1, 1, 604800, 1, 0, 1, 1, 0, NULL, 'AMMO_PIPEBOMB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PISTOL', 'Pistol', NULL, 2, 1, NULL, 2000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PISTOL50', 'Desert Eagle', NULL, 2, 3, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PISTOL_MK2', 'PD 9MM', NULL, 2, 3, NULL, 2500, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PM4', 'M4', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PONY', 'Pony', NULL, 2, 2, NULL, 700, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_POOLCUE', 'Pool Cue', NULL, 2, 1, NULL, 200, NULL, NULL, 10, NULL, 0, 1, 0, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PP19', 'PP-19', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PROXMINE', 'Proximity Mine', NULL, 2, 4, NULL, 1000, NULL, NULL, 12, NULL, 10, 1, 1, 1814400, 1, 0, 1, 1, 1, NULL, 'AMMO_PROXMINE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PUMPSHOTGUN', 'Pump Shotgun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_PUMPSHOTGUN_MK2', 'PD Shotgun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_REVOLVER', 'Revolver', NULL, 2, 3, NULL, 7000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_REVOLVER_MK2', 'Revolver MK2', NULL, 2, 3, NULL, 7000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_RFB', 'RFB', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_RPG', 'RPG', NULL, 2, 4, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 1, 1, 1, NULL, 'AMMO_RPG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_RPK16', 'RPK16', NULL, 2, 3, NULL, 6000, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SAWNOFFSHOTGUN', 'Sawnoff Shotgun', NULL, 2, 1, NULL, 10000, NULL, NULL, 12, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SHIV', 'Shiv', NULL, 2, 1, NULL, 2000, NULL, NULL, 1, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, 'NONE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SHOVEL', 'Shovel', NULL, 2, 1, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 0, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SLEDGE', 'Sledge Hammer', NULL, 2, 1, NULL, 1000, NULL, NULL, 12, NULL, 0, 1, 0, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SMG', 'SMG', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SMG_MK2', 'SMG Mk2', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SMOKEGRENADE', 'Smoke Grenade', NULL, 2, 3, NULL, 1000, NULL, NULL, 1, NULL, 10, 1, 1, 1814400, 1, 0, 1, 1, 1, 'PD_SWAT', 'AMMO_SMOKEGRENADE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SNIPERRIFLE', '7.62 Sniper', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SNIPERRIFLE2', 'Hunting Rifle', NULL, 2, 3, NULL, 1000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SNOWBALL', 'Snowball', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 0, 1, 0, 86400, 1, 0, 1, 1, 0, NULL, 'AMMO_SNOWBALL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SNSPISTOL', 'SNS Pistol', NULL, 2, 2, NULL, 3500, NULL, NULL, 8, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SNSPISTOL_MK2', 'SNS Pistol MK2', NULL, 2, 3, NULL, 4500, NULL, NULL, 8, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SPECIALCARBINE', 'F36D', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SPECIALCARBINE_MK2', 'F36D Mk2', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_STICKYBOMB', 'C4', NULL, 2, 4, NULL, 1000, NULL, NULL, 12, NULL, 10, 1, 1, 1814400, 1, 0, 1, 1, 1, NULL, 'AMMO_STICKYBOMB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_STONE_HATCHET', 'Stone Hatchet', NULL, 2, 1, NULL, 300, NULL, NULL, 12, NULL, 0, 1, 0, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SWITCHBLADE', 'Switchblade', NULL, 2, 1, NULL, 400, NULL, NULL, 8, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_SWMP9', 'SB NQ9', NULL, 2, 1, NULL, 3200, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_TASER', 'Taser', NULL, 2, 1, NULL, 200, NULL, NULL, 5, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, 'AMMO_STUNGUN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_UZI', 'Uzi', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_VECTOR', 'Vector', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_SMG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_VINTAGEPISTOL', 'Vintage Pistol', NULL, 2, 1, NULL, 5500, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('WEAPON_WRENCH', 'Pipe Wrench', NULL, 2, 1, NULL, 400, NULL, NULL, 10, NULL, 0, 1, 1, 1814400, 1, 0, 0, 1, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('accessory', 'Accessory', NULL, 13, 1, NULL, 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('adv_electronics_kit', 'Hacking Device', '<i>Marked For Police Seizure</i>', 7, 1, NULL, 7500, NULL, NULL, 1, NULL, 5, 1, 0, 2419200, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('adv_lockpick', 'Advanced Lockpick', NULL, 3, 2, NULL, 600, NULL, NULL, 1, NULL, 20, 1, 1, 2419200, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('amethyst', 'Amethyst', NULL, 11, 2, NULL, 1500, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('apple_crumble', 'Apple Crumble', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('armor', 'Body Armor', NULL, 1, 1, NULL, 750, NULL, NULL, 8, NULL, 5, 1, 1, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"adjust","pbConfig":{"label":"Equipping","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":5000}', NULL, NULL, NULL),
-	('baconeggbiscuit', 'Bacon & Egg Biscuit', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_HUNGER":100}}', '{"armourModifier":15}', NULL),
-	('baggy', 'Empty Baggy', NULL, 4, 1, NULL, 50, NULL, NULL, 0, NULL, 100, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('baguette', 'Baguette', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('bahama_mamas', 'Bahama Mamas', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('bandage', 'Bandage', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 30, 1, 0, 432000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Bandaging","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"anim":"bandage","time":2000,"dictName":"ifak"}', NULL, NULL, NULL),
-	('bavarois', 'Bavarois', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('beanbag', 'A Beanbag', 'So Comfortable', 13, 1, NULL, 700, NULL, NULL, 2, NULL, 0, 1, 1, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('beanmachine', 'The Bean Machine', 'We take beans and put them in machines', 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Coffee","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":15}}', '{"progressModifier":{"min":3,"modifier":60,"max":6}}', NULL),
-	('beef', 'Beef', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('beer', 'Beer', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('bento_box', 'Bento Box', 'Open Me!', 10, 1, NULL, 4, NULL, NULL, 10, NULL, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL, NULL),
-	('big_tv', 'Television', 'Potentially Stolen', 6, 1, NULL, 3400, NULL, 'ANIM_bigtv', 100, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('binoculars', 'Binoculars', NULL, 1, 4, NULL, 90, NULL, NULL, 3, NULL, 0, 1, 1, 1814400, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('birthday_cake', 'Birthday Cake', 'Happy Birthday', 5, 4, NULL, 240, NULL, NULL, 2, NULL, 1, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["3","3","3","3","3","3","3","3"]}', NULL),
-	('blindfold', 'Blindfold', NULL, 13, 1, NULL, 2, NULL, NULL, 1, NULL, 0, 1, 0, 4320000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('bloody_mary', 'Bloody Mary', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('blue_dongle', 'USB Drive (Blue)', '<i>Marked For Police Seizure</i>', 3, 3, NULL, 10000, NULL, 'DONGLE_BLUE', 1, NULL, 0, 0, 1, 1814400, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('blue_laptop', 'Laptop (Blue)', '<i>Marked For Police Seizure</i>', 3, 3, NULL, 10000, NULL, NULL, 1, NULL, 0, 1, 1, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('blue_sequencer', 'Blue Keypad Sequencer', '<i>Marked For Police Seizure</i>', 3, 1, NULL, 10000, NULL, NULL, 1, NULL, 0, 1, 1, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('blueberry_muffin', 'Blueberry Muffin', NULL, 1, 1, NULL, 105, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":50}}', '{"stressTicks":["2","2","1","1","1"]}', NULL),
-	('boar_bait', 'Boar Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('bobcat_charge', 'Breach Charge', 'Kinda like thermite, but more ... explosive', 7, 3, 'thermite', 1000, NULL, NULL, 3, NULL, 0, 1, 1, 3600, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('bobcat_tracker', 'GPS Tracker', NULL, 7, 4, NULL, 15000, NULL, NULL, 1, NULL, 0, 1, 0, 1814400, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('booba_tea', 'Bobba Tea', NULL, 1, 1, NULL, 125, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bubble_tea","pbConfig":{"label":"Drinking Tea","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":100}}', '{"progressModifier":{"min":2,"modifier":60,"max":4}}', NULL),
-	('boombox', 'Boom Box', 'Potentially Stolen', 6, 1, NULL, 300, NULL, 'ANIM_boombox', 50, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('boosting_tracking_disabler', 'Tracker Hacker Device', '<i>Marked For Police Seizure</i>', 7, 1, NULL, 7500, NULL, NULL, 1, NULL, 5, 1, 0, 2419200, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('bowling_ball', 'Bowling Ball', NULL, 7, 4, NULL, 0, NULL, 'ANIM_bowling_ball', 50, NULL, 0, 1, 1, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('briefcase_cash', 'Briefcase', 'Sandbox Lotto Event', 1, 4, NULL, 25000, NULL, NULL, 1, NULL, 0, 1, 0, 864000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('bun', 'Hamburger Bun', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 200, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('burger', 'The Bleeder', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_bleeder","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":70}}', NULL, NULL),
-	('burgershot_bag', 'Burgershot Bag', 'Have a Murder Meal!', 10, 1, NULL, 6, NULL, NULL, 10, NULL, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL, NULL),
-	('burgershot_cup', 'BS Cup', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 200, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('burgershot_drink', 'Burger Shot Drink', NULL, 1, 1, NULL, 10, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_drink","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Remove":{"PLAYER_HUNGER":0},"Add":{"PLAYER_THIRST":75}}', NULL, NULL),
-	('burgershot_fries', 'Fries', NULL, 1, 1, NULL, 15, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_fries","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_HUNGER":60}}', NULL, NULL),
-	('buttplug_black', 'Butt Plug', 'Part of the Uranus Butt Plug Corporation.', 1, 4, NULL, 200, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('buttplug_pink', 'Butt Plug', 'Part of the Uranus Butt Plug Corporation.', 1, 4, NULL, 200, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('camera', 'Camera', NULL, 1, 4, NULL, 200, NULL, NULL, 3, NULL, 0, 1, 1, 1814400, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('camping_chair', 'Foldable Chair', NULL, 13, 1, NULL, 400, NULL, NULL, 2, NULL, 0, 1, 1, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('car_bomb', 'Car Bomb', NULL, 3, 3, NULL, 1500, NULL, NULL, 5, NULL, 0, 1, 1, 1814400, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('carclean', 'Car Cleaning Kit', 'Make your car squeaky clean!', 3, 1, NULL, 425, NULL, NULL, 5, NULL, 100, 1, 1, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('card_holder', 'Card Holder', 'Store Those Cards!', 10, 1, NULL, 3, NULL, NULL, 2, NULL, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, 91, NULL, NULL, NULL, NULL, NULL, NULL),
-	('cardboard_box', 'Box', 'Open Me!', 10, 1, NULL, 8, NULL, 'ANIM_box', 50, NULL, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, 22, NULL, NULL, NULL, NULL, NULL, NULL),
-	('carpolish', 'Car Polish', 'Stop your car getting dirty!', 3, 1, NULL, 275, NULL, NULL, 2, NULL, 100, 1, 1, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('carpolish_high', 'Fantastic Car Wax', 'Stop your car getting dirty and keep it sqeaky clean!', 3, 2, NULL, 375, NULL, NULL, 2, NULL, 100, 1, 1, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('carrot_cake', 'Carrot Cake', 'A Lovely Comforting Cake', 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["3","3","3","3","3","3","3","3"]}', NULL),
-	('case_black', 'Phone Case: Black', NULL, 1, 1, NULL, 1000, NULL, NULL, 0, NULL, 0, 1, 0, 432000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Applying Case","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"black"}', NULL),
-	('case_blue', 'Phone Case: Blue', NULL, 1, 1, NULL, 1000, NULL, NULL, 0, NULL, 0, 1, 0, 432000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Applying Case","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"blue"}', NULL),
-	('case_gold', 'Phone Case: Gold', NULL, 1, 1, NULL, 25000, NULL, NULL, 0, NULL, 0, 1, 0, 432000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Applying Case","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"gold"}', NULL),
-	('case_pink', 'Phone Case: Pink', NULL, 1, 1, NULL, 1000, NULL, NULL, 0, NULL, 0, 1, 0, 432000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Applying Case","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"pink"}', NULL),
-	('case_white', 'Phone Case: White', NULL, 1, 1, NULL, 1000, NULL, NULL, 0, NULL, 0, 1, 0, 432000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Applying Case","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"white"}', NULL),
-	('cat_cupcake', 'Cat Cupcake', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"donut","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":9000}', '{"Ignore":{"PLAYER_STRESS":10},"Add":{"PLAYER_HUNGER":40}}', NULL, NULL),
-	('cat_donut', 'Cat Donut', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"donut","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":9000}', '{"Ignore":{"PLAYER_STRESS":10},"Add":{"PLAYER_HUNGER":40}}', NULL, NULL),
-	('cat_tuccino', 'Cat Tuccino', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Coffee","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":15}}', '{"progressModifier":{"min":6,"modifier":40,"max":10}}', NULL),
-	('chain', 'Gold Chain', 'Potentially Stolen', 6, 1, NULL, 215, NULL, NULL, 1, NULL, 50, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('charlotte', 'Charlotte', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","1","1","1","3"]}', NULL),
-	('cheese', 'Bag of Cheese', NULL, 4, 1, NULL, 4, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('cheeseburger', 'Cheese Burger', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":15}}', NULL, NULL),
-	('chicken', 'Chicken', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('chicken_bait', 'Chicken Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('chicken_wrap', 'Chicken Wrap', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_wrap2","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","2","3","4","5"]}', NULL),
-	('chickenfriedsteak', 'Chicken Fried Steak', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":15},"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('chickenpotpie', 'Chicken Pot Pie', 'A truly hearty meal', 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"healthModifier":15,"stressTicks":["6","6","6"]}', NULL),
-	('chips', 'Chips', NULL, 1, 1, NULL, 30, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":55}}', NULL, NULL),
-	('choclat_eclair', 'Chocolate Eclair', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","1","1","1","3"]}', NULL),
-	('choclate_pancakes', 'Chocolate Pancakes', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('chocolate_bar', 'Chocolate Bar', NULL, 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"egobar","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":10}}', NULL, NULL),
-	('chocolate_shake', 'Chocolate Shake', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_THIRST":80,"PLAYER_HUNGER":20}}', '{"energyModifier":{"cooldown":60,"modifier":1.15,"duration":6,"skipScreenEffects":true},"stressTicks":["3","3","3","5","5","5"]}', NULL),
-	('chocy_muff', 'Chocolate Muffin', NULL, 1, 1, NULL, 105, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":50}}', '{"stressTicks":["2","2","1","1","1"]}', NULL),
-	('choplist', 'LSUNDG Shopping List', 'Personal list just for you, how special', 14, 4, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('choux', 'Choux Pastry', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","1","1","1","3"]}', NULL),
-	('cigarette', 'Cigarette', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 30, 1, 1, 864000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"animation":{"anim":"smoke_cigarette"},"label":"Smoking","disableMouse":false,"disarm":false,"disableCombat":false,"disableMovement":false,"canCancel":false,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', NULL, NULL, NULL),
-	('cigarette_pack', 'Pack of Cigarettes', NULL, 1, 1, NULL, 20, NULL, NULL, 5, NULL, 0, 1, 1, 864000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Unpacking","disableMouse":false,"disarm":false,"disableCombat":false,"disableMovement":false,"ignoreModifier":true,"canCancel":false,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":2000}', NULL, NULL, NULL),
-	('citrine', 'Citrine', NULL, 11, 2, NULL, 1500, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('cloth', 'Cloth', NULL, 6, 1, NULL, 4, NULL, NULL, 0, NULL, 1000, 0, 0, 2592000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('coconut_milk', 'Coconut Milk', NULL, 4, 1, NULL, 3, NULL, NULL, 1, NULL, 100, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('coffee', 'Coffee', NULL, 1, 1, NULL, 295, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Coffee","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_THIRST":15}}', '{"progressModifier":{"min":2,"modifier":70,"max":4}}', NULL),
-	('coffee_beans', 'Coffee Beans', NULL, 1, 1, NULL, 7, NULL, NULL, 0, NULL, 300, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('coffee_holder', 'Drinks Holder', 'Open Me!', 10, 1, NULL, 3, NULL, NULL, 8, NULL, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, 19, NULL, NULL, NULL, NULL, NULL, NULL),
-	('coke_bag', 'Cocaine', NULL, 12, 1, NULL, 400, NULL, NULL, 0, NULL, 25, 1, 0, 1728000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"Remove":{"PLAYER_THIRST":5}}', '{"drugState":{"duration":3600,"type":"meth"}}', NULL),
-	('coke_brick', 'Brick of Cocaine', NULL, 12, 1, NULL, 60, NULL, NULL, 5, NULL, 0, 1, 0, 1728000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('contraband', 'Mysterious Box', NULL, 14, 5, NULL, 1000, NULL, 'ANIM_box', 10, NULL, 0, 0, 0, 86400, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('copperwire', 'Copper Wire', NULL, 4, 1, NULL, 10, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('cow_bait', 'Cow Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('crisp', 'Crisps', 'Yeah, that\'s right. Crisps', 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":20}}', NULL, NULL),
-	('croissant', 'Croissant', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Ignore":{"PLAYER_STRESS":10},"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('crushedrock', 'Crushed Rock', NULL, 6, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('crypto_voucher', 'Crypto Voucher', NULL, 7, 4, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('cucumber', 'Cucumber', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('deer_bait', 'Deer Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('diamond', 'Diamond', NULL, 11, 4, NULL, 3000, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('diamond_drink', 'The Diamond Cocktail', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('diamond_vip', 'Diamond VIP', NULL, 5, 3, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('donut', 'Donut', NULL, 1, 1, NULL, 105, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"donut","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '{"energyModifier":{"modifier":1.1,"duration":3,"cooldown":80},"stressTicks":["1","1","1","1","3"]}', NULL),
-	('donut_stack', 'Stack of Donuts', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":5000}', '{"Add":{"PLAYER_HUNGER":80}}', '{"energyModifier":{"cooldown":60,"modifier":1.15,"duration":6,"skipScreenEffects":true},"stressTicks":["3","3","3","3","3"]}', NULL),
-	('double_shot_burger', 'Double Shot', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_doubleshot","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('dough', 'Dough', NULL, 4, 1, NULL, 3, NULL, NULL, 0, NULL, 200, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('drill', 'Drill', NULL, 7, 1, NULL, 5000, NULL, NULL, 1, NULL, 0, 1, 0, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('earrings', 'Gold Earrings', 'Potentially Stolen', 6, 1, NULL, 185, NULL, NULL, 1, NULL, 100, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('eggs', 'Eggs', NULL, 4, 1, NULL, 2, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('electronic_parts', 'Electronic Parts', NULL, 4, 1, NULL, 250, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('electronics_kit', 'Electronics Kit', NULL, 7, 1, NULL, 7500, NULL, NULL, 1, NULL, 5, 1, 0, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('emerald', 'Emerald', NULL, 11, 4, NULL, 3000, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('energy_pepe', 'Energy Drink', NULL, 1, 1, NULL, 110, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"energydrink","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":6000}', '{"Add":{"PLAYER_THIRST":15}}', '{"energyModifier":{"modifier":1.15,"duration":4,"cooldown":60}}', NULL),
-	('evidence-casing', 'Bullet Casing', 'Identifies the type of ammo used', 8, 1, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('evidence-dna', 'DNA Sample', NULL, 8, 1, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('evidence-paint', 'Paint Fragment', NULL, 8, 1, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('evidence-projectile', 'Bullet Projectile', 'Can be matched to the weapon it was fired from', 8, 1, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('exotic_bait', 'Exotic Bait', NULL, 7, 5, 'hunting_bait', 1000, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('expresso', 'Espresso', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee_expresso","pbConfig":{"label":"Drinking Espresso","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":25}}', '{"progressModifier":{"min":6,"modifier":50,"max":10}}', NULL),
-	('fakeplates', 'License Plates', 'A set of license plates from a vehicle', 3, 3, NULL, 5000, NULL, NULL, 2, NULL, 0, 1, 1, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fertilizer_nitrogen', 'Fertilizer (Nitrogen)', 'Nitrogen rich fertilizer improves viability of output when the plant is harvested.', 1, 1, NULL, 600, NULL, NULL, 3, NULL, 50, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fertilizer_phosphorus', 'Fertilizer (Phosphorus)', 'Phosphorus rich fertilizer helps increase plant growth speed.', 1, 1, NULL, 600, NULL, NULL, 3, NULL, 50, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fertilizer_potassium', 'Fertilizer (Potassium)', 'Potassium rich fertilizer helps keep plants hydrated.', 1, 1, NULL, 600, NULL, NULL, 3, NULL, 50, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fettuccini_alfredo', 'Fettuccini Alfredo', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('firstaid', 'First Aid Kit', NULL, 1, 2, NULL, 250, NULL, NULL, 5, NULL, 5, 1, 0, 432000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"firstaid","pbConfig":{"label":"Using First Aid Kit","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":11000}', NULL, NULL, NULL),
-	('fishandchips', 'Fish and Chips', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":20000}', '{"Add":{"PLAYER_HUNGER":80}}', NULL, NULL),
-	('fishing_bait_lugworm', 'Lugworm Bait', 'Marine Fish Bait', 7, 1, NULL, 10, NULL, NULL, 0, NULL, 50, 0, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_bait_worm', 'Worm Bait', 'Fresh Water Fish Bait', 7, 1, NULL, 15, NULL, NULL, 0, NULL, 50, 0, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_bass', 'Bass Fish', 'A fish found in the ocean', 4, 2, NULL, 70, NULL, NULL, 2, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_bike', 'Rusty Bicycle', 'I don\'t think this is worth anything', 6, 2, NULL, 250, NULL, NULL, 25, NULL, 0, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_bluefintuna', 'Bluefin Tuna', NULL, 4, 3, NULL, 0, NULL, NULL, 4, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_boot', 'Soggy Boot', 'I think someone is missing a boot', 6, 3, NULL, 250, NULL, NULL, 5, NULL, 2, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_chest', 'Old Chest', 'Maybe There is Treasure!', 5, 4, NULL, 1500, NULL, 'ANIM_chest', 50, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_chub', 'Chub', 'A fish found in fresh water', 4, 2, NULL, 40, NULL, NULL, 2, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_dolphin', 'A Dolphin', NULL, 4, 4, NULL, 0, NULL, NULL, 50, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_grasscarp', 'Grass Carp', 'A fish found in fresh water', 4, 2, NULL, 40, NULL, NULL, 1, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_kelp', 'Kelp Fish', 'A fish found in the ocean', 4, 2, NULL, 50, NULL, NULL, 2, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_lobster', 'Lobster', 'It\'s a lobster', 4, 2, NULL, 0, NULL, NULL, 1, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_net', 'Fishing Net', 'Catch all the Fishies', 3, 2, NULL, 3000, NULL, NULL, 5, NULL, 0, 1, 1, 5184000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_oil', 'Fish Oil', 'Eww', 5, 4, NULL, 175, NULL, NULL, 0, NULL, 0, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_rainbowtrout', 'Rainbow Trout', 'A fish found in fresh water', 4, 2, NULL, 60, NULL, NULL, 2, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_rockfish', 'Rock Fish', 'A fish found in the ocean', 4, 2, NULL, 70, NULL, NULL, 1, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_rod', 'Fishing Rod', 'Catch the Fishies', 3, 1, NULL, 900, NULL, NULL, 4, NULL, 0, 1, 1, 2592000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_seaweed', 'Seaweed', 'A salty snack', 4, 2, NULL, 30, NULL, NULL, 0, NULL, 250, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_shark', 'A Shark', NULL, 4, 4, NULL, 0, NULL, NULL, 75, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_tuna', 'Tuna', NULL, 4, 2, NULL, 0, NULL, NULL, 3, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fishing_whale', 'A Whale', NULL, 4, 4, NULL, 0, NULL, NULL, 100, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fleeca_card', 'Disposable Access Card', 'This seems like it may be usefull', 14, 4, NULL, 10000, NULL, NULL, 0, NULL, 0, 1, 0, 21600, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fleeca_tracker', 'GPS Tracker', NULL, 7, 4, NULL, 15000, NULL, NULL, 1, NULL, 0, 1, 0, 1814400, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('flour', 'Bag of Flour', NULL, 4, 1, NULL, 2, NULL, NULL, 1, NULL, 60, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fluffyhandcuffs', 'Fluffy Handcuffs', NULL, 3, 1, NULL, 600, NULL, NULL, 1, NULL, 0, 1, 0, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('foodbag', 'Carrier Bag', 'Open Me!', 10, 1, NULL, 4, NULL, NULL, 15, NULL, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, 21, NULL, NULL, NULL, NULL, NULL, NULL),
-	('fresh_lemonade', 'Fresh Lemonade', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":40,"PLAYER_HUNGER":5}}', '{"energyModifier":{"cooldown":60,"modifier":1.15,"duration":6,"skipScreenEffects":true}}', NULL),
-	('fries', 'Fries', NULL, 1, 1, NULL, 15, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_fries","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_HUNGER":30}}', NULL, NULL),
-	('frosty_chain', 'Frosty Chain', 'Frosty Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"frosty"}', NULL),
-	('frozen_yoghurt', 'Frozen Yoghurt', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":40}}', '{"energyModifier":{"cooldown":60,"modifier":1.1,"duration":6,"skipScreenEffects":true}}', NULL),
-	('fruit_explosion', 'Fruit Explosion', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":5000}', '{"Add":{"PLAYER_HUNGER":30,"PLAYER_THIRST":100}}', '{"energyModifier":{"cooldown":30,"modifier":1.2,"duration":4,"skipScreenEffects":true}}', NULL),
-	('gascan', 'Gas Can', NULL, 1, 2, NULL, 25, NULL, NULL, 1, NULL, 5, 1, 0, 432000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"redd","pbConfig":{"label":"Drinking Gasoline","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":20000}', '{"Remove":{"PLAYER_THIRST":70}}', NULL, NULL),
-	('gauze', 'Gauze', NULL, 1, 1, NULL, 10, NULL, NULL, 0, NULL, 30, 1, 0, 432000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Packing Wound","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"anim":"bandage","time":2000,"dictName":"gauze"}', NULL, NULL, NULL),
-	('ginger', 'Ginger', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('gingerale', 'Gingerale', NULL, 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Remove":{"PLAYER_HUNGER":0},"Add":{"PLAYER_THIRST":35}}', NULL, NULL),
-	('glass_cock', 'Coke', 'Glass of Cock', 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":60,"PLAYER_HUNGER":5}}', '{"energyModifier":{"cooldown":60,"modifier":1.1,"duration":5,"skipScreenEffects":true}}', NULL),
-	('glue', 'Glue', NULL, 4, 1, NULL, 150, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('goat_cheese_wrap', 'Goat Cheese Wrap', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_wrap1","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","2","3","4","5"]}', NULL),
-	('goldbar', 'Gold Bar', NULL, 4, 3, NULL, 500, NULL, NULL, 0, NULL, 10000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('goldcoins', 'Gold Coins', 'Potentially Stolen', 6, 1, NULL, 90, NULL, NULL, 0, NULL, 1000, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('goldore', 'Gold Ore', NULL, 6, 3, NULL, 0, NULL, NULL, 0, NULL, 200, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('golfclubs', 'Golf Club Set', NULL, 6, 2, NULL, 450, NULL, 'ANIM_golfclubs', 100, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('gotti_chain', 'Gotti Family Chain', 'Gotti Family Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"gotti"}', NULL),
-	('government_badge', 'Badge', 'Government Issued Badge', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('govid', 'Government ID', NULL, 5, 1, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('gps', 'SB NavMaster', NULL, 7, 1, NULL, 5000, NULL, 'GPS', 1, NULL, 0, 0, 0, 1814400, 0, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('gps_tracker', 'GPS Tracker', NULL, 7, 4, NULL, 15000, NULL, NULL, 1, NULL, 0, 1, 0, 1814400, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('grain', 'Grain', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('green_dongle', 'USB Drive (Green)', '<i>Marked For Police Seizure</i>', 3, 2, NULL, 5000, NULL, 'DONGLE_GREEN', 1, NULL, 0, 0, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('green_laptop', 'Laptop (Green)', '<i>Marked For Police Seizure</i>', 3, 2, NULL, 5000, NULL, NULL, 1, NULL, 0, 1, 1, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('green_sequencer', 'Green Keypad Sequencer', '<i>Marked For Police Seizure</i>', 3, 1, NULL, 5000, NULL, NULL, 1, NULL, 0, 1, 1, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('green_tea', 'Green Tea', NULL, 1, 1, NULL, 125, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Tea","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Remove":{"PLAYER_DRUNK":10},"Add":{"PLAYER_THIRST":75}}', '{"progressModifier":{"min":1,"modifier":50,"max":2},"stressTicks":["5","4","3","2","1"]}', NULL),
-	('guksu', 'Guksu', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"armourModifier":10,"stressTicks":["3","3","3","5","5","5"]}', NULL),
-	('gunpowder', 'Gun Powder', NULL, 4, 1, NULL, 1000, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hack_usb', 'Easy Hacker 3000', 'So easy, a caveman could maybe do it.', 7, 1, NULL, 15000, NULL, NULL, 1, NULL, 0, 1, 0, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('handcuffs', 'Handcuffs', NULL, 3, 1, NULL, 600, NULL, NULL, 1, NULL, 0, 1, 0, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('harness', 'Vehicle Harness', 'Stop flying to the moon!', 3, 2, NULL, 1150, NULL, NULL, 3, NULL, 0, 1, 1, NULL, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hat', 'Hat', NULL, 13, 1, NULL, 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('heartstopper', 'Heart Stopper', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_heartstopper","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":12},"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('heavy_glue', 'Heavy Duty Glue', NULL, 4, 1, NULL, 200, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('heavyarmor', 'Heavy Body Armor', NULL, 1, 2, NULL, 2250, NULL, NULL, 8, NULL, 5, 1, 1, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"adjust","pbConfig":{"label":"Equipping","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', NULL, NULL, NULL),
-	('hide_tier1', 'Animal Hide (Tier 1)', NULL, 3, 1, NULL, 10000, NULL, NULL, 0, NULL, 100, 1, 0, 864000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hide_tier2', 'Animal Hide (Tier 2)', NULL, 3, 1, NULL, 10000, NULL, NULL, 0, NULL, 100, 1, 0, 864000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hide_tier3', 'Animal Hide (Tier 3)', NULL, 3, 1, NULL, 10000, NULL, NULL, 0, NULL, 100, 1, 0, 864000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hide_tier4', 'Animal Hide (Tier 4)', NULL, 3, 1, NULL, 10000, NULL, NULL, 0, NULL, 100, 1, 0, 864000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hobs', 'Hobs', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('homemade_cookie', 'Homemade Cookie', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":5000}', '{"Add":{"PLAYER_HUNGER":50}}', NULL, NULL),
-	('hotdog', 'Hotdog', 'A dog but very hot', 1, 1, NULL, 20, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"hotdog","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":10}}', NULL, NULL),
-	('hotdog_single', 'Hotdog Single', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('house_art', 'Painting', NULL, 6, 2, NULL, 3600, NULL, 'ANIM_house_art', 100, NULL, 1, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hunting_bait', 'Hunting Bait', NULL, 7, 5, NULL, 25, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hunting_map_dark', 'Hunting Map (Dark)', NULL, 5, 1, NULL, 25, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('hunting_map_light', 'Hunting Map (Light)', NULL, 5, 1, NULL, 25, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('iced_coffee', 'Iced Coffee', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Coffee","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":25}}', '{"progressModifier":{"min":8,"modifier":75,"max":12}}', NULL),
-	('icing', 'Icing', NULL, 4, 1, NULL, 3, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('ifak', 'IFAK', NULL, 1, 3, NULL, 200, NULL, NULL, 3, NULL, 5, 1, 0, 432000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"ifak","pbConfig":{"label":"Using IFAK","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', NULL, NULL, NULL),
-	('ironbar', 'Iron Bar', NULL, 4, 1, NULL, 2500, NULL, NULL, 0, NULL, 10000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('ironore', 'Iron Ore', NULL, 6, 3, NULL, 0, NULL, NULL, 0, NULL, 200, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('jaeger', 'Jägermeister', NULL, 1, 1, NULL, 150, NULL, NULL, 0, NULL, 10, 1, 0, NULL, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('jaeger_bomb', 'Jägerbomb', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('japanese_pan_noodles', 'Japanese Pan Noodles', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":12},"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('keg', 'Keg of Irish Stout', 'McDougle\'s Irish Stout™', 4, 1, NULL, 150, NULL, NULL, 2, NULL, 5, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('laptop', 'Laptop', NULL, 7, 2, NULL, 1250, NULL, 'LAPTOP', 4, NULL, 0, 1, 1, 2592000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('lasagna', 'Lasagna', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":12},"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('latte', 'Latte', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Latte","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":25}}', '{"progressModifier":{"min":6,"modifier":40,"max":10}}', NULL),
-	('lemonade', 'Lemonade', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":40,"PLAYER_HUNGER":5}}', '{"energyModifier":{"cooldown":60,"modifier":1.1,"duration":6,"skipScreenEffects":true}}', NULL),
-	('lettuce', 'Lettuce', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('loaf', 'Bread Loaf', NULL, 4, 1, NULL, 4, NULL, NULL, 1, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('lockpick', 'Lockpick', NULL, 3, 2, NULL, 200, NULL, NULL, 1, NULL, 50, 1, 1, 1209600, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('lockpick_pd', 'PD Lockpick', 'Only Usable By Police', 3, 1, 'lockpick', 200, NULL, NULL, 1, NULL, 10, 1, 1, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('lsundg_invite', 'LSUNDG Invitation', 'Gain access to an exclusive club, wow aren\'t you special', 7, 4, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('maki_calirolls', 'San Andreas Maki', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"healthModifier":15}', NULL),
-	('maki_tuna', 'Tuna Rolls', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"healthModifier":15,"armourModifier":10}', NULL),
-	('margherita_pizza', 'Margherita Pizza', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"pizza","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Ignore":{"PLAYER_STRESS":15},"Add":{"PLAYER_HUNGER":90}}', '{"healthModifier":10}', NULL),
-	('mask', 'Mask', NULL, 13, 1, NULL, 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('matcha_latte', 'Matcha Latte', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Latte","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":50}}', '{"progressModifier":{"min":3,"modifier":60,"max":6}}', NULL),
-	('medicalkit', 'Medical Kit', 'Used to treat patients. Only usable by Doctors', 1, 1, NULL, 1000, NULL, NULL, 3, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('megaphone', 'Megaphone', 'Yell insults at people but from a longer distance', 3, 2, NULL, 1500, NULL, 'MEGAPHONE', 2, NULL, 0, 1, 1, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('meteorite_icecream', 'Meteorite Ice Cream', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_icecream","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_THIRST":50,"PLAYER_HUNGER":50}}', '{"energyModifier":{"cooldown":60,"modifier":1.1,"duration":2,"skipScreenEffects":true}}', NULL),
-	('meth_bag', 'Meth', NULL, 12, 1, NULL, 400, NULL, NULL, 0, NULL, 25, 1, 0, 1728000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('meth_brick', 'Brick of Meth', NULL, 12, 1, NULL, 60, NULL, NULL, 5, NULL, 0, 1, 0, 1728000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('meth_pipe', 'Meth Pipe', NULL, 12, 1, NULL, 1000, NULL, NULL, 1, NULL, 0, 1, 0, 2592000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('meth_table', 'Meth Table', NULL, 3, 2, NULL, 200, NULL, NULL, 1, NULL, 0, 1, 1, 1209600, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('microwave', 'Microwave', 'Potentially Stolen', 6, 1, NULL, 500, NULL, 'ANIM_microwave', 50, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('milk_can', 'Milk Canister', NULL, 4, 1, NULL, 4, NULL, NULL, 2, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('milk_chain', 'Milk Chain', 'Milk Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"milk"}', NULL),
-	('milkshake', 'Explosive Shake', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_THIRST":80,"PLAYER_HUNGER":20}}', '{"armourModifier":10,"energyModifier":{"cooldown":60,"modifier":1.15,"duration":6,"skipScreenEffects":true}}', NULL),
-	('million_shrtbread', 'Millionare Shortbread', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":5000}', '{"Add":{"PLAYER_HUNGER":80}}', '{"energyModifier":{"cooldown":60,"modifier":1.1,"duration":6,"skipScreenEffects":true}}', NULL),
-	('mint_mate_chain', 'Mint Mate Chain', 'It\'s Mint Mate', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"mint_mate"}', NULL),
-	('mint_mate_chain_2', 'Mint Mate Chain (Large)', 'It\'s Mint Mate ... but large', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"mint_mate2"}', NULL),
-	('mocha_shake', 'Mocha Shake', 'Go Crazy', 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Shake","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_HUNGER":10,"PLAYER_THIRST":50}}', '{"progressModifier":{"min":3,"modifier":60,"max":6}}', NULL),
-	('moneybag', 'Bag of Cash', NULL, 14, 1, NULL, 10000, NULL, NULL, 3, NULL, 0, 1, 0, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('moneyband', 'Bands of Cash', NULL, 14, 1, NULL, 1000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('moneyroll', 'Cash Roll', NULL, 14, 1, NULL, 100, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('morphine', 'Morphine', NULL, 1, 1, NULL, 600, NULL, NULL, 1, NULL, 3, 1, 0, 432000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"label":"Administering Morphine","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":true,"canCancel":true,"disableCarMovement":true,"vehicle":false,"useWhileDead":false},"anim":"bandage","time":8000,"dictName":"morphine"}', NULL, NULL, NULL),
-	('nails', 'Nails', NULL, 6, 1, NULL, 2, NULL, NULL, 0, NULL, 1000, 0, 0, 2592000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('nitrous', 'Nitrous Oxide', 'Copium', 3, 3, NULL, 2000, NULL, NULL, 3, NULL, 5, 1, 1, NULL, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, '{"Nitrous":100}', NULL, NULL, NULL, NULL, NULL),
-	('onion_rings', 'Onion Rings', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":30}}', '{"stressTicks":["3","3","3","3","3"]}', NULL),
-	('opal', 'Opal', NULL, 11, 1, NULL, 500, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('orange', 'Orange', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('orangotang_icecream', 'Orangotang Ice Cream', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_icecream2","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_THIRST":50,"PLAYER_HUNGER":50}}', '{"energyModifier":{"cooldown":60,"modifier":1.1,"duration":2,"skipScreenEffects":true}}', NULL),
-	('oxy', 'OxyContin', NULL, 12, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 1728000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"pbConfig":{"animation":{"animDict":"mp_suicide","anim":"pill","flags":50},"label":"Popping Oxy","disableMouse":false,"disarm":false,"disableCombat":false,"disableMovement":false,"ignoreModifier":true,"canCancel":false,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":2800}', '{"Remove":{"PLAYER_THIRST":3}}', '{"drugState":{"duration":3600,"type":"oxy"}}', NULL),
-	('packaged_parts', 'Packaged Parts', NULL, 7, 5, NULL, 0, NULL, NULL, 4, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pad_thai', 'Pad Thai', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"armourModifier":10,"stressTicks":["3","3","3","5","5","5"]}', NULL),
-	('paleto_access_codes', 'Access Codes', '<i>Marked For Police Seizure</i>', 3, 4, NULL, 2500, NULL, NULL, 1, NULL, 0, 1, 1, 14400, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('paper_bag', 'Bag', 'Open Me!', 10, 1, NULL, 6, NULL, NULL, 10, NULL, 0, 0, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, 20, NULL, NULL, NULL, NULL, NULL, NULL),
-	('parachute', 'Parachute', NULL, 3, 2, NULL, 1000, NULL, NULL, 5, NULL, 0, 1, 0, 604800, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('parts_box', 'Scrap Box', NULL, 1, 3, NULL, 250, NULL, 'ANIM_box', 10, NULL, 0, 1, 0, 604800, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pasta_fresca', 'Pasta Fresca', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":20000}', '{"Add":{"PLAYER_HUNGER":80}}', NULL, NULL),
-	('patty', 'Hamburger Patty', NULL, 1, 1, NULL, 10, NULL, NULL, 0, NULL, 200, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pc', 'PC', NULL, 6, 2, NULL, 1200, NULL, 'ANIM_pc', 80, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pdarmor', 'PD Body Armor', NULL, 1, 3, NULL, 25, NULL, NULL, 8, NULL, 5, 1, 1, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"adjust","pbConfig":{"label":"Equipping","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', NULL, NULL, NULL),
-	('pdhandcuffs', 'PD Handcuffs', NULL, 3, 4, NULL, 25, NULL, NULL, 0, NULL, 0, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('peach_juice', 'Peach Juice', NULL, 4, 1, NULL, 2, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('peas', 'Peas', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('penna_rosa', 'Penne Rosa', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":20000}', '{"Add":{"PLAYER_HUNGER":85}}', NULL, NULL),
-	('pepperoni_pizza', 'Pepperoni Pizza', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"pizza","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Ignore":{"PLAYER_STRESS":15},"Add":{"PLAYER_HUNGER":100}}', '{"armourModifier":20}', NULL),
-	('personal_plates', 'Personal Plate', 'Set a personal plate for a vehicle.', 3, 3, NULL, 5000, NULL, NULL, 1, NULL, 10, 1, 1, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('personal_plates_donator', 'Personal Plate', 'Set a personal plate for a vehicle.', 3, 3, 'personal_plates', 5000, NULL, NULL, 1, NULL, 10, 1, 1, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pesto_cavatappi', 'Pesto Cavatappi', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":17000}', '{"Add":{"PLAYER_HUNGER":75}}', NULL, NULL),
-	('petrock', 'Pet Rock', 'Please take care of me', 5, 4, NULL, 10, NULL, NULL, 1, NULL, 0, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('phone', 'Phone', NULL, 7, 1, NULL, 100, NULL, 'PHONE', 1, NULL, 0, 1, 0, 1814400, 0, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pickaxe', 'Pickaxe', NULL, 3, 1, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, 86400, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pickle', 'Pickle', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pig_bait', 'Pig Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pina_colada', 'Pina Colada', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pineapple', 'Pineapple', NULL, 4, 1, NULL, 1, NULL, NULL, 1, NULL, 250, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pint_mcdougles', 'McDougle\'s Stout', 'McDougle\'s Irish Stout™', 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 604800, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pipe', 'Pipe', NULL, 6, 1, NULL, 12, NULL, NULL, 0, NULL, 100, 0, 0, 2592000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pixels_chain', 'Business Bureau Chain', 'Business Bureau Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"lua"}', NULL),
-	('plastic', 'Plastic', NULL, 4, 1, NULL, 10, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('plastic_cup', 'Plastic Cup', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 200, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('plastic_wrap', 'Plastic Wrap', NULL, 4, 1, NULL, 50, NULL, NULL, 0, NULL, 5, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('popcorn', 'Popcorn', NULL, 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"popcorn","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":20}}', NULL, NULL),
-	('popcorn_bucket', 'Empty Bucket', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('popcorn_kernal', 'Popcorn Kernal', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('pork', 'Pork', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('potato', 'Potato', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('prickly_burger', 'The Prickly', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_prickly","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('prison_drink', 'Prison Drink', NULL, 1, 1, NULL, 5, NULL, NULL, 1, NULL, 15, 1, 0, 86400, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_THIRST":100}}', NULL, NULL),
-	('prison_food', 'Prison Food', NULL, 1, 1, NULL, 5, NULL, NULL, 1, NULL, 15, 1, 0, 86400, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('pumpkinspiced_latte', 'Pumpkin Spice Latte', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"label":"Drinking Coffee","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":25}}', '{"progressModifier":{"min":3,"modifier":60,"max":6}}', NULL),
-	('purple_dongle', 'USB Drive (Purple)', '<i>Marked For Police Seizure</i>', 3, 2, NULL, 5000, NULL, 'DONGLE_PURPLE', 1, NULL, 0, 0, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('purple_laptop', 'Laptop (Purple)', '<i>Marked For Police Seizure</i>', 3, 3, NULL, 10000, NULL, NULL, 1, NULL, 0, 1, 1, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rabbit', 'Rabbit', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rabbit_bait', 'Rabbit Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('racedongle', 'Phone Dongle', 'Its a dongly boi', 7, 4, NULL, 0, NULL, 'RACE_DONGLE', 3, NULL, 0, 1, 0, 1814400, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('racing_crappy', 'Homemade Phone Dongle', 'Its a really shitty dongly boi', 7, 4, NULL, 0, NULL, 'RACE_DONGLE', 1, NULL, 0, 1, 0, 43200, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('radio', 'Encrypted Radio', 'Encrypted Communication Device for Emergency Services', 3, 2, NULL, 725, NULL, 'RADIO_ENCRYPTED', 1, NULL, 0, 1, 0, 5184000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('radio_extendo', 'B0085 Radio', 'Used for Slightly Longer Range Communication', 3, 3, NULL, 10000, NULL, 'RADIO_EXTENDO', 1, NULL, 0, 1, 0, 1814400, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('radio_shitty', 'P6900 Radio', 'High Frequency Used for Short Range Communication', 3, 1, NULL, 2500, NULL, 'RADIO_CIV', 1, NULL, 0, 1, 0, 1814400, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('raspberry', 'Raspberry', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 250, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('raspberry_liqueur', 'Raspberry Liqueur', NULL, 4, 1, NULL, 5, NULL, NULL, 0, NULL, 30, 1, 0, NULL, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('raspberry_mimosa', 'Raspberry Mimosa', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('ravioli', 'Ravioli', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"armourModifier":10,"stressTicks":["3","3","3","5","5","5"]}', NULL),
-	('recycledgoods', 'Recycled Goods', NULL, 6, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('red_dongle', 'USB Drive (Red)', '<i>Marked For Police Seizure</i>', 3, 4, NULL, 25000, NULL, 'DONGLE_RED', 1, NULL, 0, 0, 1, 1814400, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('red_laptop', 'Laptop (Red)', '<i>Marked For Police Seizure</i>', 3, 4, NULL, 25000, NULL, NULL, 1, NULL, 0, 1, 1, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('red_sequencer', 'Red Keypad Sequencer', '<i>Marked For Police Seizure</i>', 3, 1, NULL, 25000, NULL, NULL, 1, NULL, 0, 1, 1, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('redlight', 'Handheld Light', NULL, 7, 2, NULL, 1000, NULL, NULL, 2, NULL, 0, 1, 1, 2592000, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('refined_copper', 'Refined Copper', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('refined_electronics', 'Advanced Electronic Parts', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('refined_glue', 'Refined Glue', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('refined_iron', 'Refined Iron', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('refined_metal', 'Refined Aluminum', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('refined_plastic', 'Refined Plasic', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('refined_rubber', 'Refined Rubber', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rental_papers', 'Rental Papers', 'Documents that prove who rented a vehicle.', 6, 1, NULL, 0, NULL, NULL, 1, NULL, 0, 0, 0, 86400, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rep_voucher', 'Rep Voucher', NULL, 7, 4, 'crypto_voucher', 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_axle', 'Axle Parts', 'Vehicle Axle Parts', 3, 1, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_brakes', 'Brakes', 'Vehicle Brakes', 3, 1, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_brakes_hg', 'HG Brakes', '(High Grade) Vehicle Brakes', 3, 2, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_clutch', 'Clutch', 'Vehicle Clutch', 3, 1, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_clutch_hg', 'HG Clutch', '(High Grade) Vehicle Clutch', 3, 2, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_electronics', 'Vehicle Electronics', 'Vehicle Electronic Parts', 3, 1, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_injectors', 'Fuel Injectors', 'Vehicle Fuel Injectors', 3, 1, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_injectors_hg', 'HG Fuel Injectors', '(High Grade) Vehicle Fuel Injectors', 3, 2, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_rad', 'Radiator', 'Vehicle Radiator', 3, 1, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_rad_hg', 'HG Radiator', '(High Grade) Vehicle Radiator', 3, 2, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_transmission', 'Transmission Parts', 'Vehicle Transmission', 3, 1, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repair_part_transmission_hg', 'HG Transmission Parts', '(High Grade) Vehicle Transmission Parts', 3, 2, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repairkit', 'Repair Kit', 'Fixes a vehicles engine so it can be driven again.', 3, 1, NULL, 350, NULL, NULL, 10, NULL, 4, 1, 1, 604800, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('repairkitadv', 'Advanced Repair Kit', 'Fixes a vehicles engine and tires so it can be driven again.', 3, 2, NULL, 600, NULL, NULL, 15, NULL, 2, 1, 1, 1209600, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rice', 'Bag of Rice', NULL, 4, 1, NULL, 5, NULL, NULL, 1, NULL, 60, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('ring', 'Ring', 'Potentially Stolen', 6, 1, NULL, 185, NULL, NULL, 1, NULL, 100, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rolex', 'Rolex', 'Potentially Stolen', 6, 2, NULL, 500, NULL, NULL, 1, NULL, 50, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rolling_paper', 'Rolling Paper', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 30, 1, 0, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rootbeerfloat', 'Root Beer Float', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":10000}', '{"Remove":{"PLAYER_STRESS":10},"Add":{"PLAYER_THIRST":90,"PLAYER_HUNGER":10}}', NULL, NULL),
-	('rubber', 'Rubber', NULL, 4, 1, NULL, 10, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('ruby', 'Ruby', NULL, 11, 3, NULL, 2250, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('rum', 'Rum', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 5184000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('safecrack_kit', 'Safe Cracking Kit', '<i>Marked For Police Seizure</i>', 7, 1, NULL, 2500, NULL, NULL, 1, NULL, 0, 1, 0, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('saint_chain', 'Saint Chain', 'Saint Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"saint"}', NULL),
-	('salad', 'Salad', NULL, 1, 1, NULL, 150, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":50}}', '{"healthModifier":7}', NULL),
-	('salisbury_steak', 'Salisbury Steak', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"healthModifier":15,"stressTicks":["6","6","6"]}', NULL),
-	('salvagedparts', 'Salvaged Parts', NULL, 6, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('san_manzano_pizza', 'San Manzano Pizza', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"pizza","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":18000}', '{"Ignore":{"PLAYER_STRESS":15},"Add":{"PLAYER_HUNGER":100}}', '{"armourModifier":25}', NULL),
-	('sandwich', 'Ham Sandwich', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":15}}', NULL, NULL),
-	('sandwich_beef', 'Beef Sandwich', NULL, 1, 1, NULL, 6, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":42}}', NULL, NULL),
-	('sandwich_blt', 'BLT Sandwich', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":45}}', NULL, NULL),
-	('sandwich_chips', 'Chip Butty', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":40}}', NULL, NULL),
-	('sandwich_crisp', 'Crisp Sandwich', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":30}}', NULL, NULL),
-	('sandwich_egg', 'Egg Sandwich', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":35}}', NULL, NULL),
-	('sandwich_turkey', 'Turkey Sandwich', NULL, 1, 1, NULL, 4, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":40}}', NULL, NULL),
-	('sapphire', 'Sapphire', NULL, 11, 3, NULL, 2250, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sashimi_mix', 'Sashimi Mix', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"healthModifier":15,"armourModifier":10,"stressTicks":["3","3","3","5","5","5"]}', NULL),
-	('sausageroll', 'Sausage Roll', NULL, 1, 1, NULL, 15, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":40}}', NULL, NULL),
-	('schematic_2011', 'Schematic: 2011 Tactical', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'tact2011'),
-	('schematic_57', 'Schematic: Six Eight', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'fiveseven'),
-	('schematic_adv_ar_suppressor', 'Schematic: Adv. AR Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'adv_ar_suppressor'),
-	('schematic_adv_pistol_suppressor', 'Schematic: Adv. Pistol Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'adv_pistol_suppressor'),
-	('schematic_adv_smg_suppressor', 'Schematic: Adv. SMG Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'adv_smg_suppressor'),
-	('schematic_advrifle', 'Schematic: Adv. Rifle', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'advrifle'),
-	('schematic_ak74', 'Schematic: AK-74', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ak74'),
-	('schematic_appistol', 'Schematic: F18 Auto', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'appistol'),
-	('schematic_ar', 'Schematic: AK-47', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ar'),
-	('schematic_ar15', 'Schematic: AR-15', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ar15'),
-	('schematic_ar_suppressor', 'Schematic: AR Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ar_suppressor'),
-	('schematic_asval', 'Schematic: AS-VAL', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'asval'),
-	('schematic_blindfold', 'Schematic: Blindfold', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'blindfold'),
-	('schematic_blue_laptop', 'Schematic: Blue Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'blue_laptop'),
-	('schematic_box_mag', 'Schematic: Box Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'box_mag'),
-	('schematic_combat_pistol', 'Schematic: Combat Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'combatpistol'),
-	('schematic_deagle', 'Schematic: Desert Eagle', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'deagle'),
-	('schematic_doubleaction', 'Schematic: Double Action Revolver', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'doubleaction'),
-	('schematic_draco', 'Schematic: Draco', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'draco'),
-	('schematic_drum_mag', 'Schematic: Drum Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'drum_mag'),
-	('schematic_fnx', 'Schematic: SB 45 Tactical', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'fnx'),
-	('schematic_g36', 'Schematic: F69', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'g36'),
-	('schematic_glock', 'Schematic: F19', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'glock'),
-	('schematic_green_laptop', 'Schematic: Green Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'green_laptop'),
-	('schematic_handcuffs', 'Schematic: Handcuffs', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'handcuffs'),
-	('schematic_heavypistol', 'Schematic: Heavy Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'heavypistol'),
-	('schematic_hk16a', 'Schematic: HK16A', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'hk16a'),
-	('schematic_hk16b', 'Schematic: HK16B', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'hk16b'),
-	('schematic_hk417', 'Schematic: HK417', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'hk417'),
-	('schematic_honeybadger', 'Schematic: Honey Badger', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'honeybadger'),
-	('schematic_l5', 'Schematic: Desert Eagle K8', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'l5'),
-	('schematic_m9a3', 'Schematic: M9A3', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'm9a3'),
-	('schematic_mcxrattler', 'Schematic: MCX Rattler', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mcxrattler'),
-	('schematic_mcxspear', 'Schematic: MCX Spear', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mcxspear'),
-	('schematic_microsmg', 'Schematic: MAC 10', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'microsmg'),
-	('schematic_miniuzi', 'Schematic: Mini UZI', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'miniuzi'),
-	('schematic_mk47a', 'Schematic: MK47 A', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mk47a'),
-	('schematic_mk47mutant', 'Schematic: MK47 Mutant', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mk47mutant'),
-	('schematic_mk47s', 'Schematic: MK47 S', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mk47s'),
-	('schematic_mp5', 'Schematic: SB54', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mp5'),
-	('schematic_mp9', 'Schematic: MP9', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mp9'),
-	('schematic_mpx', 'Schematic: MP 9mm', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mpx'),
-	('schematic_nsr9', 'Schematic: NSR9', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'nsr9'),
-	('schematic_p90', 'Schematic: PDW', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ump'),
-	('schematic_pistol', 'Schematic: Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pistol'),
-	('schematic_pistol_ammo', 'Schematic: Pistol Ammo', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pistol_ammo'),
-	('schematic_pistol_ext_mag', 'Schematic: Pistol Ext. Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pistol_ext_mag'),
-	('schematic_pistol_suppressor', 'Schematic: Pistol Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pistol_suppressor'),
-	('schematic_pp19', 'Schematic: PP-19', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pp19'),
-	('schematic_purple_laptop', 'Schematic: Purple Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'purple_laptop'),
-	('schematic_radio_extendo', 'Schematic: B0085 Radio', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'radio_extendo'),
-	('schematic_redlaptop', 'Schematic: Red Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'red_laptop'),
-	('schematic_revolver', 'Schematic: Revolver', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'revolver'),
-	('schematic_rfb', 'Schematic: RFB', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'rfb'),
-	('schematic_rifle_ext_mag', 'Schematic: AR Ext. Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'rifle_ext_mag'),
-	('schematic_rpk', 'Schematic: RPK16', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'rpk'),
-	('schematic_scope_holo', 'Schematic: Holographic Sight', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'scope_holo'),
-	('schematic_scope_lrg', 'Schematic: Large Scope', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'scope_lrg'),
-	('schematic_scope_med', 'Schematic: Medium Scope', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'scope_med'),
-	('schematic_scope_reddot', 'Schematic: Red Dot Sight', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'scope_reddot'),
-	('schematic_scope_small', 'Schematic: Small Scope', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'scope_small'),
-	('schematic_shotgun_ammo', 'Schematic: Shotgun Ammo', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'shotgun_ammo'),
-	('schematic_smg', 'Schematic: SMG', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'smg'),
-	('schematic_smg_ammo', 'Schematic: SMG Ammo', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'smg_ammo'),
-	('schematic_smg_ext_mag', 'Schematic: SMG Ext. Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'smg_ext_mag'),
-	('schematic_smg_suppressor', 'Schematic: SMG Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'smg_suppressor'),
-	('schematic_smgmk2', 'Schematic: SMG Mk2', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'smgmk2'),
-	('schematic_sns', 'Schematic: SNS Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sns'),
-	('schematic_tec9', 'Schematic: TEC-9', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'tech9'),
-	('schematic_thermite', 'Schematic: Thermite', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'thermite'),
-	('schematic_tommygun', 'Schematic: Tommy Gun', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'tommygun'),
-	('schematic_ump', 'Schematic: .45 SMG', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ump'),
-	('schematic_vector', 'Schematic: Vector', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'vector'),
-	('schematic_weapon_flashlight', 'Schematic: Weapon Flashlight', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'weapon_flashlight'),
-	('schematic_yellow_laptop', 'Schematic: Yellow Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 0, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'yellow_laptop'),
-	('scrapmetal', 'Scrap Metal', NULL, 4, 1, NULL, 10, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('screwdriver', 'Screwdriver', NULL, 3, 1, NULL, 400, NULL, NULL, 0, NULL, 0, 1, 1, 259200, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('scuba_gear', 'Scuba Gear', NULL, 3, 2, NULL, 1000, NULL, NULL, 10, NULL, 0, 1, 1, 1209600, 1, 1, 0, 0, 0, 'EMS_DIVING', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sequencer', 'Yellow Keypad Sequencer', '<i>Marked For Police Seizure</i>', 3, 1, NULL, 2500, NULL, NULL, 1, NULL, 0, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_dontblock', 'Do Not Block Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_leftturn', 'Left Turn Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 1, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_nopark', 'No Parking Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_notresspass', 'No Tresspassing Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_rightturn', 'Right Turn Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_stop', 'Stop Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_uturn', 'U-Turn Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_walkingman', 'Walking Man Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sign_yield', 'Yield Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('silverbar', 'Silver Bar', NULL, 4, 2, NULL, 200, NULL, NULL, 0, NULL, 10000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('silverore', 'Silver Ore', NULL, 6, 3, NULL, 0, NULL, NULL, 0, NULL, 200, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('sloppyjoe', 'Sloppy Joe', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_HUNGER":100}}', '{"armourModifier":10}', NULL),
-	('smoothie_orange', 'Orange Smoothie', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":60,"PLAYER_HUNGER":15}}', '{"energyModifier":{"cooldown":60,"modifier":1.1,"duration":5,"skipScreenEffects":true}}', NULL),
-	('smoothie_veg', 'Veg Smoothie', 'A Bean Machine Exclusive', 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":9000}', '{"Remove":{"PLAYER_DRUNK":10},"Add":{"PLAYER_THIRST":75,"PLAYER_HUNGER":10}}', '{"energyModifier":{"cooldown":60,"modifier":1.2,"duration":5,"skipScreenEffects":true}}', NULL),
-	('soda', 'Soda', NULL, 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"label":"Drinking","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Remove":{"PLAYER_HUNGER":0},"Add":{"PLAYER_THIRST":35}}', NULL, NULL),
-	('sombrero', 'Sombrero', NULL, 13, 1, NULL, 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, '{"hat":{"disabled":false,"textureId":0,"componentId":0,"drawableId":166}}', NULL, NULL, NULL, NULL, NULL),
-	('spag_bowl', 'Spaghetti Bolognese', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":17000}', '{"Add":{"PLAYER_HUNGER":70}}', NULL, NULL),
-	('sparkling_wine', 'Sparkling Wine', NULL, 4, 1, NULL, 5, NULL, NULL, 0, NULL, 30, 1, 0, NULL, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('spikes', 'Spike Strips', NULL, 1, 4, NULL, 200, NULL, NULL, 13, NULL, 0, 1, 1, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('ssb_chain', 'SSB Chain', 'SSB Gang Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"ssb"}', NULL),
-	('sugar', 'Bag of Sugar', NULL, 4, 1, NULL, 2, NULL, NULL, 1, NULL, 40, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('tacos', 'Taco', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_tacos","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":100}}', NULL, NULL),
-	('tea_leaf', 'Tea Leaf', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 500, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('tequila', 'Tequila', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 5184000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('tequila_shot', 'Shot of Tequila', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('tequila_sunrise', 'Tequila Sunrise', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('the_simply_burger', 'Simply Burger', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bshot_simply","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":80}}', NULL, NULL),
-	('thermite', 'Thermite Charge', NULL, 1, 1, NULL, 200, NULL, NULL, 3, NULL, 0, 1, 1, 5184000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('tiramisu', 'Tiramisu', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_THIRST":50,"PLAYER_HUNGER":50}}', '{"energyModifier":{"cooldown":60,"modifier":1.1,"duration":2,"skipScreenEffects":true}}', NULL),
-	('tomato', 'Tomato', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('tourniquet', 'Tourniquet', NULL, 1, 1, NULL, 150, NULL, NULL, 1, NULL, 0, 1, 0, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"bandage","pbConfig":{"label":"Applying Tourniquet","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":5000}', NULL, NULL, NULL),
-	('traumakit', 'Trauma Kit', 'Needed to treat serious trauma in the field', 1, 1, NULL, 500, NULL, NULL, 5, NULL, 0, 1, 0, 432000, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('tv', 'Television', 'Potentially Stolen', 6, 1, NULL, 1800, NULL, 'ANIM_tv', 100, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('unk_meat', 'Meat', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 250, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('unknown_ore', 'Unknown Ore', NULL, 7, 5, NULL, 0, NULL, NULL, 3, NULL, 15, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_brakes1', 'Brakes Upgrade (1)', 'Upgrade a Vehicles Brakes to Level 1', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_brakes2', 'Brakes Upgrade (2)', 'Upgrade a Vehicles Brakes to Level 2', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_brakes3', 'Brakes Upgrade (3)', 'Upgrade a Vehicles Brakes to Level 3', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_brakes4', 'Brakes Upgrade (4)', 'Upgrade a Vehicles Brakes to Level 4', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_engine1', 'Engine Upgrade (1)', 'Upgrade a Vehicles Engine to Level 1', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_engine2', 'Engine Upgrade (2)', 'Upgrade a Vehicles Engine to Level 2', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_engine3', 'Engine Upgrade (3)', 'Upgrade a Vehicles Engine to Level 3', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_engine4', 'Engine Upgrade (4)', 'Upgrade a Vehicles Engine to Level 4', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_suspension1', 'Suspension Upgrade (1)', 'Upgrade a Vehicles Suspension to Level 1', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_suspension2', 'Suspension Upgrade (2)', 'Upgrade a Vehicles Suspension to Level 2', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_suspension3', 'Suspension Upgrade (3)', 'Upgrade a Vehicles Suspension to Level 3', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_suspension4', 'Suspension Upgrade (4)', 'Upgrade a Vehicles Suspension to Level 4', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_transmission1', 'Transmission Upgrade (1)', 'Upgrade a Vehicles Transmission to Level 1', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_transmission2', 'Transmission Upgrade (2)', 'Upgrade a Vehicles Transmission to Level 2', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_transmission3', 'Transmission Upgrade (3)', 'Upgrade a Vehicles Transmission to Level 3', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_transmission4', 'Transmission Upgrade (4)', 'Upgrade a Vehicles Transmission to Level 4', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('upgrade_turbo', 'Turbo Upgrade', 'Upgrade a Vehicles to a Turbo', 3, 3, NULL, 1000, NULL, NULL, 1, NULL, 100, 1, 1, 7776000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_chain', 'UwU Chain', 'UwU Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"uwu"}', NULL),
-	('uwu_prize_b1', 'UwU Bear', 'UwU Cafe Collectable', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b10', 'UwU Snow Bear', 'UwU Cafe Collectable', 5, 4, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b2', 'UwU Rainbow Bear', 'UwU Cafe Collectable', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b3', 'UwU Sun Bear', 'UwU Cafe Collectable', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b4', 'UwU Flower Bear', 'UwU Cafe Collectable', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b5', 'UwU Tree Bear', 'UwU Cafe Collectable', 5, 2, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b6', 'UwU Heart Bear', 'UwU Cafe Collectable', 5, 2, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b7', 'UwU Moon Bear', 'UwU Cafe Collectable', 5, 3, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b8', 'UwU Rain Bear', 'UwU Cafe Collectable', 5, 3, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_b9', 'UwU Star Bear', 'UwU Cafe Collectable', 5, 4, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('uwu_prize_box', 'UwU Mystery Box', 'Collect all the different bears! UwU', 1, 1, NULL, 0, NULL, NULL, 0, NULL, 100, 1, 0, NULL, 1, 0, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"mindblown","pbConfig":{"label":"Opening UwU Mystery Box","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":3000}', NULL, NULL, NULL),
-	('valuegoods', 'Valuable Goods', 'Potentially Stolen', 4, 4, NULL, 2450, NULL, NULL, 1, NULL, 10, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('vanityitem', 'Vanity Item', NULL, 5, 3, NULL, 0, NULL, NULL, 0, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('venison', 'Venison', NULL, 1, 1, NULL, 40, NULL, NULL, 0, NULL, 250, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('vension_steak', 'Venison Steak', NULL, 1, 1, NULL, 150, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"label":"Eating","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":50}}', NULL, NULL),
-	('vibrator_pink', 'Vibrator', 'If you vibe it, they will cum.', 1, 4, NULL, 400, NULL, NULL, 2, NULL, 0, 1, 0, NULL, 1, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('vodka', 'Vodka', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 5184000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('vodka_shot', 'Shot of Vodka', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('vpn', 'VPN', NULL, 7, 4, NULL, 15000, NULL, 'PHONE_VPN', 1, NULL, 0, 1, 0, 1814400, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('watch', 'Gold Watch', 'Potentially Stolen', 6, 1, NULL, 215, NULL, NULL, 1, NULL, 50, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('water', 'Water', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '{"anim":"water","pbConfig":{"label":"Drinking Water","disableMouse":false,"disarm":true,"disableCombat":true,"disableMovement":false,"ignoreModifier":true,"canCancel":true,"disableCarMovement":false,"vehicle":false,"useWhileDead":false},"time":5000}', '{"Remove":{"PLAYER_DRUNK":20,"PLAYER_HUNGER":0},"Add":{"PLAYER_THIRST":30}}', NULL, NULL),
-	('weed_baggy', 'Baggy of Weed', NULL, 12, 2, NULL, 200, NULL, NULL, 0, NULL, 100, 1, 0, 1209600, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('weed_brick', 'Brick of Weed', NULL, 12, 3, NULL, 10000, NULL, 'ANIM_weed', 10, NULL, 0, 1, 0, 3888000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('weed_bud', 'Marijuana Bud', NULL, 12, 1, NULL, 100, NULL, NULL, 0, NULL, 100, 1, 0, 1209600, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('weed_joint', 'Joint', NULL, 12, 1, NULL, 25, NULL, NULL, 1, NULL, 10, 1, 0, 1728000, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"Remove":{"PLAYER_HUNGER":5}}', '{"drugState":{"duration":1800,"type":"weed"}}', NULL),
-	('weedseed_female', 'Female Marijuana Seed', NULL, 7, 1, NULL, 100, NULL, NULL, 0, NULL, 500, 1, 0, 2419200, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('weedseed_male', 'Male Marijuana Seed', NULL, 7, 1, NULL, 100, NULL, NULL, 0, NULL, 500, 1, 0, 2419200, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('whiskey', 'Whiskey', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 5184000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('whiskey_glass', 'Glass of Whiskey', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('wine_bottle', 'Bottle of Wine', NULL, 1, 2, NULL, 50, NULL, NULL, 1, NULL, 10, 1, 0, 12960000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('wine_glass', 'Glass of Wine', NULL, 1, 2, NULL, 200, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 1, 1, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('yeast', 'Yeast', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 50, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('yellow_dongle', 'USB Drive (Yellow)', '<i>Marked For Police Seizure</i>', 3, 4, NULL, 2500, NULL, 'DONGLE_YELLOW', 1, NULL, 0, 0, 1, 259200, 0, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('yellow_laptop', 'Laptop (Yellow)', '<i>Marked For Police Seizure</i>', 3, 4, NULL, 2500, NULL, NULL, 1, NULL, 0, 1, 1, 604800, 1, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-/*!40000 ALTER TABLE `item_template` ENABLE KEYS */;
+	('AMMO_BEANBAG_PD', 'PD Beanbag Ammo', NULL, 9, 1, 'AMMO_SHOTGUN', 5, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, 'PD_BEANBAG', 'AMMO_SHOTGUN', 5, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_PISTOL', 'Pistol Ammo', NULL, 9, 1, NULL, 50, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, NULL, 'AMMO_PISTOL', 100, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_PISTOL_PD', 'PD Pistol Ammo', NULL, 9, 1, 'AMMO_PISTOL', 5, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, NULL, 'AMMO_PISTOL', 100, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_RIFLE', 'Rifle Ammo', NULL, 9, 1, NULL, 25, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, NULL, 'AMMO_RIFLE', 100, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_RIFLE_PD', 'PD Rifle Ammo', NULL, 9, 1, 'AMMO_RIFLE', 10, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, 'PD_AR', 'AMMO_RIFLE', 100, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_SHOTGUN', 'Shotgun Ammo', NULL, 9, 1, NULL, 30, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, NULL, 'AMMO_SHOTGUN', 25, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_SHOTGUN_PD', 'PD Shotgun Ammo', NULL, 9, 1, 'AMMO_SHOTGUN', 5, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, 'PD_SHOTGUN', 'AMMO_SHOTGUN', 25, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_SMG', 'SMG Ammo', NULL, 9, 1, NULL, 300, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, NULL, 'AMMO_SMG', 100, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_SMG_PD', 'PD SMG Ammo', NULL, 9, 1, 'AMMO_SMG', 5, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, 'PD_SMG', 'AMMO_SMG', 100, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_SNIPER', 'Hunting Rifle Ammo', NULL, 9, 1, NULL, 250, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, NULL, 'AMMO_SNIPER', 10, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('AMMO_STUNGUN', 'Taser Ammo', NULL, 9, 1, NULL, 3, NULL, NULL, 0, NULL, 10, 1, 1, 2592000, 0, 1, 1, 0, 0, NULL, 'AMMO_STUNGUN', 2, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('ATTCH_AR_EXT_MAG', 'Extended AR Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_G36":"COMPONENT_MARKOMODSG36_CLIP_02","WEAPON_CARBINERIFLE":"COMPONENT_CARBINERIFLE_CLIP_02","WEAPON_ADVANCEDRIFLE":"COMPONENT_ADVANCEDRIFLE_CLIP_02","WEAPON_ASSAULTSMG":"COMPONENT_ASSAULTSMG_CLIP_02","WEAPON_BULLPUPRIFLE":"COMPONENT_BULLPUPRIFLE_CLIP_02","WEAPON_PM4":"COMPONENT_MARKOMODS_SHARED_556MAG_03","WEAPON_ASSAULTRIFLE":"COMPONENT_ASSAULTRIFLE_CLIP_02","WEAPON_AK74":"COMPONENT_AK74_CLIP_02","WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_ASSAULTRIFLE_MK2_CLIP_02","WEAPON_SPECIALCARBINE":"COMPONENT_SPECIALCARBINE_CLIP_02","WEAPON_AR15":"COMPONENT_AR15_CLIP_02","WEAPON_FM1_HONEYBADGER":"COMPONENT_FMCLIP_02","WEAPON_MCXSPEAR":"COMPONENT_MCXSPEAR_CLIP_02","WEAPON_CARBINERIFLE_MK2":"COMPONENT_CARBINERIFLE_MK2_CLIP_02","WEAPON_COMPACTRIFLE":"COMPONENT_COMPACTRIFLE_CLIP_02","WEAPON_HK416":"COMPONENT_HK416B_CLIP_02","WEAPON_RPK16":"COMPONENT_RPK16_CLIP_05","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_SPECIALCARBINE_MK2_CLIP_02","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_BULLPUPRIFLE_MK2_CLIP_02"},"returnItem":true,"type":"magazine"}', NULL, NULL, '[]', NULL),
+	('ATTCH_AR_SILENCER', 'Rifle Suppressor', NULL, 16, 3, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_AT_AR_SUPP_02","WEAPON_G36":"COMPONENT_MARKOMODSG36_BARREL_03","WEAPON_PM4":"COMPONENT_MARKOMODS_SHARED_SUPP_14","WEAPON_CARBINERIFLE":"COMPONENT_AT_AR_SUPP","WEAPON_SPECIALRIFLE":"COMPONENT_AT_AR_SUPP","WEAPON_HK416":"COMPONENT_AT_HK416B_SUPP","WEAPON_ADVANCEDRIFLE":"COMPONENT_AT_AR_SUPP","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_AT_AR_SUPP_02","WEAPON_BULLPUPRIFLE":"COMPONENT_AT_AR_SUPP_02","WEAPON_CARBINERIFLE_MK2":"COMPONENT_AT_AR_SUPP_02","WEAPON_RPK16":"COMPONENT_RPK16_MUZZLE_05","WEAPON_ASSAULTRIFLE":"COMPONENT_AT_AR_SUPP_02","WEAPON_AR15":"COMPONENT_AR15_SUPP_01","WEAPON_AK74":"COMPONENT_AK74_SUPP","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_AT_AR_SUPP"},"returnItem":true,"type":"muzzle"}', NULL, NULL, '[]', NULL),
+	('ATTCH_BOX_MAG', 'Box Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_CARBINERIFLE":"COMPONENT_CARBINERIFLE_CLIP_03","WEAPON_G36":"COMPONENT_MARKOMODSG36_CLIP_04","WEAPON_AK74":"COMPONENT_AK74_CLIP_03","WEAPON_RPK16":"COMPONENT_RPK16_CLIP_06"},"returnItem":true,"type":"magazine"}', NULL, NULL, '[]', NULL),
+	('ATTCH_DRUM_MAG', 'Drum Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_MPX":"COMPONENT_MPX_CLIP_03","WEAPON_SPECIALCARBINE":"COMPONENT_SPECIALCARBINE_CLIP_03","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_CLIP_04","WEAPON_COMBATPDW":"COMPONENT_COMBATPDW_CLIP_03","WEAPON_G36":"COMPONENT_MARKOMODSG36_CLIP_03","WEAPON_COMPACTRIFLE":"COMPONENT_COMPACTRIFLE_CLIP_03","WEAPON_ASSAULTRIFLE":"COMPONENT_ASSAULTRIFLE_CLIP_03","WEAPON_MACHINEPISTOL":"COMPONENT_MACHINEPISTOL_CLIP_03","WEAPON_RPK16":"COMPONENT_RPK16_CLIP_07","WEAPON_PP19":"COMPONENT_PP19_CLIP_07"},"returnItem":true,"type":"magazine"}', NULL, NULL, '[]', NULL),
+	('ATTCH_GRIP', 'Foregrip', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_RPK16":"COMPONENT_RPK16_GRIP_01","WEAPON_G36":"COMPONENT_MARKOMODSG36_GRIP_02","WEAPON_HKUMP":"COMPONENT_UMP_GRIP_01"},"returnItem":true,"type":"grip"}', NULL, NULL, '[]', NULL),
+	('ATTCH_HOLO', 'Holographic Sight', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_MPX":"COMPONENT_MPX_SCOPE_04","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_04","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SCOPE_01","WEAPON_AR15":"COMPONENT_BEOWULF_SCOPE_04","WEAPON_PP19":"COMPONENT_PP19_SCOPE_07","WEAPON_HKUMP":"COMPONENT_UMP_SCOPE_04","WEAPON_P90FM":"COMPONENT_P90_SCOPE_07","WEAPON_HK416":"COMPONENT_AT_SCOPE_HK416B","WEAPON_RPK16":"COMPONENT_MARKOMODSG36_SCOPE_02","WEAPON_L5":"COMPONENT_MARKOMODSL5_SCOPE_06"},"returnItem":true,"type":"optic"}', NULL, NULL, '[]', NULL),
+	('ATTCH_LRG_SCOPE', 'Large Scope', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_SPECIALCARBINE_MK2":"COMPONENT_AT_SCOPE_MEDIUM_MK2","WEAPON_CARBINERIFLE_MK2":"COMPONENT_AT_SCOPE_MEDIUM_MK2","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_10","WEAPON_MPX":"COMPONENT_MPX_SCOPE_08","WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_AT_SCOPE_MEDIUM_MK2"},"returnItem":true,"type":"optic"}', NULL, NULL, '[]', NULL),
+	('ATTCH_MED_SCOPE', 'Medium Scope', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_MPX":"COMPONENT_MPX_SCOPE_06","WEAPON_SPECIALCARBINE":"COMPONENT_AT_SCOPE_MEDIUM","WEAPON_CARBINERIFLE":"COMPONENT_AT_SCOPE_MEDIUM","WEAPON_PP19":"COMPONENT_PP19_SCOPE_10","WEAPON_HKUMP":"COMPONENT_UMP_SCOPE_10","WEAPON_L5":"COMPONENT_MARKOMODSL5_SCOPE_09","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_09","WEAPON_RPK16":"COMPONENT_MARKOMODSG36_SCOPE_08","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_AT_SCOPE_SMALL_MK2"},"returnItem":true,"type":"optic"}', NULL, NULL, '[]', NULL),
+	('ATTCH_PISTOL_EXT_MAG', 'Extended Pistol Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_PISTOL50":"COMPONENT_PISTOL50_CLIP_02","WEAPON_2011":"COMPONENT_MARKOMODS2011_CLIP_02","WEAPON_APPISTOL":"COMPONENT_APPISTOL_CLIP_02","WEAPON_M45A1":"COMPONENT_M45A1_CLIP_02","WEAPON_FN509":"COMPONENT_FN509_CLIP_02","WEAPON_P320A":"COMPONENT_MARKOMODSP320a_CLIP_02","WEAPON_MACHINEPISTOL":"COMPONENT_MACHINEPISTOL_CLIP_02","WEAPON_HEAVYPISTOL":"COMPONENT_HEAVYPISTOL_CLIP_02","WEAPON_GLOCK19":"COMPONENT_GLOCK19_CLIP_02","WEAPON_PISTOL":"COMPONENT_PISTOL_CLIP_02","WEAPON_FM1_P226":"COMPONENT_FM1_P226_CLIP_02","WEAPON_SNSPISTOL_MK2":"COMPONENT_SNSPISTOL_MK2_CLIP_02","WEAPON_COMBATPISTOL":"COMPONENT_COMBATPISTOL_CLIP_02","WEAPON_SNSPISTOL":"COMPONENT_SNSPISTOL_CLIP_02","WEAPON_FM1_CZ75":"COMPONENT_FM1_CZ75_CLIP_02","WEAPON_FIVESEVEN":"COMPONENT_FIVESEVEN_CLIP_02","WEAPON_FNX45":"COMPONENT_MARKOMODS_FNX45_MAG_03","WEAPON_PISTOL_MK2":"COMPONENT_PISTOL_MK2_CLIP_02","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_CLIP_02","WEAPON_L5":"COMPONENT_MARKOMODSL5_CLIP_02","WEAPON_FM1_M9A3":"COMPONENT_FM1_M9A3_CLIP_02"},"returnItem":true,"type":"magazine"}', NULL, NULL, '[]', NULL),
+	('ATTCH_PISTOL_SILENCER', 'Pistol Suppressor', NULL, 16, 3, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_FIVESEVEN":"COMPONENT_FIVESEVEN_SUPP_01","WEAPON_2011":"COMPONENT_MARKOMODS2011_MUZZLE_03","WEAPON_M45A1":"COMPONENT_M45A1_SUPP_01","WEAPON_FN509":"COMPONENT_FN509_SUPP_01","WEAPON_HEAVYPISTOL":"COMPONENT_AT_PI_SUPP","WEAPON_GLOCK19":"COMPONENT_GLOCK19_SUPP_02","WEAPON_PISTOL":"COMPONENT_AT_PI_SUPP","WEAPON_FM1_P226":"COMPONENT_FMSUPP_07","WEAPON_SNSPISTOL_MK2":"COMPONENT_AT_PI_SUPP_02","WEAPON_COMBATPISTOL":"COMPONENT_AT_PI_SUPP","WEAPON_FM1_CZ75":"COMPONENT_FMSUPP_07","WEAPON_PISTOL50":"COMPONENT_AT_AR_SUPP_02","WEAPON_PISTOL_MK2":"COMPONENT_AT_PI_SUPP_02","WEAPON_FNX45":"COMPONENT_MARKOMODS_FNX45_SUPP_02","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_SUPP_05","WEAPON_FM1_M9A3":"COMPONENT_FMSUPP_07"},"returnItem":true,"type":"muzzle"}', NULL, NULL, '[]', NULL),
+	('ATTCH_REDDOT', 'Red Dot Sight', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_03","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SCOPE_06","WEAPON_AR15":"COMPONENT_BEOWULF_SCOPE_09","WEAPON_PP19":"COMPONENT_PP19_SCOPE_02","WEAPON_HKUMP":"COMPONENT_UMP_SCOPE_04","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_SCOPE_03","WEAPON_SMG_MK2":"COMPONENT_AT_SIGHTS_SMG","WEAPON_L5":"COMPONENT_MARKOMODSL5_SCOPE_07","WEAPON_RPK16":"COMPONENT_MARKOMODSG36_SCOPE_06","WEAPON_GLOCK19":"COMPONENT_GLOCK19_SCOPE_03"},"returnItem":true,"type":"optic"}', NULL, NULL, '[]', NULL),
+	('ATTCH_SMALL_SCOPE', 'Small Scope', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_MPX":"COMPONENT_MPX_SCOPE_03","WEAPON_G36":"COMPONENT_MARKOMODSG36_SCOPE_06","WEAPON_SMG":"COMPONENT_AT_SCOPE_MACRO_02","WEAPON_MP5":"COMPONENT_AT_SCOPE_MP5","WEAPON_COMBATPDW":"COMPONENT_AT_SCOPE_SMALL","WEAPON_ADVANCEDRIFLE":"COMPONENT_AT_SCOPE_SMALL","WEAPON_ASSAULTSMG":"COMPONENT_AT_SCOPE_MACRO","WEAPON_BULLPUPRIFLE":"COMPONENT_AT_SCOPE_SMALL","WEAPON_MP9A":"COMPONENT_AT_SCOPE_MP9A","WEAPON_MAC10":"COMPONENT_AT_SCOPE_MACRO","WEAPON_RPK16":"COMPONENT_MARKOMODSG36_SCOPE_04","WEAPON_GLOCK19":"COMPONENT_GLOCK19_SCOPE_07","WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_AT_SCOPE_MACRO_MK2","WEAPON_HKUMP":"COMPONENT_UMP_SCOPE_01","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SCOPE_03","WEAPON_SMG_MK2":"COMPONENT_AT_SCOPE_SMALL_SMG_MK2","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_SCOPE_07","WEAPON_L5":"COMPONENT_MARKOMODSL5_SCOPE_08","WEAPON_PP19":"COMPONENT_PP19_SCOPE_06","WEAPON_P90FM":"P90Scope4FluffysMods","WEAPON_CARBINERIFLE_MK2":"COMPONENT_AT_SCOPE_MACRO_MK2","WEAPON_AR15":"COMPONENT_BEOWULF_SCOPE_10","WEAPON_CARBINERIFLE":"COMPONENT_CARBINERIFLE_CLIP_03","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_AT_SCOPE_MACRO_MK2","WEAPON_ASSAULTRIFLE":"COMPONENT_AT_SCOPE_MACRO","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_AT_SCOPE_MACRO_02_MK2"},"returnItem":true,"type":"optic"}', NULL, NULL, '[]', NULL),
+	('ATTCH_SMG_EXT_MAG', 'Extended SMG Magazine', NULL, 16, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_MPX":"COMPONENT_MPX_CLIP_02","WEAPON_VECTOR":"COMPONENT_MARKOMODS_VECTOR_CLIP_2","WEAPON_SMG":"COMPONENT_SMG_CLIP_02","WEAPON_MP5":"COMPONENT_MP5_CLIP_02","WEAPON_COMBATPDW":"COMPONENT_SNSPISTOL_MK2_CLIP_02","WEAPON_MINISMG":"COMPONENT_MINISMG_CLIP_02","WEAPON_ASSAULTSMG":"COMPONENT_ASSAULTSMG_CLIP_02","WEAPON_HKUMP":"COMPONENT_UMP_CLIP_02","WEAPON_MP9A":"COMPONENT_MP9A_CLIP_02","WEAPON_PP19":"COMPONENT_PP19_CLIP_03","WEAPON_MAC10":"COMPONENT_MICROSMG_CLIP_02","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_CLIP_03","WEAPON_PISTOL_MK2":"COMPONENT_PISTOL_MK2_CLIP_02","WEAPON_SMG_MK2":"COMPONENT_SMG_MK2_CLIP_02"},"returnItem":true,"type":"magazine"}', NULL, NULL, '[]', NULL),
+	('ATTCH_SMG_SILENCER', 'SMG Suppressor', NULL, 16, 3, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_MPX":"COMPONENT_MPX_BARREL_08","WEAPON_VECTOR":"COMPONENT_MARKOMODS_VECTOR_SUPP_1","WEAPON_SMG":"COMPONENT_AT_PI_SUPP","WEAPON_MP5":"COMPONENT_AT_MP5_SUPP","WEAPON_PP19":"COMPONENT_PP19_MUZZLE_05","WEAPON_HKUMP":"COMPONENT_UMP_SUPP_02","WEAPON_MP9A":"COMPONENT_AT_MP9A_SUPP_02","WEAPON_MAC10":"COMPONENT_AT_AR_SUPP_02","WEAPON_SMG_MK2":"COMPONENT_AT_PI_SUPP","WEAPON_MINIUZI":"COMPONENT_MARKOMODSUZI_SUPP_02"},"returnItem":true,"type":"muzzle"}', NULL, NULL, '[]', NULL),
+	('ATTCH_WEAPON_FLASHLIGHT', 'Weapon Flashlight', NULL, 16, 2, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, '{"strings":{"WEAPON_MPX":"COMPONENT_MPX_FLSH_03","WEAPON_PISTOL50":"COMPONENT_AT_PI_FLSH","WEAPON_G36":"COMPONENT_MARKOMODSG36_FLASH_02","WEAPON_SMG":"COMPONENT_AT_AR_FLSH","WEAPON_PUMPSHOTGUN_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_COMBATPDW":"COMPONENT_AT_AR_FLSH","WEAPON_HKUMP":"COMPONENT_UMP_FLSH_03","WEAPON_50BEOWULF":"COMPONENT_BEOWULF_FLSH_01","WEAPON_MAC10":"COMPONENT_AT_PI_FLSH","WEAPON_RPK16":"COMPONENT_RPK16_LASER_01","WEAPON_HK416":"COMPONENT_AT_HK416B_FLSH","WEAPON_PISTOL":"COMPONENT_AT_PI_FLSH","WEAPON_AR15":"COMPONENT_BEOWULF_FLSH_01","WEAPON_COMBATPISTOL":"COMPONENT_AT_PI_FLSH","WEAPON_P90FM":"COMPONENT_P90_FLSH_01","WEAPON_BULLPUPRIFLE_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_MCXSPEAR":"COMPONENT_MCXSPEAR_FLSH_01","WEAPON_FM1_P226":"COMPONENT_FMFLSH_01","WEAPON_ASSAULTSHOTGUN":"COMPONENT_AT_AR_FLSH","WEAPON_FN509":"COMPONENT_FN509_FLSH_01","WEAPON_CARBINERIFLE":"COMPONENT_AT_AR_FLSH","WEAPON_MP5":"COMPONENT_AT_AR_FLSH","WEAPON_APPISTOL":"COMPONENT_AT_PI_FLSH","WEAPON_ADVANCEDRIFLE":"COMPONENT_AT_AR_FLSH","WEAPON_ASSAULTSMG":"COMPONENT_AT_AR_FLSH","WEAPON_BULLPUPRIFLE":"COMPONENT_AT_AR_FLSH","WEAPON_MP9A":"COMPONENT_AT_MP9A_FLSH","WEAPON_GLOCK19_CIV":"COMPONENT_GLOCK19_CIV_FLSH_01","WEAPON_ASSAULTRIFLE":"COMPONENT_AT_AR_FLSH","WEAPON_PUMPSHOTGUN":"COMPONENT_AT_AR_FLSH","WEAPON_HEAVYPISTOL":"COMPONENT_AT_PI_FLSH","WEAPON_FIVESEVEN":"COMPONENT_FIVESEVEN_FLSH_01","WEAPON_ASSAULTRIFLE_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_FNX45":"COMPONENT_MARKOMODS_FNX45_FLASH_02","WEAPON_SPECIALCARBINE":"COMPONENT_AT_AR_FLSH","WEAPON_PM4":"COMPONENT_MARKOMODS_SHARED_FLASH_07a","WEAPON_BULLPUPSHOTGUN":"COMPONENT_AT_AR_FLSH","WEAPON_SMG_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_HEAVYSHOTGUN":"COMPONENT_AT_AR_FLSH","WEAPON_FM1_HONEYBADGER":"COMPONENT_FMFLSH_12","WEAPON_FM1_CZ75":"COMPONENT_FMFLSH_01","WEAPON_P320A":"COMPONENT_MARKOMODSP320a_FLASH_01","WEAPON_CARBINERIFLE_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_2011":"COMPONENT_MARKOMODS2011_FLSH_03","WEAPON_PISTOL_MK2":"COMPONENT_AT_PI_FLSH_02","WEAPON_M45A1":"COMPONENT_M45A1_FLSH_01","WEAPON_SPECIALCARBINE_MK2":"COMPONENT_AT_AR_FLSH","WEAPON_FM1_M9A3":"COMPONENT_FMFLSH_01"},"returnItem":true,"type":"flashlight"}', NULL, NULL, '[]', NULL),
+	('BOBCAT_2011', '2011 Tactical', NULL, 2, 2, 'WEAPON_2011', 10000, 'WEAPON_2011', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_38CUSTOM', '.38 Custom', NULL, 2, 1, 'WEAPON_38SPECIAL', 10000, 'WEAPON_38SPECIAL', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_38SNUBNOSE2', '.38 Snubnose', NULL, 2, 1, 'WEAPON_38SNUBNOSE2', 10000, 'WEAPON_38SNUBNOSE2', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_38SNUBNOSE3', '.38 Snubnose', NULL, 2, 1, 'WEAPON_38SNUBNOSE3', 10000, 'WEAPON_38SNUBNOSE3', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_44MAGNUM', '.44 Magnum', NULL, 2, 1, 'WEAPON_44MAGNUM', 10000, 'WEAPON_44MAGNUM', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_57', 'Six Eight', NULL, 2, 2, 'WEAPON_FIVESEVEN', 10000, 'WEAPON_FIVESEVEN', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_COMBATPISTOL', 'Combat Pistol', NULL, 2, 1, 'WEAPON_COMBATPISTOL', 3200, 'WEAPON_COMBATPISTOL', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_COMPACTRIFLE', 'Draco', NULL, 2, 1, 'WEAPON_COMPACTRIFLE', 10000, 'WEAPON_COMPACTRIFLE', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_DBSHOTGUN', 'Double Barrel Shotgun', NULL, 2, 1, 'WEAPON_DBSHOTGUN', 10000, 'WEAPON_DBSHOTGUN', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_DOUBLEACTION', 'Double Action Revolver', NULL, 2, 2, 'WEAPON_DOUBLEACTION', 8000, 'WEAPON_DOUBLEACTION', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_FNX', 'SB 45 Tactical', NULL, 2, 1, 'WEAPON_FNX', 3200, 'WEAPON_FNX', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_GLOCK19_CIV', 'F19', NULL, 2, 3, 'WEAPON_GLOCK19', 6000, 'WEAPON_GLOCK19_CIV', NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_L5', 'Desert Eagle K8', NULL, 2, 2, 'WEAPON_L5', 6000, 'WEAPON_L5', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_M9A3', 'M9A3', NULL, 2, 2, 'WEAPON_FM1_M9A3', 10000, 'WEAPON_FM1_M9A3', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_MCXSPEAR', 'SBX Spear', NULL, 2, 1, 'WEAPON_MCXSPEAR', 10000, 'WEAPON_MCXSPEAR', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_MINIUZI', 'Mini UZI', NULL, 2, 1, 'WEAPON_MINIUZI', 10000, 'WEAPON_MINIUZI', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_MP9A', 'MP9', NULL, 2, 1, 'WEAPON_MP9A', 10000, 'WEAPON_MP9A', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_MPX', 'MP 9mm', NULL, 2, 1, 'WEAPON_MPX', 10000, 'WEAPON_MPX', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_P226', 'P226', NULL, 2, 1, 'WEAPON_FM1_P226', 10000, 'WEAPON_FM1_P226', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_PISTOL50', 'Desert Eagle', NULL, 2, 2, 'WEAPON_PISTOL50', 6000, 'WEAPON_PISTOL50', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_PP19', 'PP-19', NULL, 2, 1, 'WEAPON_PP19', 10000, 'WEAPON_PP19', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_PUMPSHOTGUN', 'Pump Shotgun', NULL, 2, 2, 'WEAPON_PUMPSHOTGUN', 10000, 'WEAPON_PUMPSHOTGUN', NULL, 15, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_REVOLVER', 'Revolver', NULL, 2, 2, 'WEAPON_REVOLVER', 7000, 'WEAPON_REVOLVER', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_SAWNOFFSHOTGUN', 'Sawnoff Shotgun', NULL, 2, 1, 'WEAPON_SAWNOFFSHOTGUN', 10000, 'WEAPON_SAWNOFFSHOTGUN', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_SMG_MK2', 'SIG MPX', NULL, 2, 2, 'WEAPON_SMG_MK2', 10000, 'WEAPON_SMG_MK2', NULL, 5, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('BOBCAT_SNSPISTOL', 'SNS Pistol', NULL, 2, 2, 'WEAPON_SNSPISTOL', 3500, 'WEAPON_SNSPISTOL', NULL, 8, NULL, 1, 1, 1, 604800, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_2011', '2011 Tactical', NULL, 2, 3, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_2011_PD', 'PD 2011 Tactical', NULL, 2, 3, 'WEAPON_2011', 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_38SNUBNOSE', 'PD .38 Snubnose', NULL, 2, 4, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_38SNUBNOSE2', '.38 Snubnose', NULL, 2, 4, 'WEAPON_38SNUBNOSE', 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_38SNUBNOSE3', '.38 Snubnose', NULL, 2, 4, 'WEAPON_38SNUBNOSE', 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_38SPECIAL', '.38 Special', NULL, 2, 4, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_44MAGNUM', '.44 Magnum', NULL, 2, 4, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_44MAGNUM_PD', 'PD .44 Magnum', NULL, 2, 4, 'WEAPON_44MAGNUM', 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_50BEOWULF', 'SB .50 Beowulf', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_ADVANCEDRIFLE', 'Groza', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_AK74', 'AK-74', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_APPISTOL', 'F18 Auto', NULL, 2, 2, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_AR15', 'SB556A1', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_AR15_PD', 'PD SB556A1', NULL, 2, 3, 'WEAPON_AR15', 10000, NULL, NULL, 15, NULL, 1, 1, 1, 259200, 0, 0, 0, 1, 1, 'PD_AR', 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_ASSAULTRIFLE', 'AK-47', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_ASSAULTRIFLE_MK2', 'AK-12', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_ASSAULTSHOTGUN', 'SB 12G Assault', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_ASSAULTSMG', 'F90', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_ASVAL', 'AS-VAL', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_AUTOSHOTGUN', 'Auto Shotty', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BALL', 'Ball', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 0, 1814400, 0, 0, 1, 1, 0, NULL, 'AMMO_BALL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BAT', 'Baseball Bat', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 0, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BATTLEAXE', 'Battle Axe', NULL, 2, 2, NULL, 400, NULL, NULL, 18, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BEANBAG', 'Beanbag Gun', NULL, 2, 3, NULL, 300, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, 'PD_BEANBAG', 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BENELLIM2', 'BM2', NULL, 2, 4, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BENELLIM2_PD', 'PD BM2', NULL, 2, 4, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, 'PD_SHOTGUN', 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BOTTLE', 'Broken Bottle', NULL, 2, 1, NULL, 400, NULL, NULL, 8, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BROWNING', 'Browning', NULL, 2, 4, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BULLPUPRIFLE', 'Bullpup Rifle', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BULLPUPRIFLE_MK2', 'Bullpup Rifle Mk2', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BULLPUPSHOTGUN', 'Grapple Gun', NULL, 2, 7, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 7776000, 0, 0, 0, 1, 1, NULL, 'NOT_USABLE', 0, NULL, '{"WeaponTint":2}', NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BULLPUPSHOTGUN_PD', 'PD Grapple Gun', NULL, 2, 7, 'WEAPON_BULLPUPSHOTGUN', 3200, 'WEAPON_BULLPUPSHOTGUN', NULL, 5, NULL, 1, 1, 1, 7776000, 0, 0, 0, 1, 1, 'PD_GRAPPLE', 'NOT_USABLE', 0, NULL, '{"WeaponTint":2}', NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_BZGAS', 'BZ Gas', NULL, 2, 4, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 1, 1, 1, NULL, 'AMMO_BZGAS', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_CARBINERIFLE', 'PD .556', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_CARBINERIFLE_MK2', 'PD .762', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_COMBATMG', 'LMG', NULL, 2, 3, NULL, 10000, NULL, NULL, 20, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_MG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_COMBATMG_MK2', 'LMG MK2', NULL, 2, 3, NULL, 10000, NULL, NULL, 20, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_MG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_COMBATPDW', 'Combat PDW', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_COMBATPISTOL', 'Combat Pistol', NULL, 2, 1, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_COMPACTRIFLE', 'Draco', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_CROWBAR', 'Crowbar', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_CRUTCH', 'Crutch', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 0, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_DAGGER', 'Dagger', NULL, 2, 2, NULL, 400, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_DBSHOTGUN', 'Double Barrel Shotgun', NULL, 2, 1, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_DOUBLEACTION', 'Double Action Revolver', NULL, 2, 3, NULL, 8000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_DOUBLEBARRELFM', 'Double Barrel', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_DRBAT', 'Dr-Deshbat', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 0, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FIREEXTINGUISHER', 'Fire Extinguisher', NULL, 1, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 1, 0, 0, 0, NULL, 'AMMO_FIREEXTINGUISHER', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FIREWORK', 'Firework Launcher', NULL, 2, 1, NULL, 100000, NULL, NULL, 20, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, 'AMMO_FIREWORK', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FIVESEVEN', 'Six Eight', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FIVESEVEN_PD', 'PD Six Eight', NULL, 2, 3, 'WEAPON_FIVESEVEN', 10000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FLARE', 'Flare', NULL, 2, 3, NULL, 1000, NULL, NULL, 5, NULL, 10, 1, 1, 1209600, 0, 0, 1, 1, 0, NULL, 'AMMO_FLARE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FLAREGUN', 'Flaregun', NULL, 2, 3, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, 'AMMO_FLAREGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FLASHBANG', 'Flashbang', NULL, 2, 4, NULL, 1000, NULL, NULL, 1, NULL, 10, 1, 1, 1814400, 0, 0, 1, 1, 1, 'PD_SWAT', 'AMMO_FLASH', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FLASHLIGHT', 'Flashlight', NULL, 2, 1, NULL, 75, NULL, NULL, 8, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FM1_CZ75', 'CZ69', NULL, 2, 3, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FM1_HK416', 'M416', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FM1_HONEYBADGER', 'Honey Badger', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FM1_M9A3', 'M9A3', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FM1_P226', 'P226', NULL, 2, 3, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FM1_P226_PD', 'PD P226', NULL, 2, 3, 'WEAPON_FM1_P226', 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FM2_HK416', 'M416', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FN509', 'SB-509', NULL, 2, 3, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FNX', 'SB 45 Tactical', NULL, 2, 1, NULL, 3200, 'WEAPON_FNX45', NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_FNX45', 'SB 45 Tactical', NULL, 2, 1, 'WEAPON_FNX', 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_G36', 'G36', NULL, 2, 4, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_GLOCK19', 'PD F19', NULL, 2, 3, 'WEAPON_GLOCK19', 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_GLOCK19_CIV', 'F19', NULL, 2, 3, 'WEAPON_GLOCK19', 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_GOLFCLUB', 'Golf Club', NULL, 2, 1, NULL, 500, NULL, NULL, 12, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_GRENADE', 'Grenade', NULL, 2, 4, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 1, 1, 1, NULL, 'AMMO_GRENADE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_GRENADELAUNCHER_SMOKE', 'S Grenade Launcher', NULL, 2, 3, NULL, 100000, NULL, NULL, 20, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_GRENADELAUNCHER_SMOKE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_GUSENBERG', 'Tommy Gun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HAMMER', 'Hammer', NULL, 2, 1, NULL, 500, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HATCHET', 'Hatchet', NULL, 2, 1, NULL, 400, NULL, NULL, 18, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HEAVYPISTOL', 'Heavy Pistol', NULL, 2, 2, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HEAVYSHOTGUN', 'Assault Shotgun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HEAVYSNIPER', '.50 Sniper', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HEAVYSNIPER_MK2', 'BFG-50A', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HK417', 'M417', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HKUMP', '.45 SMG', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 259200, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_HKUMP_PD', 'PD .45 SMG', NULL, 2, 3, 'WEAPON_HKUMP', 10000, NULL, NULL, 15, NULL, 1, 1, 1, 259200, 0, 0, 0, 1, 1, 'PD_SMG', 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_KATANAS', 'Katana', NULL, 2, 1, NULL, 2000, NULL, NULL, 3, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, 'NONE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_KNIFE', 'Knife', NULL, 2, 1, NULL, 400, NULL, NULL, 9, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_KNUCKLE', 'Knuckle Dusters', NULL, 2, 2, NULL, 400, NULL, NULL, 8, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_L5', 'Desert Eagle K8', NULL, 2, 4, 'WEAPON_PISTOL50', 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_LUCILLE', 'Lucille', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 0, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_M249', 'M249', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_MG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_M45A1', 'M45', NULL, 2, 3, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MACHETE', 'Machete', NULL, 2, 2, NULL, 700, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MACHINEPISTOL', 'TEC-9', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MARKSMANPISTOL', 'Marksman Pistol', NULL, 2, 3, NULL, 7500, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MARKSMANRIFLE', 'F39 MMR', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MARKSMANRIFLE_MK2', 'F39 MMR mk2', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MB47', 'AK-47', NULL, 2, 4, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MCXRATTLER', 'SBX Rattler', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MCXSPEAR', 'SBX Spear', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MG', 'PKM', NULL, 2, 3, NULL, 10000, NULL, NULL, 20, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_MG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MICROSMG', 'MAC 10', NULL, 2, 3, NULL, 10000, 'WEAPON_MAC10', NULL, 12, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MINISMG', 'Mini SMG', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MINIUZI', 'Mini UZI', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MK14', 'Mk14 EBR', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MK47BANSHEE', 'MK47 Banshee S', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MK47BANSHEE2', 'MK47 Banshee A', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MK47FM', 'MK47 Mutant', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MOLOTOV', 'Molotov', NULL, 2, 4, NULL, 1000, NULL, NULL, 2, NULL, 5, 1, 0, 604800, 0, 0, 1, 1, 0, NULL, 'AMMO_MOLOTOV', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MP5', 'SB54', NULL, 2, 3, 'WEAPON_SMG', 10000, 'WEAPON_MP5', NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MP9A', 'MP9', NULL, 2, 3, NULL, 10000, 'WEAPON_MP9A', NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MPX', 'MP 9mm', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_MUSKET', 'Musket', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_NIGHTSTICK', 'Nightstick', NULL, 2, 1, NULL, 1000, NULL, NULL, 8, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_NSR9', 'NSR9', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_P3200A', 'SB9x19 Custom', NULL, 2, 3, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_P320A', 'SB 9x19a', NULL, 2, 2, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_P90FM', 'PDW', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PETROLCAN', 'Petrol Can', NULL, 2, 1, NULL, 150, NULL, NULL, 5, NULL, 1, 1, 0, 1814400, 0, 1, 0, 1, 0, NULL, 'AMMO_PETROLCAN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PIPEBOMB', 'Pipe Bomb', NULL, 2, 4, NULL, 1000, NULL, NULL, 12, NULL, 10, 1, 1, 604800, 0, 0, 1, 1, 0, NULL, 'AMMO_PIPEBOMB', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PISTOL', 'Pistol', NULL, 2, 1, NULL, 2000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PISTOL50', 'Desert Eagle', NULL, 2, 4, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PISTOL_MK2', 'PD 9MM', NULL, 2, 3, NULL, 2500, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PM4', 'M4', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PONY', 'Pony', NULL, 2, 2, NULL, 700, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_POOLCUE', 'Pool Cue', NULL, 2, 1, NULL, 200, NULL, NULL, 5, NULL, 1, 1, 0, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PP19', 'PP-19', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PROXMINE', 'Proximity Mine', NULL, 2, 4, NULL, 1000, NULL, NULL, 12, NULL, 10, 1, 1, 1814400, 0, 0, 1, 1, 1, NULL, 'AMMO_PROXMINE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PUMPSHOTGUN', 'Pump Shotgun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_PUMPSHOTGUN_MK2', 'PD Shotgun', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_REVOLVER', 'Revolver', NULL, 2, 3, NULL, 7000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_REVOLVER_MK2', 'Revolver MK2', NULL, 2, 3, NULL, 7000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_RFB', 'RFB', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_RPK16', 'RPK16', NULL, 2, 4, NULL, 6000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SA80', 'L95', NULL, 2, 3, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SAWNOFFSHOTGUN', 'Sawnoff Shotgun', NULL, 2, 1, NULL, 10000, NULL, NULL, 12, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SHOTGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SHIV', 'Shiv', NULL, 2, 1, NULL, 2000, NULL, NULL, 1, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, 'NONE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SHOVEL', 'Shovel', NULL, 2, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 0, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SLEDGE', 'Sledgehammer', NULL, 2, 2, NULL, 700, NULL, NULL, 12, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SMG', 'SMG', NULL, 2, 3, NULL, 10000, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SMG_MK2', 'SMG Mk2', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SMOKEGRENADE', 'Smoke Grenade', NULL, 2, 3, NULL, 1000, NULL, NULL, 1, NULL, 10, 1, 1, 1814400, 0, 0, 1, 1, 1, 'PD_SWAT', 'AMMO_SMOKEGRENADE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SNIPERRIFLE2', 'Hunting Rifle', NULL, 2, 3, NULL, 1000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SNIPER', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SNOWBALL', 'Snowball', NULL, 2, 1, NULL, 1000, NULL, NULL, 0, NULL, 10, 1, 0, 86400, 0, 0, 1, 1, 0, NULL, 'AMMO_SNOWBALL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SNSPISTOL', 'SNS Pistol', NULL, 2, 2, NULL, 3500, NULL, NULL, 8, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SNSPISTOL_MK2', 'SNS Pistol MK2', NULL, 2, 3, NULL, 4500, NULL, NULL, 8, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SPECIALCARBINE', 'F36D', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SPECIALCARBINE_MK2', 'F36D Mk2', NULL, 2, 3, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_RIFLE', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_STICKYBOMB', 'C4', NULL, 2, 4, NULL, 1000, NULL, NULL, 12, NULL, 10, 1, 1, 1814400, 0, 0, 1, 1, 1, NULL, 'AMMO_STICKYBOMB', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_STONE_HATCHET', 'Stone Hatchet', NULL, 2, 1, NULL, 300, NULL, NULL, 12, NULL, 1, 1, 0, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SWITCHBLADE', 'Switchblade', NULL, 2, 1, NULL, 400, NULL, NULL, 8, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_SWMP9', 'S&B9', NULL, 2, 3, NULL, 3200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_TASER', 'Taser', NULL, 2, 1, NULL, 200, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, 'AMMO_STUNGUN', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_UZI', 'Uzi', NULL, 2, 3, NULL, 10000, NULL, NULL, 12, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_VECTOR', 'Fennec', NULL, 2, 4, NULL, 10000, NULL, NULL, 15, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_SMG', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_VINTAGEPISTOL', 'Vintage Pistol', NULL, 2, 1, NULL, 5500, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 1, NULL, 'AMMO_PISTOL', 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('WEAPON_WRENCH', 'Pipe Wrench', NULL, 2, 1, NULL, 400, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 0, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('accessory', 'Accessory', NULL, 13, 1, NULL, 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('adrenaline', 'Adrenaline Syringe', NULL, 1, 3, NULL, 25, NULL, NULL, 0, NULL, 5, 1, 0, 604800, 0, 1, 1, 0, 0, 'PD_SWAT', NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('adv_electronics_kit', 'Hacking Device', '<i>Marked For Police Seizure</i>', 18, 1, NULL, 7500, NULL, NULL, 1, NULL, 5, 1, 0, 2419200, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('adv_lockpick', 'Advanced Lockpick', NULL, 3, 2, NULL, 600, NULL, NULL, 1, NULL, 20, 1, 1, 2419200, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('alias_changer', 'Alias Changer', NULL, 1, 1, NULL, 2000, NULL, NULL, 0, NULL, 1, 1, 0, 86400, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('amethyst', 'Amethyst', NULL, 11, 2, NULL, 1500, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gemProperties":{"color":145}}', NULL),
+	('apple_crumble', 'Apple Crumble', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('armor', 'Body Armor', NULL, 1, 1, NULL, 750, NULL, NULL, 8, NULL, 5, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"adjust","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Equipping","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":5000}', NULL, '[]', NULL),
+	('armytags_chain', 'Army Dog Tag Chain', 'Army Dog Tag Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"armytags"}', NULL),
+	('axel_chain', 'Axel Chain', 'Axel Chain and jewelry', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"axel"}', NULL),
+	('baconeggbiscuit', 'Bacon & Egg Biscuit', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_HUNGER":100}}', '{"armourModifier":15}', NULL),
+	('baggy', 'Empty Baggy', NULL, 4, 1, NULL, 50, NULL, NULL, 0, NULL, 100, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('baguette', 'Baguette', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('bahama_mamas', 'Bahama Mamas', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('bandage', 'Bandage', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 30, 1, 0, 432000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Bandaging","disableCombat":true,"useWhileDead":false},"anim":"bandage","dictName":"ifak","time":2000}', NULL, '[]', NULL),
+	('bandits_chain', 'Bandits Chain', 'Bandits Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"bandits"}', NULL),
+	('bavarois', 'Bavarois', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('bco_chain', 'Broward Boy Chain', 'Broward Boy Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"bco"}', NULL),
+	('bdragon_chain', 'BlackDragon Chain', 'BlackDragon Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"bdragon"}', NULL),
+	('beanbag', 'A Beanbag', 'So Comfortable', 13, 1, NULL, 700, NULL, NULL, 2, NULL, 1, 1, 1, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('beanmachine', 'The Bean Machine', 'We take beans and put them in machines', 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Coffee","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":40}}', '{"progressModifier":{"min":3,"modifier":40,"max":6}}', NULL),
+	('beatdownberryrazz', 'Beatdown BerryRazz', NULL, 1, 1, NULL, 5, NULL, NULL, 1, NULL, 15, 1, 0, 10800, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_THIRST":50}}', '{"healthModifier":25}', NULL),
+	('beef', 'Beef', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('beef_taco', 'Beef Taco', 'In case you don\'t have beef yet.', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"taco","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('beer', 'Beer', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('bento_box', 'Bento Box', 'Open Me!', 10, 1, NULL, 10, NULL, NULL, 10, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 20, NULL, NULL, NULL, NULL, '[]', NULL),
+	('big_tv', 'Television', 'Potentially Stolen', 6, 1, NULL, 3400, NULL, 'ANIM_bigtv', 100, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('bigpoppa_chain', 'Big Poppa Chain', 'Big Poppa Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"bigpoppa"}', NULL),
+	('billyhale_chain', 'Calilly Chain', 'Calilly Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"billyhale"}', NULL),
+	('binoculars', 'Binoculars', NULL, 3, 4, NULL, 90, NULL, NULL, 3, NULL, 1, 1, 1, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('birthday_cake', 'Birthday Cake', 'Happy Birthday', 1, 4, NULL, 240, NULL, NULL, 2, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["3","3","3","3","3","3","3","3"]}', NULL),
+	('blindfold', 'Blindfold', NULL, 13, 1, NULL, 2, NULL, NULL, 1, NULL, 1, 1, 0, 4320000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('bloody_mary', 'Bloody Mary', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('blue_dongle', 'USB Drive (Blue)', '<i>Marked For Police Seizure</i>', 18, 3, NULL, 10000, NULL, 'DONGLE_BLUE', 1, NULL, 1, 0, 1, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('blue_laptop', 'Laptop (Blue)', '<i>Marked For Police Seizure</i>', 18, 3, NULL, 10000, NULL, NULL, 1, NULL, 1, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('blue_sequencer', 'Blue Keypad Sequencer', '<i>Marked For Police Seizure</i>', 18, 1, NULL, 10000, NULL, NULL, 1, NULL, 1, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('blueberry_muffin', 'Blueberry Muffin', NULL, 1, 1, NULL, 105, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":50}}', '{"stressTicks":["2","2","1","1","1"]}', NULL),
+	('bluediamond_chain', 'Blue Diamond Chain', 'Blue Diamond Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"bluediamond"}', NULL),
+	('boar_bait', 'Boar Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('bobcat_charge', 'Breach Charge', 'Kinda like thermite, but more ... explosive', 19, 3, 'thermite', 1000, NULL, NULL, 3, NULL, 1, 1, 1, 3600, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('bobcat_tracker', 'GPS Tracker', NULL, 18, 4, NULL, 15000, NULL, NULL, 1, NULL, 1, 1, 0, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('bobs_chain', 'Bob\'s Balls Chain', 'Bob\'s Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"bobs"}', NULL),
+	('boo_chain', 'BOO Chain', 'BOO!', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"boo"}', NULL),
+	('booba_tea', 'Bobba Tea', NULL, 1, 1, NULL, 125, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bubble_tea","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Tea","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":100}}', '{"progressModifier":{"min":2,"modifier":60,"max":4}}', NULL),
+	('boombox', 'Boom Box', 'Potentially Stolen', 6, 1, NULL, 300, NULL, 'ANIM_boombox', 50, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('boosting_tracking_disabler', 'Tracker Hacker Device', '<i>Marked For Police Seizure</i>', 18, 1, NULL, 7500, NULL, NULL, 1, NULL, 5, 1, 0, 2419200, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('bowling_ball', 'Bowling Ball', NULL, 7, 4, NULL, 0, NULL, 'ANIM_bowling_ball', 50, NULL, 1, 1, 1, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('briefcase_cash', 'Briefcase', 'Sandbox Lotto Event', 1, 4, NULL, 25000, NULL, NULL, 1, NULL, 1, 1, 0, 864000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('britton_chain', 'Britton Chain', 'Britton Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"britton"}', NULL),
+	('bun', 'Hamburger Bun', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('burger', 'The Bleeder', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_bleeder","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_THIRST":25,"PLAYER_HUNGER":100}}', '[]', NULL),
+	('burgershot_bag', 'Burgershot Bag', 'Have a Murder Meal!', 10, 1, NULL, 10, NULL, NULL, 10, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 20, NULL, NULL, NULL, NULL, '[]', NULL),
+	('burgershot_cup', 'BS Cup', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('burgershot_drink', 'Burger Shot Drink', NULL, 1, 1, NULL, 10, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_drink","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Remove":{"PLAYER_HUNGER":0},"Add":{"PLAYER_THIRST":75}}', '[]', NULL),
+	('burgershot_fries', 'Fries', NULL, 1, 1, NULL, 15, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_fries","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_HUNGER":60}}', '[]', NULL),
+	('burrito', 'Burrito', 'Burritoe, get it?', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"taco","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('buttplug_black', 'Butt Plug', 'Part of the Uranus Butt Plug Corporation.', 1, 4, NULL, 200, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('buttplug_pink', 'Butt Plug', 'Part of the Uranus Butt Plug Corporation.', 1, 4, NULL, 200, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('camber_controller', 'Camber Controller', 'Stance it up bruh', 3, 1, NULL, 1500, NULL, NULL, 3, NULL, 1, 1, 1, 2419200, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('camera', 'Camera', NULL, 18, 4, NULL, 200, NULL, NULL, 3, NULL, 1, 1, 1, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('camping_chair', 'Foldable Chair', NULL, 13, 1, NULL, 400, NULL, NULL, 2, NULL, 1, 1, 1, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('car_bomb', 'Car Bomb', NULL, 3, 3, NULL, 1500, NULL, NULL, 5, NULL, 1, 1, 1, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('carclean', 'Car Cleaning Kit', 'Make your car squeaky clean!', 3, 1, NULL, 425, NULL, NULL, 1, NULL, 100, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('card_holder', 'Card Holder', 'Store Those Cards!', 10, 1, NULL, 10, NULL, NULL, 2, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 91, NULL, NULL, NULL, NULL, '[]', NULL),
+	('cardboard_box', 'Box', 'Open Me!', 10, 1, NULL, 10, NULL, 'ANIM_box', 50, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 22, NULL, NULL, NULL, NULL, '[]', NULL),
+	('carne_asada', 'Carne Asada', 'Kanye Asada', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"taco","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('carpolish', 'Car Polish', 'Stop your car getting dirty!', 3, 1, NULL, 275, NULL, NULL, 1, NULL, 100, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('carpolish_high', 'Fantastic Car Wax', 'Stop your car getting dirty and keep it sqeaky clean!', 3, 2, NULL, 375, NULL, NULL, 1, NULL, 100, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('carrot_cake', 'Carrot Cake', 'A Lovely Comforting Cake', 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["3","3","3","3","3","3","3","3"]}', NULL),
+	('carvedpumpkin', 'Jack O\' Lantern', 'Trick Or Treat Muthafu-', 1, 4, NULL, 200, NULL, NULL, 3, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('case_black', 'Phone Case: Black', NULL, 1, 1, NULL, 1000, NULL, NULL, 0, NULL, 1, 1, 0, 432000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Applying Case","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"black"}', NULL),
+	('case_blue', 'Phone Case: Blue', NULL, 1, 1, NULL, 1000, NULL, NULL, 0, NULL, 1, 1, 0, 432000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Applying Case","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"blue"}', NULL),
+	('case_gold', 'Phone Case: Gold', NULL, 1, 1, NULL, 25000, NULL, NULL, 0, NULL, 1, 1, 0, 432000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Applying Case","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"gold"}', NULL),
+	('case_pink', 'Phone Case: Pink', NULL, 1, 1, NULL, 1000, NULL, NULL, 0, NULL, 1, 1, 0, 432000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Applying Case","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"pink"}', NULL),
+	('case_white', 'Phone Case: White', NULL, 1, 1, NULL, 1000, NULL, NULL, 0, NULL, 1, 1, 0, 432000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Applying Case","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":3000}', NULL, '{"phoneCase":"white"}', NULL),
+	('cat_cupcake', 'Cat Cupcake', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"donut","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":9000}', '{"Ignore":{"PLAYER_STRESS":10},"Add":{"PLAYER_HUNGER":40}}', '[]', NULL),
+	('cat_donut', 'Cat Donut', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"donut","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":9000}', '{"Ignore":{"PLAYER_STRESS":10},"Add":{"PLAYER_HUNGER":40}}', '[]', NULL),
+	('cat_tuccino', 'Cat Tuccino', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Coffee","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":15}}', '{"progressModifier":{"min":6,"modifier":40,"max":10}}', NULL),
+	('chai_latte', 'Chai Latte', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Coffee","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":15}}', '{"progressModifier":{"min":6,"modifier":40,"max":10}}', NULL),
+	('chain', 'Gold Chain', 'Potentially Stolen', 6, 1, NULL, 215, NULL, NULL, 1, NULL, 50, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('charlotte', 'Charlotte', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","1","1","1","3"]}', NULL),
+	('cheese', 'Bag of Cheese', NULL, 4, 1, NULL, 4, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('cheeseburger', 'Cheese Burger', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('chicken', 'Chicken', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('chicken_bait', 'Chicken Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('chicken_wrap', 'Chicken Wrap', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_wrap2","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","2","3","4","5"]}', NULL),
+	('chickenfriedsteak', 'Chicken Fried Steak', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":15},"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('chickenpotpie', 'Chicken Pot Pie', 'A truly hearty meal', 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"healthModifier":15,"stressTicks":["6","6","6"]}', NULL),
+	('chips', 'Chips', NULL, 1, 1, NULL, 30, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":55}}', '[]', NULL),
+	('choclat_eclair', 'Chocolate Eclair', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","1","1","1","3"]}', NULL),
+	('choclate_pancakes', 'Chocolate Pancakes', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('chocolate_bar', 'Chocolate Bar', NULL, 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"egobar","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":10}}', '[]', NULL),
+	('chocolate_shake', 'Chocolate Shake', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_THIRST":80,"PLAYER_HUNGER":20}}', '{"stressTicks":["3","3","3","5","5","5"],"energyModifier":{"duration":15,"cooldown":60,"modifier":1.15,"skipScreenEffects":true}}', NULL),
+	('chocy_muff', 'Chocolate Muffin', NULL, 1, 1, NULL, 105, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":50}}', '{"stressTicks":["2","2","1","1","1"]}', NULL),
+	('choplist', 'LSUNDG Shopping List', 'Personal list just for you, how special', 14, 4, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('chopping_invite', 'Sketchy USB Drive', 'Probably not the greatest idea to plug this into your phone... unless?', 7, 4, 'lsundg_invite', 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('choux', 'Choux Pastry', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"stressTicks":["1","1","1","1","3"]}', NULL),
+	('cigarette', 'Cigarette', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 30, 1, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":false,"disableCarMovement":false,"disableMouse":false,"canCancel":false,"disableMovement":false,"animation":{"anim":"smoke_cigarette"},"label":"Smoking","disableCombat":false,"useWhileDead":false},"time":15000}', NULL, '[]', NULL),
+	('cigarette_pack', 'Pack of Cigarettes', NULL, 1, 1, NULL, 20, NULL, NULL, 5, NULL, 1, 1, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":false,"disableCarMovement":false,"disableMouse":false,"canCancel":false,"disableMovement":false,"label":"Unpacking","disableCombat":false,"ignoreModifier":true,"useWhileDead":false},"time":2000}', NULL, '[]', NULL),
+	('citrine', 'Citrine', NULL, 11, 2, NULL, 1500, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gemProperties":{"color":38}}', NULL),
+	('cloth', 'Cloth', NULL, 4, 1, NULL, 4, NULL, NULL, 0, NULL, 1000, 0, 0, 2592000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('cloud9_chain', 'Cloud9 Chain', 'Cloud9 Drifting Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"cloud9"}', NULL),
+	('coconut_milk', 'Coconut Milk', NULL, 4, 1, NULL, 3, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('coffee', 'Coffee', NULL, 1, 1, NULL, 295, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Coffee","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_THIRST":15}}', '{"progressModifier":{"min":2,"modifier":70,"max":4}}', NULL),
+	('coffee_beans', 'Coffee Beans', NULL, 1, 1, NULL, 7, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('coffee_holder', 'Drinks Holder', 'Open Me!', 10, 1, NULL, 10, NULL, NULL, 8, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 19, NULL, NULL, NULL, NULL, '[]', NULL),
+	('coke_bag', 'Cocaine', NULL, 12, 1, NULL, 400, NULL, NULL, 0, NULL, 25, 1, 0, 1728000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, '{"Remove":{"PLAYER_THIRST":5}}', '{"drugState":{"duration":3600,"type":"coke"}}', NULL),
+	('coke_brick', 'Brick of Cocaine', NULL, 12, 1, NULL, 60, NULL, NULL, 5, NULL, 1, 1, 0, 1728000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('contraband', 'Mysterious Box', NULL, 14, 5, NULL, 1000, NULL, 'ANIM_box', 10, NULL, 1, 0, 0, 86400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('copperwire', 'Copper Wire', NULL, 4, 1, NULL, 10, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('cow_bait', 'Cow Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('crisp', 'Crisps', 'Yeah, that\'s right. Crisps', 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":20}}', '[]', NULL),
+	('croissant', 'Croissant', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Ignore":{"PLAYER_STRESS":10},"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('crushedrock', 'Crushed Rock', NULL, 6, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('crypto_voucher', 'Crypto Voucher', NULL, 7, 4, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('cucumber', 'Cucumber', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('dagoat_chain', 'DaGOAT Chain', 'DaGOAT Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"dagoat"}', NULL),
+	('dani_chain', 'Dani Chain', 'Dani Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"dani"}', NULL),
+	('deathrow2_chain', 'Death Row Chain 2', 'Death Row Chain 2', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"deathrow2"}', NULL),
+	('deathrow_chain', 'Death Row Chain', 'Death Row Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"deathrow"}', NULL),
+	('deer_bait', 'Deer Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('det_cord', 'Det. Cord', NULL, 3, 2, NULL, 250, NULL, NULL, 0, NULL, 10, 1, 0, 86400, 0, 1, 1, 0, 0, 'PD_DETCOORDS', NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('dex_chain', 'Dex Chain', 'Dex Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"dex"}', NULL),
+	('diablos_chain', 'Diablos Chain', 'Diablos Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"diablos"}', NULL),
+	('diamond', 'Diamond', NULL, 11, 4, NULL, 3000, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gemProperties":{"color":67}}', NULL),
+	('diamond_chain', 'Olivia Chain', 'Olivia Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"diamond"}', NULL),
+	('diamond_drink', 'The Diamond Cocktail', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('diamond_vip', 'Diamond VIP', NULL, 5, 3, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('doc_panic_button', 'Panic Button', NULL, 18, 1, 'pd_panic_button', 1, NULL, NULL, 0, NULL, 1, 1, 0, 604800, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('donut', 'Donut', NULL, 1, 1, NULL, 105, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"donut","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '{"stressTicks":["1","1","1","1","3"],"energyModifier":{"duration":18,"modifier":1.1,"cooldown":80}}', NULL),
+	('donut_chain', 'Donut Chain', 'Donut Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"donut"}', NULL),
+	('donut_stack', 'Stack of Donuts', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":5000}', '{"Add":{"PLAYER_HUNGER":80}}', '{"stressTicks":["3","3","3","3","3"],"energyModifier":{"duration":15,"cooldown":60,"modifier":1.15,"skipScreenEffects":true}}', NULL),
+	('double_shot_burger', 'Double Shot', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_doubleshot","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('doublecup_chain', 'Double Cup Chain', '2 is a party!', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"doublecup"}', NULL),
+	('dough', 'Dough', NULL, 4, 1, NULL, 3, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('drill', 'Drill', NULL, 3, 1, NULL, 5000, NULL, NULL, 1, NULL, 1, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('duck_chain', 'Duck Chain', 'Duck Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"duck"}', NULL),
+	('dynasty_chain', 'Dynasty Chain', 'Dynasty Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"dynasty"}', NULL),
+	('earrings', 'Gold Earrings', 'Potentially Stolen', 6, 1, NULL, 185, NULL, NULL, 1, NULL, 100, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('eb13_chain', 'EB13 Chain', 'EB13 Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"eb13"}', NULL),
+	('egan_chain', 'Egan Chain', 'Egan Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"egan"}', NULL),
+	('eggs', 'Eggs', NULL, 4, 1, NULL, 2, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('electronic_parts', 'Electronic Parts', NULL, 4, 1, NULL, 250, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('electronics_kit', 'Electronics Kit', NULL, 18, 1, NULL, 7500, NULL, NULL, 1, NULL, 5, 1, 0, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('emerald', 'Emerald', NULL, 11, 4, NULL, 3000, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gemProperties":{"color":53}}', NULL),
+	('ems_panic_button', 'Panic Button', NULL, 18, 1, 'pd_panic_button', 1, NULL, NULL, 0, NULL, 1, 1, 0, 604800, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('enchilada', 'Enchilada', 'Meat birthday cakes.', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"taco","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('energy_pepe', 'Energy Drink', NULL, 1, 1, NULL, 110, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"energydrink","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":6000}', '{"Add":{"PLAYER_THIRST":15}}', '{"energyModifier":{"duration":12,"modifier":1.15,"cooldown":60}}', NULL),
+	('esb_chain', 'ESB Chain', 'ESB Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"esb"}', NULL),
+	('event_invite', 'Race Event Invite', NULL, 1, 1, 'lsundg_invite', 1000, NULL, NULL, 0, NULL, 1, 1, 0, 86400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('evidence-casing', 'Bullet Casing', 'Identifies the type of ammo used', 8, 1, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('evidence-dna', 'DNA Sample', NULL, 8, 1, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('evidence-paint', 'Paint Fragment', NULL, 8, 1, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('evidence-projectile', 'Bullet Projectile', 'Can be matched to the weapon it was fired from', 8, 1, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('exotic_bait', 'Exotic Bait', NULL, 7, 5, 'hunting_bait', 1000, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('expresso', 'Espresso', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee_expresso","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Espresso","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":50}}', '{"progressModifier":{"min":6,"modifier":50,"max":10}}', NULL),
+	('fafo_chain', 'FAFO Chain', 'FAFO Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"fafo"}', NULL),
+	('fakeplates', 'License Plates', 'A set of license plates from a vehicle', 14, 2, NULL, 5000, NULL, NULL, 2, NULL, 1, 1, 1, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('famli_chain', 'Teal’s Chain', 'Teal’s Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"famli"}', NULL),
+	('ferrari_chain', 'Ferrari Family Chain', 'Ferrari Family Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"ferrari"}', NULL),
+	('fertilizer_nitrogen', 'Fertilizer (Nitrogen)', 'Nitrogen rich fertilizer improves viability of output when the plant is harvested.', 1, 1, NULL, 600, NULL, NULL, 3, NULL, 50, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fertilizer_phosphorus', 'Fertilizer (Phosphorus)', 'Phosphorus rich fertilizer helps increase plant growth speed.', 1, 1, NULL, 600, NULL, NULL, 3, NULL, 50, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fertilizer_potassium', 'Fertilizer (Potassium)', 'Potassium rich fertilizer helps keep plants hydrated.', 1, 1, NULL, 600, NULL, NULL, 3, NULL, 50, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fettuccini_alfredo', 'Fettuccini Alfredo', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('firstaid', 'First Aid Kit', NULL, 1, 2, NULL, 250, NULL, NULL, 5, NULL, 5, 1, 0, 432000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"firstaid","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Using First Aid Kit","disableCombat":true,"useWhileDead":false},"time":11000}', NULL, '[]', NULL),
+	('fishandchips', 'Fish and Chips', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":20000}', '{"Add":{"PLAYER_HUNGER":80}}', '[]', NULL),
+	('fishing_bait_lugworm', 'Lugworm Bait', 'Marine Fish Bait', 7, 1, NULL, 10, NULL, NULL, 0, NULL, 50, 0, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_bait_worm', 'Worm Bait', 'Fresh Water Fish Bait', 7, 1, NULL, 15, NULL, NULL, 0, NULL, 50, 0, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_bass', 'Bass Fish', 'A fish found in the ocean', 4, 2, NULL, 70, NULL, NULL, 2, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_bike', 'Rusty Bicycle', 'I don\'t think this is worth anything', 6, 2, NULL, 250, NULL, NULL, 25, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_bluefintuna', 'Bluefin Tuna', NULL, 4, 3, NULL, 0, NULL, NULL, 4, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_boot', 'Soggy Boot', 'I think someone is missing a boot', 6, 3, NULL, 250, NULL, NULL, 5, NULL, 2, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_chest', 'Old Chest', 'Maybe There is Treasure!', 5, 4, NULL, 1500, NULL, 'ANIM_chest', 50, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_chub', 'Chub', 'A fish found in fresh water', 4, 2, NULL, 40, NULL, NULL, 2, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_dolphin', 'A Dolphin', NULL, 4, 4, NULL, 0, NULL, NULL, 50, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_grasscarp', 'Grass Carp', 'A fish found in fresh water', 4, 2, NULL, 40, NULL, NULL, 1, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_kelp', 'Kelp Fish', 'A fish found in the ocean', 4, 2, NULL, 50, NULL, NULL, 2, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_lobster', 'Lobster', 'It\'s a lobster', 4, 2, NULL, 0, NULL, NULL, 1, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_net', 'Fishing Net', 'Catch all the Fishies', 3, 2, NULL, 3000, NULL, NULL, 5, NULL, 1, 1, 1, 5184000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_oil', 'Fish Oil', 'Eww', 5, 4, NULL, 175, NULL, NULL, 0, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_rainbowtrout', 'Rainbow Trout', 'A fish found in fresh water', 4, 2, NULL, 60, NULL, NULL, 2, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_rockfish', 'Rock Fish', 'A fish found in the ocean', 4, 2, NULL, 70, NULL, NULL, 1, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_rod', 'Fishing Rod', 'Catch the Fishies', 3, 1, NULL, 900, NULL, NULL, 4, NULL, 1, 1, 1, 2592000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_seaweed', 'Seaweed', 'A salty snack', 4, 2, NULL, 30, NULL, NULL, 0, NULL, 250, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_shark', 'A Shark', NULL, 4, 4, NULL, 0, NULL, NULL, 75, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_tuna', 'Tuna', NULL, 4, 2, NULL, 0, NULL, NULL, 3, NULL, 25, 1, 0, 5184000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fishing_whale', 'A Whale', NULL, 4, 4, NULL, 0, NULL, NULL, 100, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fleeca_card', 'Disposable Access Card', 'This seems like it may be usefull', 14, 4, NULL, 10000, NULL, NULL, 0, NULL, 1, 1, 0, 21600, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fleeca_tracker', 'GPS Tracker', NULL, 18, 4, NULL, 15000, NULL, NULL, 1, NULL, 1, 1, 0, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('flour', 'Bag of Flour', NULL, 4, 1, NULL, 2, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fluffyhandcuffs', 'Fluffy Handcuffs', NULL, 3, 1, NULL, 600, NULL, NULL, 1, NULL, 1, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('foodbag', 'Carrier Bag', 'Open Me!', 10, 1, NULL, 10, NULL, NULL, 15, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 21, NULL, NULL, NULL, NULL, '[]', NULL),
+	('fredo_chain', 'Fredo Chain', 'Fredo Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"fredo"}', NULL),
+	('fresh_lemonade', 'Fresh Lemonade', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":40,"PLAYER_HUNGER":5}}', '{"energyModifier":{"duration":15,"cooldown":60,"modifier":1.15,"skipScreenEffects":true}}', NULL),
+	('fries', 'Fries', NULL, 1, 1, NULL, 15, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_fries","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_HUNGER":30}}', '[]', NULL),
+	('frosty_chain', 'Frosty Chain', 'Frosty Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"frosty"}', NULL),
+	('frozen_yoghurt', 'Frozen Yoghurt', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":40}}', '{"energyModifier":{"duration":18,"cooldown":60,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('fruit_explosion', 'Fruit Explosion', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":5000}', '{"Add":{"PLAYER_THIRST":100,"PLAYER_HUNGER":30}}', '{"energyModifier":{"duration":18,"modifier":1.2,"cooldown":60}}', NULL),
+	('fruitpunchslushie', 'Prison Slushi', NULL, 1, 1, NULL, 5, NULL, NULL, 1, NULL, 15, 1, 0, 10800, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_THIRST":100}}', '[]', NULL),
+	('gascan', 'Gas Can', NULL, 1, 2, NULL, 25, NULL, NULL, 1, NULL, 5, 1, 0, 432000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"redd","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Gasoline","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":20000}', '{"Remove":{"PLAYER_THIRST":70}}', '[]', NULL),
+	('gauze', 'Gauze', NULL, 1, 1, NULL, 10, NULL, NULL, 0, NULL, 30, 1, 0, 432000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Packing Wound","disableCombat":true,"useWhileDead":false},"anim":"bandage","dictName":"gauze","time":2000}', NULL, '[]', NULL),
+	('ginger', 'Ginger', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('gingerale', 'Gingerale', NULL, 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Remove":{"PLAYER_HUNGER":0},"Add":{"PLAYER_THIRST":35}}', '[]', NULL),
+	('glass_cock', 'Coke', 'Glass of Cock', 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":60,"PLAYER_HUNGER":5}}', '{"energyModifier":{"duration":18,"cooldown":60,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('glue', 'Glue', NULL, 4, 1, NULL, 150, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('goat_cheese_wrap', 'Goat Cheese Wrap', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_wrap1","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"healthModifier":15,"stressTicks":["2","2","3","4","5"]}', NULL),
+	('goldbar', 'Gold Bar', NULL, 4, 3, NULL, 500, NULL, NULL, 0, NULL, 10000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('goldcoins', 'Gold Coins', 'Potentially Stolen', 6, 1, NULL, 90, NULL, NULL, 0, NULL, 1000, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('goldore', 'Gold Ore', NULL, 6, 3, NULL, 0, NULL, NULL, 0, NULL, 200, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('golfclubs', 'Golf Club Set', NULL, 6, 2, NULL, 450, NULL, 'ANIM_golfclubs', 100, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('gotti_chain', 'Gotti Family Chain', 'Gotti Family Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"gotti"}', NULL),
+	('government_badge', 'Badge', 'Government Issued Badge', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('govid', 'Government ID', NULL, 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('gps', 'SB NavMaster', NULL, 18, 1, NULL, 5000, NULL, 'GPS', 1, NULL, 1, 0, 0, 1814400, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('gps_tracker', 'GPS Tracker', NULL, 18, 4, NULL, 15000, NULL, NULL, 1, NULL, 1, 1, 0, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('grain', 'Grain', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('green_dongle', 'USB Drive (Green)', '<i>Marked For Police Seizure</i>', 18, 2, NULL, 5000, NULL, 'DONGLE_GREEN', 1, NULL, 1, 0, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('green_laptop', 'Laptop (Green)', '<i>Marked For Police Seizure</i>', 18, 2, NULL, 5000, NULL, NULL, 1, NULL, 1, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('green_sequencer', 'Green Keypad Sequencer', '<i>Marked For Police Seizure</i>', 18, 1, NULL, 5000, NULL, NULL, 1, NULL, 1, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('green_tea', 'Green Tea', NULL, 1, 1, NULL, 125, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Tea","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Remove":{"PLAYER_DRUNK":10},"Add":{"PLAYER_THIRST":75}}', '{"progressModifier":{"min":1,"modifier":50,"max":2},"stressTicks":["5","4","3","2","1"]}', NULL),
+	('guksu', 'Guksu', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"stressTicks":["3","3","3","5","5","5"],"armourModifier":10}', NULL),
+	('gunpowder', 'Gun Powder', NULL, 4, 1, NULL, 1000, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hack_usb', 'Easy Hacker 3000', 'So easy, a caveman could maybe do it.', 18, 1, NULL, 15000, NULL, NULL, 1, NULL, 1, 1, 0, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hajaar_chain', 'Hajaar Chain', 'Hajaar Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"hajaar"}', NULL),
+	('handcuffs', 'Handcuffs', NULL, 3, 1, NULL, 600, NULL, NULL, 1, NULL, 1, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('harness', 'Vehicle Harness', 'Stop flying to the moon!', 3, 2, NULL, 1150, NULL, NULL, 0, NULL, 1, 1, 1, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hat', 'Hat', NULL, 13, 1, NULL, 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hbdatsme_chain', 'HB Chain', 'HBDATSME yo', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"hbdatsme"}', NULL),
+	('heartstopper', 'Heart Stopper', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_heartstopper","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":12},"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('heavy_glue', 'Heavy Duty Glue', NULL, 4, 1, NULL, 200, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('heavyarmor', 'Heavy Body Armor', NULL, 1, 2, NULL, 2250, NULL, NULL, 8, NULL, 5, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"adjust","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Equipping","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', NULL, '[]', NULL),
+	('hide_tier1', 'Animal Hide (Tier 1)', NULL, 3, 1, NULL, 10000, NULL, NULL, 0, NULL, 100, 1, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hide_tier2', 'Animal Hide (Tier 2)', NULL, 3, 1, NULL, 10000, NULL, NULL, 0, NULL, 100, 1, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hide_tier3', 'Animal Hide (Tier 3)', NULL, 3, 1, NULL, 10000, NULL, NULL, 0, NULL, 100, 1, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hide_tier4', 'Animal Hide (Tier 4)', NULL, 3, 1, NULL, 10000, NULL, NULL, 0, NULL, 100, 1, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('him2_chain', 'I\'m Him Chain 2', 'I\'m Him Chain 2', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"him2"}', NULL),
+	('him_chain', 'I\'m Him Chain', 'I\'m HIM Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"him"}', NULL),
+	('hobs', 'Hobs', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('homemade_cookie', 'Homemade Cookie', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":5000}', '{"Add":{"PLAYER_HUNGER":50}}', '[]', NULL),
+	('hotdog', 'Hotdog', 'A dog but very hot', 1, 1, NULL, 20, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"hotdog","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":10}}', '[]', NULL),
+	('hotdog_single', 'Hotdog Single', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('house_art', 'Painting', NULL, 6, 2, NULL, 3600, NULL, 'ANIM_house_art', 100, NULL, 1, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hunting_bait', 'Hunting Bait', NULL, 7, 5, NULL, 25, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hunting_map_dark', 'Hunting Map (Dark)', NULL, 6, 1, NULL, 25, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('hunting_map_light', 'Hunting Map (Light)', NULL, 6, 1, NULL, 25, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('iced_coffee', 'Iced Coffee', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Coffee","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":25}}', '{"progressModifier":{"min":4,"modifier":40,"max":8}}', NULL),
+	('icing', 'Icing', NULL, 4, 1, NULL, 3, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('ifak', 'IFAK', NULL, 1, 3, NULL, 200, NULL, NULL, 3, NULL, 5, 1, 0, 432000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"ifak","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Using IFAK","disableCombat":true,"useWhileDead":false},"time":15000}', NULL, '[]', NULL),
+	('illuminati_chain', 'Illuminati Chain', 'Illuminati Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"illuminati"}', NULL),
+	('ironbar', 'Iron Bar', NULL, 4, 1, NULL, 2500, NULL, NULL, 0, NULL, 10000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('ironore', 'Iron Ore', NULL, 6, 3, NULL, 0, NULL, NULL, 0, NULL, 200, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('jaeger', 'Jägermeister', NULL, 1, 1, NULL, 150, NULL, NULL, 0, NULL, 10, 1, 0, NULL, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('jaeger_bomb', 'Jägerbomb', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('japanese_pan_noodles', 'Japanese Pan Noodles', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":12},"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('jrawefg_chain', 'FG Chain', 'FG Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"jrawefg"}', NULL),
+	('jugo', 'Jugo Fruit Punch', 'Definitely organic.', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 172800, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Remove":{"PLAYER_HUNGER":3},"Add":{"PLAYER_THIRST":15}}', '[]', NULL),
+	('keg', 'Keg of Irish Stout', 'McDougle\'s Irish Stout™', 4, 1, NULL, 150, NULL, NULL, 2, NULL, 5, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('king_chain', 'King Crown Chain', 'King Crown Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"king"}', NULL),
+	('krazed_chain', 'Krazed Ridez Chain', 'Krazed Ridez Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"krazed"}', NULL),
+	('lala_chain', 'Tequi-La-La Chain', 'Tequi-La-La Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"lala"}', NULL),
+	('laptop', 'Laptop', NULL, 18, 2, NULL, 1250, NULL, 'LAPTOP', 4, NULL, 1, 1, 1, 2592000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('lasagna', 'Lasagna', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":12},"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('latte', 'Latte', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Latte","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":25}}', '{"progressModifier":{"min":6,"modifier":40,"max":10}}', NULL),
+	('lemonade', 'Lemonade', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":40,"PLAYER_HUNGER":5}}', '{"energyModifier":{"duration":18,"cooldown":60,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('lettuce', 'Lettuce', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('loaf', 'Bread Loaf', NULL, 4, 1, NULL, 4, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('lockpick', 'Lockpick', NULL, 3, 2, NULL, 200, NULL, NULL, 1, NULL, 50, 1, 1, 1209600, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('lockpick_pd', 'PD Lockpick', 'Only Usable By Police', 3, 1, 'lockpick', 200, NULL, NULL, 1, 'lockpick', 10, 1, 1, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('lsundg_invite', 'LSUNDG Invitation', 'Gain access to an exclusive club, wow aren\'t you special', 7, 4, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('mafia_chain', 'Escobar Mafia Chain', 'Escobar Mafia Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"mafia"}', NULL),
+	('maki_calirolls', 'San Andreas Maki', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"healthModifier":15}', NULL),
+	('maki_tuna', 'Tuna Rolls', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"healthModifier":15,"armourModifier":10}', NULL),
+	('margherita_pizza', 'Margherita Pizza', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"pizza","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Ignore":{"PLAYER_STRESS":15},"Add":{"PLAYER_HUNGER":90}}', '{"healthModifier":10}', NULL),
+	('mask', 'Mask', NULL, 13, 1, NULL, 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('matcha_latte', 'Matcha Latte', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Latte","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":50}}', '{"progressModifier":{"min":3,"modifier":60,"max":6}}', NULL),
+	('medicalkit', 'Medical Kit', 'Used to treat patients. Only usable by Doctors', 1, 1, NULL, 1000, NULL, NULL, 3, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('meg_chain', 'Meg Chain', 'Meg Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"meg"}', NULL),
+	('megaphone', 'Megaphone', 'Yell insults at people but from a longer distance', 3, 2, NULL, 1500, NULL, 'MEGAPHONE', 2, NULL, 1, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('meteorite_icecream', 'Meteorite Ice Cream', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_icecream","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_THIRST":50,"PLAYER_HUNGER":50}}', '{"energyModifier":{"duration":18,"cooldown":60,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('meth_bag', 'Meth', NULL, 12, 1, NULL, 400, NULL, NULL, 0, NULL, 25, 1, 0, 1728000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('meth_brick', 'Brick of Meth', NULL, 12, 1, NULL, 60, NULL, NULL, 5, NULL, 1, 1, 0, 1728000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('meth_pipe', 'Meth Pipe', NULL, 12, 1, NULL, 1000, NULL, NULL, 1, NULL, 1, 1, 0, 2592000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('meth_table', 'Meth Table', NULL, 3, 2, NULL, 200, NULL, NULL, 1, NULL, 1, 1, 1, 1209600, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('microwave', 'Microwave', 'Potentially Stolen', 6, 1, NULL, 500, NULL, 'ANIM_microwave', 50, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('milk_can', 'Milk Canister', NULL, 4, 1, NULL, 4, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('milk_chain', 'Milk Chain', 'Milk Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"milk"}', NULL),
+	('milkshake', 'Explosive Shake', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Add":{"PLAYER_THIRST":80,"PLAYER_HUNGER":20}}', '{"energyModifier":{"duration":15,"cooldown":60,"modifier":1.15,"skipScreenEffects":true},"armourModifier":10}', NULL),
+	('million_shrtbread', 'Millionare Shortbread', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":5000}', '{"Add":{"PLAYER_HUNGER":80}}', '{"energyModifier":{"duration":18,"cooldown":60,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('mint_mate_chain', 'Mint Mate Chain', 'It\'s Mint Mate', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"mint_mate"}', NULL),
+	('mint_mate_chain_2', 'Mint Mate Chain (Large)', 'It\'s Mint Mate ... but large', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"mint_mate2"}', NULL),
+	('mint_mate_chain_3', 'Mint Mate Chain (Alternate)', 'It\'s Mint Mate', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"mint_mate3"}', NULL),
+	('mocha_shake', 'Mocha Shake', 'Go Crazy', 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Shake","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":100,"PLAYER_HUNGER":10}}', '{"progressModifier":{"min":3,"modifier":40,"max":6}}', NULL),
+	('moneybag', 'Bag of Cash', NULL, 14, 1, NULL, 10000, NULL, NULL, 3, NULL, 1, 1, 0, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('moneybag_chain', 'Money Bag Chain', 'Money Bag Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"moneybag"}', NULL),
+	('moneyband', 'Bands of Cash', NULL, 14, 1, NULL, 1000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('moneymind_chain', 'Money on the Mind Chain', 'Money on the Mind Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"moneymind"}', NULL),
+	('moneyroll', 'Cash Roll', NULL, 14, 1, NULL, 100, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('moonshine', 'Homemade Moonshine', NULL, 1, 2, NULL, 500, NULL, NULL, 0, NULL, 500, 1, 1, 864000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('moonshine_barrel', 'Oak Barrel', NULL, 3, 4, NULL, 1000, NULL, NULL, 2, NULL, 20, 1, 1, 1209600, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('moonshine_jar', 'Empty Mason Jar', NULL, 4, 1, NULL, 200, NULL, NULL, 0, NULL, 500, 1, 1, 7776000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('moonshine_still', 'Still', NULL, 3, 4, NULL, 15000, NULL, NULL, 2, NULL, 1, 1, 1, 1209600, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('morphine', 'Morphine', NULL, 1, 1, NULL, 600, NULL, NULL, 1, NULL, 3, 1, 0, 432000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":true,"disableMouse":false,"canCancel":true,"disableMovement":true,"label":"Administering Morphine","disableCombat":true,"useWhileDead":false},"anim":"bandage","dictName":"morphine","time":8000}', NULL, '[]', NULL),
+	('mostwanted_chain', 'Most Wanted Chain', 'Most Wanted Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"mostwanted"}', NULL),
+	('mustard_chain', 'Mustard Chain', 'Mustard Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"mustard"}', NULL),
+	('nails', 'Nails', NULL, 4, 1, NULL, 2, NULL, NULL, 0, NULL, 1000, 0, 0, 2592000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('nines_chain', 'The 9\'s Chain', '9\'s Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"nines"}', NULL),
+	('ninezero_chain', '9Zero Chain', '9Zero Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"ninezero"}', NULL),
+	('nitrous', 'Nitrous Oxide', 'Copium', 3, 3, NULL, 2000, NULL, NULL, 3, NULL, 5, 1, 1, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, '{"Nitrous":100}', NULL, NULL, NULL, '[]', NULL),
+	('nolan_chain', 'Nolan Chain', 'Nolan Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"nolan"}', NULL),
+	('nos_chain', 'NOS Chain', 'LIGHTNING FAST', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"nos"}', NULL),
+	('oggramps_chain', 'OG Gramps Chain', 'OG Gramps\' Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"oggramps"}', NULL),
+	('olivia2_chain', 'Olivia Chain', 'Olivia Chain - female', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"olivia2"}', NULL),
+	('olivia_chain', 'Vangelico Chain', 'Vangelico Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"olivia"}', NULL),
+	('one41_chain', '141 Chain', '141 Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"one41"}', NULL),
+	('oni_chain', 'Oni Chain', 'Oni Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"oni"}', NULL),
+	('onion_rings', 'Onion Rings', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":30}}', '{"stressTicks":["3","3","3","3","3"]}', NULL),
+	('opal', 'Opal', NULL, 11, 1, NULL, 500, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gemProperties":{"color":65}}', NULL),
+	('orange', 'Orange', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('orangotang_icecream', 'Orangotang Ice Cream', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_icecream2","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_THIRST":50,"PLAYER_HUNGER":50}}', '{"energyModifier":{"duration":18,"cooldown":60,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('otf_chain', 'OTF Chain', 'OTF Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"otf"}', NULL),
+	('ottos_chain', 'Otto\'s Chain', 'Otto\'s Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"ottos"}', NULL),
+	('oxy', 'OxyContin', NULL, 12, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 1728000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":false,"disableCarMovement":false,"disableMouse":false,"canCancel":false,"disableMovement":false,"animation":{"anim":"pill","flags":50,"animDict":"mp_suicide"},"label":"Popping Oxy","disableCombat":false,"ignoreModifier":true,"useWhileDead":false},"time":2800}', '{"Remove":{"PLAYER_THIRST":3}}', '{"drugState":{"duration":3600,"type":"oxy"}}', NULL),
+	('packaged_parts', 'Packaged Parts', NULL, 7, 5, NULL, 0, NULL, NULL, 4, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pad_thai', 'Pad Thai', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"stressTicks":["3","3","3","5","5","5"],"armourModifier":10}', NULL),
+	('paleto_access_codes', 'Access Codes', '<i>Marked For Police Seizure</i>', 18, 4, NULL, 2500, NULL, NULL, 1, NULL, 1, 1, 1, 14400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('paletotuner_chain', 'Paleto Tuner Chain', 'Paleto Tuner Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"paletotuner"}', NULL),
+	('pandanoodle_chain', 'Panda Noodle Chain', 'Panda Noodle Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"pandanoodle"}', NULL),
+	('paper_bag', 'Bag', 'Open Me!', 10, 1, NULL, 10, NULL, NULL, 10, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, 20, NULL, NULL, NULL, NULL, '[]', NULL),
+	('parachute', 'Parachute', NULL, 3, 2, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 0, 604800, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('parts_box', 'Scrap Box', NULL, 1, 3, NULL, 250, NULL, 'ANIM_box', 10, NULL, 1, 1, 0, 604800, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pasta_fresca', 'Pasta Fresca', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":20000}', '{"Add":{"PLAYER_HUNGER":80}}', '[]', NULL),
+	('patty', 'Hamburger Patty', NULL, 1, 1, NULL, 10, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pc', 'PC', NULL, 6, 2, NULL, 1200, NULL, 'ANIM_pc', 80, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pd_panic_button', 'Panic Button', NULL, 18, 1, NULL, 1, NULL, NULL, 0, NULL, 1, 1, 0, 604800, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pd_watch', 'PD Watch', NULL, 18, 1, NULL, 5000, NULL, 'GPS', 1, NULL, 1, 0, 0, 1814400, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pdarmor', 'PD Body Armor', NULL, 1, 3, NULL, 25, NULL, NULL, 8, NULL, 5, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"adjust","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Equipping","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', NULL, '[]', NULL),
+	('pdhandcuffs', 'PD Handcuffs', NULL, 3, 4, NULL, 25, NULL, NULL, 0, NULL, 1, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('peach_juice', 'Peach Juice', NULL, 4, 1, NULL, 2, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('peas', 'Peas', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('penna_rosa', 'Penne Rosa', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":20000}', '{"Add":{"PLAYER_HUNGER":85}}', '[]', NULL),
+	('pepperoni_pizza', 'Pepperoni Pizza', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"pizza","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Ignore":{"PLAYER_STRESS":15},"Add":{"PLAYER_HUNGER":100}}', '{"armourModifier":20}', NULL),
+	('personal_plates', 'Personal Plate', 'Set a personal plate for a vehicle.', 5, 3, NULL, 5000, NULL, NULL, 1, NULL, 10, 1, 1, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('personal_plates_donator', 'Personal Plate', 'Set a personal plate for a vehicle.', 5, 3, 'personal_plates', 5000, NULL, NULL, 1, NULL, 10, 1, 1, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pesto_cavatappi', 'Pesto Cavatappi', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":17000}', '{"Add":{"PLAYER_HUNGER":75}}', '[]', NULL),
+	('petrock', 'Pet Rock', 'Please take care of me', 5, 4, NULL, 10, NULL, NULL, 1, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pgs_chain', 'PGS Chain', 'PGS Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"pgs"}', NULL),
+	('phone', 'Phone', NULL, 18, 1, NULL, 100, NULL, 'PHONE', 1, NULL, 1, 1, 0, 1814400, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pickaxe', 'Pickaxe', NULL, 3, 1, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, 86400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pickle', 'Pickle', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pig_bait', 'Pig Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pimpdaddy_chain', 'Pimp Daddy Chain', 'Pimp Daddy Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"pimpdaddy"}', NULL),
+	('pina_colada', 'Pina Colada', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pineapple', 'Pineapple', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pint_mcdougles', 'McDougle\'s Stout', 'McDougle\'s Irish Stout™', 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 604800, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pipe', 'Pipe', NULL, 4, 1, NULL, 12, NULL, NULL, 0, NULL, 100, 0, 0, 2592000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pixels_chain', 'Business Bureau Chain', 'Business Bureau Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"lua"}', NULL),
+	('pizzathis_chain', 'Pizza This Chain', 'Pizza This Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"pizzathis"}', NULL),
+	('plastic', 'Plastic', NULL, 4, 1, NULL, 10, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('plastic_cup', 'Plastic Cup', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('plastic_wrap', 'Plastic Wrap', NULL, 4, 1, NULL, 50, NULL, NULL, 0, NULL, 5, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('popcorn', 'Popcorn', NULL, 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"popcorn","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":20}}', '[]', NULL),
+	('popcorn_bucket', 'Empty Bucket', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('popcorn_kernal', 'Popcorn Kernal', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('pork', 'Pork', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('potato', 'Potato', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('present', 'Present', 'Happy Holidays!', 6, 1, NULL, 10, NULL, NULL, 0, NULL, 1, 1, 0, 86400, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('present_daily', 'Daily Present', 'Happy Holidays!', 6, 1, NULL, 10, NULL, NULL, 0, NULL, 10, 1, 0, 86400, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('prickly_burger', 'The Prickly', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_prickly","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"healthModifier":15}', NULL),
+	('prison_drink', 'Prison Drink', NULL, 1, 1, NULL, 5, NULL, NULL, 1, NULL, 15, 1, 0, 86400, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_THIRST":100}}', '[]', NULL),
+	('prison_food', 'Prison Food', NULL, 1, 1, NULL, 5, NULL, NULL, 1, NULL, 15, 1, 0, 86400, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('produce_chain', 'Produce Crew Chain', 'Produce Crew Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"produce"}', NULL),
+	('pumpkinspiced_latte', 'Pumpkin Spice Latte', NULL, 1, 1, NULL, 200, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Coffee","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":25}}', '{"progressModifier":{"min":3,"modifier":60,"max":6}}', NULL),
+	('purgecontroller', 'Purge Controller', 'Redefine the look of your purges!', 3, 1, NULL, 1500, NULL, NULL, 3, NULL, 1, 1, 1, 2419200, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('purple_dongle', 'USB Drive (Purple)', '<i>Marked For Police Seizure</i>', 18, 2, NULL, 5000, NULL, 'DONGLE_PURPLE', 1, NULL, 1, 0, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('purple_laptop', 'Laptop (Purple)', '<i>Marked For Police Seizure</i>', 18, 3, NULL, 10000, NULL, NULL, 1, NULL, 1, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('queen_chain', 'Queen Chain', 'Queen Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"queen"}', NULL),
+	('queenies_chain', 'Queenies Chain', 'Queenies Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"queenies"}', NULL),
+	('quesadilla', 'Quesadilla', 'Basically grilled cheese', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"taco","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('rabbit', 'Rabbit', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rabbit_bait', 'Rabbit Bait', NULL, 7, 5, 'hunting_bait', 100, NULL, NULL, 2, NULL, 20, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('racedongle', 'Phone Dongle', 'Its a dongly boi', 18, 4, NULL, 0, NULL, 'RACE_DONGLE', 3, NULL, 1, 1, 0, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('racing_crappy', 'Homemade Phone Dongle', 'Its a really shitty dongly boi', 18, 4, NULL, 0, NULL, 'RACE_DONGLE', 1, NULL, 1, 1, 0, 43200, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('radio', 'Encrypted Radio', 'Encrypted Communication Device for Emergency Services', 3, 2, NULL, 725, NULL, 'RADIO_ENCRYPTED', 1, NULL, 1, 1, 0, 5184000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('radio_extendo', 'B0085 Radio', 'Used for Slightly Longer Range Communication', 3, 2, NULL, 10000, NULL, 'RADIO_EXTENDO', 1, NULL, 1, 1, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('radio_shitty', 'P6900 Radio', 'High Frequency Used for Short Range Communication', 3, 1, NULL, 2500, NULL, 'RADIO_CIV', 1, NULL, 1, 1, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('raspberry', 'Raspberry', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('raspberry_liqueur', 'Raspberry Liqueur', NULL, 4, 1, NULL, 5, NULL, NULL, 0, NULL, 30, 1, 0, NULL, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('raspberry_mimosa', 'Raspberry Mimosa', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('ravioli', 'Ravioli', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"stressTicks":["3","3","3","5","5","5"],"armourModifier":10}', NULL),
+	('recycledgoods', 'Recycled Goods', NULL, 6, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('red_dongle', 'USB Drive (Red)', '<i>Marked For Police Seizure</i>', 18, 4, NULL, 25000, NULL, 'DONGLE_RED', 1, NULL, 1, 0, 1, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('red_laptop', 'Laptop (Red)', '<i>Marked For Police Seizure</i>', 18, 4, NULL, 25000, NULL, NULL, 1, NULL, 1, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('red_sequencer', 'Red Keypad Sequencer', '<i>Marked For Police Seizure</i>', 18, 1, NULL, 25000, NULL, NULL, 1, NULL, 1, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('redlight', 'Handheld Light', NULL, 7, 2, NULL, 1000, NULL, NULL, 2, NULL, 1, 1, 1, 2592000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('refined_copper', 'Refined Copper', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('refined_electronics', 'Advanced Electronic Parts', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('refined_glue', 'Refined Glue', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('refined_iron', 'Refined Iron', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('refined_metal', 'Refined Aluminum', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('refined_plastic', 'Refined Plasic', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('refined_rubber', 'Refined Rubber', NULL, 4, 4, NULL, 10000, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rental_papers', 'Rental Papers', 'Documents that prove who rented a vehicle.', 6, 1, NULL, 0, NULL, NULL, 1, NULL, 1, 0, 0, 86400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rep_voucher', 'Rep Voucher', NULL, 7, 4, 'crypto_voucher', 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_axle', 'Axle Parts', 'Vehicle Axle Parts', 3, 1, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_brakes', 'Brakes', 'Vehicle Brakes', 3, 1, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_brakes_hg', 'HG Brakes', '(High Grade) Vehicle Brakes', 3, 2, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_clutch', 'Clutch', 'Vehicle Clutch', 3, 1, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_clutch_hg', 'HG Clutch', '(High Grade) Vehicle Clutch', 3, 2, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_electronics', 'Vehicle Electronics', 'Vehicle Electronic Parts', 3, 1, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_injectors', 'Fuel Injectors', 'Vehicle Fuel Injectors', 3, 1, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_injectors_hg', 'HG Fuel Injectors', '(High Grade) Vehicle Fuel Injectors', 3, 2, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_rad', 'Radiator', 'Vehicle Radiator', 3, 1, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_rad_hg', 'HG Radiator', '(High Grade) Vehicle Radiator', 3, 2, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_transmission', 'Transmission Parts', 'Vehicle Transmission', 3, 1, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repair_part_transmission_hg', 'HG Transmission Parts', '(High Grade) Vehicle Transmission Parts', 3, 2, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repairkit', 'Repair Kit', 'Fixes a vehicles engine so it can be driven again.', 3, 1, NULL, 350, NULL, NULL, 0, NULL, 4, 1, 1, 604800, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('repairkitadv', 'Advanced Repair Kit', 'Fixes a vehicles engine and tires so it can be driven again.', 3, 2, NULL, 600, NULL, NULL, 1, NULL, 2, 1, 1, 1209600, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rice', 'Bag of Rice', NULL, 4, 1, NULL, 5, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('richardson_chain', 'Richardson Chain', 'Richardson Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"richardson"}', NULL),
+	('ring', 'Ring', 'Potentially Stolen', 6, 1, NULL, 185, NULL, NULL, 1, NULL, 100, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rolex', 'Rolex', 'Potentially Stolen', 6, 2, NULL, 500, NULL, NULL, 1, NULL, 50, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rolling_paper', 'Rolling Paper', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 30, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rooks_chain', 'Rooks Chain', 'Rooks Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"rooks"}', NULL),
+	('rootbeerfloat', 'Root Beer Float', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":10000}', '{"Remove":{"PLAYER_STRESS":10},"Add":{"PLAYER_THIRST":90,"PLAYER_HUNGER":10}}', '[]', NULL),
+	('rubber', 'Rubber', NULL, 4, 1, NULL, 10, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('ruby', 'Ruby', NULL, 11, 3, NULL, 2250, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gemProperties":{"color":35}}', NULL),
+	('rum', 'Rum', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 5184000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rush_chain', 'Rush Chain', 'Rush Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"rush"}', NULL),
+	('rusty_blueice', 'Follemos', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"rusty_blueice","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":45}}', '{"healthModifier":12,"stressTicks":["1","1","1","1","3"]}', NULL),
+	('rusty_chocsprinkle', 'Chocolate Whammy', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"rusty_chocsprinkle","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":45}}', '{"stressTicks":["1","1","1","1","3"],"energyModifier":{"duration":18,"cooldown":80,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('rusty_chocstuff', 'Brown Mess', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"rusty_chocstuff","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":45}}', '{"healthModifier":12,"stressTicks":["1","1","1","1","3"]}', NULL),
+	('rusty_cookiecream', 'Manure Mix', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"rusty_cookiecream","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":45}}', '{"healthModifier":12,"stressTicks":["1","1","1","1","3"]}', NULL),
+	('rusty_custard', 'Creampie', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"rusty_custard","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Ignore":{"PLAYER_STRESS":10},"Add":{"PLAYER_HUNGER":45}}', '{"stressTicks":["1","1","1","1","3"],"energyModifier":{"duration":18,"cooldown":80,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('rusty_empty', 'Empty Donut Box', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('rusty_lemon', 'Bannana Deep', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"rusty_lemon","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Remove":{"PLAYER_THIRST":3},"Add":{"PLAYER_HUNGER":45}}', '{"healthModifier":12,"stressTicks":["1","1","1","1","3"]}', NULL),
+	('rusty_pd', 'Rusty\'s Sword', NULL, 1, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":false,"disableCarMovement":false,"disableMouse":false,"canCancel":false,"disableMovement":false,"label":"Unpacking","disableCombat":false,"ignoreModifier":true,"useWhileDead":false},"time":2000}', NULL, '[]', NULL),
+	('rusty_ring', 'Rusty Ring', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"rusty_ring","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Ignore":{"PLAYER_STRESS":10},"Add":{"PLAYER_HUNGER":45}}', '{"healthModifier":12,"stressTicks":["1","1","1","1","3"]}', NULL),
+	('rusty_ringbox', 'Box of Rings', NULL, 1, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":false,"disableCarMovement":false,"disableMouse":false,"canCancel":false,"disableMovement":false,"label":"Unpacking","disableCombat":false,"ignoreModifier":true,"useWhileDead":false},"time":2000}', NULL, '[]', NULL),
+	('rusty_ringmixbox', 'Box of Mixed Rings', NULL, 1, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":false,"disableCarMovement":false,"disableMouse":false,"canCancel":false,"disableMovement":false,"label":"Unpacking","disableCombat":false,"ignoreModifier":true,"useWhileDead":false},"time":2000}', NULL, '[]', NULL),
+	('rusty_strawsprinkbox', 'Box of Swifty Sprinkles', NULL, 1, 1, NULL, 1000, NULL, NULL, 5, NULL, 1, 1, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"pbConfig":{"vehicle":false,"disarm":false,"disableCarMovement":false,"disableMouse":false,"canCancel":false,"disableMovement":false,"label":"Unpacking","disableCombat":false,"ignoreModifier":true,"useWhileDead":false},"time":2000}', NULL, '[]', NULL),
+	('rusty_strawsprinkle', 'Cherry Pop', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"rusty_strawsprinkle","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":45}}', '{"stressTicks":["1","1","1","1","3"],"energyModifier":{"duration":18,"cooldown":80,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('safecrack_kit', 'Safe Cracking Kit', '<i>Marked For Police Seizure</i>', 18, 1, NULL, 2500, NULL, NULL, 1, NULL, 1, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sage_chain', 'Bear Chain', 'Bear Chain - Female', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"sage"}', NULL),
+	('saint_chain', 'Saint Chain', 'Saint Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"saint"}', NULL),
+	('salad', 'Salad', NULL, 1, 1, NULL, 150, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":50}}', '{"healthModifier":7}', NULL),
+	('salisbury_steak', 'Salisbury Steak', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":100}}', '{"healthModifier":15,"stressTicks":["6","6","6"]}', NULL),
+	('salvagedparts', 'Salvaged Parts', NULL, 6, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('san_manzano_pizza', 'San Manzano Pizza', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"pizza","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":18000}', '{"Ignore":{"PLAYER_STRESS":15},"Add":{"PLAYER_HUNGER":100}}', '{"armourModifier":25}', NULL),
+	('sandwich', 'Ham Sandwich', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('sandwich_beef', 'Beef Sandwich', NULL, 1, 1, NULL, 6, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":42}}', '[]', NULL),
+	('sandwich_blt', 'BLT Sandwich', NULL, 1, 1, NULL, 5, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":45}}', '[]', NULL),
+	('sandwich_chips', 'Chip Butty', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":40}}', '[]', NULL),
+	('sandwich_crisp', 'Crisp Sandwich', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":30}}', '[]', NULL),
+	('sandwich_egg', 'Egg Sandwich', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":35}}', '[]', NULL),
+	('sandwich_turkey', 'Turkey Sandwich', NULL, 1, 1, NULL, 4, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":11000}', '{"Add":{"PLAYER_HUNGER":40}}', '[]', NULL),
+	('santamuerte_chain', 'Santa Muerte Chain', 'Santa Muerte Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"santamuerte"}', NULL),
+	('sapphire', 'Sapphire', NULL, 11, 3, NULL, 2250, NULL, NULL, 1, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gemProperties":{"color":79}}', NULL),
+	('sashimi_mix', 'Sashimi Mix', NULL, 1, 1, NULL, 100, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_THIRST":10,"PLAYER_HUNGER":100}}', '{"healthModifier":15,"stressTicks":["3","3","3","5","5","5"],"armourModifier":10}', NULL),
+	('sausageroll', 'Sausage Roll', NULL, 1, 1, NULL, 15, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":40}}', '[]', NULL),
+	('sbc_chain', 'SBC Chain', 'SBC Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"sbc"}', NULL),
+	('schematic_38_custom', 'Schematic: .38 Custom', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'custom38'),
+	('schematic_38_snubnose', 'Schematic: .38 Snubnose', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'snubnose38'),
+	('schematic_44_magnum', 'Schematic: .44 Magnum', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'magnum'),
+	('schematic_57', 'Schematic: Six Eight', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'fiveseven'),
+	('schematic_advrifle', 'Schematic: Adv. Rifle', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'advrifle'),
+	('schematic_ak74', 'Schematic: AK-74', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'ak47'),
+	('schematic_appistol', 'Schematic: F18 Auto', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'appistol'),
+	('schematic_ar', 'Schematic: AK-47', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'ar'),
+	('schematic_ar15', 'Schematic: AR-15', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'ar15'),
+	('schematic_ar_suppressor', 'Schematic: AR Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'ar_suppressor'),
+	('schematic_asval', 'Schematic: AS-VAL', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'asval'),
+	('schematic_blindfold', 'Schematic: Blindfold', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'blindfold'),
+	('schematic_blue_laptop', 'Schematic: Blue Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'blue_laptop'),
+	('schematic_box_mag', 'Schematic: Box Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'box_mag'),
+	('schematic_combat_pistol', 'Schematic: Combat Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'combatpistol'),
+	('schematic_deagle', 'Schematic: Desert Eagle', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'deagle'),
+	('schematic_doubleaction', 'Schematic: Double Action Revolver', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'doubleaction'),
+	('schematic_draco', 'Schematic: Draco', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'draco'),
+	('schematic_drum_mag', 'Schematic: Drum Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'drum_mag'),
+	('schematic_fnx', 'Schematic: SB 45 Tactical', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'fnx'),
+	('schematic_g36', 'Schematic: F69', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'g36'),
+	('schematic_glock', 'Schematic: F19', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'glock'),
+	('schematic_grapple_gun', 'Schematic: Grapple Gun', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'grapple'),
+	('schematic_green_laptop', 'Schematic: Green Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'green_laptop'),
+	('schematic_handcuffs', 'Schematic: Handcuffs', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'handcuffs'),
+	('schematic_heavypistol', 'Schematic: Heavy Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'heavypistol'),
+	('schematic_hk16a', 'Schematic: HK16A', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'hk16a'),
+	('schematic_hk16b', 'Schematic: HK16B', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'hk16b'),
+	('schematic_hk417', 'Schematic: HK417', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'hk417'),
+	('schematic_honeybadger', 'Schematic: Honey Badger', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'honeybadger'),
+	('schematic_l5', 'Schematic: Desert Eagle K8', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'l5'),
+	('schematic_m9a3', 'Schematic: M9A3', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'm9a3'),
+	('schematic_mcxrattler', 'Schematic: MCX Rattler', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'mcxrattler'),
+	('schematic_mcxspear', 'Schematic: MCX Spear', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'mcxspear'),
+	('schematic_microsmg', 'Schematic: MAC 10', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'microsmg'),
+	('schematic_miniuzi', 'Schematic: Mini UZI', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'miniuzi'),
+	('schematic_mk47a', 'Schematic: MK47 A', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'mk47a'),
+	('schematic_mk47mutant', 'Schematic: MK47 Mutant', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'mk47mutant'),
+	('schematic_mk47s', 'Schematic: MK47 S', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'mk47s'),
+	('schematic_mp5', 'Schematic: SB54', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'mp5'),
+	('schematic_mp9', 'Schematic: MP9', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'mp9'),
+	('schematic_mpx', 'Schematic: MP 9mm', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'mpx'),
+	('schematic_nsr9', 'Schematic: NSR9', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'nsr9'),
+	('schematic_p226', 'Schematic: P226', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'p226'),
+	('schematic_p90', 'Schematic: PDW', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'ump'),
+	('schematic_pistol', 'Schematic: Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'pistol'),
+	('schematic_pistol_ammo', 'Schematic: Pistol Ammo', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'pistol_ammo'),
+	('schematic_pistol_ext_mag', 'Schematic: Pistol Ext. Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'pistol_ext_mag'),
+	('schematic_pistol_suppressor', 'Schematic: Pistol Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'pistol_suppressor'),
+	('schematic_pp19', 'Schematic: PP-19', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'pp19'),
+	('schematic_purple_laptop', 'Schematic: Purple Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'purple_laptop'),
+	('schematic_radio_extendo', 'Schematic: B0085 Radio', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'radio_extendo'),
+	('schematic_redlaptop', 'Schematic: Red Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'red_laptop'),
+	('schematic_revolver', 'Schematic: Revolver', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'revolver'),
+	('schematic_rfb', 'Schematic: RFB', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'rfb'),
+	('schematic_rifle_ext_mag', 'Schematic: AR Ext. Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'rifle_ext_mag'),
+	('schematic_rpk', 'Schematic: RPK16', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'rpk'),
+	('schematic_scope_holo', 'Schematic: Holographic Sight', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'scope_holo'),
+	('schematic_scope_lrg', 'Schematic: Large Scope', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'scope_lrg'),
+	('schematic_scope_med', 'Schematic: Medium Scope', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'scope_med'),
+	('schematic_scope_reddot', 'Schematic: Red Dot Sight', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'scope_reddot'),
+	('schematic_scope_small', 'Schematic: Small Scope', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'scope_small'),
+	('schematic_shotgun_ammo', 'Schematic: Shotgun Ammo', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'shotgun_ammo'),
+	('schematic_smg', 'Schematic: SMG', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'smg'),
+	('schematic_smg_ammo', 'Schematic: SMG Ammo', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'smg_ammo'),
+	('schematic_smg_ext_mag', 'Schematic: SMG Ext. Mag', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'smg_ext_mag'),
+	('schematic_smg_suppressor', 'Schematic: SMG Suppressor', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'smg_suppressor'),
+	('schematic_smgmk2', 'Schematic: SMG Mk2', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'smgmk2'),
+	('schematic_sns', 'Schematic: SNS Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'sns'),
+	('schematic_snsmk2', 'Schematic: SNS Mk2 Pistol', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'snsmk2'),
+	('schematic_tact2011', 'Schematic: 2011 Tactical', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'tact2011'),
+	('schematic_tec9', 'Schematic: TEC-9', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'tech9'),
+	('schematic_thermite', 'Schematic: Thermite', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'thermite'),
+	('schematic_tommygun', 'Schematic: Tommy Gun', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'tommygun'),
+	('schematic_ump', 'Schematic: .45 SMG', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'ump'),
+	('schematic_vector', 'Schematic: Vector', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'vector'),
+	('schematic_weapon_flashlight', 'Schematic: Weapon Flashlight', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'weapon_flashlight'),
+	('schematic_yellow_laptop', 'Schematic: Yellow Laptop', NULL, 17, 1, 'schematic', 5000, NULL, NULL, 0, NULL, 1, 0, 0, 1814400, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', 'yellow_laptop'),
+	('scrapmetal', 'Scrap Metal', NULL, 4, 1, NULL, 10, NULL, NULL, 0, NULL, 10000, 0, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('screwdriver', 'Screwdriver', NULL, 3, 1, NULL, 400, NULL, NULL, 0, NULL, 1, 1, 1, 259200, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('scuba_gear', 'Scuba Gear', NULL, 3, 2, NULL, 1000, NULL, NULL, 10, NULL, 1, 1, 1, 1209600, 0, 1, 0, 0, 0, 'EMS_DIVING', NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sequencer', 'Yellow Keypad Sequencer', '<i>Marked For Police Seizure</i>', 18, 1, NULL, 2500, NULL, NULL, 1, NULL, 1, 1, 1, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('shark_card', 'Shark Card', NULL, 6, 1, NULL, 10, NULL, NULL, 0, NULL, 10, 1, 0, 86400, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('shlevin_chain', 'Shlevin Chain', 'Shlevin Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"shlevin"}', NULL),
+	('shmilk', 'Shmilk', NULL, 1, 1, NULL, 75, NULL, NULL, 1, NULL, 25, 1, 0, 259200, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"shmilk","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"I Need Some Shmilk","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_THIRST":40,"PLAYER_HUNGER":15}}', '{"healthModifier":10}', NULL),
+	('sign_dontblock', 'Do Not Block Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 1, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sign_leftturn', 'Left Turn Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 1, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sign_nopark', 'No Parking Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sign_notresspass', 'No Tresspassing Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sign_rightturn', 'Right Turn Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sign_stop', 'Stop Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sign_uturn', 'U-Turn Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sign_walkingman', 'Walking Man Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('sign_yield', 'Yield Sign', 'Where did this come from?', 1, 4, NULL, 200, NULL, NULL, 2, NULL, 25, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('silverbar', 'Silver Bar', NULL, 4, 2, NULL, 200, NULL, NULL, 0, NULL, 10000, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('silverore', 'Silver Ore', NULL, 6, 3, NULL, 0, NULL, NULL, 0, NULL, 200, 1, 0, 7776000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('skull_chain', 'Thick Skull Chain', 'Thick Skull Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"skull"}', NULL),
+	('sloppyjoe', 'Sloppy Joe', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_HUNGER":100}}', '{"armourModifier":10}', NULL),
+	('smiley_chain', 'Smiley Chain', 'Why so serious?', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"smiley"}', NULL),
+	('smoothie_orange', 'Orange Smoothie', NULL, 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":9000}', '{"Add":{"PLAYER_THIRST":60,"PLAYER_HUNGER":15}}', '{"energyModifier":{"duration":18,"cooldown":60,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('smoothie_veg', 'Veg Smoothie', 'A Bean Machine Exclusive', 1, 1, NULL, 240, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"cup","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":9000}', '{"Remove":{"PLAYER_DRUNK":10},"Add":{"PLAYER_THIRST":75,"PLAYER_HUNGER":10}}', '{"energyModifier":{"duration":12,"cooldown":60,"modifier":1.2,"skipScreenEffects":true}}', NULL),
+	('snow_chain', 'Snow Chain', 'Snow Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"snow"}', NULL),
+	('snowboiz_chain', 'Snow Boiz Chain', 'Snow Boiz Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"snowboiz"}', NULL),
+	('soda', 'Soda', NULL, 1, 1, NULL, 25, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Remove":{"PLAYER_HUNGER":0},"Add":{"PLAYER_THIRST":35}}', '[]', NULL),
+	('sombrero', 'Sombrero', NULL, 13, 1, NULL, 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, '{"hat":{"drawableId":166,"disabled":false,"componentId":0,"textureId":0}}', NULL, NULL, NULL, '[]', NULL),
+	('spag_bowl', 'Spaghetti Bolognese', NULL, 1, 1, NULL, 0, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":17000}', '{"Add":{"PLAYER_HUNGER":70}}', '[]', NULL),
+	('sparkling_wine', 'Sparkling Wine', NULL, 4, 1, NULL, 5, NULL, NULL, 0, NULL, 30, 1, 0, NULL, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('spencer_chain', '41 Spencer Chain', '41 Spencer Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"spencer"}', NULL),
+	('spikes', 'Spike Strips', NULL, 3, 4, NULL, 200, NULL, NULL, 13, NULL, 1, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('ssb_chain', 'SSB Chain', 'SSB Gang Chain', 15, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"ssb"}', NULL),
+	('ssf_chain', 'SSF Chain', 'SSF Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"ssf"}', NULL),
+	('streetlegends_chain', 'Street Legends Chain', 'Street Legends Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"streetlegends"}', NULL),
+	('sugar', 'Bag of Sugar', NULL, 4, 1, NULL, 2, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('summer_chain', 'Summer Chain', 'Summer Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"summer"}', NULL),
+	('taco_bag', 'Bagged Order', 'Smells just like Southside', 6, 1, NULL, 10, NULL, NULL, 1, NULL, 1, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('taco_beef', 'Raw Ground Beef', NULL, 6, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('taco_cheese', 'Shredded Cheese', NULL, 6, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('taco_chicken', 'Raw Chicken Strips', NULL, 6, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('taco_plastic_cups', 'Taco Plastic Cups', NULL, 6, 1, 'plastic_cup', 1, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('taco_soda', 'Southside Soda', 'Yeah, tastes about right.', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 172800, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"soda","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Remove":{"PLAYER_HUNGER":3},"Add":{"PLAYER_THIRST":15}}', '[]', NULL),
+	('taco_steak', 'Raw Steak Strips', NULL, 6, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('taco_tortilla', 'Tortilla Shell', NULL, 6, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('tacos', 'Taco', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_tacos","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":100}}', '[]', NULL),
+	('takia_chain', 'Takia Chain', 'Takia Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"takia"}', NULL),
+	('tea_leaf', 'Tea Leaf', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('ten13_chain', '1013 Chain', '1013 Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"ten13"}', NULL),
+	('tequila', 'Tequila', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 5184000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('tequila_shot', 'Shot of Tequila', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('tequila_sunrise', 'Tequila Sunrise', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('the_simply_burger', 'Simply Burger', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bshot_simply","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":12000}', '{"Add":{"PLAYER_HUNGER":80}}', '[]', NULL),
+	('thermite', 'Thermite Charge', NULL, 19, 1, NULL, 200, NULL, NULL, 3, NULL, 5, 1, 1, 5184000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('tiramisu', 'Tiramisu', NULL, 1, 1, NULL, 65, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Ignore":{"PLAYER_STRESS":20},"Add":{"PLAYER_THIRST":50,"PLAYER_HUNGER":50}}', '{"energyModifier":{"duration":18,"cooldown":60,"modifier":1.1,"skipScreenEffects":true}}', NULL),
+	('tomato', 'Tomato', NULL, 4, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('tommy_tea', 'Tommy Tea', NULL, 1, 1, NULL, 125, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"coffee_expresso","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Tea","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":7500}', '{"Add":{"PLAYER_THIRST":100}}', '{"progressModifier":{"min":2,"modifier":60,"max":4}}', NULL),
+	('torta', 'Torta', 'Fancy sub', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"sandwich","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('torta_roll', 'Torta Roll', NULL, 6, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('tostada', 'Tostada', 'Deep fried or toasted?', 6, 1, NULL, 1, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"taco","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":8000}', '{"Add":{"PLAYER_HUNGER":15}}', '[]', NULL),
+	('tourniquet', 'Tourniquet', NULL, 1, 1, NULL, 150, NULL, NULL, 1, NULL, 1, 1, 0, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"bandage","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Applying Tourniquet","disableCombat":true,"useWhileDead":false},"time":5000}', NULL, '[]', NULL),
+	('tracy_chain', 'Tracy Chain', 'WOOP WOOP Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"tracy"}', NULL),
+	('traumakit', 'Trauma Kit', 'Needed to treat serious trauma in the field', 1, 1, NULL, 500, NULL, NULL, 5, NULL, 1, 1, 0, 432000, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('turtles_chain', 'Ice Ice Turtle Chain', 'I like turtles', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"turtles"}', NULL),
+	('tv', 'Television', 'Potentially Stolen', 6, 1, NULL, 1800, NULL, 'ANIM_tv', 100, NULL, 1, 0, 1, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('unicorn_chain', 'Unicorn Chain', 'Unicorn Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"unicorn"}', NULL),
+	('unity_chain', 'The Unity Chain', 'The Unity Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"unity"}', NULL),
+	('unk_meat', 'Meat', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('unknown_ore', 'Unknown Ore', NULL, 7, 5, NULL, 0, NULL, NULL, 3, NULL, 15, 0, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_brakes1', 'Brakes Upgrade (1)', 'Upgrade a Vehicles Brakes to Level 1', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_brakes2', 'Brakes Upgrade (2)', 'Upgrade a Vehicles Brakes to Level 2', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_brakes3', 'Brakes Upgrade (3)', 'Upgrade a Vehicles Brakes to Level 3', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_brakes4', 'Brakes Upgrade (4)', 'Upgrade a Vehicles Brakes to Level 4', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_engine1', 'Engine Upgrade (1)', 'Upgrade a Vehicles Engine to Level 1', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_engine2', 'Engine Upgrade (2)', 'Upgrade a Vehicles Engine to Level 2', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_engine3', 'Engine Upgrade (3)', 'Upgrade a Vehicles Engine to Level 3', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_engine4', 'Engine Upgrade (4)', 'Upgrade a Vehicles Engine to Level 4', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_suspension1', 'Suspension Upgrade (1)', 'Upgrade a Vehicles Suspension to Level 1', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_suspension2', 'Suspension Upgrade (2)', 'Upgrade a Vehicles Suspension to Level 2', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_suspension3', 'Suspension Upgrade (3)', 'Upgrade a Vehicles Suspension to Level 3', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_suspension4', 'Suspension Upgrade (4)', 'Upgrade a Vehicles Suspension to Level 4', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_transmission1', 'Transmission Upgrade (1)', 'Upgrade a Vehicles Transmission to Level 1', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_transmission2', 'Transmission Upgrade (2)', 'Upgrade a Vehicles Transmission to Level 2', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_transmission3', 'Transmission Upgrade (3)', 'Upgrade a Vehicles Transmission to Level 3', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_transmission4', 'Transmission Upgrade (4)', 'Upgrade a Vehicles Transmission to Level 4', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('upgrade_turbo', 'Turbo Upgrade', 'Upgrade a Vehicles to a Turbo', 3, 3, NULL, 1000, NULL, NULL, 0, NULL, 100, 1, 1, 7776000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_chain', 'UwU Chain', 'UwU Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"uwu"}', NULL),
+	('uwu_prize_b1', 'UwU Bear', 'UwU Cafe Collectable', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b10', 'UwU Snow Bear', 'UwU Cafe Collectable', 5, 4, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b2', 'UwU Rainbow Bear', 'UwU Cafe Collectable', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b3', 'UwU Sun Bear', 'UwU Cafe Collectable', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b4', 'UwU Flower Bear', 'UwU Cafe Collectable', 5, 1, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b5', 'UwU Tree Bear', 'UwU Cafe Collectable', 5, 2, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b6', 'UwU Heart Bear', 'UwU Cafe Collectable', 5, 2, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b7', 'UwU Moon Bear', 'UwU Cafe Collectable', 5, 3, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b8', 'UwU Rain Bear', 'UwU Cafe Collectable', 5, 3, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_b9', 'UwU Star Bear', 'UwU Cafe Collectable', 5, 4, NULL, 0, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('uwu_prize_box', 'UwU Mystery Box', 'Collect all the different bears! UwU', 1, 1, NULL, 0, NULL, NULL, 0, NULL, 100, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"mindblown","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Opening UwU Mystery Box","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":3000}', NULL, '[]', NULL),
+	('valuegoods', 'Valuable Goods', 'Potentially Stolen', 4, 4, NULL, 2450, NULL, NULL, 1, NULL, 10, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('vanityitem', 'Vanity Item', NULL, 5, 3, NULL, 0, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('vell_chain', 'Vell\'s Chain', 'Vell\'s Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"vell"}', NULL),
+	('venison', 'Venison', NULL, 1, 1, NULL, 40, NULL, NULL, 0, NULL, 1000, 0, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('vension_steak', 'Venison Steak', NULL, 1, 1, NULL, 150, NULL, NULL, 0, NULL, 15, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"eat","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Eating","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":15000}', '{"Add":{"PLAYER_HUNGER":50}}', '[]', NULL),
+	('vibrator_pink', 'Vibrator', 'If you vibe it, they will cum.', 1, 4, NULL, 400, NULL, NULL, 2, NULL, 1, 1, 0, NULL, 0, 0, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('vodka', 'Vodka', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 5184000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('vodka_shot', 'Shot of Vodka', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('vpn', 'VPN', NULL, 18, 4, NULL, 15000, NULL, 'PHONE_VPN', 1, NULL, 1, 1, 0, 1814400, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('watch', 'Gold Watch', 'Potentially Stolen', 6, 1, NULL, 215, NULL, NULL, 1, NULL, 50, 0, 0, 864000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('water', 'Water', NULL, 1, 1, NULL, 3, NULL, NULL, 0, NULL, 25, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, '{"anim":"water","pbConfig":{"vehicle":false,"disarm":true,"disableCarMovement":false,"disableMouse":false,"canCancel":true,"disableMovement":false,"label":"Drinking Water","disableCombat":true,"ignoreModifier":true,"useWhileDead":false},"time":5000}', '{"Remove":{"PLAYER_DRUNK":20,"PLAYER_HUNGER":0},"Add":{"PLAYER_THIRST":30}}', '[]', NULL),
+	('weed_baggy', 'Baggy of Weed', NULL, 12, 2, NULL, 200, NULL, NULL, 0, NULL, 100, 1, 0, 1209600, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('weed_brick', 'Brick of Weed', NULL, 12, 3, NULL, 10000, NULL, 'ANIM_weed', 10, NULL, 1, 1, 0, 3888000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('weed_bud', 'Marijuana Bud', NULL, 12, 1, NULL, 100, NULL, NULL, 0, NULL, 100, 1, 0, 1209600, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('weed_chain', 'Weed Chain', 'Weed Chain', 5, 4, 'rlg_chain', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"weed"}', NULL),
+	('weed_joint', 'Joint', NULL, 12, 1, NULL, 25, NULL, NULL, 1, NULL, 10, 1, 0, 1728000, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, '{"Remove":{"PLAYER_HUNGER":5}}', '{"drugState":{"duration":1800,"type":"weed"}}', NULL),
+	('weedseed_female', 'Female Marijuana Seed', NULL, 7, 1, NULL, 100, NULL, NULL, 0, NULL, 500, 1, 0, 2419200, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('weedseed_male', 'Male Marijuana Seed', NULL, 7, 1, NULL, 100, NULL, NULL, 0, NULL, 500, 1, 0, 2419200, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('whiskey', 'Whiskey', NULL, 1, 1, NULL, 50, NULL, NULL, 0, NULL, 50, 1, 0, 5184000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('whiskey_glass', 'Glass of Whiskey', NULL, 1, 1, NULL, 20, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('wine_bottle', 'Bottle of Wine', NULL, 1, 2, NULL, 50, NULL, NULL, 1, NULL, 10, 1, 0, 12960000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('wine_glass', 'Glass of Wine', NULL, 1, 2, NULL, 200, NULL, NULL, 0, NULL, 50, 1, 0, 432000, 0, 1, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('wolfring_chain', 'G.S. Wolf Ring', 'Wolf Ring', 5, 4, 'ring', 50, NULL, NULL, 0, NULL, 1, 1, 0, NULL, 0, 0, 1, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '{"gangChain":"wolfring"}', NULL),
+	('yeast', 'Yeast', NULL, 4, 1, NULL, 1, NULL, NULL, 0, NULL, 1000, 1, 0, NULL, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('yellow_dongle', 'USB Drive (Yellow)', '<i>Marked For Police Seizure</i>', 18, 4, NULL, 2500, NULL, 'DONGLE_YELLOW', 1, NULL, 1, 0, 1, 259200, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL),
+	('yellow_laptop', 'Laptop (Yellow)', '<i>Marked For Police Seizure</i>', 18, 4, NULL, 2500, NULL, NULL, 1, NULL, 1, 1, 1, 604800, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '[]', NULL);
 
--- Struktúra mentése tábla fivem-sandbox. mdt_charges
+-- Dumping structure for table fivem-sandbox.mdt_charges
 CREATE TABLE IF NOT EXISTS `mdt_charges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` tinyint(4) NOT NULL DEFAULT 1,
-  `title` varchar(1024) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
-  `description` text CHARACTER SET utf8mb4 NOT NULL,
+  `title` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `fine` int(11) NOT NULL DEFAULT 0,
   `jail` int(11) NOT NULL DEFAULT 0,
   `points` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.mdt_charges: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `mdt_charges` DISABLE KEYS */;
+-- Dumping data for table fivem-sandbox.mdt_charges: ~144 rows (approximately)
 INSERT INTO `mdt_charges` (`id`, `type`, `title`, `description`, `fine`, `jail`, `points`) VALUES
 	(1, 3, 'Capital Murder', '1st Degree Murder with specific circumstances. The special circumstances are defined as such:- Killing a government employee;- Killing an active member of a jury;- Killing a witness to prevent testimony in court;- Killing more than one victim (serial);', 0, 999, 0),
 	(2, 3, ' Accessory to Capital Murder', 'Accessory to Capital Murder', 0, 999, 0),
@@ -1350,52 +1675,47 @@ INSERT INTO `mdt_charges` (`id`, `type`, `title`, `description`, `fine`, `jail`,
 	(142, 1, 'Failure to Signal', 'Does not use a turn signal when necessary.', 100, 0, 0),
 	(143, 1, 'Driving Without Headlights During Darkness', 'Driving after dusk and before dawn or in other poor visiblity conditions without headlights.', 100, 0, 0),
 	(144, 2, 'Accessory to Assault & Battery', 'Assits in the threatens violence or injury upon an individual either orally or thru their actions and acts upon that threat.', 1000, 15, 0);
-/*!40000 ALTER TABLE `mdt_charges` ENABLE KEYS */;
 
--- Struktúra mentése tábla fivem-sandbox. mdt_library
+-- Dumping structure for table fivem-sandbox.mdt_library
 CREATE TABLE IF NOT EXISTS `mdt_library` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `label` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `link` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `job` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `workplace` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `label` varchar(255) NOT NULL,
+  `link` varchar(1024) NOT NULL,
+  `job` varchar(255) DEFAULT NULL,
+  `workplace` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `job` (`job`),
   KEY `workplace` (`workplace`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.mdt_library: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `mdt_library` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mdt_library` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.mdt_library: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. mdt_notices
+-- Dumping structure for table fivem-sandbox.mdt_notices
 CREATE TABLE IF NOT EXISTS `mdt_notices` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `description` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `title` varchar(1024) NOT NULL DEFAULT '',
+  `description` longtext NOT NULL,
   `creator` int(11) NOT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp(),
-  `restricted` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'public',
+  `restricted` varchar(50) NOT NULL DEFAULT 'public',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `job` (`restricted`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.mdt_notices: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `mdt_notices` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mdt_notices` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.mdt_notices: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. mdt_reports
+-- Dumping structure for table fivem-sandbox.mdt_reports
 CREATE TABLE IF NOT EXISTS `mdt_reports` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` smallint(6) NOT NULL DEFAULT 0,
-  `title` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
-  `notes` longtext CHARACTER SET utf8mb4 NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `notes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `allowAttorney` tinyint(4) NOT NULL DEFAULT 0,
   `creatorSID` int(11) NOT NULL,
-  `creatorName` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `creatorCallsign` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `creatorName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `creatorCallsign` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `title` (`title`),
   KEY `type` (`type`),
@@ -1403,48 +1723,44 @@ CREATE TABLE IF NOT EXISTS `mdt_reports` (
   KEY `creatorName` (`creatorName`),
   KEY `creatorCallsign` (`creatorCallsign`),
   KEY `allowAttorney` (`allowAttorney`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.mdt_reports: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `mdt_reports` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mdt_reports` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.mdt_reports: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. mdt_reports_evidence
+-- Dumping structure for table fivem-sandbox.mdt_reports_evidence
 CREATE TABLE IF NOT EXISTS `mdt_reports_evidence` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `report` int(11) NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `label` varchar(1024) CHARACTER SET utf8mb4 NOT NULL,
-  `value` varchar(1024) CHARACTER SET utf8mb4 NOT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `label` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `value` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `report` (`report`),
   CONSTRAINT `FK1_mdt_reports_evidence` FOREIGN KEY (`report`) REFERENCES `mdt_reports` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.mdt_reports_evidence: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `mdt_reports_evidence` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mdt_reports_evidence` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.mdt_reports_evidence: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. mdt_reports_people
+-- Dumping structure for table fivem-sandbox.mdt_reports_people
 CREATE TABLE IF NOT EXISTS `mdt_reports_people` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `report` int(11) NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT 'person',
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'person',
   `SID` int(11) NOT NULL,
-  `First` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `Last` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `Callsign` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `Licenses` varchar(1024) CHARACTER SET utf8mb4 NOT NULL DEFAULT '{}',
-  `charges` varchar(1024) CHARACTER SET utf8mb4 NOT NULL DEFAULT '{}',
+  `First` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Last` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Callsign` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Licenses` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '{}',
+  `charges` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '{}',
   `sentenced` tinyint(4) NOT NULL DEFAULT 0,
   `sentencedAt` datetime DEFAULT NULL,
-  `plea` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT 'unknown',
+  `plea` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'unknown',
   `points` int(11) NOT NULL DEFAULT 0,
   `fine` int(11) NOT NULL DEFAULT 0,
   `jail` int(11) NOT NULL DEFAULT 0,
   `parole` int(11) NOT NULL DEFAULT 0,
-  `reduction` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `revoked` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `reduction` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `revoked` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `doc` tinyint(4) NOT NULL DEFAULT 0,
   `expunged` tinyint(4) NOT NULL DEFAULT 0,
   `warrant` int(11) DEFAULT NULL,
@@ -1458,23 +1774,21 @@ CREATE TABLE IF NOT EXISTS `mdt_reports_people` (
   KEY `FK2_mdt_reports_people` (`warrant`),
   CONSTRAINT `FK2_mdt_reports_people` FOREIGN KEY (`warrant`) REFERENCES `mdt_warrants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_mdt_reports_people` FOREIGN KEY (`report`) REFERENCES `mdt_reports` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.mdt_reports_people: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `mdt_reports_people` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mdt_reports_people` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.mdt_reports_people: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. mdt_warrants
+-- Dumping structure for table fivem-sandbox.mdt_warrants
 CREATE TABLE IF NOT EXISTS `mdt_warrants` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `state` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'active',
-  `title` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `state` varchar(50) NOT NULL DEFAULT 'active',
+  `title` varchar(1024) NOT NULL,
   `report` int(10) NOT NULL,
   `suspect` int(10) NOT NULL,
-  `notes` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `notes` longtext NOT NULL,
   `creatorSID` int(11) NOT NULL,
-  `creatorName` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `creatorCallsign` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `creatorName` varchar(255) NOT NULL DEFAULT '',
+  `creatorCallsign` varchar(255) NOT NULL DEFAULT '',
   `issued` datetime NOT NULL DEFAULT current_timestamp(),
   `expires` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -1485,11 +1799,9 @@ CREATE TABLE IF NOT EXISTS `mdt_warrants` (
   CONSTRAINT `FK2_mdt_warrants` FOREIGN KEY (`suspect`) REFERENCES `mdt_reports_people` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.mdt_warrants: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `mdt_warrants` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mdt_warrants` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.mdt_warrants: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. meth_tables
+-- Dumping structure for table fivem-sandbox.meth_tables
 CREATE TABLE IF NOT EXISTS `meth_tables` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tier` int(11) NOT NULL DEFAULT 1,
@@ -1498,13 +1810,33 @@ CREATE TABLE IF NOT EXISTS `meth_tables` (
   `recipe` varchar(512) NOT NULL,
   `active_cook` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.meth_tables: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `meth_tables` DISABLE KEYS */;
-/*!40000 ALTER TABLE `meth_tables` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.meth_tables: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. placed_meth_tables
+-- Dumping structure for table fivem-sandbox.moonshine_barrels
+CREATE TABLE IF NOT EXISTS `moonshine_barrels` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quality` int(11) NOT NULL,
+  `drinks` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Dumping data for table fivem-sandbox.moonshine_barrels: ~0 rows (approximately)
+
+-- Dumping structure for table fivem-sandbox.moonshine_stills
+CREATE TABLE IF NOT EXISTS `moonshine_stills` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created` int(11) NOT NULL,
+  `tier` int(11) NOT NULL,
+  `cooldown` int(11) DEFAULT NULL,
+  `active_cook` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`active_cook`)),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Dumping data for table fivem-sandbox.moonshine_stills: ~0 rows (approximately)
+
+-- Dumping structure for table fivem-sandbox.placed_meth_tables
 CREATE TABLE IF NOT EXISTS `placed_meth_tables` (
   `table_id` int(11) NOT NULL,
   `owner` bigint(20) DEFAULT NULL,
@@ -1513,13 +1845,41 @@ CREATE TABLE IF NOT EXISTS `placed_meth_tables` (
   `coords` varchar(255) NOT NULL,
   `heading` double NOT NULL DEFAULT 0,
   PRIMARY KEY (`table_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.placed_meth_tables: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `placed_meth_tables` DISABLE KEYS */;
-/*!40000 ALTER TABLE `placed_meth_tables` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.placed_meth_tables: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. placed_props
+-- Dumping structure for table fivem-sandbox.placed_moonshine_barrels
+CREATE TABLE IF NOT EXISTS `placed_moonshine_barrels` (
+  `barrel_id` int(11) NOT NULL,
+  `owner` varchar(50) NOT NULL,
+  `placed` int(11) NOT NULL,
+  `ready` int(11) NOT NULL,
+  `expires` int(11) NOT NULL,
+  `coords` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`coords`)),
+  `heading` float NOT NULL,
+  `brew_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`brew_data`)),
+  PRIMARY KEY (`barrel_id`),
+  CONSTRAINT `placed_moonshine_barrels_ibfk_1` FOREIGN KEY (`barrel_id`) REFERENCES `moonshine_barrels` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Dumping data for table fivem-sandbox.placed_moonshine_barrels: ~0 rows (approximately)
+
+-- Dumping structure for table fivem-sandbox.placed_moonshine_stills
+CREATE TABLE IF NOT EXISTS `placed_moonshine_stills` (
+  `still_id` int(11) NOT NULL,
+  `owner` varchar(50) NOT NULL,
+  `placed` int(11) NOT NULL,
+  `expires` int(11) NOT NULL,
+  `coords` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`coords`)),
+  `heading` float NOT NULL,
+  PRIMARY KEY (`still_id`),
+  CONSTRAINT `placed_moonshine_stills_ibfk_1` FOREIGN KEY (`still_id`) REFERENCES `moonshine_stills` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Dumping data for table fivem-sandbox.placed_moonshine_stills: ~0 rows (approximately)
+
+-- Dumping structure for table fivem-sandbox.placed_props
 CREATE TABLE IF NOT EXISTS `placed_props` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(255) NOT NULL DEFAULT '',
@@ -1533,13 +1893,11 @@ CREATE TABLE IF NOT EXISTS `placed_props` (
   `type` int(11) NOT NULL DEFAULT 0,
   `name_override` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.placed_props: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `placed_props` DISABLE KEYS */;
-/*!40000 ALTER TABLE `placed_props` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.placed_props: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. player_shops
+-- Dumping structure for table fivem-sandbox.player_shops
 CREATE TABLE IF NOT EXISTS `player_shops` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
@@ -1549,33 +1907,29 @@ CREATE TABLE IF NOT EXISTS `player_shops` (
   `owner_bank` int(11) NOT NULL,
   `job` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.player_shops: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `player_shops` DISABLE KEYS */;
-/*!40000 ALTER TABLE `player_shops` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.player_shops: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. player_shops_moderators
+-- Dumping structure for table fivem-sandbox.player_shops_moderators
 CREATE TABLE IF NOT EXISTS `player_shops_moderators` (
   `shop` int(10) unsigned NOT NULL,
   `name` varchar(512) DEFAULT NULL,
   `sid` int(10) unsigned NOT NULL,
   PRIMARY KEY (`shop`,`sid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.player_shops_moderators: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `player_shops_moderators` DISABLE KEYS */;
-/*!40000 ALTER TABLE `player_shops_moderators` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.player_shops_moderators: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. redline_racer_history
+-- Dumping structure for table fivem-sandbox.redline_racer_history
 CREATE TABLE IF NOT EXISTS `redline_racer_history` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `sid` int(11) unsigned NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `placing` int(11) NOT NULL,
-  `winnings` text COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `vehicle` varchar(128) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `vehicle_class` varchar(4) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `winnings` text DEFAULT NULL,
+  `vehicle` varchar(128) NOT NULL,
+  `vehicle_class` varchar(4) NOT NULL,
   `track` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `racer_history_track` (`track`),
@@ -1583,46 +1937,40 @@ CREATE TABLE IF NOT EXISTS `redline_racer_history` (
   CONSTRAINT `racer_history_track` FOREIGN KEY (`track`) REFERENCES `redline_tracks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.redline_racer_history: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `redline_racer_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `redline_racer_history` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.redline_racer_history: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. redline_race_history
+-- Dumping structure for table fivem-sandbox.redline_race_history
 CREATE TABLE IF NOT EXISTS `redline_race_history` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `state` int(11) NOT NULL DEFAULT 0,
-  `name` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(32) NOT NULL,
   `buyin` int(11) unsigned NOT NULL DEFAULT 0,
   `host` int(11) unsigned NOT NULL,
   `track` int(11) unsigned NOT NULL,
-  `class` varchar(4) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `racers` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '[]',
+  `class` varchar(4) NOT NULL,
+  `racers` longtext NOT NULL DEFAULT '[]',
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `race_history_track` (`track`),
   CONSTRAINT `race_history_track` FOREIGN KEY (`track`) REFERENCES `redline_tracks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.redline_race_history: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `redline_race_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `redline_race_history` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.redline_race_history: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. redline_tracks
+-- Dumping structure for table fivem-sandbox.redline_tracks
 CREATE TABLE IF NOT EXISTS `redline_tracks` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `distance` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `type` varchar(16) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `checkpoints` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `created_by` varchar(64) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `name` varchar(64) NOT NULL,
+  `distance` varchar(256) NOT NULL,
+  `type` varchar(16) NOT NULL,
+  `checkpoints` longtext NOT NULL,
+  `created_by` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.redline_tracks: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `redline_tracks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `redline_tracks` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.redline_tracks: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. redline_track_history
+-- Dumping structure for table fivem-sandbox.redline_track_history
 CREATE TABLE IF NOT EXISTS `redline_track_history` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `track` int(11) unsigned NOT NULL,
@@ -1631,7 +1979,7 @@ CREATE TABLE IF NOT EXISTS `redline_track_history` (
   `lap_start` int(11) NOT NULL,
   `lap_end` int(11) NOT NULL,
   `laptime` int(11) NOT NULL,
-  `car` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `car` varchar(256) NOT NULL,
   `owned` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `track_history_track` (`track`),
@@ -1641,78 +1989,27 @@ CREATE TABLE IF NOT EXISTS `redline_track_history` (
   CONSTRAINT `track_history_track` FOREIGN KEY (`track`) REFERENCES `redline_tracks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
--- Tábla adatainak mentése fivem-sandbox.redline_track_history: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `redline_track_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `redline_track_history` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.redline_track_history: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. sequence
+-- Dumping structure for table fivem-sandbox.sequence
 CREATE TABLE IF NOT EXISTS `sequence` (
   `id` char(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sequence` int(10) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Tábla adatainak mentése fivem-sandbox.sequence: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `sequence` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sequence` ENABLE KEYS */;
+-- Dumping data for table fivem-sandbox.sequence: ~0 rows (approximately)
 
--- Struktúra mentése tábla fivem-sandbox. shop_bank_accounts
+-- Dumping structure for table fivem-sandbox.shop_bank_accounts
 CREATE TABLE IF NOT EXISTS `shop_bank_accounts` (
   `shop` int(10) unsigned NOT NULL,
   `bank` int(10) unsigned NOT NULL,
   PRIMARY KEY (`shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-CREATE TABLE `moonshine_stills` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `created` INT NOT NULL,
-    `tier` INT NOT NULL,
-    `cooldown` INT DEFAULT NULL,
-    `active_cook` JSON DEFAULT NULL
-);
+-- Dumping data for table fivem-sandbox.shop_bank_accounts: ~0 rows (approximately)
 
-
-CREATE TABLE `placed_moonshine_stills` (
-    `still_id` INT PRIMARY KEY,
-    `owner` VARCHAR(50) NOT NULL,
-    `placed` INT NOT NULL,
-    `expires` INT NOT NULL,
-    `coords` JSON NOT NULL,
-    `heading` FLOAT NOT NULL,
-    FOREIGN KEY (`still_id`) REFERENCES `moonshine_stills`(`id`) ON DELETE CASCADE
-);
-
-CREATE TABLE `moonshine_barrels` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `quality` INT NOT NULL,
-    `drinks` INT NOT NULL
-);
-
-CREATE TABLE `placed_moonshine_barrels` (
-    `barrel_id` INT PRIMARY KEY,
-    `owner` VARCHAR(50) NOT NULL,
-    `placed` INT NOT NULL,
-    `ready` INT NOT NULL,
-    `expires` INT NOT NULL,
-    `coords` JSON NOT NULL,
-    `heading` FLOAT NOT NULL,
-    `brew_data` JSON NOT NULL,
-    FOREIGN KEY (`barrel_id`) REFERENCES `moonshine_barrels`(`id`) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS `character_photos` (
-    `id` INT NOT NULL AUTO_INCREMENT,       
-    `sid` VARCHAR(50) NOT NULL,             
-    `image_url` TEXT NOT NULL,               
-    `time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-    PRIMARY KEY (`id`),                      
-    INDEX `idx_sid` (`sid`)                  
-);
-
--- Tábla adatainak mentése fivem-sandbox.shop_bank_accounts: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `shop_bank_accounts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `shop_bank_accounts` ENABLE KEYS */;
-
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
