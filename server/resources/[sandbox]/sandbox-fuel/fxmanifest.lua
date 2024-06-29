@@ -1,5 +1,3 @@
-server_script "NE1.lua"
-client_script "NE1.lua"
 fx_version("cerulean")
 lua54("yes")
 games({ "gta5" })
