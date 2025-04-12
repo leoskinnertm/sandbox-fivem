@@ -2,15 +2,9 @@
 # Sandbox RP
 This is a heavily modified version of **Mythic Framework** for Sandbox RP. This is a custom framework that uses a component system, all UI's are built in React. This codebase is being released with the full permissions of the original Mythic Framework authors **Alzar & Dr Nick**
 
-
-## Official Discord
-- [Discord Link](https://discord.gg/caJrDBGv3h) - Offical Discord for community-driven support forum!
-
-
-
-## Project Maintainers
-- Mysticz - Maintainer & Community Owner
-
+# Notice
+This version of Sandbox removes the need for WebSockets but removes the Sandbox dispatch system. I would recommend just using [Mythic](https://github.com/Mythic-Framework/mythic-framework) as a base since everyone is converting Sandbox scripts to Mythic.
+Although I am banned from the Mythic Discord server, I would still like to support the community in any way I can, so if there are any issues, please open an issue on GitHub, and I'll reply when I can.
 
 ## Dependencies
 
