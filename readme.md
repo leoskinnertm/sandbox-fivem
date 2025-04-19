@@ -1,31 +1,36 @@
-![Logo](https://i.ibb.co/Tm01NWq/banner.png)
-# Sandbox RP
-This is a heavily modified version of **Mythic Framework** for Sandbox RP. This is a custom framework that uses a component system, all UI's are built in React. This codebase is being released with the full permissions of the original Mythic Framework authors **Alzar & Dr Nick**
+<div align=center><img src="https://i.ibb.co/Tm01NWq/banner.png"></div>
 
-# Notice
-This version of Sandbox removes the need for WebSockets but removes the Sandbox dispatch system. I would recommend just using [Mythic](https://github.com/Mythic-Framework/mythic-framework) as a base since everyone is converting Sandbox scripts to Mythic.
-Although I am banned from the Mythic Discord server, I would still like to support the community in any way I can, so if there are any issues, please open an issue on GitHub, and I'll reply when I can.
+# Sandbox Framework [![Awesome](https://cdn.jsdelivr.net/gh/sindresorhus/awesome@d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome#readme)
+> A curated list of credits, links, and community information related to the framework.
 
-## Dependencies
+## Description
+- This is a heavily modified version of Mythic Framework for Sandbox RP. This is a custom framework that uses a component system, all UI's are built in React.
 
-| Packages          | Link                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| NodeJS | [Download Here](https://nodejs.org/en/download?text=+) |
-| MongoDB | [Download Here](https://www.mongodb.com/try/download/community) (v6.0.5) |
-| MariaDB | [Download Here](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12&os=windows&cpu=x86_64&pkg=msi&m=acorn) (v10.6.12)
-| HeidiSQL | [Download Here](https://www.heidisql.com/download.php) (*can be installed via MariaDB)
-| Git for Windows | [Download Here](https://git-scm.com/download/win)
+## Official Discord
+- [Discord Link](https://discord.gg/cbfMVNByzZ) - Offical Discord for Sandbox Framework community-driven support forum!
 
+## Get Started
+- [sandbox-framework](https://github.com/Sandbox-Framework/sandbox-framework) - Get started with the official repository!
+
+## Project Maintainers
+- Leoskinner - Maintainer
+
+## Credits
+- Alzar & Dr Nick - Original Maintainers and Creators
 
 ## Information
 
 # 🚧DISCLAIMER🚧
-We do not own this framework, and we am simply trying to give it the support it deserves. The framework was originally built by Alzar & Dr Nick. Alzar has taken the liberty of releasing the framework, which you can find by following the [original repository](https://github.com/BadCodesGG/sandbox-fivem) 
+We do not own this framework, and we am simply trying to give it the support it deserves. The framework was originally built by Alzar & Dr Nick. Alzar has taken the liberty of releasing the framework and allowing the team To Maintain it. You can Alzars orignal repo here [original mythic repository](https://github.com/Alzar/mythic-framework) and [original sandbox repository](https://github.com/BadCodesGG/sandbox-fivem) 
 
-
-# SQL Instaliation
-Run the SQL provided in HeidiSQL, the mongo will build itself as the server starts
-
+# Requirements 
+| Packages          | Link                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| NodeJS | [Download Here](https://nodejs.org/en/download?text=+) |
+| PNPM | [Download Here](https://pnpm.io/installation) |
+| MongoDB | [Download Here](https://www.mongodb.com/try/download/community) (v6.0.5) |
+| MariaDB | [Download Here](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.6.12&os=windows&cpu=x86_64&pkg=msi&m=acorn) (v10.6.12)
+| HeidiSQL | [Download Here](https://www.heidisql.com/download.php) (*can be installed via MariaDB)
 
 ## Map Dependencies
 This is a map list used by **Mythic Framework** for business, government ect.
