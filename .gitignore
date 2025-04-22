@@ -11,6 +11,7 @@ server/server.ptr.cfg
 *.bat
 *.log
 node_modules
+package-lock.json
 *.bkp
 .replxx_history
 
