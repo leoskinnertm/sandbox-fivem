@@ -2009,6 +2009,16 @@ CREATE TABLE IF NOT EXISTS `shop_bank_accounts` (
 
 -- Dumping data for table fivem-sandbox.shop_bank_accounts: ~0 rows (approximately)
 
+-- Dumping structure for table fivem-sandbox.whitelisted_peds
+CREATE TABLE IF NOT EXISTS `whitelisted_peds` (
+  `sid` int(11) NOT NULL,
+  `model` varchar(50) NOT NULL,
+  `label` varchar(1024) NOT NULL,
+  PRIMARY KEY (`sid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Dumping data for table fivem-sandbox.whitelisted_peds: ~0 rows (approximately)
+
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
